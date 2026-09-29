@@ -64,6 +64,12 @@ async function initComponents() {
     );
 
 
+    await loadComponent(
+      "faq",
+      "/components/faq.html"
+    );
+
+
     // Load footer
     await loadComponent(
         "site-footer",
