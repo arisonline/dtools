@@ -52,6 +52,12 @@ async function initComponents() {
     initTheme();
 
 
+    await loadComponent(
+        "related-tools",
+        "/components/related-tools.html"
+    );
+
+
     // Load footer
     await loadComponent(
         "site-footer",
