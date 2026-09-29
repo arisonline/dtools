@@ -2,6 +2,46 @@
    DOZNI TOOLS DATA
 ========================================= */
 
+const homeToolContent = {
+
+    name: "Dozni Tools",
+
+    description:
+        "Free online tools for images, PDFs, colors, development, SEO, writing and everyday digital tasks.",
+
+    category: "Online Tools",
+
+    howToTitle:
+        "How to Use Dozni Tools?",
+
+    howTo: [
+
+        "Choose the online tool you need from the available tools.",
+
+        "Open the tool and follow the instructions shown on the page.",
+
+        "Upload or enter your content when required.",
+
+        "Adjust the available options according to your needs.",
+
+        "Process your content and download or copy the result.",
+
+        "Most tools are designed to work directly in your browser."
+    ],
+
+    credits: [
+
+        {
+            name: "Dozni Tools",
+            description:
+                "Online utilities designed for everyday digital workflows."
+        }
+
+    ]
+
+};
+
+
 
 /* =========================================
    HOME PAGE FAQS
