@@ -446,6 +446,202 @@ function initFaq() {
 
 
 
+
+
+
+
+/* =========================================
+   GENERATE POPULAR TOOLS
+========================================= */
+
+function renderPopularTools() {
+
+  const popularLinks =
+    document.getElementById("popular-tools-links");
+
+
+  if (!popularLinks) {
+
+    console.warn(
+      "Popular tools container not found."
+    );
+
+    return;
+
+  }
+
+
+  const popularTools =
+    toolsData.filter(tool => tool.popular);
+
+
+  popularLinks.innerHTML =
+    popularTools.map(tool => {
+
+      return `
+        <a href="${tool.url}">
+          ${tool.name}
+        </a>
+      `;
+
+    }).join("");
+
+}
+
+
+
+
+
+
+
+/* =========================================
+   GENERATE TOOL CONTENT
+========================================= */
+
+function renderToolContent(content) {
+
+  const title =
+    document.getElementById("tool-page-title");
+
+  const description =
+    document.getElementById("tool-page-description");
+
+  const categories =
+    document.getElementById("tool-page-categories");
+
+  const howToTitle =
+    document.getElementById("tool-howto-title");
+
+  const howToList =
+    document.getElementById("tool-guide-list");
+
+  const credits =
+    document.getElementById("tool-credits");
+
+
+  if (!title) {
+
+    console.warn(
+      "Tool content component not found."
+    );
+
+    return;
+
+  }
+
+
+  /* =======================================
+     TITLE
+  ======================================= */
+
+  title.textContent =
+    content.name || "";
+
+
+  /* =======================================
+     DESCRIPTION
+  ======================================= */
+
+  if (description) {
+
+    description.textContent =
+      content.description || "";
+
+  }
+
+
+  /* =======================================
+     CATEGORIES
+  ======================================= */
+
+  if (categories) {
+
+    categories.innerHTML = `
+      Categories →
+
+      <a href="/categories/${(
+        content.category || ""
+      ).toLowerCase().replace(/\s+/g, "-")}-tools/">
+        ${content.category || ""}
+      </a>
+    `;
+
+  }
+
+
+  /* =======================================
+     HOW TO TITLE
+  ======================================= */
+
+  if (howToTitle) {
+
+    howToTitle.textContent =
+      content.howToTitle || "How to Use This Tool?";
+
+  }
+
+
+  /* =======================================
+     HOW TO LIST
+  ======================================= */
+
+  if (howToList) {
+
+    howToList.innerHTML =
+      (content.howTo || []).map(item => {
+
+        return `
+          <li>
+            ${item}
+          </li>
+        `;
+
+      }).join("");
+
+  }
+
+
+  /* =======================================
+     CREDITS
+  ======================================= */
+
+  if (credits) {
+
+    credits.innerHTML =
+      (content.credits || []).map(credit => {
+
+        return `
+          <div class="credit-item">
+
+            <a href="#">
+              ${credit.name}
+            </a>
+
+            <span>
+              ${credit.description}
+            </span>
+
+          </div>
+        `;
+
+      }).join("");
+
+  }
+
+
+  /* =======================================
+     POPULAR TOOLS
+  ======================================= */
+
+  renderPopularTools();
+
+}
+
+
+
+
+
+
 /* =========================================
    INITIALIZE TOOLS
 ========================================= */
@@ -484,6 +680,11 @@ function initTools() {
     );
 
 
+    renderToolContent(
+      currentTool
+    );
+
+
     renderFaq(
       currentTool.faqs
     );
@@ -504,10 +705,22 @@ function initTools() {
 
 
   console.log(
+    "Loading homepage content."
+  );
+
+
+  renderToolContent(
+    homeToolContent
+  );
+
+
+  console.log(
     "Loading homepage FAQs."
   );
 
 
-  renderFaq(homeFaqs);
+  renderFaq(
+    homeFaqs
+  );
 
 }
