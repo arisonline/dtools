@@ -2,6 +2,56 @@
    DOZNI TOOLS DATA
 ========================================= */
 
+
+/* =========================================
+   HOME PAGE FAQS
+========================================= */
+
+const homeFaqs = [
+
+  {
+    question: "Are Dozni Tools free to use?",
+
+    answer:
+      "Yes. Dozni Tools provides a collection of online utilities that can be used without a subscription."
+  },
+
+  {
+    question: "Do I need to create an account?",
+
+    answer:
+      "No. Most Dozni Tools can be used directly without creating an account or signing up."
+  },
+
+  {
+    question: "Are my uploaded files stored?",
+
+    answer:
+      "Tools are designed to process files securely and, where possible, directly in your browser without permanent storage."
+  },
+
+  {
+    question: "Can I use Dozni Tools on mobile devices?",
+
+    answer:
+      "Yes. Dozni Tools is designed to work across desktop, tablet and mobile browsers."
+  },
+
+  {
+    question: "What types of tools are available?",
+
+    answer:
+      "Dozni Tools provides online utilities for images, PDF files, colors, development, SEO, writing, finance, mathematics and other everyday tasks."
+  }
+
+];
+
+
+
+/* =========================================
+   DOZNI TOOLS DATA
+========================================= */
+
 const toolsData = [
 
   {
@@ -37,9 +87,48 @@ const toolsData = [
       }
 
     ]
+
+  },
+
+
+  {
+    id: "image-resizer",
+
+    name: "Image Resizer",
+
+    url: "/tools/image-resizer/",
+
+    category: "Image",
+
+    description:
+      "Resize JPG, PNG and WEBP images quickly.",
+
+    icon: "photo_size_select_large",
+
+    popular: true,
+
+    faqs: [
+
+      {
+        question: "How can I resize an image?",
+
+        answer:
+          "Upload your image, select the desired dimensions and download the resized image."
+      },
+
+      {
+        question: "Which image formats are supported?",
+
+        answer:
+          "The Image Resizer supports common formats such as JPG, PNG and WEBP."
+      }
+
+    ]
+
   }
 
 ];
+
 
 
 /* =========================================
@@ -66,6 +155,7 @@ function getCurrentTool() {
   });
 
 }
+
 
 
 /* =========================================
@@ -103,6 +193,7 @@ function getFaqIcon() {
 }
 
 
+
 /* =========================================
    FAQ ARROW SVG
 ========================================= */
@@ -123,18 +214,22 @@ function getFaqArrow() {
 }
 
 
+
 /* =========================================
    GENERATE FAQ
 ========================================= */
 
-function renderFaq(tool) {
+function renderFaq(faqs) {
 
   const faqWrapper =
     document.getElementById("faq-wrapper");
 
   if (!faqWrapper) return;
 
-  if (!tool || !tool.faqs || !tool.faqs.length) {
+
+  /* No FAQ data */
+
+  if (!faqs || !faqs.length) {
 
     faqWrapper.innerHTML = "";
 
@@ -143,8 +238,10 @@ function renderFaq(tool) {
   }
 
 
+  /* Generate FAQ cards */
+
   faqWrapper.innerHTML =
-    tool.faqs.map((faq, index) => {
+    faqs.map((faq, index) => {
 
       return `
 
@@ -185,9 +282,12 @@ function renderFaq(tool) {
     }).join("");
 
 
+  /* Start FAQ accordion */
+
   initFaq();
 
 }
+
 
 
 /* =========================================
@@ -199,10 +299,12 @@ function initFaq() {
   const faqCards =
     document.querySelectorAll(".faq-card");
 
+
   faqCards.forEach(card => {
 
     const question =
       card.querySelector(".faq-question");
+
 
     if (!question) return;
 
@@ -215,12 +317,16 @@ function initFaq() {
           card.classList.contains("active");
 
 
+        /* Close all cards */
+
         faqCards.forEach(item => {
 
           item.classList.remove("active");
 
         });
 
+
+        /* Open clicked card */
 
         if (!isActive) {
 
@@ -236,18 +342,46 @@ function initFaq() {
 }
 
 
+
 /* =========================================
-   INITIALIZE
+   INITIALIZE TOOLS
 ========================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+function initTools() {
 
-    const currentTool =
-      getCurrentTool();
+  const currentPath =
+    window.location.pathname
+      .replace(/\/+$/, "");
 
-    renderFaq(currentTool);
+
+  /* =======================================
+     HOME PAGE
+  ======================================= */
+
+  if (
+    currentPath === "" ||
+    currentPath === "/"
+  ) {
+
+    renderFaq(homeFaqs);
+
+    return;
 
   }
-);
+
+
+  /* =======================================
+     INDIVIDUAL TOOL PAGE
+  ======================================= */
+
+  const currentTool =
+    getCurrentTool();
+
+
+  if (currentTool) {
+
+    renderFaq(currentTool.faqs);
+
+  }
+
+}
