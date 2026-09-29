@@ -646,23 +646,32 @@ function renderToolContent(content) {
   }
 
 
-  /* =======================================
-     CATEGORIES
-  ======================================= */
-
-  if (categories) {
-
-    categories.innerHTML = `
-      Categories →
-
-      <a href="/categories/${(
-        content.category || ""
-      ).toLowerCase().replace(/\s+/g, "-")}-tools/">
-        ${content.category || ""}
-      </a>
-    `;
-
-  }
+   /* =======================================
+      CATEGORIES
+   ======================================= */
+   
+   if (categories) {
+   
+     categories.innerHTML = `
+       Categories →
+   
+       ${
+         (content.categories || [])
+           .map((category, index) => {
+   
+             return `
+               <a href="${category.url}">
+                 ${category.name}
+               </a>
+               ${index < content.categories.length - 1 ? ", " : ""}
+             `;
+   
+           })
+           .join("")
+       }
+     `;
+   
+   }
 
 
   /* =======================================
@@ -703,26 +712,26 @@ function renderToolContent(content) {
 
   if (credits) {
 
-    credits.innerHTML =
-      (content.credits || []).map(credit => {
-
-        return `
-          <div class="credit-item">
-
-            <a href="#">
-              ${credit.name}
-            </a>
-
-            <span>
-              ${credit.description}
-            </span>
-
-          </div>
-        `;
-
-      }).join("");
-
-  }
+     credits.innerHTML =
+       (content.credits || []).map(credit => {
+   
+         return `
+           <div class="credit-item">
+   
+             <a href="${credit.url || "#"}">
+               ${credit.name}
+             </a>
+   
+             <span>
+               ${credit.description}
+             </span>
+   
+           </div>
+         `;
+   
+       }).join("");
+   
+   }
 
 
   /* =======================================
