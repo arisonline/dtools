@@ -131,6 +131,102 @@ const toolsData = [
   },
 
 
+
+   {
+     id: "image-cropper",
+   
+     name: "Image Cropper Online",
+   
+     url: "tools/image-cropper/",
+   
+     category: "Image",
+   
+     description:
+       "Free Online Image Cropping Tool using HTML Canvas. Download cropped image in JPG or PNG format.",
+   
+     icon: "crop",
+   
+     popular: true,
+   
+     categories: [
+       {
+         name: "Design Tools",
+         url: "#"
+       },
+       {
+         name: "Image Tools",
+         url: "#"
+       }
+     ],
+   
+     howToTitle:
+       "How to Use Image Cropper Online?",
+   
+     howTo: [
+   
+       "Drag and drop image from your local system to the canvas above.",
+   
+       "Use the Aspect Ratio options to choose aspect ratio of Crop Tool.",
+   
+       "You can increase the Crop Tool size by dragging the corners and edges.",
+   
+       "Move the crop tool by holding the mouse button over it and dragging.",
+   
+       "Once you have selected the desired area, choose to export either JPG (optimized for small size) or PNG (high-quality).",
+   
+       "If the cropped image opens in a new tab, instead of downloading, right click and do \"Save As\" to save the cropped image.",
+   
+       "We do not store any of your images as everything is done client side."
+   
+     ],
+   
+     credits: [
+   
+       {
+         name: "CropperJS",
+         url: "#",
+         description: "JavaScript image cropper"
+       },
+   
+       {
+         name: "download.js",
+         url: "#",
+         description: "Client-side file downloading using JS and HTML5 by dandavis"
+       }
+   
+     ],
+   
+     faqs: [
+   
+       {
+         question:
+           "How do I crop an image online?",
+   
+         answer:
+           "Drag and drop your image into the cropper, adjust the crop area and export the result in JPG or PNG format."
+       },
+   
+       {
+         question:
+           "Which image formats can I download?",
+   
+         answer:
+           "You can export the cropped image as JPG or PNG."
+       },
+   
+       {
+         question:
+           "Are my images stored?",
+   
+         answer:
+           "No. Images are processed client-side and are not permanently stored."
+       }
+   
+     ]
+   
+   },
+
+
   {
     id: "image-resizer",
 
