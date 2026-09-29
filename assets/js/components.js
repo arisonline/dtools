@@ -45,7 +45,7 @@ async function initComponents() {
     // Load header first
     await loadComponent(
         "site-header",
-        "/components/header.html"
+        "components/header.html"
     );
 
     // Header now exists, so initialize theme button
