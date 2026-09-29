@@ -81,6 +81,14 @@ async function initComponents() {
     initTheme();
 
 
+   /* Tool-Contents */
+
+    await loadComponent(
+        "tool-content",
+        "components/tool-content.html"
+    );
+
+
     /* FEATURES */
 
     await loadComponent(
