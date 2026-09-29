@@ -141,16 +141,56 @@ function getCurrentTool() {
     window.location.pathname
       .replace(/\/+$/, "");
 
+
   return toolsData.find(tool => {
 
-    const toolPath =
-      new URL(
-        tool.url,
-        window.location.origin
-      ).pathname
-        .replace(/\/+$/, "");
+    /*
+       Get the final folder name from the
+       tool URL.
 
-    return toolPath === currentPath;
+       Example:
+
+       tools/json-formatter/
+
+       becomes:
+
+       json-formatter
+    */
+
+    const toolParts =
+      tool.url
+        .split("/")
+        .filter(Boolean);
+
+
+    const toolSlug =
+      toolParts[toolParts.length - 1];
+
+
+    /*
+       Get all parts from current URL
+    */
+
+    const currentParts =
+      currentPath
+        .split("/")
+        .filter(Boolean);
+
+
+    /*
+       Find the tool slug anywhere in
+       the current path.
+
+       Works with:
+
+       /tools/json-formatter
+
+       /dtools/tools/json-formatter
+
+       /dtools/tools/json-formatter/
+    */
+
+    return currentParts.includes(toolSlug);
 
   });
 
@@ -224,10 +264,21 @@ function renderFaq(faqs) {
   const faqWrapper =
     document.getElementById("faq-wrapper");
 
-  if (!faqWrapper) return;
+
+  if (!faqWrapper) {
+
+    console.warn(
+      "FAQ wrapper not found."
+    );
+
+    return;
+
+  }
 
 
-  /* No FAQ data */
+  /*
+     No FAQ data
+  */
 
   if (!faqs || !faqs.length) {
 
@@ -238,7 +289,9 @@ function renderFaq(faqs) {
   }
 
 
-  /* Generate FAQ cards */
+  /*
+     Generate FAQ cards
+  */
 
   faqWrapper.innerHTML =
     faqs.map((faq, index) => {
@@ -247,7 +300,10 @@ function renderFaq(faqs) {
 
         <div class="faq-card ${index === 0 ? "active" : ""}">
 
-          <button class="faq-question">
+          <button
+            type="button"
+            class="faq-question"
+          >
 
             <div class="faq-icon">
 
@@ -267,6 +323,7 @@ function renderFaq(faqs) {
 
           </button>
 
+
           <div class="faq-answer">
 
             <p>
@@ -282,7 +339,9 @@ function renderFaq(faqs) {
     }).join("");
 
 
-  /* Start FAQ accordion */
+  /*
+     Start accordion
+  */
 
   initFaq();
 
@@ -317,7 +376,9 @@ function initFaq() {
           card.classList.contains("active");
 
 
-        /* Close all cards */
+        /*
+           Close all FAQ cards
+        */
 
         faqCards.forEach(item => {
 
@@ -326,7 +387,9 @@ function initFaq() {
         });
 
 
-        /* Open clicked card */
+        /*
+           Open clicked card
+        */
 
         if (!isActive) {
 
@@ -349,29 +412,24 @@ function initFaq() {
 
 function initTools() {
 
+  console.log(
+    "tools.js initialized"
+  );
+
+
   const currentPath =
     window.location.pathname
       .replace(/\/+$/, "");
 
 
-  /* =======================================
-     HOME PAGE
-  ======================================= */
-
-  if (
-    currentPath === "" ||
-    currentPath === "/"
-  ) {
-
-    renderFaq(homeFaqs);
-
-    return;
-
-  }
+  console.log(
+    "Current path:",
+    currentPath
+  );
 
 
   /* =======================================
-     INDIVIDUAL TOOL PAGE
+     CHECK FOR INDIVIDUAL TOOL
   ======================================= */
 
   const currentTool =
@@ -380,8 +438,36 @@ function initTools() {
 
   if (currentTool) {
 
-    renderFaq(currentTool.faqs);
+    console.log(
+      "Current tool:",
+      currentTool.name
+    );
+
+
+    renderFaq(
+      currentTool.faqs
+    );
+
+
+    return;
 
   }
+
+
+  /* =======================================
+     HOME PAGE
+  ======================================= */
+
+  console.log(
+    "No specific tool detected."
+  );
+
+
+  console.log(
+    "Loading homepage FAQs."
+  );
+
+
+  renderFaq(homeFaqs);
 
 }
