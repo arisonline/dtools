@@ -7,7 +7,7 @@ async function loadComponent(id, file) {
     const element = document.getElementById(id);
 
     if (!element) {
-        console.warn("Component container not found:", id);
+        console.warn("Missing component:", id);
         return false;
     }
 
@@ -17,22 +17,21 @@ async function loadComponent(id, file) {
 
         if (!response.ok) {
             throw new Error(
-                `Failed to load ${file} (${response.status})`
+                "Failed to load " + file +
+                " - HTTP " + response.status
             );
         }
 
-        const html = await response.text();
+        element.innerHTML = await response.text();
 
-        element.innerHTML = html;
-
-        console.log("Loaded:", file);
+        console.log("Component loaded:", file);
 
         return true;
 
     } catch (error) {
 
         console.error(
-            "Component loading error:",
+            "Component error:",
             file,
             error
         );
@@ -40,7 +39,6 @@ async function loadComponent(id, file) {
         return false;
 
     }
-
 }
 
 
@@ -54,15 +52,9 @@ function initTheme() {
         document.getElementById("themeToggle");
 
     if (!themeToggle) {
-
-        console.warn(
-            "Theme toggle button not found."
-        );
-
+        console.warn("Theme toggle button not found.");
         return;
-
     }
-
 
     themeToggle.onclick = () => {
 
@@ -74,29 +66,22 @@ function initTheme() {
 
 
 /* =========================================
-   LOAD ALL COMPONENTS
+   INITIALIZE COMPONENTS
 ========================================= */
 
 async function initComponents() {
 
-    /* -------------------------------------
-       HEADER
-    ------------------------------------- */
+    /* HEADER */
 
     await loadComponent(
         "site-header",
         "components/header.html"
     );
 
-
-    /* Header exists now */
-
     initTheme();
 
 
-    /* -------------------------------------
-       FEATURES
-    ------------------------------------- */
+    /* FEATURES */
 
     await loadComponent(
         "features",
@@ -104,9 +89,7 @@ async function initComponents() {
     );
 
 
-    /* -------------------------------------
-       RELATED TOOLS
-    ------------------------------------- */
+    /* RELATED TOOLS */
 
     await loadComponent(
         "related-tools",
@@ -114,19 +97,15 @@ async function initComponents() {
     );
 
 
-    /* -------------------------------------
-       FAQ
-    ------------------------------------- */
+    /* FAQ */
 
-    await loadComponent(
+    const faqLoaded = await loadComponent(
         "faq",
         "components/faq.html"
     );
 
 
-    /* -------------------------------------
-       FOOTER
-    ------------------------------------- */
+    /* FOOTER */
 
     await loadComponent(
         "site-footer",
@@ -134,14 +113,25 @@ async function initComponents() {
     );
 
 
-    /* -------------------------------------
-       IMPORTANT
-       All components now exist.
-    ------------------------------------- */
+    /* =====================================
+       START TOOLS AFTER FAQ IS LOADED
+    ===================================== */
 
-    if (typeof initTools === "function") {
+    if (faqLoaded) {
 
-        initTools();
+        if (typeof initTools === "function") {
+
+            console.log("Starting tools.js...");
+
+            initTools();
+
+        } else {
+
+            console.error(
+                "initTools() was not found. Check tools.js."
+            );
+
+        }
 
     }
 
