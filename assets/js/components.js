@@ -4,27 +4,42 @@
 
 async function loadComponent(id, file) {
 
-    const element = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
     if (!element) {
-        console.warn("Missing component:", id);
+
+        console.warn(
+            "Missing component:",
+            id
+        );
+
         return false;
     }
 
     try {
 
-        const response = await fetch(file);
+        const response =
+            await fetch(file);
 
         if (!response.ok) {
+
             throw new Error(
-                "Failed to load " + file +
-                " - HTTP " + response.status
+                "Failed to load " +
+                file +
+                " - HTTP " +
+                response.status
             );
+
         }
 
-        element.innerHTML = await response.text();
+        element.innerHTML =
+            await response.text();
 
-        console.log("Component loaded:", file);
+        console.log(
+            "Component loaded:",
+            file
+        );
 
         return true;
 
@@ -39,6 +54,7 @@ async function loadComponent(id, file) {
         return false;
 
     }
+
 }
 
 
@@ -52,8 +68,13 @@ function initTheme() {
         document.getElementById("themeToggle");
 
     if (!themeToggle) {
-        console.warn("Theme toggle button not found.");
+
+        console.warn(
+            "Theme toggle button not found."
+        );
+
         return;
+
     }
 
     themeToggle.onclick = () => {
@@ -81,7 +102,7 @@ async function initComponents() {
     initTheme();
 
 
-   /* Tool-Contents */
+    /* TOOL CONTENT */
 
     await loadComponent(
         "tool-content",
@@ -107,7 +128,7 @@ async function initComponents() {
 
     /* FAQ */
 
-    const faqLoaded = await loadComponent(
+    await loadComponent(
         "faq",
         "components/faq.html"
     );
@@ -122,24 +143,22 @@ async function initComponents() {
 
 
     /* =====================================
-       START TOOLS AFTER FAQ IS LOADED
+       START TOOLS AFTER COMPONENTS LOAD
     ===================================== */
 
-    if (faqLoaded) {
+    if (typeof initTools === "function") {
 
-        if (typeof initTools === "function") {
+        console.log(
+            "Starting tools.js..."
+        );
 
-            console.log("Starting tools.js...");
+        initTools();
 
-            initTools();
+    } else {
 
-        } else {
-
-            console.error(
-                "initTools() was not found. Check tools.js."
-            );
-
-        }
+        console.error(
+            "initTools() was not found. Check tools.js."
+        );
 
     }
 
