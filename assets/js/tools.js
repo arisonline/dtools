@@ -131,6 +131,73 @@ const toolsData = [
   },
 
 
+   {
+     id: "percentage-calculator",
+   
+     name: "Percentage Calculator Online",
+   
+     url: "tools/percentage-calculator/",
+   
+     category: "Math",
+   
+     description:
+       "Free online percentage calculator to calculate percentage amounts, principal amounts and percentage rates instantly.",
+   
+     icon: "percent",
+   
+     popular: true,
+   
+     categories: [
+       {
+         name: "Math Tools",
+         url: "#"
+       }
+     ],
+   
+     howToTitle:
+       "How to Use Percentage Calculator Online?",
+   
+     howTo: [
+       "Choose the calculation you need from the percentage calculator.",
+       "Enter the required values in the input boxes.",
+       "The answer will update automatically in real time.",
+       "You can calculate a percentage amount, principal amount or percentage rate.",
+       "Negative values are also allowed.",
+       "Check the displayed formula and result for the calculation."
+     ],
+   
+     credits: [],
+   
+     faqs: [
+       {
+         question: "How do I calculate a percentage of a number?",
+   
+         answer:
+           "Enter the principal amount and percentage rate. The calculator will automatically calculate the percentage amount."
+       },
+   
+       {
+         question: "How can I find the original amount from a percentage?",
+   
+         answer:
+           "Enter the amount and percentage rate in the principal amount calculator to find the original amount."
+       },
+   
+       {
+         question: "How do I calculate the percentage rate?",
+   
+         answer:
+           "Enter the interest amount and principal amount. The calculator will automatically calculate the percentage rate."
+       },
+   
+       {
+         question: "Does the Percentage Calculator update results automatically?",
+   
+         answer:
+           "Yes. Results are calculated in real time whenever you change an input value."
+       }
+     ]
+   },
 
    {
      id: "image-cropper",
