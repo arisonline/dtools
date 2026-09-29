@@ -59,7 +59,7 @@ const toolsData = [
 
     name: "JSON Formatter",
 
-    url: "/tools/json-formatter/",
+    url: "tools/json-formatter/",
 
     category: "Dev",
 
@@ -96,7 +96,7 @@ const toolsData = [
 
     name: "Image Resizer",
 
-    url: "/tools/image-resizer/",
+    url: "tools/image-resizer/",
 
     category: "Image",
 
