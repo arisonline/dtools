@@ -22,13 +22,37 @@ async function loadComponent(id, file) {
 }
 
 
+function initTheme() {
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (!themeToggle) {
+        console.warn("Theme toggle button not found.");
+        return;
+    }
+
+    themeToggle.onclick = () => {
+
+        document.body.classList.toggle("dark");
+
+    };
+
+}
+
+
 async function initComponents() {
 
+    // Load header first
     await loadComponent(
         "site-header",
         "/components/header.html"
     );
 
+    // Header now exists, so initialize theme button
+    initTheme();
+
+
+    // Load footer
     await loadComponent(
         "site-footer",
         "/components/footer.html"
