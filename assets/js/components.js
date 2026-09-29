@@ -54,26 +54,26 @@ async function initComponents() {
 
     await loadComponent(
         "features",
-        "/components/features.html"
+        "components/features.html"
     );
 
 
     await loadComponent(
         "related-tools",
-        "/components/related-tools.html"
+        "components/related-tools.html"
     );
 
 
     await loadComponent(
       "faq",
-      "/components/faq.html"
+      "components/faq.html"
     );
 
 
     // Load footer
     await loadComponent(
         "site-footer",
-        "/components/footer.html"
+        "components/footer.html"
     );
 
 }
