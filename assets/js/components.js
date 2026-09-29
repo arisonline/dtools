@@ -53,6 +53,12 @@ async function initComponents() {
 
 
     await loadComponent(
+        "features",
+        "/components/features.html"
+    );
+
+
+    await loadComponent(
         "related-tools",
         "/components/related-tools.html"
     );
