@@ -1,12 +1,6 @@
 /* =========================================
    DOZNI TOOLS
    PERCENTAGE CALCULATOR
-   TOOL-SPECIFIC CSS
-========================================= */
-
-
-/* =========================================
-   PAGE RESET
 ========================================= */
 
 body.tool-page {
@@ -16,31 +10,30 @@ body.tool-page {
 
 
 /* =========================================
-   MAIN
+   CALCULATOR PAGE
 ========================================= */
 
 .percentage-calculator-page {
     width: 100%;
     margin: 0;
-    padding: 28px 20px 0;
+    padding: 24px 16px 0;
     box-sizing: border-box;
 }
 
 
 /* =========================================
-   CALCULATOR CONTAINER
+   CONTAINER
 ========================================= */
 
 .percentage-calculator-container {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    box-sizing: border-box;
 }
 
 
 /* =========================================
-   CALCULATOR CARD
+   MAIN CALCULATOR
 ========================================= */
 
 .percentage-calculator-card {
@@ -51,7 +44,7 @@ body.tool-page {
 
     border: 1px solid var(--border);
 
-    border-radius: 18px;
+    border-radius: 14px;
 
     box-shadow: var(--shadow);
 
@@ -60,15 +53,15 @@ body.tool-page {
 
 
 /* =========================================
-   CALCULATOR HEADING
+   HEADING
 ========================================= */
 
 .percentage-calculator-heading {
-    padding: 24px 28px 20px;
-
-    background: var(--bg-soft);
+    padding: 20px 24px 17px;
 
     border-bottom: 1px solid var(--border);
+
+    background: var(--card);
 }
 
 
@@ -77,7 +70,7 @@ body.tool-page {
 
     color: var(--text);
 
-    font-size: 24px;
+    font-size: 25px;
 
     line-height: 1.3;
 
@@ -97,23 +90,23 @@ body.tool-page {
 
 
 /* =========================================
-   CALCULATION BLOCK
+   CALCULATION SECTION
 ========================================= */
 
 .percentage-calculation {
-    padding: 24px 28px;
+    padding: 22px 24px 24px;
 
     border-bottom: 1px solid var(--border);
 }
 
 
 .percentage-calculation:last-child {
-    border-bottom: none;
+    border-bottom: 0;
 }
 
 
 /* =========================================
-   QUESTION ROW
+   QUESTION
 ========================================= */
 
 .percentage-question {
@@ -121,65 +114,54 @@ body.tool-page {
 
     align-items: center;
 
-    justify-content: center;
-
     flex-wrap: wrap;
 
-    gap: 10px;
-
-    color: var(--text);
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   INPUT
-========================================= */
-
-.percentage-question input {
-    width: 125px;
-
-    height: 44px;
-
-    box-sizing: border-box;
-
-    padding: 8px 12px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: var(--bg);
+    gap: 8px;
 
     color: var(--text);
 
     font-size: 16px;
 
-    font-weight: 600;
+    line-height: 1.7;
+}
+
+
+.percentage-question input {
+    width: 120px;
+
+    height: 38px;
+
+    padding: 6px 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-size: 15px;
 
     text-align: center;
 
     transition:
         border-color .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+        box-shadow .2s ease;
 }
 
 
 .percentage-question input::placeholder {
     color: var(--text-light);
 
-    opacity: .65;
+    opacity: .7;
 }
 
 
 .percentage-question input:hover {
-    border-color: #b9c8dd;
+    border-color: var(--primary);
 }
 
 
@@ -189,13 +171,11 @@ body.tool-page {
     border-color: var(--primary);
 
     box-shadow:
-        0 0 0 3px rgba(29, 114, 255, .12);
+        0 0 0 3px rgba(29, 114, 255, .10);
 }
 
 
-/* =========================================
-   NUMBER INPUT ARROWS
-========================================= */
+/* Remove number arrows */
 
 .percentage-question input::-webkit-outer-spin-button,
 .percentage-question input::-webkit-inner-spin-button {
@@ -208,67 +188,61 @@ body.tool-page {
 ========================================= */
 
 .percentage-answer {
-    margin-top: 18px;
+    margin-top: 15px;
 
-    text-align: center;
+    color: var(--text);
 
-    color: var(--primary);
+    font-size: 16px;
 
-    font-size: 30px;
+    line-height: 1.5;
 
-    font-weight: 800;
-
-    line-height: 1.2;
+    font-weight: 700;
 }
 
 
 /* =========================================
-   RESULT TEXT
+   RESULT SENTENCE
 ========================================= */
 
 .percentage-result-text {
-    margin-top: 5px;
-
-    text-align: center;
+    margin-top: 4px;
 
     color: var(--text-light);
 
-    font-size: 13px;
+    font-size: 14px;
 
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 
 /* =========================================
-   CALCULATION FORMULA
+   CALCULATION LABEL
 ========================================= */
 
 .calculation-box {
-    width: 100%;
+    margin-top: 13px;
 
-    box-sizing: border-box;
-
-    margin-top: 15px;
-
-    padding: 11px 14px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
+    padding: 12px 14px;
 
     background: var(--bg-soft);
 
-    color: var(--text-light);
+    border: 1px solid var(--border);
 
-    text-align: center;
+    border-radius: 8px;
 
-    font-size: 13px;
+    color: var(--text);
 
-    line-height: 1.5;
+    font-size: 14px;
+
+    line-height: 1.8;
 
     overflow-x: auto;
 }
 
+
+/* =========================================
+   EMPTY CALCULATION
+========================================= */
 
 .calculation-box:empty {
     display: none;
@@ -276,23 +250,15 @@ body.tool-page {
 
 
 /* =========================================
-   UNIVERSAL TOOL CONTENT
+   UNIVERSAL CONTENT
 ========================================= */
-
-/*
-   tool-content.html is loaded below the calculator.
-   Keep its own width and spacing controlled here.
-*/
 
 #tool-content-component {
     width: 100%;
-    margin: 28px 0 0;
+
+    margin: 24px 0 0;
 }
 
-
-/* =========================================
-   PREVENT EXTRA OUTER SPACING
-========================================= */
 
 #tool-content-component > section {
     margin-top: 0;
@@ -312,12 +278,12 @@ body.tool-page {
 
     color: var(--text);
 
-    line-height: 1.8;
+    line-height: 1.75;
 }
 
 
 .tool-article h2 {
-    margin: 32px 0 12px;
+    margin: 30px 0 12px;
 
     color: var(--text);
 
@@ -333,13 +299,11 @@ body.tool-page {
 
 
 .tool-article h3 {
-    margin: 26px 0 10px;
+    margin: 24px 0 10px;
 
     color: var(--text);
 
     font-size: 20px;
-
-    line-height: 1.4;
 }
 
 
@@ -349,8 +313,6 @@ body.tool-page {
     color: var(--text-light);
 
     font-size: 15px;
-
-    line-height: 1.75;
 }
 
 
@@ -385,47 +347,40 @@ body.tool-page {
 
     margin: 22px auto;
 
-    border-radius: 12px;
-
     border: 1px solid var(--border);
 
-    box-shadow:
-        0 8px 24px rgba(18, 38, 63, .07);
+    border-radius: 10px;
 }
 
 
 /* =========================================
-   FORMULA BOX
+   FORMULA
 ========================================= */
 
 .formula-box {
-    width: 100%;
+    margin: 15px 0 22px;
 
-    box-sizing: border-box;
+    padding: 13px 16px;
 
-    margin: 16px 0 22px;
-
-    padding: 15px 18px;
+    background: var(--bg-soft);
 
     border: 1px solid var(--border);
 
-    border-left: 4px solid var(--primary);
+    border-left: 3px solid var(--primary);
 
-    border-radius: 9px;
-
-    background: var(--bg-soft);
+    border-radius: 8px;
 
     overflow-x: auto;
 }
 
 
 .formula-box code {
+    color: var(--text);
+
     font-family:
         Consolas,
         Monaco,
         monospace;
-
-    color: var(--text);
 
     font-size: 14px;
 
@@ -440,15 +395,15 @@ body.tool-page {
 ========================================= */
 
 .tool-note {
-    margin: 24px 0;
+    margin: 22px 0;
 
-    padding: 15px 17px;
-
-    border-radius: 10px;
+    padding: 14px 16px;
 
     background: var(--bg-soft);
 
     border: 1px solid var(--border);
+
+    border-radius: 9px;
 
     color: var(--text-light);
 
@@ -472,16 +427,7 @@ body.tool-page {
 #faq {
     width: 100%;
 
-    margin-top: 28px;
-}
-
-
-/* =========================================
-   FOOTER
-========================================= */
-
-#site-footer {
-    margin-top: 0;
+    margin-top: 24px;
 }
 
 
@@ -492,22 +438,17 @@ body.tool-page {
 @media (max-width: 700px) {
 
     .percentage-calculator-page {
-        padding: 18px 12px 0;
-    }
-
-
-    .percentage-calculator-container {
-        max-width: 100%;
+        padding: 16px 10px 0;
     }
 
 
     .percentage-calculator-card {
-        border-radius: 14px;
+        border-radius: 11px;
     }
 
 
     .percentage-calculator-heading {
-        padding: 20px 18px 17px;
+        padding: 17px 16px 15px;
     }
 
 
@@ -516,50 +457,58 @@ body.tool-page {
     }
 
 
+    .percentage-calculator-heading p {
+        font-size: 13px;
+    }
+
+
     .percentage-calculation {
-        padding: 20px 16px;
+        padding: 19px 16px 21px;
     }
 
 
     .percentage-question {
-        gap: 8px;
-
         font-size: 15px;
+
+        gap: 7px;
     }
 
 
     .percentage-question input {
         width: 105px;
 
-        height: 42px;
+        height: 37px;
 
-        font-size: 15px;
+        font-size: 14px;
     }
 
 
     .percentage-answer {
-        margin-top: 15px;
+        font-size: 15px;
 
-        font-size: 26px;
+        margin-top: 13px;
+    }
+
+
+    .percentage-result-text {
+        font-size: 13px;
     }
 
 
     .calculation-box {
-        font-size: 12px;
+        font-size: 13px;
 
         padding: 10px 11px;
     }
 
 
     #tool-content-component {
-        margin-top: 20px;
+        margin-top: 18px;
     }
 
 
     .tool-article h2 {
-        font-size: 22px;
-
-        margin-top: 27px;
+        font-size: 21px;
     }
 
 
@@ -570,28 +519,24 @@ body.tool-page {
 
 
 /* =========================================
-   VERY SMALL MOBILE
+   SMALL MOBILE
 ========================================= */
 
-@media (max-width: 430px) {
+@media (max-width: 420px) {
 
     .percentage-calculator-page {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
 
     .percentage-calculation {
-        padding: 18px 12px;
-    }
-
-
-    .percentage-question {
-        gap: 7px;
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
 
     .percentage-question input {
-        width: 90px;
+        width: 88px;
     }
 }
