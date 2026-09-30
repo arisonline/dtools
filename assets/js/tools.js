@@ -132,72 +132,324 @@ const toolsData = [
 
 
    {
-     id: "percentage-calculator",
-   
-     name: "Percentage Calculator Online",
-   
-     url: "tools/percentage-calculator/",
-   
-     category: "Math",
-   
-     description:
-       "Free online percentage calculator to calculate percentage amounts, principal amounts and percentage rates instantly.",
-   
-     icon: "percent",
-   
-     popular: true,
-   
-     categories: [
-       {
-         name: "Math Tools",
-         url: "#"
-       }
-     ],
-   
-     howToTitle:
-       "How to Use Percentage Calculator Online?",
-   
-     howTo: [
-       "Choose the calculation you need from the percentage calculator.",
-       "Enter the required values in the input boxes.",
-       "The answer will update automatically in real time.",
-       "You can calculate a percentage amount, principal amount or percentage rate.",
-       "Negative values are also allowed.",
-       "Check the displayed formula and result for the calculation."
-     ],
-   
-     credits: [],
-   
-     faqs: [
-       {
-         question: "How do I calculate a percentage of a number?",
-   
-         answer:
-           "Enter the principal amount and percentage rate. The calculator will automatically calculate the percentage amount."
-       },
-   
-       {
-         question: "How can I find the original amount from a percentage?",
-   
-         answer:
-           "Enter the amount and percentage rate in the principal amount calculator to find the original amount."
-       },
-   
-       {
-         question: "How do I calculate the percentage rate?",
-   
-         answer:
-           "Enter the interest amount and principal amount. The calculator will automatically calculate the percentage rate."
-       },
-   
-       {
-         question: "Does the Percentage Calculator update results automatically?",
-   
-         answer:
-           "Yes. Results are calculated in real time whenever you change an input value."
-       }
-     ]
+    id: "percentage-calculator",
+
+    name: "Percentage Calculator",
+
+    url: "tools/percentage-calculator/",
+
+    category: "Math",
+
+    description:
+        "Free online percentage calculator to calculate percentage amounts, principal amounts and percentage rates instantly.",
+
+    icon: "percent",
+
+    popular: true,
+
+
+    /* =====================================
+       CATEGORIES
+    ===================================== */
+
+    categories: [
+
+        {
+            name: "Math Tools",
+
+            url: "https://digital-tool.dozni.com/?category=Math"
+        }
+
+    ],
+
+
+    /* =====================================
+       HOW TO USE
+    ===================================== */
+
+    howToTitle:
+        "How to Use Percentage Calculator?",
+
+    howTo: [
+
+        "Choose an option that relates to your query from the top.",
+
+        "Provide values in the input box, and the answer will update in real time.",
+
+        "You can enter any number of values. Negative values are also allowed.",
+
+        "Also, check the formulas with real-time calculations online."
+
+    ],
+
+
+    /* =====================================
+       CREDITS
+    ===================================== */
+
+    credits: [],
+
+
+    /* =====================================
+       TOOL CONTENT
+    ===================================== */
+
+    content: `
+
+        <h2>
+            Online percentage calculator
+        </h2>
+
+
+        <p>
+            With this percentage calculator, you can find the
+            value that makes up the percent portion of a percentage
+            equation. You can also calculate percent when the amount
+            and value are known, or find the original amount when
+            the value and percent are known.
+        </p>
+
+
+        <p>
+            Answer questions like % of X, what % is X in Y,
+            or X is Y% of what? can be calculated using this tool.
+        </p>
+
+
+        <p>
+            Here are the three components required for a
+            percentage formula:
+        </p>
+
+
+        <ol>
+
+            <li>
+                Principal amount (original amount)
+            </li>
+
+            <li>
+                Percentage Rate (as a % sign)
+            </li>
+
+            <li>
+                Interest amount (earned from the percentage rate)
+            </li>
+
+        </ol>
+
+
+        <img
+            class="percentage-image"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguZwT-ScLQgBgdfQvYXrYMYwM9kc94swoBzXilkWXNeR1MHAmcUuGAAks2rlaVTCLYOO0JssTdvCgCFWD4zZW-Dpw7u0IcDB5XFMEb9FDCnz9CKtt_pMSRtaazhpiGwy_ec2KagmFfHRO2V9LZKzB8GHrS6D6Lj2z9Tm64PKXvsj9-vOLdneim9cEO4G8/s800/percentage-calculator.gif"
+            alt="Percentage calculator online free"
+            loading="lazy"
+        >
+
+
+        <h2>
+            How to calculate the percentage amount when the principal amount and percent rate are known?
+        </h2>
+
+
+        <p>
+            By knowing the principal amount (P) and the percentage
+            rate (R), we can easily calculate the interest amount (I).
+        </p>
+
+
+        <div class="formula-box">
+
+            <code>
+                Percentage Amount = Principal Amount × Percentage Rate / 100
+            </code>
+
+        </div>
+
+
+        <p>
+            That means multiplying the original amount by the
+            percentage and dividing by 100.
+        </p>
+
+
+        <h2>
+            How to find principal amount while I have the percentage rate and its interest amount?
+        </h2>
+
+
+        <p>
+            If the interest amount (Interest) and the percentage
+            rate (Percentage) are known, we can easily find out
+            the actual amount (Principal).
+        </p>
+
+
+        <div class="formula-box">
+
+            <code>
+                Principal Amount = Interest Amount × 100 / Percentage Rate
+            </code>
+
+        </div>
+
+
+        <p>
+            That is, the interest amount must be multiplied by
+            100 and divided by the percentage rate.
+        </p>
+
+
+        <h2>
+            How to calculate percentage rate (%) easily?
+        </h2>
+
+
+        <p>
+            Similarly, if the principal (P) and interest amount (I)
+            are known, the formula to find the percentage is (%).
+        </p>
+
+
+        <div class="formula-box">
+
+            <code>
+                Percentage Rate = Interest Amount × 100 / Principal Amount
+            </code>
+
+        </div>
+
+
+        <p>
+            That is, the interest amount multiplied by 100 is
+            divided by the principal amount.
+        </p>
+
+
+        <h2>
+            How to Use Percentage Calculator?
+        </h2>
+
+
+        <ul>
+
+            <li>
+                Choose an option that relates to your query from the top.
+            </li>
+
+            <li>
+                Provide values in the input box, and the answer
+                will update in real time.
+            </li>
+
+            <li>
+                You can enter any number of values. Negative values
+                are also allowed.
+            </li>
+
+            <li>
+                Also, check the formulas with real-time calculations online.
+            </li>
+
+        </ul>
+
+
+        <div class="tool-note">
+
+            <strong>Note:</strong>
+
+            We do not store or share your personal data from
+            this tool. Visit our
+
+            <a
+                href="https://www.dozni.com/privacy-policy"
+                target="_blank"
+                rel="noopener"
+            >
+                privacy policy
+            </a>
+
+            for more information.
+
+        </div>
+
+
+        <div class="tool-share">
+
+            <span>
+                Share
+            </span>
+
+
+            <button
+                type="button"
+                class="share-button"
+                id="shareButton"
+            >
+                Share
+            </button>
+
+
+            <a
+                href="#"
+                class="share-button"
+                id="tweetButton"
+                target="_blank"
+                rel="noopener"
+            >
+                Tweet
+            </a>
+
+        </div>
+
+    `,
+
+
+    /* =====================================
+       FAQ
+    ===================================== */
+
+    faqs: [
+
+        {
+            question:
+                "How do I calculate a percentage of a number?",
+
+            answer:
+                "Enter the principal amount and percentage rate. The calculator automatically calculates the percentage amount."
+        },
+
+
+        {
+            question:
+                "How can I find the original amount from a percentage?",
+
+            answer:
+                "Enter the interest amount and percentage rate. The calculator calculates the original principal amount."
+        },
+
+
+        {
+            question:
+                "How do I calculate the percentage rate?",
+
+            answer:
+                "Enter the interest amount and principal amount. The calculator calculates the percentage rate automatically."
+        },
+
+
+        {
+            question:
+                "Does the Percentage Calculator update results automatically?",
+
+            answer:
+                "Yes. Results are calculated in real time whenever you change an input value."
+        }
+
+    ]
+
    },
+   
 
    {
      id: "image-cropper",
