@@ -314,3 +314,80 @@ document.addEventListener(
     "DOMContentLoaded",
     initPercentageCalculator
 );
+
+
+
+
+
+
+
+
+
+/* =========================================
+   NATIVE SHARE
+========================================= */
+
+const nativeShare =
+    document.getElementById("nativeShare");
+
+
+if (nativeShare) {
+
+    nativeShare.addEventListener(
+        "click",
+        async () => {
+
+            const shareData = {
+
+                title:
+                    "Free Percentage Calculator",
+
+                text:
+                    "Calculate percentages online with Dozni Tools.",
+
+                url:
+                    window.location.href
+
+            };
+
+
+            try {
+
+                if (
+                    navigator.share
+                ) {
+
+                    await navigator.share(
+                        shareData
+                    );
+
+                } else {
+
+                    await navigator.clipboard.writeText(
+                        window.location.href
+                    );
+
+                    nativeShare.textContent =
+                        "Link Copied!";
+
+                    setTimeout(() => {
+
+                        nativeShare.textContent =
+                            "Share";
+
+                    }, 2000);
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Share cancelled."
+                );
+
+            }
+
+        }
+    );
+
+}
