@@ -1,393 +1,332 @@
 /* =========================================
+   DOZNI TOOLS
    PERCENTAGE CALCULATOR
+   REAL-TIME CALCULATIONS
 ========================================= */
 
-function initPercentageCalculator() {
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================================
+       INPUTS
+    ========================================= */
+
+    const percent1 = document.getElementById("percent1");
+    const number1 = document.getElementById("number1");
+
+    const number2 = document.getElementById("number2");
+    const value2 = document.getElementById("value2");
+
+    const value3 = document.getElementById("value3");
+    const percent3 = document.getElementById("percent3");
 
 
-    /* =====================================
-       TABS
-    ===================================== */
+    /* =========================================
+       OUTPUTS
+    ========================================= */
 
-    const tabs =
-        document.querySelectorAll(
-            ".calculator-tab"
+    const valueOut = document.getElementById("valueOut");
+    const percentOut = document.getElementById("percentOut");
+    const numberOut = document.getElementById("numberOut");
+
+    const resultText1 = document.getElementById("resultText1");
+    const resultText2 = document.getElementById("resultText2");
+    const resultText3 = document.getElementById("resultText3");
+
+    const calculation1 = document.getElementById("calculation1");
+    const calculation2 = document.getElementById("calculation2");
+    const calculation3 = document.getElementById("calculation3");
+
+
+    /* =========================================
+       NUMBER FORMATTER
+    ========================================== */
+
+    function formatNumber(value) {
+
+        if (!Number.isFinite(value)) {
+            return "0";
+        }
+
+        if (Number.isInteger(value)) {
+            return value.toLocaleString("en-US");
+        }
+
+        return value.toLocaleString("en-US", {
+            maximumFractionDigits: 10
+        });
+    }
+
+
+    /* =========================================
+       RAW NUMBER
+    ========================================== */
+
+    function rawNumber(value) {
+
+        if (!Number.isFinite(value)) {
+            return "0";
+        }
+
+        if (Number.isInteger(value)) {
+            return String(value);
+        }
+
+        return String(
+            Number(value.toFixed(10))
         );
+    }
 
 
-    const panels =
-        document.querySelectorAll(
-            ".calculator-panel"
-        );
+    /* =========================================
+       CLEAR CALCULATION
+    ========================================== */
+
+    function clearCalculation(element) {
+
+        if (element) {
+            element.innerHTML = "";
+        }
+
+    }
 
 
-    tabs.forEach(tab => {
+    /* =========================================
+       1. X% OF Y
+    ========================================== */
 
-        tab.addEventListener(
-            "click",
-            () => {
+    function calculatePercentOf() {
 
-                tabs.forEach(item => {
+        const percent = parseFloat(percent1.value);
+        const number = parseFloat(number1.value);
 
-                    item.classList.remove(
-                        "active"
-                    );
+        if (
+            Number.isNaN(percent) ||
+            Number.isNaN(number)
+        ) {
 
-                });
+            valueOut.textContent = "0";
 
+            resultText1.textContent =
+                "Enter values above";
 
-                panels.forEach(panel => {
+            clearCalculation(calculation1);
 
-                    panel.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                tab.classList.add("active");
+            return;
+        }
 
 
-                const calculator =
-                    tab.dataset.calculator;
+        const result =
+            (percent / 100) * number;
 
 
-                const panel =
-                    document.getElementById(
-                        calculator
-                    );
+        valueOut.textContent =
+            formatNumber(result);
 
 
-                if (panel) {
+        resultText1.textContent =
+            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(result)}`;
 
-                    panel.classList.add(
-                        "active"
-                    );
 
-                }
+        calculation1.innerHTML = `
+            <strong>Calculation:</strong><br><br>
 
-            }
-        );
+            X = ${rawNumber(percent)}% of ${rawNumber(number)}<br><br>
+
+            ⇒ X = ${rawNumber(percent)}⁄100 × ${rawNumber(number)}<br><br>
+
+            ⇒ X = ${formatNumber(result)}
+        `;
+
+    }
+
+
+    /* =========================================
+       2. WHAT % IS X OF Y
+    ========================================== */
+
+    function calculateWhatPercent() {
+
+        const number = parseFloat(number2.value);
+        const value = parseFloat(value2.value);
+
+
+        if (
+            Number.isNaN(number) ||
+            Number.isNaN(value)
+        ) {
+
+            percentOut.textContent = "0%";
+
+            resultText2.textContent =
+                "Enter values above";
+
+            clearCalculation(calculation2);
+
+            return;
+        }
+
+
+        if (number === 0) {
+
+            percentOut.textContent = "0%";
+
+            resultText2.textContent =
+                "Cannot calculate percentage from zero";
+
+            clearCalculation(calculation2);
+
+            return;
+        }
+
+
+        const percent =
+            (value / number) * 100;
+
+
+        percentOut.textContent =
+            `${formatNumber(percent)}%`;
+
+
+        resultText2.textContent =
+            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(value)}`;
+
+
+        calculation2.innerHTML = `
+            <strong>Calculation:</strong><br><br>
+
+            X% of ${rawNumber(number)} = ${rawNumber(value)}<br><br>
+
+            ⇒ X⁄100 × ${rawNumber(number)} = ${rawNumber(value)}<br><br>
+
+            ⇒ X = (${rawNumber(value)} × 100)⁄${rawNumber(number)}<br><br>
+
+            ⇒ X = ${formatNumber(percent)}
+        `;
+
+    }
+
+
+    /* =========================================
+       3. X IS Y% OF WHAT?
+    ========================================== */
+
+    function calculateOriginalNumber() {
+
+        const value = parseFloat(value3.value);
+        const percent = parseFloat(percent3.value);
+
+
+        if (
+            Number.isNaN(value) ||
+            Number.isNaN(percent)
+        ) {
+
+            numberOut.textContent = "0";
+
+            resultText3.textContent =
+                "Enter values above";
+
+            clearCalculation(calculation3);
+
+            return;
+        }
+
+
+        if (percent === 0) {
+
+            numberOut.textContent = "0";
+
+            resultText3.textContent =
+                "Cannot calculate when percentage is zero";
+
+            clearCalculation(calculation3);
+
+            return;
+        }
+
+
+        const number =
+            (value * 100) / percent;
+
+
+        numberOut.textContent =
+            formatNumber(number);
+
+
+        resultText3.textContent =
+            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(value)}`;
+
+
+        calculation3.innerHTML = `
+            <strong>Calculation:</strong><br><br>
+
+            ${rawNumber(percent)}% of X = ${rawNumber(value)}<br><br>
+
+            ⇒ ${rawNumber(percent)}⁄100 × X = ${rawNumber(value)}<br><br>
+
+            ⇒ X = (${rawNumber(value)} × 100)⁄${rawNumber(percent)}<br><br>
+
+            ⇒ X = ${formatNumber(number)}
+        `;
+
+    }
+
+
+    /* =========================================
+       REAL-TIME EVENTS
+    ========================================== */
+
+    [
+        percent1,
+        number1
+    ].forEach(input => {
+
+        if (input) {
+            input.addEventListener(
+                "input",
+                calculatePercentOf
+            );
+        }
 
     });
 
 
-
-    /* =====================================
-       X% OF Y
-    ===================================== */
-
-    const calculatePercent =
-        document.getElementById(
-            "calculatePercent"
-        );
-
-
-    if (calculatePercent) {
-
-        calculatePercent.addEventListener(
-            "click",
-            () => {
-
-                const percentage =
-                    parseFloat(
-                        document.getElementById(
-                            "percentValue"
-                        ).value
-                    );
-
-
-                const number =
-                    parseFloat(
-                        document.getElementById(
-                            "numberValue"
-                        ).value
-                    );
-
-
-                const result =
-                    document.getElementById(
-                        "percentResult"
-                    );
-
-
-                if (
-                    isNaN(percentage) ||
-                    isNaN(number)
-                ) {
-
-                    result.textContent =
-                        "Please enter both values.";
-
-                    return;
-
-                }
-
-
-                const answer =
-                    (percentage / 100) *
-                    number;
-
-
-                result.textContent =
-                    `${percentage}% of ${number} = ${answer}`;
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================
-       X IS WHAT % OF Y
-    ===================================== */
-
-    const calculateWhatPercent =
-        document.getElementById(
-            "calculateWhatPercent"
-        );
-
-
-    if (calculateWhatPercent) {
-
-        calculateWhatPercent.addEventListener(
-            "click",
-            () => {
-
-                const part =
-                    parseFloat(
-                        document.getElementById(
-                            "partValue"
-                        ).value
-                    );
-
-
-                const whole =
-                    parseFloat(
-                        document.getElementById(
-                            "wholeValue"
-                        ).value
-                    );
-
-
-                const result =
-                    document.getElementById(
-                        "whatPercentResult"
-                    );
-
-
-                if (
-                    isNaN(part) ||
-                    isNaN(whole)
-                ) {
-
-                    result.textContent =
-                        "Please enter both values.";
-
-                    return;
-
-                }
-
-
-                if (whole === 0) {
-
-                    result.textContent =
-                        "The second value cannot be zero.";
-
-                    return;
-
-                }
-
-
-                const answer =
-                    (part / whole) * 100;
-
-
-                result.textContent =
-                    `${part} is ${answer.toFixed(2)}% of ${whole}`;
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================
-       PERCENTAGE CHANGE
-    ===================================== */
-
-    const calculateChange =
-        document.getElementById(
-            "calculateChange"
-        );
-
-
-    if (calculateChange) {
-
-        calculateChange.addEventListener(
-            "click",
-            () => {
-
-                const oldValue =
-                    parseFloat(
-                        document.getElementById(
-                            "oldValue"
-                        ).value
-                    );
-
-
-                const newValue =
-                    parseFloat(
-                        document.getElementById(
-                            "newValue"
-                        ).value
-                    );
-
-
-                const result =
-                    document.getElementById(
-                        "changeResult"
-                    );
-
-
-                if (
-                    isNaN(oldValue) ||
-                    isNaN(newValue)
-                ) {
-
-                    result.textContent =
-                        "Please enter both values.";
-
-                    return;
-
-                }
-
-
-                if (oldValue === 0) {
-
-                    result.textContent =
-                        "Original value cannot be zero.";
-
-                    return;
-
-                }
-
-
-                const change =
-                    ((newValue - oldValue) /
-                        Math.abs(oldValue)) *
-                    100;
-
-
-                if (change > 0) {
-
-                    result.textContent =
-                        `Percentage Increase: ${change.toFixed(2)}%`;
-
-                } else if (change < 0) {
-
-                    result.textContent =
-                        `Percentage Decrease: ${Math.abs(change).toFixed(2)}%`;
-
-                } else {
-
-                    result.textContent =
-                        "No percentage change.";
-
-                }
-
-            }
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initPercentageCalculator
-);
-
-
-
-
-
-
-
-
-
-/* =========================================
-   NATIVE SHARE
-========================================= */
-
-const nativeShare =
-    document.getElementById("nativeShare");
-
-
-if (nativeShare) {
-
-    nativeShare.addEventListener(
-        "click",
-        async () => {
-
-            const shareData = {
-
-                title:
-                    "Free Percentage Calculator",
-
-                text:
-                    "Calculate percentages online with Dozni Tools.",
-
-                url:
-                    window.location.href
-
-            };
-
-
-            try {
-
-                if (
-                    navigator.share
-                ) {
-
-                    await navigator.share(
-                        shareData
-                    );
-
-                } else {
-
-                    await navigator.clipboard.writeText(
-                        window.location.href
-                    );
-
-                    nativeShare.textContent =
-                        "Link Copied!";
-
-                    setTimeout(() => {
-
-                        nativeShare.textContent =
-                            "Share";
-
-                    }, 2000);
-
-                }
-
-            } catch (error) {
-
-                console.log(
-                    "Share cancelled."
-                );
-
-            }
-
+    [
+        number2,
+        value2
+    ].forEach(input => {
+
+        if (input) {
+            input.addEventListener(
+                "input",
+                calculateWhatPercent
+            );
         }
-    );
 
-}
+    });
+
+
+    [
+        value3,
+        percent3
+    ].forEach(input => {
+
+        if (input) {
+            input.addEventListener(
+                "input",
+                calculateOriginalNumber
+            );
+        }
+
+    });
+
+
+    /* =========================================
+       INITIAL STATE
+    ========================================== */
+
+    calculatePercentOf();
+    calculateWhatPercent();
+    calculateOriginalNumber();
+
+});
