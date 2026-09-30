@@ -16,17 +16,21 @@ function initSiteLogo() {
         document.getElementById("siteLogo");
 
     if (!logo) {
+        console.warn("Site logo not found.");
         return;
     }
 
 
-    const siteBase =
-        window.location.hostname.includes("github.io")
-            ? "/dtools/"
-            : "/";
+    if (window.location.hostname === "arisonline.github.io") {
 
+        logo.href =
+            "https://arisonline.github.io/dtools/";
 
-    logo.href = siteBase;
+    } else {
+
+        logo.href = "/";
+
+    }
 
 }
 
