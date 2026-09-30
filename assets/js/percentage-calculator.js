@@ -1,115 +1,87 @@
-/* =========================================
-   DOZNI TOOLS
+/* =========================================================
    PERCENTAGE CALCULATOR
-   REAL-TIME CALCULATIONS
-========================================= */
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
 
-    /* =========================================
-       INPUTS
-    ========================================= */
-
-    const percent1 = document.getElementById("percent1");
-    const number1 = document.getElementById("number1");
-
-    const number2 = document.getElementById("number2");
-    const value2 = document.getElementById("value2");
-
-    const value3 = document.getElementById("value3");
-    const percent3 = document.getElementById("percent3");
+    "use strict";
 
 
-    /* =========================================
-       OUTPUTS
-    ========================================= */
-
-    const valueOut = document.getElementById("valueOut");
-    const percentOut = document.getElementById("percentOut");
-    const numberOut = document.getElementById("numberOut");
-
-    const resultText1 = document.getElementById("resultText1");
-    const resultText2 = document.getElementById("resultText2");
-    const resultText3 = document.getElementById("resultText3");
-
-    const calculation1 = document.getElementById("calculation1");
-    const calculation2 = document.getElementById("calculation2");
-    const calculation3 = document.getElementById("calculation3");
-
-
-    /* =========================================
-       NUMBER FORMATTER
-    ========================================== */
+    /* =====================================================
+       HELPERS
+    ===================================================== */
 
     function formatNumber(value) {
 
         if (!Number.isFinite(value)) {
-            return "0";
+            return "0.00";
         }
 
-        if (Number.isInteger(value)) {
-            return value.toLocaleString("en-US");
-        }
+        return Number(value)
+            .toFixed(2)
+            .replace(/\.00$/, "")
+            .replace(/(\.\d)0$/, "$1");
 
-        return value.toLocaleString("en-US", {
-            maximumFractionDigits: 10
-        });
     }
 
 
-    /* =========================================
-       RAW NUMBER
-    ========================================== */
-
-    function rawNumber(value) {
+    function formatPercent(value) {
 
         if (!Number.isFinite(value)) {
-            return "0";
+            return "0%";
         }
 
-        if (Number.isInteger(value)) {
-            return String(value);
-        }
-
-        return String(
-            Number(value.toFixed(10))
-        );
-    }
-
-
-    /* =========================================
-       CLEAR CALCULATION
-    ========================================== */
-
-    function clearCalculation(element) {
-
-        if (element) {
-            element.innerHTML = "";
-        }
+        return formatNumber(value) + "%";
 
     }
 
 
-    /* =========================================
-       1. X% OF Y
-    ========================================== */
+    function getNumber(id) {
 
-    function calculatePercentOf() {
+        const element = document.getElementById(id);
 
-        const percent = parseFloat(percent1.value);
-        const number = parseFloat(number1.value);
+        if (!element) {
+            return NaN;
+        }
+
+        return parseFloat(element.value);
+
+    }
+
+
+    /* =====================================================
+       1. PERCENTAGE AMOUNT
+
+       X% of Y
+    ===================================================== */
+
+    function calculatePercentageAmount() {
+
+        const percent = getNumber("percent1");
+        const number = getNumber("number1");
+
+        const output = document.getElementById("valueOut");
+        const resultText = document.getElementById("resultText1");
+        const calculation = document.getElementById("calculation1");
+
+        if (!output || !resultText || !calculation) {
+            return;
+        }
+
 
         if (
-            Number.isNaN(percent) ||
-            Number.isNaN(number)
+            !Number.isFinite(percent) ||
+            !Number.isFinite(number)
         ) {
 
-            valueOut.textContent = "0";
+            output.textContent = "0.00";
 
-            resultText1.textContent =
+            resultText.textContent =
                 "Enter values above";
 
-            clearCalculation(calculation1);
+            calculation.innerHTML = `
+                <div>Enter values to see the calculation.</div>
+            `;
 
             return;
         }
@@ -119,214 +91,278 @@ document.addEventListener("DOMContentLoaded", function () {
             (percent / 100) * number;
 
 
-        valueOut.textContent =
+        output.textContent =
             formatNumber(result);
 
 
-        resultText1.textContent =
-            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(result)}`;
+        resultText.textContent =
+            `➟ ${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(result)}`;
 
 
-        calculation1.innerHTML = `
-            <strong>Calculation:</strong><br><br>
+        calculation.innerHTML = `
+            <div>
+                X = ${formatNumber(percent)}% of ${formatNumber(number)}
+            </div>
 
-            X = ${rawNumber(percent)}% of ${rawNumber(number)}<br><br>
+            <div>
+                ⇒ X = ${formatNumber(percent)}⁄100 × ${formatNumber(number)}
+            </div>
 
-            ⇒ X = ${rawNumber(percent)}⁄100 × ${rawNumber(number)}<br><br>
-
-            ⇒ X = ${formatNumber(result)}
+            <div>
+                ⇒ X = ${formatNumber(result)}
+            </div>
         `;
 
     }
 
 
-    /* =========================================
-       2. WHAT % IS X OF Y
-    ========================================== */
+    /* =====================================================
+       2. PERCENTAGE RATE
 
-    function calculateWhatPercent() {
+       X is what % of Y
+    ===================================================== */
 
-        const number = parseFloat(number2.value);
-        const value = parseFloat(value2.value);
+    function calculatePercentageRate() {
+
+        const number = getNumber("number2");
+        const value = getNumber("value2");
+
+        const output = document.getElementById("percentOut");
+        const resultText = document.getElementById("resultText2");
+        const calculation = document.getElementById("calculation2");
+
+        if (!output || !resultText || !calculation) {
+            return;
+        }
 
 
         if (
-            Number.isNaN(number) ||
-            Number.isNaN(value)
+            !Number.isFinite(number) ||
+            !Number.isFinite(value) ||
+            value === 0
         ) {
 
-            percentOut.textContent = "0%";
+            output.textContent = "0%";
 
-            resultText2.textContent =
+            resultText.textContent =
                 "Enter values above";
 
-            clearCalculation(calculation2);
+            calculation.innerHTML = `
+                <div>Enter values to see the calculation.</div>
+            `;
 
             return;
         }
 
 
-        if (number === 0) {
-
-            percentOut.textContent = "0%";
-
-            resultText2.textContent =
-                "Cannot calculate percentage from zero";
-
-            clearCalculation(calculation2);
-
-            return;
-        }
+        const result =
+            (number / value) * 100;
 
 
-        const percent =
-            (value / number) * 100;
+        output.textContent =
+            formatPercent(result);
 
 
-        percentOut.textContent =
-            `${formatNumber(percent)}%`;
+        resultText.textContent =
+            `➟ ${formatNumber(number)} is ${formatPercent(result)} of ${formatNumber(value)}`;
 
 
-        resultText2.textContent =
-            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(value)}`;
+        calculation.innerHTML = `
+            <div>
+                X = ${formatNumber(number)} ÷ ${formatNumber(value)} × 100
+            </div>
 
+            <div>
+                ⇒ X = ${formatNumber(number / value)} × 100
+            </div>
 
-        calculation2.innerHTML = `
-            <strong>Calculation:</strong><br><br>
-
-            X% of ${rawNumber(number)} = ${rawNumber(value)}<br><br>
-
-            ⇒ X⁄100 × ${rawNumber(number)} = ${rawNumber(value)}<br><br>
-
-            ⇒ X = (${rawNumber(value)} × 100)⁄${rawNumber(number)}<br><br>
-
-            ⇒ X = ${formatNumber(percent)}
+            <div>
+                ⇒ X = ${formatPercent(result)}
+            </div>
         `;
 
     }
 
 
-    /* =========================================
-       3. X IS Y% OF WHAT?
-    ========================================== */
+    /* =====================================================
+       3. PRINCIPAL AMOUNT
 
-    function calculateOriginalNumber() {
+       X is Y% of what?
+    ===================================================== */
 
-        const value = parseFloat(value3.value);
-        const percent = parseFloat(percent3.value);
+    function calculatePrincipalAmount() {
+
+        const value = getNumber("value3");
+        const percent = getNumber("percent3");
+
+        const output = document.getElementById("numberOut");
+        const resultText = document.getElementById("resultText3");
+        const calculation = document.getElementById("calculation3");
+
+        if (!output || !resultText || !calculation) {
+            return;
+        }
 
 
         if (
-            Number.isNaN(value) ||
-            Number.isNaN(percent)
+            !Number.isFinite(value) ||
+            !Number.isFinite(percent) ||
+            percent === 0
         ) {
 
-            numberOut.textContent = "0";
+            output.textContent = "0";
 
-            resultText3.textContent =
+            resultText.textContent =
                 "Enter values above";
 
-            clearCalculation(calculation3);
+            calculation.innerHTML = `
+                <div>Enter values to see the calculation.</div>
+            `;
 
             return;
         }
 
 
-        if (percent === 0) {
-
-            numberOut.textContent = "0";
-
-            resultText3.textContent =
-                "Cannot calculate when percentage is zero";
-
-            clearCalculation(calculation3);
-
-            return;
-        }
-
-
-        const number =
+        const result =
             (value * 100) / percent;
 
 
-        numberOut.textContent =
-            formatNumber(number);
+        output.textContent =
+            formatNumber(result);
 
 
-        resultText3.textContent =
-            `${formatNumber(percent)}% of ${formatNumber(number)} is ${formatNumber(value)}`;
+        resultText.textContent =
+            `➟ ${formatNumber(value)} is ${formatNumber(percent)}% of ${formatNumber(result)}`;
 
 
-        calculation3.innerHTML = `
-            <strong>Calculation:</strong><br><br>
+        calculation.innerHTML = `
+            <div>
+                X = ${formatNumber(value)} × 100 ÷ ${formatNumber(percent)}
+            </div>
 
-            ${rawNumber(percent)}% of X = ${rawNumber(value)}<br><br>
+            <div>
+                ⇒ X = ${formatNumber(value * 100)} ÷ ${formatNumber(percent)}
+            </div>
 
-            ⇒ ${rawNumber(percent)}⁄100 × X = ${rawNumber(value)}<br><br>
-
-            ⇒ X = (${rawNumber(value)} × 100)⁄${rawNumber(percent)}<br><br>
-
-            ⇒ X = ${formatNumber(number)}
+            <div>
+                ⇒ X = ${formatNumber(result)}
+            </div>
         `;
 
     }
 
 
-    /* =========================================
-       REAL-TIME EVENTS
-    ========================================== */
+    /* =====================================================
+       DEFAULT VALUES
+    ===================================================== */
 
-    [
-        percent1,
-        number1
-    ].forEach(input => {
+    function setDefaultValues() {
 
-        if (input) {
-            input.addEventListener(
-                "input",
-                calculatePercentOf
-            );
+        const percent1 = document.getElementById("percent1");
+        const number1 = document.getElementById("number1");
+
+        const number2 = document.getElementById("number2");
+        const value2 = document.getElementById("value2");
+
+        const value3 = document.getElementById("value3");
+        const percent3 = document.getElementById("percent3");
+
+
+        if (percent1) {
+            percent1.value = "5";
         }
 
-    });
-
-
-    [
-        number2,
-        value2
-    ].forEach(input => {
-
-        if (input) {
-            input.addEventListener(
-                "input",
-                calculateWhatPercent
-            );
+        if (number1) {
+            number1.value = "200";
         }
 
-    });
 
-
-    [
-        value3,
-        percent3
-    ].forEach(input => {
-
-        if (input) {
-            input.addEventListener(
-                "input",
-                calculateOriginalNumber
-            );
+        if (number2) {
+            number2.value = "5";
         }
 
-    });
+        if (value2) {
+            value2.value = "200";
+        }
 
 
-    /* =========================================
-       INITIAL STATE
-    ========================================== */
+        if (value3) {
+            value3.value = "10";
+        }
 
-    calculatePercentOf();
-    calculateWhatPercent();
-    calculateOriginalNumber();
+        if (percent3) {
+            percent3.value = "5";
+        }
 
-});
+    }
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    function initPercentageCalculator() {
+
+        setDefaultValues();
+
+
+        const inputIds = [
+            "percent1",
+            "number1",
+            "number2",
+            "value2",
+            "value3",
+            "percent3"
+        ];
+
+
+        inputIds.forEach(function (id) {
+
+            const input =
+                document.getElementById(id);
+
+            if (!input) {
+                return;
+            }
+
+            input.addEventListener(
+                "input",
+                function () {
+
+                    calculatePercentageAmount();
+                    calculatePercentageRate();
+                    calculatePrincipalAmount();
+
+                }
+            );
+
+        });
+
+
+        /* Initial calculation on page open/refresh */
+
+        calculatePercentageAmount();
+        calculatePercentageRate();
+        calculatePrincipalAmount();
+
+    }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initPercentageCalculator
+        );
+
+    } else {
+
+        initPercentageCalculator();
+
+    }
+
+})();
