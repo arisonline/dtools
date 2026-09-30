@@ -8,6 +8,29 @@ const SITE_BASE =
         : "/";
 
 
+
+
+function initSiteLogo() {
+
+    const logo =
+        document.getElementById("siteLogo");
+
+    if (!logo) {
+        return;
+    }
+
+
+    const siteBase =
+        window.location.hostname.includes("github.io")
+            ? "/dtools/"
+            : "/";
+
+
+    logo.href = siteBase;
+
+}
+
+
 /* =========================================
    LOAD COMPONENT
 ========================================= */
@@ -138,13 +161,19 @@ function initTheme() {
 async function initComponents() {
 
 
-    await loadComponent(
-        "site-header",
-        "header.html"
-    );
-
-
-    initTheme();
+       const headerLoaded =
+          await loadComponent(
+              "site-header",
+              "header.html"
+          );
+      
+      if (headerLoaded) {
+      
+          initSiteLogo();
+      
+          initTheme();
+      
+      }
 
 
     /*
