@@ -1,22 +1,9 @@
 /* =========================================
-   DTools - UNIVERSAL COMPONENT LOADER
+   DOZNI COMPONENT LOADER
 ========================================= */
-
-
-/* =========================================
-   SITE BASE PATH
-========================================= */
-
-/*
-   GitHub Pages:
-   https://arisonline.github.io/dtools/
-   
-   Custom domain:
-   https://dtools.dozni.com/
-*/
 
 const SITE_BASE =
-    location.hostname.includes("github.io")
+    window.location.hostname.includes("github.io")
         ? "/dtools/"
         : "/";
 
@@ -30,6 +17,7 @@ async function loadComponent(id, file) {
     const element =
         document.getElementById(id);
 
+
     if (!element) {
 
         console.warn(
@@ -38,35 +26,27 @@ async function loadComponent(id, file) {
         );
 
         return false;
+
     }
 
 
     try {
 
-        /*
-           Always load components from the
-           correct DTools root directory.
-        */
-
-        const componentURL =
-            SITE_BASE + "components/" + file;
-
-
-        console.log(
-            "Loading component:",
-            componentURL
-        );
+        const url =
+            SITE_BASE +
+            "components/" +
+            file;
 
 
         const response =
-            await fetch(componentURL);
+            await fetch(url);
 
 
         if (!response.ok) {
 
             throw new Error(
                 "Failed to load " +
-                componentURL +
+                url +
                 " - HTTP " +
                 response.status
             );
@@ -80,18 +60,16 @@ async function loadComponent(id, file) {
 
         console.log(
             "Component loaded:",
-            componentURL
+            url
         );
 
 
         return true;
 
-
     } catch (error) {
 
         console.error(
             "Component error:",
-            componentURL,
             error
         );
 
@@ -124,50 +102,34 @@ function initTheme() {
     }
 
 
-    /*
-       Remove previous click handler
-       before adding a new one.
-    */
-
-    themeToggle.onclick = null;
-
-
     themeToggle.onclick = () => {
 
-        document.body.classList.toggle("dark");
-
-
-        /*
-           Save user's theme preference.
-        */
-
-        const isDark =
-            document.body.classList.contains("dark");
+        document.body.classList.toggle(
+            "dark"
+        );
 
 
         localStorage.setItem(
-            "dtools-theme",
-            isDark ? "dark" : "light"
+            "dozni-theme",
+            document.body.classList.contains("dark")
+                ? "dark"
+                : "light"
         );
 
     };
 
 
-    /*
-       Restore saved theme.
-    */
-
     const savedTheme =
-        localStorage.getItem("dtools-theme");
+        localStorage.getItem(
+            "dozni-theme"
+        );
 
 
     if (savedTheme === "dark") {
 
-        document.body.classList.add("dark");
-
-    } else {
-
-        document.body.classList.remove("dark");
+        document.body.classList.add(
+            "dark"
+        );
 
     }
 
@@ -180,15 +142,10 @@ function initTheme() {
 
 async function initComponents() {
 
-
     console.log(
-        "DTools components initializing..."
+        "Loading Dozni components..."
     );
 
-
-    /* =====================================
-       HEADER
-    ===================================== */
 
     await loadComponent(
         "site-header",
@@ -196,37 +153,14 @@ async function initComponents() {
     );
 
 
-    /*
-       Header is now loaded,
-       so initialize theme button.
-    */
-
     initTheme();
 
 
-    /* =====================================
-       TOOL CONTENT
-    ===================================== */
-
     await loadComponent(
-        "tool-content",
-        "tool-content.html"
+        "popular-tools",
+        "popular-tools.html"
     );
 
-
-    /* =====================================
-       FEATURES
-    ===================================== */
-
-    await loadComponent(
-        "features",
-        "features.html"
-    );
-
-
-    /* =====================================
-       RELATED TOOLS
-    ===================================== */
 
     await loadComponent(
         "related-tools",
@@ -234,19 +168,17 @@ async function initComponents() {
     );
 
 
-    /* =====================================
-       FAQ
-    ===================================== */
+    await loadComponent(
+        "features",
+        "features.html"
+    );
+
 
     await loadComponent(
         "faq",
         "faq.html"
     );
 
-
-    /* =====================================
-       FOOTER
-    ===================================== */
 
     await loadComponent(
         "site-footer",
@@ -255,38 +187,23 @@ async function initComponents() {
 
 
     /* =====================================
-       START TOOLS AFTER COMPONENTS LOAD
-    ===================================== */
+       IMPORTANT
+    ====================================== */
 
     if (
-        typeof initTools === "function"
+        typeof initTools ===
+        "function"
     ) {
-
-        console.log(
-            "Starting tools.js..."
-        );
-
 
         initTools();
 
-
     } else {
 
-        console.warn(
-            "initTools() was not found. " +
-            "This is okay if this page does not use tools.js."
+        console.error(
+            "initTools() was not found. Check tools.js."
         );
 
     }
-
-
-    /* =====================================
-       COMPONENTS READY
-    ===================================== */
-
-    console.log(
-        "DTools components initialized successfully."
-    );
 
 }
 
