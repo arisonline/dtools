@@ -1,648 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Free Percentage Calculator Online - Find Percent of a Number & Rate
-    </title>
-
-    <meta
-        name="description"
-        content="Use Dozni's free online Percentage Calculator to find percentage amounts, principal amounts, or percentage rates instantly."
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/theme.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/tools.css"
-    >
-
-</head>
-
-
-<body>
-
-
-<!-- =========================================
-     UNIVERSAL HEADER
-========================================= -->
-
-<div id="site-header"></div>
-
-
-
-<!-- =========================================
-     PERCENTAGE CALCULATOR PAGE
-========================================= -->
-
 <main class="tool-page">
 
 
-    <!-- BREADCRUMB -->
+    <!-- =====================================
+         AUTOMATIC TOOL INFORMATION
+    ====================================== -->
 
-    <div class="tool-breadcrumb">
+    <section class="tool-heading">
 
-        <a href="../../">
-            Home
-        </a>
-
-        <span>→</span>
-
-        <span>Categories</span>
-
-        <span>→</span>
-
-        <a href="../../categories/math-tools/">
-            Math Tools
-        </a>
-
-    </div>
-
-
-
-    <!-- INTRO -->
-
-    <section class="tool-intro">
-
-        <span class="tool-badge">
-            Math Tool
-        </span>
-
-        <h1>
-            Percentage Calculator
+        <h1 id="tool-page-title">
         </h1>
 
-        <p>
-            Calculate percentage amounts, percentage rates,
-            principal amounts, increases and decreases instantly.
-        </p>
-
-    </section>
-
-
-
-    <!-- =====================================
-         CALCULATOR
-    ====================================== -->
-
-    <section class="tool-workspace">
-
-
-        <div class="tool-workspace-header">
-
-            <div>
-
-                <h2 class="tool-workspace-title">
-                    Online Percentage Calculator
-                </h2>
-
-                <p class="tool-workspace-subtitle">
-                    Calculate percentages quickly and accurately.
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="tool-workspace-body">
-
-
-            <!-- TABS -->
-
-            <div class="calculator-tabs">
-
-                <button
-                    class="calculator-tab active"
-                    data-calculator="percent-of"
-                >
-                    % of X
-                </button>
-
-
-                <button
-                    class="calculator-tab"
-                    data-calculator="what-percent"
-                >
-                    What % is X in Y?
-                </button>
-
-
-                <button
-                    class="calculator-tab"
-                    data-calculator="percent-change"
-                >
-                    Percentage Change
-                </button>
-
-            </div>
-
-
-
-            <!-- =================================
-                 % OF X
-            ================================== -->
-
-            <div
-                class="calculator-panel active"
-                id="percent-of"
-            >
-
-                <h2>
-                    What is X% of Y?
-                </h2>
-
-                <p class="calculator-description">
-                    Enter a percentage and the original amount
-                    to calculate the percentage amount.
-                </p>
-
-
-                <div class="calculator-form">
-
-
-                    <div class="input-group">
-
-                        <label for="percentValue">
-                            Percentage Rate (%)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="percentValue"
-                            placeholder="Example: 20"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label for="numberValue">
-                            Principal Amount
-                        </label>
-
-                        <input
-                            type="number"
-                            id="numberValue"
-                            placeholder="Example: 500"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="primary-button"
-                        id="calculatePercent"
-                    >
-                        Calculate Percentage
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="calculator-result"
-                    id="percentResult"
-                >
-                    Enter values and click Calculate.
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 WHAT % IS X IN Y
-            ================================== -->
-
-            <div
-                class="calculator-panel"
-                id="what-percent"
-            >
-
-                <h2>
-                    What percentage is X of Y?
-                </h2>
-
-                <p class="calculator-description">
-                    Enter the amount and original value
-                    to find the percentage rate.
-                </p>
-
-
-                <div class="calculator-form">
-
-
-                    <div class="input-group">
-
-                        <label for="partValue">
-                            Interest / Amount
-                        </label>
-
-                        <input
-                            type="number"
-                            id="partValue"
-                            placeholder="Example: 50"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label for="wholeValue">
-                            Principal Amount
-                        </label>
-
-                        <input
-                            type="number"
-                            id="wholeValue"
-                            placeholder="Example: 200"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="primary-button"
-                        id="calculateWhatPercent"
-                    >
-                        Calculate Percentage Rate
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="calculator-result"
-                    id="whatPercentResult"
-                >
-                    Enter values and click Calculate.
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 PERCENTAGE CHANGE
-            ================================== -->
-
-            <div
-                class="calculator-panel"
-                id="percent-change"
-            >
-
-                <h2>
-                    Percentage Increase / Decrease
-                </h2>
-
-                <p class="calculator-description">
-                    Enter the original and new values to
-                    calculate the percentage change.
-                </p>
-
-
-                <div class="calculator-form">
-
-
-                    <div class="input-group">
-
-                        <label for="oldValue">
-                            Original Value
-                        </label>
-
-                        <input
-                            type="number"
-                            id="oldValue"
-                            placeholder="Example: 100"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <div class="input-group">
-
-                        <label for="newValue">
-                            New Value
-                        </label>
-
-                        <input
-                            type="number"
-                            id="newValue"
-                            placeholder="Example: 120"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="primary-button"
-                        id="calculateChange"
-                    >
-                        Calculate Change
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="calculator-result"
-                    id="changeResult"
-                >
-                    Enter values and click Calculate.
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         SEO / EDUCATIONAL CONTENT
-    ====================================== -->
-
-    <article class="tool-article">
-
-
-        <h2>
-            Online percentage calculator
-        </h2>
-
-
-        <p>
-            With this percentage calculator, you can find
-            the value that makes up the percent portion of a
-            percentage equation. You can also calculate percent
-            when the amount and value are known, or find the
-            original amount when the value and percent are known.
-        </p>
-
-
-        <p>
-            Answer questions like % of X, what % is X in Y,
-            or X is Y% of what? can be calculated using this tool.
-        </p>
-
-
-
-        <h3>
-            Three components required for a percentage formula
-        </h3>
-
-
-        <ol>
-
-            <li>
-                Principal amount (original amount)
-            </li>
-
-            <li>
-                Percentage Rate (as a % sign)
-            </li>
-
-            <li>
-                Interest amount (earned from the percentage rate)
-            </li>
-
-        </ol>
-
-
-
-        <!-- IMAGE -->
-
-        <img
-            class="tool-article-image"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguZwT-ScLQgBgdfQvYXrYMYwM9kc94swoBzXilkWXNeR1MHAmcUuGAAks2rlaVTCLYOO0JssTdvCgCFWD4zZW-Dpw7u0IcDB5XFMEb9FDCnz9CKtt_pMSRtaazhpiGwy_ec2KagmFfHRO2V9LZKzB8GHrS6D6Lj2z9Tm64PKXvsj9-vOLdneim9cEO4G8/s800/percentage-calculator.gif"
-            alt="Percentage calculator online free"
-            loading="lazy"
+        <p
+            id="tool-page-description"
+            class="tool-description"
         >
-
-
-
-        <!-- FORMULA 1 -->
-
-        <h2>
-            How to calculate the percentage amount when the principal amount and percent rate are known?
-        </h2>
-
-
-        <p>
-            By knowing the principal amount (P) and the percentage
-            rate (R), we can easily calculate the interest amount (I).
         </p>
 
-
-        <div class="formula-box">
-
-            <code>
-                Percentage Amount = Principal Amount × Percentage Rate / 100
-            </code>
-
+        <div
+            id="tool-page-categories"
+            class="tool-categories"
+        >
         </div>
 
-
-        <p>
-            That means multiplying the original amount by the
-            percentage and dividing by 100.
-        </p>
+    </section>
 
 
 
-        <!-- FORMULA 2 -->
+    <!-- =====================================
+         PERCENTAGE CALCULATOR UI
+    ====================================== -->
 
-        <h2>
-            How to find principal amount while I have the percentage rate and its interest amount?
-        </h2>
+    <section class="percentage-calculator">
 
+        <!-- calculator boxes here -->
 
-        <p>
-            If the interest amount and the percentage rate are
-            known, we can easily find the actual amount (Principal).
-        </p>
-
-
-        <div class="formula-box">
-
-            <code>
-                Principal Amount = Interest Amount × 100 / Percentage Rate
-            </code>
-
-        </div>
-
-
-        <p>
-            That is, the interest amount must be multiplied by
-            100 and divided by the percentage rate.
-        </p>
+    </section>
 
 
 
-        <!-- FORMULA 3 -->
+    <!-- =====================================
+         AUTOMATIC ARTICLE
+    ====================================== -->
 
-        <h2>
-            How to calculate percentage rate (%) easily?
-        </h2>
-
-
-        <p>
-            Similarly, if the principal amount and interest amount
-            are known, we can find the percentage rate.
-        </p>
-
-
-        <div class="formula-box">
-
-            <code>
-                Percentage Rate = Interest Amount × 100 / Principal Amount
-            </code>
-
-        </div>
-
-
-        <p>
-            That is, the interest amount multiplied by 100 is
-            divided by the principal amount.
-        </p>
-
-
-
-        <!-- HOW TO USE -->
-
-        <h2>
-            How to Use Percentage Calculator?
-        </h2>
-
-
-        <ul>
-
-            <li>
-                Choose an option that relates to your query from the top.
-            </li>
-
-            <li>
-                Provide values in the input boxes, and click
-                the calculate button.
-            </li>
-
-            <li>
-                You can enter different numerical values,
-                including negative values where applicable.
-            </li>
-
-            <li>
-                Check the formulas and results with real-time calculations.
-            </li>
-
-        </ul>
-
-
-
-        <!-- NOTE -->
-
-        <div class="tool-note">
-
-            <strong>Note:</strong>
-            We do not store or share your personal data from
-            this tool. Visit our
-            <a href="https://www.dozni.com/privacy-policy">
-                privacy policy
-            </a>
-            for more information.
-
-        </div>
-
-
-
-        <!-- SHARE -->
-
-        <div class="tool-share">
-
-            <span class="tool-share-title">
-                Share:
-            </span>
-
-
-            <a
-                class="share-button"
-                href="https://twitter.com/intent/tweet?url=https%3A%2F%2Farisonline.github.io%2Fdtools%2Ftools%2Fpercentage-calculator%2F&text=Free%20Percentage%20Calculator"
-                target="_blank"
-                rel="noopener"
-            >
-                Tweet
-            </a>
-
-
-            <button
-                type="button"
-                class="share-button"
-                id="nativeShare"
-            >
-                Share
-            </button>
-
-        </div>
-
-
+    <article
+        id="tool-content"
+        class="tool-article"
+    >
     </article>
 
 
+
+    <!-- =====================================
+         AUTOMATIC GUIDE
+    ====================================== -->
+
+    <section class="tool-guide">
+
+        <h2 id="tool-howto-title">
+        </h2>
+
+        <ul id="tool-guide-list">
+        </ul>
+
+    </section>
+
+
+
+    <!-- =====================================
+         AUTOMATIC CREDITS
+    ====================================== -->
+
+    <section
+        id="tool-credits"
+        class="tool-credits"
+    >
+    </section>
+
+
 </main>
-
-
-
-<!-- =========================================
-     UNIVERSAL COMPONENTS
-========================================= -->
-
-<div id="related-tools"></div>
-
-<div id="features"></div>
-
-<div id="faq"></div>
-
-<div id="site-footer"></div>
-
-
-
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
-
-<script src="../../assets/js/tools.js"></script>
-
-<script src="../../assets/js/percentage-calculator.js"></script>
-
-<script src="../../assets/js/components.js"></script>
-
-
-</body>
-
-</html>
