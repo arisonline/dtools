@@ -2193,3 +2193,149 @@ PROFESSIONAL FAQ
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+TOOL ARTICLE
+========================= */
+
+.tool-article{
+  color:var(--text);
+
+  font-size:16px;
+
+  line-height:1.9;
+
+  margin-bottom:20px;
+}
+
+.tool-article h2{
+  font-size:30px;
+
+  line-height:1.3;
+
+  margin:
+    40px 0 18px;
+
+  font-weight:800;
+}
+
+.tool-article h2:first-child{
+  margin-top:0;
+}
+
+.tool-article p{
+  margin-bottom:18px;
+
+  color:var(--text);
+
+  line-height:1.9;
+}
+
+.tool-article ul,
+.tool-article ol{
+  padding-left:24px;
+
+  margin:
+    14px 0 24px;
+}
+
+.tool-article li{
+  margin-bottom:10px;
+
+  line-height:1.8;
+}
+
+.tool-article a{
+  color:var(--primary);
+
+  font-weight:600;
+
+  text-decoration:none;
+}
+
+.tool-article a:hover{
+  text-decoration:underline;
+}
+
+
+/* IMAGE */
+
+.tool-article img{
+  display:block;
+
+  max-width:100%;
+
+  height:auto;
+
+  margin:28px auto;
+
+  border-radius:14px;
+}
+
+
+/* FORMULA */
+
+.formula-box{
+  margin:22px 0;
+
+  padding:18px 20px;
+
+  background:var(--bg-soft);
+
+  border:
+    1px solid var(--border);
+
+  border-left:
+    4px solid var(--primary);
+
+  border-radius:12px;
+
+  overflow-x:auto;
+}
+
+.formula-box code{
+  font-family:
+    Consolas,
+    Monaco,
+    monospace;
+
+  font-size:15px;
+
+  color:var(--text);
+
+  white-space:nowrap;
+}
+
+
+/* NOTE */
+
+.tool-note{
+  margin-top:28px;
+
+  padding:18px 20px;
+
+  background:var(--bg-soft);
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  color:var(--text-light);
+
+  font-size:14px;
+
+  line-height:1.8;
+}
