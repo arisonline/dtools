@@ -886,6 +886,22 @@ function renderPopularTools() {
   }
 
 
+  /*
+     GitHub Pages project site:
+
+     https://arisonline.github.io/dtools/
+
+     Custom domain:
+
+     https://dtools.dozni.com/
+  */
+
+  const siteBase =
+    window.location.hostname.includes("github.io")
+      ? "/dtools/"
+      : "/";
+
+
   const popularTools =
     toolsData.filter(tool => tool.popular);
 
@@ -893,8 +909,13 @@ function renderPopularTools() {
   popularLinks.innerHTML =
     popularTools.map(tool => {
 
+      const toolURL =
+        siteBase +
+        tool.url.replace(/^\/+/, "");
+
+
       return `
-        <a href="${tool.url}">
+        <a href="${toolURL}">
           ${tool.name}
         </a>
       `;
@@ -902,7 +923,6 @@ function renderPopularTools() {
     }).join("");
 
 }
-
 
 
 
@@ -918,29 +938,35 @@ function renderToolContent(content) {
   const title =
     document.getElementById("tool-page-title");
 
+
   const description =
     document.getElementById("tool-page-description");
+
 
   const categories =
     document.getElementById("tool-page-categories");
 
+
   const howToTitle =
     document.getElementById("tool-howto-title");
+
 
   const howToList =
     document.getElementById("tool-guide-list");
 
+
   const credits =
     document.getElementById("tool-credits");
 
-   const toolContent =
+
+  const toolContent =
     document.getElementById("tool-content");
 
 
-  if (!title) {
+  if (!content) {
 
     console.warn(
-      "Tool content component not found."
+      "No tool content supplied."
     );
 
     return;
@@ -952,8 +978,12 @@ function renderToolContent(content) {
      TITLE
   ======================================= */
 
-  title.textContent =
-    content.name || "";
+  if (title) {
+
+    title.textContent =
+      content.name || "";
+
+  }
 
 
   /* =======================================
@@ -968,32 +998,54 @@ function renderToolContent(content) {
   }
 
 
-   /* =======================================
-      CATEGORIES
-   ======================================= */
-   
-   if (categories) {
-   
-     categories.innerHTML = `
-       Categories →
-   
-       ${
-         (content.categories || [])
-           .map((category, index) => {
-   
-             return `
-               <a href="${category.url}">
-                 ${category.name}
-               </a>
-               ${index < content.categories.length - 1 ? ", " : ""}
-             `;
-   
-           })
-           .join("")
-       }
-     `;
-   
-   }
+  /* =======================================
+     CATEGORIES
+  ======================================= */
+
+  if (categories) {
+
+    const categoryList =
+      content.categories || [];
+
+
+    if (!categoryList.length) {
+
+      categories.innerHTML = "";
+
+    } else {
+
+      categories.innerHTML = `
+        <span>Categories →</span>
+
+        ${
+
+          categoryList
+            .map((category, index) => {
+
+              return `
+                <a
+                  href="${category.url || "#"}"
+                >
+                  ${category.name}
+                </a>
+
+                ${
+                  index <
+                  categoryList.length - 1
+                    ? ", "
+                    : ""
+                }
+              `;
+
+            })
+            .join("")
+
+        }
+      `;
+
+    }
+
+  }
 
 
   /* =======================================
@@ -1003,7 +1055,8 @@ function renderToolContent(content) {
   if (howToTitle) {
 
     howToTitle.textContent =
-      content.howToTitle || "How to Use This Tool?";
+      content.howToTitle ||
+      "How to Use This Tool?";
 
   }
 
@@ -1014,8 +1067,12 @@ function renderToolContent(content) {
 
   if (howToList) {
 
+    const howTo =
+      content.howTo || [];
+
+
     howToList.innerHTML =
-      (content.howTo || []).map(item => {
+      howTo.map(item => {
 
         return `
           <li>
@@ -1034,39 +1091,44 @@ function renderToolContent(content) {
 
   if (credits) {
 
-     credits.innerHTML =
-       (content.credits || []).map(credit => {
-   
-         return `
-           <div class="credit-item">
-   
-             <a href="${credit.url || "#"}">
-               ${credit.name}
-             </a>
-   
-             <span>
-               ${credit.description}
-             </span>
-   
-           </div>
-         `;
-   
-       }).join("");
-   
-   }
+    const creditList =
+      content.credits || [];
 
 
+    credits.innerHTML =
+      creditList.map(credit => {
 
-   /* =======================================
-      TOOL CONTENT
-   ======================================= */
-   
-   if (toolContent) {
-   
-       toolContent.innerHTML =
-           content.content || "";
-   
-   }
+        return `
+          <div class="credit-item">
+
+            <a
+              href="${credit.url || "#"}"
+            >
+              ${credit.name}
+            </a>
+
+            <span>
+              ${credit.description || ""}
+            </span>
+
+          </div>
+        `;
+
+      }).join("");
+
+  }
+
+
+  /* =======================================
+     LONG TOOL CONTENT
+  ======================================= */
+
+  if (toolContent) {
+
+    toolContent.innerHTML =
+      content.content || "";
+
+  }
 
 
   /* =======================================
@@ -1076,7 +1138,6 @@ function renderToolContent(content) {
   renderPopularTools();
 
 }
-
 
 
 
@@ -1092,21 +1153,6 @@ function initTools() {
     "tools.js initialized"
   );
 
-
-  const currentPath =
-    window.location.pathname
-      .replace(/\/+$/, "");
-
-
-  console.log(
-    "Current path:",
-    currentPath
-  );
-
-
-  /* =======================================
-     CHECK FOR INDIVIDUAL TOOL
-  ======================================= */
 
   const currentTool =
     getCurrentTool();
@@ -1126,7 +1172,7 @@ function initTools() {
 
 
     renderFaq(
-      currentTool.faqs
+      currentTool.faqs || []
     );
 
 
@@ -1135,27 +1181,13 @@ function initTools() {
   }
 
 
-  /* =======================================
-     HOME PAGE
-  ======================================= */
-
   console.log(
     "No specific tool detected."
   );
 
 
-  console.log(
-    "Loading homepage content."
-  );
-
-
   renderToolContent(
     homeToolContent
-  );
-
-
-  console.log(
-    "Loading homepage FAQs."
   );
 
 
