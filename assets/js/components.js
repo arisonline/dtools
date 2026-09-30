@@ -12,28 +12,34 @@ const SITE_BASE =
 
 function initSiteLogo() {
 
-    const logo =
-        document.getElementById("siteLogo");
+    const logo = document.getElementById("siteLogo");
+    const logoImage = document.getElementById("siteLogoImage");
 
     if (!logo) {
-        console.warn("Site logo not found.");
         return;
     }
 
+    const siteBase =
+        window.location.hostname.includes("github.io")
+            ? "/dtools/"
+            : "/";
 
-    if (window.location.hostname === "arisonline.github.io") {
+    /* Logo → Homepage */
 
-        logo.href =
-            "https://arisonline.github.io/dtools/";
+    logo.href = siteBase;
 
-    } else {
 
-        logo.href = "/";
+    /* Logo Image */
 
+    if (logoImage) {
+        logoImage.src =
+            siteBase +
+            "assets/icons/favicons_favicon.svg";
+
+        logoImage.alt = "ToolFlow";
     }
 
 }
-
 
 /* =========================================
    LOAD COMPONENT
