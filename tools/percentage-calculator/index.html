@@ -3,52 +3,347 @@
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-  <title>
-    Free Percentage Calculator Online - Find Percent of a Number & Rate
-  </title>
+    <title>
+        Free Percentage Calculator Online - Find Percent of a Number & Rate
+    </title>
 
-  <meta
-    name="description"
-    content="Use Dozni's free online Percentage Calculator to find percentage amounts, principal amounts, or percentage rates instantly."
-  >
+    <meta
+        name="description"
+        content="Use Dozni's free online Percentage Calculator to find percentage amounts, principal amounts, or percentage rates instantly."
+    >
 
-  <link
-    rel="stylesheet"
-    href="../../assets/css/theme.css"
-  >
+    <!-- Universal Website CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+    <!-- Common Tool CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/tools.css"
+    >
 
 </head>
 
+
 <body>
 
-  <div id="site-header"></div>
 
-  <!-- PERCENTAGE CALCULATOR TOOL -->
-  
-  <!-- Put your existing calculator HTML here.
-       Do not change its calculation IDs or JavaScript. -->
+    <!-- =====================================
+         UNIVERSAL HEADER
+    ====================================== -->
 
-
-  <div id="tool-content"></div>
-
-  <div id="related-tools"></div>
-
-  <div id="features"></div>
-
-  <div id="faq"></div>
-
-  <div id="site-footer"></div>
+    <div id="site-header"></div>
 
 
-  <script src="../../assets/js/tools.js"></script>
-  <script src="../../assets/js/components.js"></script>
+
+    <!-- =====================================
+         PERCENTAGE CALCULATOR
+         TOOL-SPECIFIC UI
+    ====================================== -->
+
+    <main class="tool-page">
+
+        <section class="tool-hero">
+
+            <span class="section-badge">
+                Math Tool
+            </span>
+
+            <h1>
+                Percentage Calculator
+            </h1>
+
+            <p>
+                Calculate percentages, percentage rates,
+                increases and decreases quickly and easily.
+            </p>
+
+        </section>
+
+
+
+        <section class="tool-wrapper">
+
+            <div class="tool-card">
+
+
+                <!-- =================================
+                     CALCULATOR TABS
+                ================================== -->
+
+                <div class="calculator-tabs">
+
+                    <button
+                        class="calculator-tab active"
+                        data-calculator="percent-of"
+                    >
+                        X% of Y
+                    </button>
+
+
+                    <button
+                        class="calculator-tab"
+                        data-calculator="what-percent"
+                    >
+                        X is what % of Y?
+                    </button>
+
+
+                    <button
+                        class="calculator-tab"
+                        data-calculator="percent-change"
+                    >
+                        Percentage Change
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     X% OF Y
+                ================================== -->
+
+                <div
+                    class="calculator-panel active"
+                    id="percent-of"
+                >
+
+                    <h2>
+                        What is X% of Y?
+                    </h2>
+
+
+                    <div class="calculator-form">
+
+                        <div class="input-group">
+
+                            <label for="percentValue">
+                                Percentage
+                            </label>
+
+                            <input
+                                type="number"
+                                id="percentValue"
+                                placeholder="Example: 20"
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="numberValue">
+                                Number
+                            </label>
+
+                            <input
+                                type="number"
+                                id="numberValue"
+                                placeholder="Example: 500"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="calculatePercent"
+                        >
+                            Calculate
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="calculator-result"
+                        id="percentResult"
+                    >
+                        Enter values and click Calculate.
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     X IS WHAT % OF Y
+                ================================== -->
+
+                <div
+                    class="calculator-panel"
+                    id="what-percent"
+                >
+
+                    <h2>
+                        X is what percentage of Y?
+                    </h2>
+
+
+                    <div class="calculator-form">
+
+                        <div class="input-group">
+
+                            <label for="partValue">
+                                X
+                            </label>
+
+                            <input
+                                type="number"
+                                id="partValue"
+                                placeholder="Example: 50"
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="wholeValue">
+                                Y
+                            </label>
+
+                            <input
+                                type="number"
+                                id="wholeValue"
+                                placeholder="Example: 200"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="calculateWhatPercent"
+                        >
+                            Calculate
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="calculator-result"
+                        id="whatPercentResult"
+                    >
+                        Enter values and click Calculate.
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     PERCENTAGE CHANGE
+                ================================== -->
+
+                <div
+                    class="calculator-panel"
+                    id="percent-change"
+                >
+
+                    <h2>
+                        Percentage Increase / Decrease
+                    </h2>
+
+
+                    <div class="calculator-form">
+
+                        <div class="input-group">
+
+                            <label for="oldValue">
+                                Original Value
+                            </label>
+
+                            <input
+                                type="number"
+                                id="oldValue"
+                                placeholder="Example: 100"
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="newValue">
+                                New Value
+                            </label>
+
+                            <input
+                                type="number"
+                                id="newValue"
+                                placeholder="Example: 120"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="calculateChange"
+                        >
+                            Calculate
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="calculator-result"
+                        id="changeResult"
+                    >
+                        Enter values and click Calculate.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================
+         UNIVERSAL COMPONENTS
+    ====================================== -->
+
+    <div id="related-tools"></div>
+
+    <div id="features"></div>
+
+    <div id="faq"></div>
+
+    <div id="site-footer"></div>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="../../assets/js/tools.js"></script>
+
+    <script src="../../assets/js/percentage-calculator.js"></script>
+
+    <script src="../../assets/js/components.js"></script>
+
 
 </body>
 
