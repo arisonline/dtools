@@ -152,7 +152,7 @@ async function initComponents() {
     */
 
     await loadComponent(
-        "tool-content",
+        "tool-content-component",
         "tool-content.html"
     );
 
