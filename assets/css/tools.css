@@ -1,0 +1,221 @@
+/* =========================================
+   TOOL PAGE
+========================================= */
+
+.tool-page {
+    padding: 50px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+.tool-hero {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+
+.tool-hero h1 {
+    font-size: 42px;
+    margin: 15px 0 10px;
+}
+
+
+.tool-hero p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   TOOL CARD
+========================================= */
+
+.tool-wrapper {
+    max-width: 850px;
+    margin: auto;
+}
+
+
+.tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================
+   CALCULATOR TABS
+========================================= */
+
+.calculator-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+
+.calculator-tab {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.calculator-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+
+/* =========================================
+   PANELS
+========================================= */
+
+.calculator-panel {
+    display: none;
+}
+
+
+.calculator-panel.active {
+    display: block;
+}
+
+
+.calculator-panel h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.calculator-form {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.input-group label {
+    font-weight: 600;
+}
+
+
+.input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+}
+
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.primary-button {
+    grid-column: 1 / -1;
+
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.calculator-result {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: var(--bg-soft);
+
+    border: 1px solid var(--border);
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .tool-page {
+        padding: 35px 15px;
+    }
+
+
+    .tool-hero h1 {
+        font-size: 32px;
+    }
+
+
+    .tool-card {
+        padding: 20px;
+    }
+
+
+    .calculator-form {
+        grid-template-columns: 1fr;
+    }
+
+}
