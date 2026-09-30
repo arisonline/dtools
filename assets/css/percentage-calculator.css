@@ -1,0 +1,597 @@
+/* =========================================
+   DOZNI TOOLS
+   PERCENTAGE CALCULATOR
+   TOOL-SPECIFIC CSS
+========================================= */
+
+
+/* =========================================
+   PAGE RESET
+========================================= */
+
+body.tool-page {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.percentage-calculator-page {
+    width: 100%;
+    margin: 0;
+    padding: 28px 20px 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CALCULATOR CONTAINER
+========================================= */
+
+.percentage-calculator-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CALCULATOR CARD
+========================================= */
+
+.percentage-calculator-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   CALCULATOR HEADING
+========================================= */
+
+.percentage-calculator-heading {
+    padding: 24px 28px 20px;
+
+    background: var(--bg-soft);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.percentage-calculator-heading h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 24px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+}
+
+
+.percentage-calculator-heading p {
+    margin: 7px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CALCULATION BLOCK
+========================================= */
+
+.percentage-calculation {
+    padding: 24px 28px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.percentage-calculation:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   QUESTION ROW
+========================================= */
+
+.percentage-question {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    color: var(--text);
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.percentage-question input {
+    width: 125px;
+
+    height: 44px;
+
+    box-sizing: border-box;
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+
+.percentage-question input::placeholder {
+    color: var(--text-light);
+
+    opacity: .65;
+}
+
+
+.percentage-question input:hover {
+    border-color: #b9c8dd;
+}
+
+
+.percentage-question input:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(29, 114, 255, .12);
+}
+
+
+/* =========================================
+   NUMBER INPUT ARROWS
+========================================= */
+
+.percentage-question input::-webkit-outer-spin-button,
+.percentage-question input::-webkit-inner-spin-button {
+    margin: 0;
+}
+
+
+/* =========================================
+   ANSWER
+========================================= */
+
+.percentage-answer {
+    margin-top: 18px;
+
+    text-align: center;
+
+    color: var(--primary);
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   RESULT TEXT
+========================================= */
+
+.percentage-result-text {
+    margin-top: 5px;
+
+    text-align: center;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   CALCULATION FORMULA
+========================================= */
+
+.calculation-box {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 15px;
+
+    padding: 11px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--bg-soft);
+
+    color: var(--text-light);
+
+    text-align: center;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    overflow-x: auto;
+}
+
+
+.calculation-box:empty {
+    display: none;
+}
+
+
+/* =========================================
+   UNIVERSAL TOOL CONTENT
+========================================= */
+
+/*
+   tool-content.html is loaded below the calculator.
+   Keep its own width and spacing controlled here.
+*/
+
+#tool-content-component {
+    width: 100%;
+    margin: 28px 0 0;
+}
+
+
+/* =========================================
+   PREVENT EXTRA OUTER SPACING
+========================================= */
+
+#tool-content-component > section {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   ARTICLE
+========================================= */
+
+.tool-article {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    color: var(--text);
+
+    line-height: 1.8;
+}
+
+
+.tool-article h2 {
+    margin: 32px 0 12px;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    line-height: 1.35;
+}
+
+
+.tool-article h2:first-child {
+    margin-top: 0;
+}
+
+
+.tool-article h3 {
+    margin: 26px 0 10px;
+
+    color: var(--text);
+
+    font-size: 20px;
+
+    line-height: 1.4;
+}
+
+
+.tool-article p {
+    margin: 0 0 16px;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+}
+
+
+.tool-article ul,
+.tool-article ol {
+    margin: 10px 0 20px;
+
+    padding-left: 24px;
+
+    color: var(--text-light);
+}
+
+
+.tool-article li {
+    margin-bottom: 7px;
+}
+
+
+/* =========================================
+   ARTICLE IMAGE
+========================================= */
+
+.tool-article img,
+.percentage-image {
+    display: block;
+
+    width: 100%;
+
+    max-width: 800px;
+
+    height: auto;
+
+    margin: 22px auto;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 8px 24px rgba(18, 38, 63, .07);
+}
+
+
+/* =========================================
+   FORMULA BOX
+========================================= */
+
+.formula-box {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 16px 0 22px;
+
+    padding: 15px 18px;
+
+    border: 1px solid var(--border);
+
+    border-left: 4px solid var(--primary);
+
+    border-radius: 9px;
+
+    background: var(--bg-soft);
+
+    overflow-x: auto;
+}
+
+
+.formula-box code {
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   NOTE
+========================================= */
+
+.tool-note {
+    margin: 24px 0;
+
+    padding: 15px 17px;
+
+    border-radius: 10px;
+
+    background: var(--bg-soft);
+
+    border: 1px solid var(--border);
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.tool-note strong {
+    color: var(--text);
+}
+
+
+/* =========================================
+   FEATURES / RELATED / FAQ
+========================================= */
+
+#features,
+#related-tools,
+#faq {
+    width: 100%;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+#site-footer {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .percentage-calculator-page {
+        padding: 18px 12px 0;
+    }
+
+
+    .percentage-calculator-container {
+        max-width: 100%;
+    }
+
+
+    .percentage-calculator-card {
+        border-radius: 14px;
+    }
+
+
+    .percentage-calculator-heading {
+        padding: 20px 18px 17px;
+    }
+
+
+    .percentage-calculator-heading h2 {
+        font-size: 21px;
+    }
+
+
+    .percentage-calculation {
+        padding: 20px 16px;
+    }
+
+
+    .percentage-question {
+        gap: 8px;
+
+        font-size: 15px;
+    }
+
+
+    .percentage-question input {
+        width: 105px;
+
+        height: 42px;
+
+        font-size: 15px;
+    }
+
+
+    .percentage-answer {
+        margin-top: 15px;
+
+        font-size: 26px;
+    }
+
+
+    .calculation-box {
+        font-size: 12px;
+
+        padding: 10px 11px;
+    }
+
+
+    #tool-content-component {
+        margin-top: 20px;
+    }
+
+
+    .tool-article h2 {
+        font-size: 22px;
+
+        margin-top: 27px;
+    }
+
+
+    .tool-article p {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+    .percentage-calculator-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .percentage-calculation {
+        padding: 18px 12px;
+    }
+
+
+    .percentage-question {
+        gap: 7px;
+    }
+
+
+    .percentage-question input {
+        width: 90px;
+    }
+}
