@@ -10,52 +10,40 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        Percentage Calculator - Dozni Tools
-    </title>
-
+    <title>Percentage Calculator - Dozni Tools</title>
 
     <meta
         name="description"
         content="Free online percentage calculator to calculate percentage amounts, principal amounts and percentage rates instantly."
     >
 
-
     <meta
         name="robots"
         content="index, follow"
     >
-
 
     <link
         rel="canonical"
         href="https://dtools.dozni.com/tools/percentage-calculator/"
     >
 
-
     <!-- Material Icons -->
-
     <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
     >
 
-
-    <!-- Global Theme -->
-
+    <!-- Global Theme + Common Tool Styles -->
     <link
         rel="stylesheet"
         href="../../assets/css/theme.css"
     >
 
-
-    <!-- Universal Tool CSS -->
-
+    <!-- Percentage Calculator -->
     <link
         rel="stylesheet"
         href="../../assets/css/percentage-calculator.css"
     >
-
 
 </head>
 
@@ -66,28 +54,26 @@
 >
 
 
-    <!-- =========================================
-         HEADER
-    ========================================== -->
+    <!-- HEADER -->
 
     <div id="site-header"></div>
 
 
-
-    <!-- =========================================
-         PERCENTAGE CALCULATOR
-    ========================================== -->
-
     <main>
 
+
+        <!-- =========================================
+             PERCENTAGE CALCULATOR
+        ========================================== -->
 
         <section class="percentage-calculator-page">
 
             <div class="percentage-calculator-container">
 
-
                 <div class="percentage-calculator-card">
 
+
+                    <!-- Calculator Header -->
 
                     <div class="percentage-calculator-heading">
 
@@ -96,179 +82,222 @@
                         </h2>
 
                         <p>
-                            Calculate percentages, percentage rates
-                            and original amounts instantly.
+                            Type values in the input boxes, and the answer
+                            will update in real time. Negative values are also allowed.
                         </p>
 
                     </div>
 
 
-
                     <!-- =================================
-                         1. X% OF Y
+                         1. PERCENTAGE AMOUNT
                     ================================== -->
 
                     <div class="percentage-calculation">
-                    
+
                         <div class="percentage-calculation-left">
-                    
+
+                            <h3>
+                                Calculate Percentage Amount
+                            </h3>
+
                             <div class="percentage-question">
-                    
+
                                 <span>Find</span>
-                    
+
                                 <input
                                     type="number"
                                     id="percent1"
                                     placeholder="%"
+                                    inputmode="decimal"
                                 >
-                    
+
                                 <span>% of</span>
-                    
+
                                 <input
                                     type="number"
                                     id="number1"
-                                    placeholder="Y"
+                                    placeholder="Principal Amount"
+                                    inputmode="decimal"
                                 >
-                    
+
                             </div>
-                    
+
+
                             <div class="percentage-answer-line">
-                    
+
                                 <strong>Result:</strong>
-                    
+
                                 <span
                                     class="percentage-answer"
                                     id="valueOut"
-                                >0.00</span>
-                    
+                                >
+                                    10.00
+                                </span>
+
                             </div>
-                    
+
+
                             <div
                                 class="percentage-result-text"
                                 id="resultText1"
                             >
                                 ➟ 5% of 200 is 10.00
                             </div>
-                    
+
                         </div>
-                    
-                    
+
+
                         <div class="percentage-calculation-right">
-                    
+
                             <div
                                 class="calculation-box"
                                 id="calculation1"
                             ></div>
-                    
+
                         </div>
-                    
-                    </div>
-
-
-
-                    <!-- =================================
-                         2. WHAT % IS X OF Y
-                    ================================== -->
-
-                    <div class="percentage-calculation">
-
-                        <div class="percentage-question">
-
-                            <span>Find what % of</span>
-                        
-                            <input
-                                type="number"
-                                id="number2"
-                                placeholder="X"
-                                inputmode="decimal"
-                            >
-                        
-                            <span>is</span>
-                        
-                            <input
-                                type="number"
-                                id="value2"
-                                placeholder="Y"
-                                inputmode="decimal"
-                            >
-                        
-                        </div>
-
-
-                        <div
-                            class="percentage-answer"
-                            id="percentOut"
-                        >
-                            0%
-                        </div>
-
-
-                        <div
-                            class="percentage-result-text"
-                            id="resultText2"
-                        >
-                            Enter values above
-                        </div>
-
-
-                        <div
-                            class="calculation-box"
-                            id="calculation2"
-                        ></div>
 
                     </div>
 
 
-
                     <!-- =================================
-                         3. X IS Y% OF WHAT
+                         2. FIND PERCENTAGE RATE
                     ================================== -->
 
                     <div class="percentage-calculation">
 
-                        <div class="percentage-question">
+                        <div class="percentage-calculation-left">
 
-                            <input
-                                type="number"
-                                id="value3"
-                                placeholder="X"
-                                inputmode="decimal"
+                            <h3>
+                                Calculate Percentage Rate
+                            </h3>
+
+                            <div class="percentage-question">
+
+                                <span>Find what % of</span>
+
+                                <input
+                                    type="number"
+                                    id="number2"
+                                    placeholder="Interest Amount"
+                                    inputmode="decimal"
+                                >
+
+                                <span>is</span>
+
+                                <input
+                                    type="number"
+                                    id="value2"
+                                    placeholder="Principal Amount"
+                                    inputmode="decimal"
+                                >
+
+                            </div>
+
+
+                            <div class="percentage-answer-line">
+
+                                <strong>Result:</strong>
+
+                                <span
+                                    class="percentage-answer"
+                                    id="percentOut"
+                                >
+                                    2.50%
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="percentage-result-text"
+                                id="resultText2"
                             >
-                        
-                            <span>is</span>
-                        
-                            <input
-                                type="number"
-                                id="percent3"
-                                placeholder="%"
-                                inputmode="decimal"
+                                ➟ 5 is 2.50% of 200
+                            </div>
+
+                        </div>
+
+
+                        <div class="percentage-calculation-right">
+
+                            <div
+                                class="calculation-box"
+                                id="calculation2"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         3. FIND PRINCIPAL AMOUNT
+                    ================================== -->
+
+                    <div class="percentage-calculation">
+
+                        <div class="percentage-calculation-left">
+
+                            <h3>
+                                Calculate Principal Amount
+                            </h3>
+
+                            <div class="percentage-question">
+
+                                <input
+                                    type="number"
+                                    id="value3"
+                                    placeholder="Interest Amount"
+                                    inputmode="decimal"
+                                >
+
+                                <span>is</span>
+
+                                <input
+                                    type="number"
+                                    id="percent3"
+                                    placeholder="%"
+                                    inputmode="decimal"
+                                >
+
+                                <span>% of what?</span>
+
+                            </div>
+
+
+                            <div class="percentage-answer-line">
+
+                                <strong>Result:</strong>
+
+                                <span
+                                    class="percentage-answer"
+                                    id="numberOut"
+                                >
+                                    200.00
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="percentage-result-text"
+                                id="resultText3"
                             >
-                        
-                            <span>% of what?</span>
-                        
+                                ➟ 10 is 5% of 200
+                            </div>
+
                         </div>
 
 
-                        <div
-                            class="percentage-answer"
-                            id="numberOut"
-                        >
-                            0
+                        <div class="percentage-calculation-right">
+
+                            <div
+                                class="calculation-box"
+                                id="calculation3"
+                            ></div>
+
                         </div>
-
-
-                        <div
-                            class="percentage-result-text"
-                            id="resultText3"
-                        >
-                            Enter values above
-                        </div>
-
-
-                        <div
-                            class="calculation-box"
-                            id="calculation3"
-                        ></div>
 
                     </div>
 
@@ -280,68 +309,40 @@
         </section>
 
 
-
-        <!-- =========================================
-             UNIVERSAL TOOL CONTENT
-        ========================================== -->
+        <!-- UNIVERSAL TOOL CONTENT -->
 
         <div id="tool-content-component"></div>
 
 
-
-        <!-- =========================================
-             FEATURES
-        ========================================== -->
+        <!-- FEATURES -->
 
         <div id="features"></div>
 
 
-
-        <!-- =========================================
-             RELATED TOOLS
-        ========================================== -->
+        <!-- RELATED TOOLS -->
 
         <div id="related-tools"></div>
 
 
-
-        <!-- =========================================
-             FAQ
-        ========================================== -->
+        <!-- FAQ -->
 
         <div id="faq"></div>
-
 
     </main>
 
 
-
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
+    <!-- FOOTER -->
 
     <div id="site-footer"></div>
 
 
+    <!-- JAVASCRIPT -->
 
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
+    <script src="../../assets/js/percentage-calculator.js"></script>
 
-    <script
-        src="../../assets/js/percentage-calculator.js"
-    ></script>
+    <script src="../../assets/js/tools.js"></script>
 
-
-    <script
-        src="../../assets/js/tools.js"
-    ></script>
-
-
-    <script
-        src="../../assets/js/components.js"
-    ></script>
-
+    <script src="../../assets/js/components.js"></script>
 
 </body>
 
