@@ -7,7 +7,7 @@
 }
 
 .percentage-calculator-container {
-    max-width: 1100px;
+    min-width: 1200px;
     margin: 0 auto;
 }
 
