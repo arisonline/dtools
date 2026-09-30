@@ -372,36 +372,7 @@ const toolsData = [
             for more information.
 
         </div>
-
-
-        <div class="tool-share">
-
-            <span>
-                Share
-            </span>
-
-
-            <button
-                type="button"
-                class="share-button"
-                id="shareButton"
-            >
-                Share
-            </button>
-
-
-            <a
-                href="#"
-                class="share-button"
-                id="tweetButton"
-                target="_blank"
-                rel="noopener"
-            >
-                Tweet
-            </a>
-
-        </div>
-
+     
     `,
 
 
