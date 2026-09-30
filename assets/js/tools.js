@@ -326,33 +326,6 @@ const toolsData = [
         </p>
 
 
-        <h2>
-            How to Use Percentage Calculator?
-        </h2>
-
-
-        <ul>
-
-            <li>
-                Choose an option that relates to your query from the top.
-            </li>
-
-            <li>
-                Provide values in the input box, and the answer
-                will update in real time.
-            </li>
-
-            <li>
-                You can enter any number of values. Negative values
-                are also allowed.
-            </li>
-
-            <li>
-                Also, check the formulas with real-time calculations online.
-            </li>
-
-        </ul>
-
 
         <div class="tool-note">
 
