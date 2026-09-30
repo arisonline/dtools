@@ -1,37 +1,18 @@
-/* =========================================================
-   PERCENTAGE CALCULATOR
-========================================================= */
-
 (function () {
 
     "use strict";
 
 
-    /* =====================================================
-       HELPERS
-    ===================================================== */
-
     function formatNumber(value) {
 
         if (!Number.isFinite(value)) {
-            return "0.00";
+            return "0";
         }
 
         return Number(value)
             .toFixed(2)
             .replace(/\.00$/, "")
             .replace(/(\.\d)0$/, "$1");
-
-    }
-
-
-    function formatPercent(value) {
-
-        if (!Number.isFinite(value)) {
-            return "0%";
-        }
-
-        return formatNumber(value) + "%";
 
     }
 
@@ -49,11 +30,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================================
        1. PERCENTAGE AMOUNT
-
-       X% of Y
-    ===================================================== */
+    ========================================= */
 
     function calculatePercentageAmount() {
 
@@ -69,12 +48,9 @@
         }
 
 
-        if (
-            !Number.isFinite(percent) ||
-            !Number.isFinite(number)
-        ) {
+        if (!Number.isFinite(percent) || !Number.isFinite(number)) {
 
-            output.textContent = "0.00";
+            output.textContent = "0";
 
             resultText.textContent =
                 "Enter values above";
@@ -100,27 +76,17 @@
 
 
         calculation.innerHTML = `
-            <div>
-                X = ${formatNumber(percent)}% of ${formatNumber(number)}
-            </div>
-
-            <div>
-                ⇒ X = ${formatNumber(percent)}⁄100 × ${formatNumber(number)}
-            </div>
-
-            <div>
-                ⇒ X = ${formatNumber(result)}
-            </div>
+            <div>X = ${formatNumber(percent)}% of ${formatNumber(number)}</div>
+            <div>⇒ X = ${formatNumber(percent)}⁄100 × ${formatNumber(number)}</div>
+            <div>⇒ X = ${formatNumber(result)}</div>
         `;
 
     }
 
 
-    /* =====================================================
+    /* =========================================
        2. PERCENTAGE RATE
-
-       X is what % of Y
-    ===================================================== */
+    ========================================= */
 
     function calculatePercentageRate() {
 
@@ -160,35 +126,25 @@
 
 
         output.textContent =
-            formatPercent(result);
+            formatNumber(result) + "%";
 
 
         resultText.textContent =
-            `➟ ${formatNumber(number)} is ${formatPercent(result)} of ${formatNumber(value)}`;
+            `➟ ${formatNumber(number)} is ${formatNumber(result)}% of ${formatNumber(value)}`;
 
 
         calculation.innerHTML = `
-            <div>
-                X = ${formatNumber(number)} ÷ ${formatNumber(value)} × 100
-            </div>
-
-            <div>
-                ⇒ X = ${formatNumber(number / value)} × 100
-            </div>
-
-            <div>
-                ⇒ X = ${formatPercent(result)}
-            </div>
+            <div>X = ${formatNumber(number)} ÷ ${formatNumber(value)} × 100</div>
+            <div>⇒ X = ${formatNumber(number / value)} × 100</div>
+            <div>⇒ X = ${formatNumber(result)}%</div>
         `;
 
     }
 
 
-    /* =====================================================
+    /* =========================================
        3. PRINCIPAL AMOUNT
-
-       X is Y% of what?
-    ===================================================== */
+    ========================================= */
 
     function calculatePrincipalAmount() {
 
@@ -236,75 +192,19 @@
 
 
         calculation.innerHTML = `
-            <div>
-                X = ${formatNumber(value)} × 100 ÷ ${formatNumber(percent)}
-            </div>
-
-            <div>
-                ⇒ X = ${formatNumber(value * 100)} ÷ ${formatNumber(percent)}
-            </div>
-
-            <div>
-                ⇒ X = ${formatNumber(result)}
-            </div>
+            <div>X = ${formatNumber(value)} × 100 ÷ ${formatNumber(percent)}</div>
+            <div>⇒ X = ${formatNumber(value * 100)} ÷ ${formatNumber(percent)}</div>
+            <div>⇒ X = ${formatNumber(result)}</div>
         `;
 
     }
 
 
-    /* =====================================================
-       DEFAULT VALUES
-    ===================================================== */
-
-    function setDefaultValues() {
-
-        const percent1 = document.getElementById("percent1");
-        const number1 = document.getElementById("number1");
-
-        const number2 = document.getElementById("number2");
-        const value2 = document.getElementById("value2");
-
-        const value3 = document.getElementById("value3");
-        const percent3 = document.getElementById("percent3");
-
-
-        if (percent1) {
-            percent1.value = "5";
-        }
-
-        if (number1) {
-            number1.value = "200";
-        }
-
-
-        if (number2) {
-            number2.value = "5";
-        }
-
-        if (value2) {
-            value2.value = "200";
-        }
-
-
-        if (value3) {
-            value3.value = "10";
-        }
-
-        if (percent3) {
-            percent3.value = "5";
-        }
-
-    }
-
-
-    /* =====================================================
-       INITIALIZE
-    ===================================================== */
+    /* =========================================
+       INPUT EVENTS
+    ========================================= */
 
     function initPercentageCalculator() {
-
-        setDefaultValues();
-
 
         const inputIds = [
             "percent1",
@@ -339,7 +239,9 @@
         });
 
 
-        /* Initial calculation on page open/refresh */
+        /* =====================================
+           CALCULATE IMMEDIATELY ON PAGE LOAD
+        ===================================== */
 
         calculatePercentageAmount();
         calculatePercentageRate();
@@ -347,10 +249,6 @@
 
     }
 
-
-    /* =====================================================
-       START
-    ===================================================== */
 
     if (document.readyState === "loading") {
 
@@ -364,5 +262,6 @@
         initPercentageCalculator();
 
     }
+
 
 })();
