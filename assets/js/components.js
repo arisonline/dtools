@@ -45,10 +45,10 @@ async function loadComponent(id, file) {
         if (!response.ok) {
 
             throw new Error(
-                "Failed to load " +
-                url +
-                " - HTTP " +
-                response.status
+                "HTTP " +
+                response.status +
+                " - " +
+                url
             );
 
         }
@@ -73,7 +73,6 @@ async function loadComponent(id, file) {
             error
         );
 
-
         return false;
 
     }
@@ -88,14 +87,12 @@ async function loadComponent(id, file) {
 function initTheme() {
 
     const themeToggle =
-        document.getElementById("themeToggle");
+        document.getElementById(
+            "themeToggle"
+        );
 
 
     if (!themeToggle) {
-
-        console.warn(
-            "Theme toggle button not found."
-        );
 
         return;
 
@@ -119,13 +116,11 @@ function initTheme() {
     };
 
 
-    const savedTheme =
+    if (
         localStorage.getItem(
             "dozni-theme"
-        );
-
-
-    if (savedTheme === "dark") {
+        ) === "dark"
+    ) {
 
         document.body.classList.add(
             "dark"
@@ -142,10 +137,6 @@ function initTheme() {
 
 async function initComponents() {
 
-    console.log(
-        "Loading Dozni components..."
-    );
-
 
     await loadComponent(
         "site-header",
@@ -156,21 +147,25 @@ async function initComponents() {
     initTheme();
 
 
-    await loadComponent(
-        "popular-tools",
-        "popular-tools.html"
-    );
-
+    /*
+       THIS IS IMPORTANT
+    */
 
     await loadComponent(
-        "related-tools",
-        "related-tools.html"
+        "tool-content",
+        "tool-content.html"
     );
 
 
     await loadComponent(
         "features",
         "features.html"
+    );
+
+
+    await loadComponent(
+        "related-tools",
+        "related-tools.html"
     );
 
 
@@ -186,9 +181,9 @@ async function initComponents() {
     );
 
 
-    /* =====================================
-       IMPORTANT
-    ====================================== */
+    /*
+       tools.js must already be loaded
+    */
 
     if (
         typeof initTools ===
@@ -200,17 +195,13 @@ async function initComponents() {
     } else {
 
         console.error(
-            "initTools() was not found. Check tools.js."
+            "initTools() was not found."
         );
 
     }
 
 }
 
-
-/* =========================================
-   START
-========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
