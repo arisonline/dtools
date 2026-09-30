@@ -1,212 +1,286 @@
-/* =========================================
-   PERCENTAGE CALCULATION ROW
-========================================= */
+/* =========================================================
+   PERCENTAGE CALCULATOR
+========================================================= */
+
+.percentage-calculator-page {
+    padding: 26px 16px 32px;
+}
+
+.percentage-calculator-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.percentage-calculator-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border, #e1e5ea);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+}
+
+
+/* =========================================================
+   CALCULATOR HEADER
+========================================================= */
+
+.percentage-calculator-heading {
+    padding: 22px 26px 20px;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.percentage-calculator-heading h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.percentage-calculator-heading p {
+    margin: 0;
+    color: var(--text-muted, #6b7280);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   EACH CALCULATION ROW
+========================================================= */
 
 .percentage-calculation {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
-    gap: 22px;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(310px, .78fr);
+
+    gap: 24px;
+
+    min-height: 225px;
 
     padding: 24px 26px;
 
-    border-bottom: 1px solid var(--border);
-
-    min-height: 185px;
+    border-bottom: 1px solid var(--border, #e5e7eb);
 
     box-sizing: border-box;
 }
 
-.percentage-calculation:last-child {
-    border-bottom: none;
-}
 
-
-/* =========================================
-   LEFT SIDE
-========================================= */
+/* =========================================================
+   LEFT
+========================================================= */
 
 .percentage-calculation-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     min-width: 0;
 }
 
+.percentage-calculation-left h3 {
+    margin: 0 0 18px;
 
-/* =========================================
-   RIGHT SIDE
-========================================= */
-
-.percentage-calculation-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    min-width: 0;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 700;
 }
 
 
-/* =========================================
+/* =========================================================
    QUESTION
-========================================= */
+========================================================= */
 
 .percentage-question {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: 9px;
 
-    gap: 8px;
-
-    margin: 0;
-
-    color: var(--text);
-
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
-
-/* =========================================
-   INPUTS
-========================================= */
+.percentage-question span {
+    white-space: nowrap;
+}
 
 .percentage-question input {
-    width: 82px;
-    height: 38px;
+    width: 145px;
+    height: 42px;
+
+    padding: 0 11px;
+
+    border: 1px solid #cfd5dc;
+    border-radius: 6px;
+
+    background: #fff;
+
+    color: #222;
+
+    font-size: 14px;
+
+    outline: none;
 
     box-sizing: border-box;
 
-    padding: 6px 9px;
-
-    border: 1px solid var(--border);
-    border-radius: 5px;
-
-    background: var(--bg);
-
-    color: var(--text);
-
-    font-size: 15px;
-
-    text-align: center;
-
     transition:
-        border-color .2s ease,
-        box-shadow .2s ease;
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
 
 .percentage-question input:focus {
-    outline: none;
-
-    border-color: var(--primary);
+    border-color: #1976d2;
 
     box-shadow:
-        0 0 0 2px rgba(29, 114, 255, .12);
+        0 0 0 3px rgba(25, 118, 210, .10);
+}
+
+.percentage-question input::placeholder {
+    color: #9aa1aa;
 }
 
 
-/* =========================================
-   ANSWER
-========================================= */
+/* =========================================================
+   RESULT
+========================================================= */
 
 .percentage-answer-line {
     display: flex;
     align-items: baseline;
     gap: 8px;
 
-    margin-top: 18px;
+    margin-top: 20px;
 
     font-size: 15px;
 }
 
 .percentage-answer {
-    color: var(--primary);
-
-    font-size: 21px;
-
-    font-weight: 800;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1976d2;
 }
-
-
-/* =========================================
-   RESULT SENTENCE
-========================================= */
 
 .percentage-result-text {
-    margin-top: 6px;
+    margin-top: 7px;
 
-    color: var(--text-light);
+    color: #555;
 
-    font-size: 14px;
-
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.55;
 }
 
 
-/* =========================================
-   CALCULATION TITLE
-========================================= */
+/* =========================================================
+   RIGHT CALCULATION
+========================================================= */
 
-.calculation-box::before {
-    content: "Calculation:";
-
-    display: block;
-
-    margin-bottom: 9px;
-
-    color: var(--text);
-
-    font-size: 14px;
-
-    font-weight: 700;
+.percentage-calculation-right {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
 }
-
-
-/* =========================================
-   CALCULATION BOX
-========================================= */
 
 .calculation-box {
+    position: relative;
+
     width: 100%;
+    min-height: 100%;
+
+    padding: 43px 18px 18px;
+
+    background: var(--bg-soft, #f7f8fa);
+
+    border: 1px solid var(--border, #e0e4e8);
+
+    border-radius: 8px;
 
     box-sizing: border-box;
 
-    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    background: var(--bg-soft);
-
-    border: 1px solid var(--border);
-
-    border-radius: 7px;
-
-    color: var(--text);
+    font-family: Consolas, Monaco, monospace;
 
     font-size: 14px;
+    line-height: 2;
 
-    line-height: 1.9;
+    color: var(--text, #333);
 
     overflow-x: auto;
 }
 
-.calculation-box:empty {
-    display: none;
+
+/* Calculation heading */
+
+.calculation-box::before {
+    content: "Calculation:";
+
+    position: absolute;
+
+    top: 15px;
+    left: 18px;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: var(--text, #333);
 }
 
 
-/* =========================================
+/* =========================================================
    CALCULATION LINES
-========================================= */
+========================================================= */
 
 .calculation-box div {
-    margin: 2px 0;
+    white-space: nowrap;
 }
 
 
-/* =========================================
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark .percentage-calculator-card {
+    box-shadow: none;
+}
+
+body.dark .percentage-question input {
+    background: #202124;
+    border-color: #444;
+    color: #fff;
+}
+
+body.dark .percentage-question input::placeholder {
+    color: #888;
+}
+
+body.dark .percentage-result-text {
+    color: #aaa;
+}
+
+body.dark .calculation-box {
+    background: #292929;
+    border-color: #414141;
+}
+
+
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 760px) {
+
+    .percentage-calculator-page {
+        padding: 16px 10px 25px;
+    }
 
     .percentage-calculation {
         grid-template-columns: 1fr;
@@ -215,15 +289,37 @@
 
         min-height: auto;
 
-        padding: 22px 18px;
+        padding: 21px 18px;
     }
 
-    .percentage-calculation-left,
     .percentage-calculation-right {
-        display: block;
+        min-height: 170px;
     }
 
     .calculation-box {
-        margin-top: 0;
+        min-height: 170px;
     }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .percentage-calculator-heading {
+        padding: 18px;
+    }
+
+    .percentage-calculator-heading h2 {
+        font-size: 20px;
+    }
+
+    .percentage-question {
+        align-items: flex-start;
+    }
+
+    .percentage-question input {
+        width: 100%;
+        max-width: 180px;
+    }
+
 }
