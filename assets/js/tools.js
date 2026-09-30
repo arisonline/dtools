@@ -933,6 +933,9 @@ function renderToolContent(content) {
   const credits =
     document.getElementById("tool-credits");
 
+   const toolContent =
+    document.getElementById("tool-content");
+
 
   if (!title) {
 
@@ -1049,6 +1052,19 @@ function renderToolContent(content) {
          `;
    
        }).join("");
+   
+   }
+
+
+
+   /* =======================================
+      TOOL CONTENT
+   ======================================= */
+   
+   if (toolContent) {
+   
+       toolContent.innerHTML =
+           content.content || "";
    
    }
 
