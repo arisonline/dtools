@@ -5,7 +5,7 @@
 
 
 /* =========================================
-   PAGE RESET
+   PAGE
 ========================================= */
 
 body.screen-resolution-tool-page {
@@ -14,413 +14,252 @@ body.screen-resolution-tool-page {
 }
 
 
-/* =========================================
-   TOOL PAGE
-========================================= */
-
 .screen-resolution-page {
+
     width: 100%;
+
     box-sizing: border-box;
 
-    margin: 0;
-    padding: 28px 20px 0;
+    padding:
+        30px 20px 0;
+
 }
 
+
+/* =========================================
+   CONTAINER
+========================================= */
 
 .screen-resolution-container {
+
     width: 100%;
-    max-width: 900px;
+
+    max-width: 940px;
 
     margin: 0 auto;
+
 }
 
 
 /* =========================================
-   MAIN CARD
+   TITLE
 ========================================= */
 
-.screen-resolution-card {
-    width: 100%;
+.screen-resolution-title {
 
-    box-sizing: border-box;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
-}
-
-
-/* =========================================
-   HEADING
-========================================= */
-
-.screen-resolution-heading {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    padding: 23px 28px 20px;
-
-    background: var(--bg-soft);
-
-    border-bottom: 1px solid var(--border);
-}
-
-
-.screen-resolution-heading-icon {
-    width: 46px;
-    height: 46px;
-
-    flex: 0 0 46px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background: rgba(29, 114, 255, .10);
-
-    color: var(--primary);
-}
-
-
-.screen-resolution-heading-icon .material-icons {
-    font-size: 25px;
-}
-
-
-.screen-resolution-heading h2 {
-    margin: 0;
+    margin: 0 0 28px;
 
     color: var(--text);
 
-    font-size: 24px;
+    font-size: 34px;
 
-    line-height: 1.3;
-}
-
-
-.screen-resolution-heading p {
-    margin: 6px 0 0;
-
-    color: var(--text-light);
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   MAIN SCREEN AREA
-========================================= */
-
-.screen-resolution-main {
-    padding: 28px;
-}
-
-
-.screen-resolution-question {
-    margin: 0 0 20px;
-
-    text-align: center;
-
-    color: var(--text);
-
-    font-size: 17px;
+    line-height: 1.2;
 
     font-weight: 700;
+
+    letter-spacing: -0.6px;
+
 }
 
 
 /* =========================================
-   SCREEN PREVIEW
+   MAIN LAYOUT
 ========================================= */
 
-.screen-preview {
-    width: min(370px, 100%);
-    min-height: 190px;
+.screen-resolution-layout {
 
-    box-sizing: border-box;
-
-    margin: 0 auto;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 25px;
-
-    border: 8px solid #f8b404;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(29, 114, 255, .04),
-            rgba(29, 114, 255, .01)
-        );
-
-    color: var(--text);
-
-    font-size: 31px;
-
-    font-weight: 800;
-
-    letter-spacing: -.6px;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(0, 0, 0, .03),
-        0 10px 28px rgba(18, 38, 63, .08);
-}
-
-
-/* =========================================
-   MAIN RESULTS
-========================================= */
-
-.screen-main-result {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        175px
+        minmax(0, 1fr);
 
-    gap: 12px;
+    gap: 42px;
 
-    margin-top: 22px;
+    align-items: start;
+
 }
 
 
-.screen-result-item {
-    min-width: 0;
+/* =========================================
+   CHECK YOUR SIDEBAR
+========================================= */
 
-    padding: 15px;
+.screen-resolution-sidebar {
 
-    text-align: center;
+    padding-top: 5px;
 
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-
-    background: var(--bg-soft);
 }
 
 
-.screen-result-label {
-    display: block;
+.screen-resolution-check-title {
 
-    margin-bottom: 5px;
-
-    color: var(--text-light);
-
-    font-size: 12px;
-
-    line-height: 1.4;
-}
-
-
-.screen-result-item strong {
-    display: block;
+    margin-bottom: 17px;
 
     color: var(--text);
 
-    font-size: 17px;
-}
-
-
-/* =========================================
-   INFORMATION GRID
-========================================= */
-
-.screen-information-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 12px;
-
-    padding: 0 28px 28px;
-}
-
-
-.screen-info-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    min-width: 0;
-
-    padding: 14px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 11px;
-
-    background: var(--bg);
-
-    box-sizing: border-box;
-}
-
-
-.screen-info-card > .material-icons {
-    flex: 0 0 auto;
-
-    font-size: 22px;
-
-    color: var(--primary);
-}
-
-
-.screen-info-card > div {
-    min-width: 0;
-}
-
-
-.screen-info-label {
-    display: block;
-
-    margin-bottom: 3px;
-
-    color: var(--text-light);
-
-    font-size: 11px;
-
-    line-height: 1.3;
-}
-
-
-.screen-info-card strong {
-    display: block;
-
-    color: var(--text);
-
-    font-size: 14px;
+    font-size: 16px;
 
     line-height: 1.4;
 
-    overflow-wrap: anywhere;
+    font-weight: 700;
+
 }
 
 
-/* =========================================
-   NOTE
-========================================= */
+.screen-resolution-check-link {
 
-.screen-resolution-note {
-    display: flex;
+    display: block;
 
-    align-items: flex-start;
-
-    gap: 10px;
-
-    margin: 0 28px 22px;
-
-    padding: 13px 15px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: var(--bg-soft);
-}
-
-
-.screen-resolution-note > .material-icons {
-    flex: 0 0 auto;
-
-    margin-top: 1px;
-
-    font-size: 19px;
+    margin-bottom: 13px;
 
     color: var(--primary);
+
+    font-size: 15px;
+
+    line-height: 1.45;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
 }
 
 
-.screen-resolution-note p {
-    margin: 0;
+.screen-resolution-check-link:hover {
 
-    color: var(--text-light);
+    text-decoration: underline;
 
-    font-size: 12px;
-
-    line-height: 1.65;
 }
 
 
-/* =========================================
-   QUICK LINKS
-========================================= */
-
-.screen-resolution-links {
-    display: flex;
-
-    justify-content: center;
-
-    padding: 0 28px 25px;
-}
-
-
-.screen-link-button {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 7px;
-
-    min-height: 40px;
-
-    padding: 9px 15px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: var(--card);
+.screen-resolution-check-link.active {
 
     color: var(--text);
 
     text-decoration: none;
 
-    font-size: 13px;
+}
+
+
+/* =========================================
+   RESULT CONTENT
+========================================= */
+
+.screen-resolution-content {
+
+    min-width: 0;
+
+}
+
+
+.screen-resolution-content h2 {
+
+    margin: 0 0 28px;
+
+    color: var(--text);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   RESOLUTION VALUE
+========================================= */
+
+.screen-resolution-value {
+
+    margin: 0 0 22px;
+
+    color: var(--text);
+
+    font-size:
+        clamp(
+            40px,
+            5vw,
+            56px
+        );
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+
+}
+
+
+/* =========================================
+   TEXT LINES
+========================================= */
+
+.screen-resolution-line {
+
+    margin: 8px 0;
+
+    color: var(--text-light);
+
+    font-size: 17px;
+
+    line-height: 1.65;
+
+}
+
+
+.screen-resolution-line strong {
+
+    color: var(--text);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.screen-resolution-description {
+
+    margin: 24px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+}
+
+
+.screen-resolution-description
++ .screen-resolution-description {
+
+    margin-top: 8px;
+
+}
+
+
+.screen-resolution-description a {
+
+    color: var(--primary);
 
     font-weight: 600;
 
-    transition:
-        color .2s ease,
-        border-color .2s ease,
-        transform .2s ease;
+    text-decoration: none;
+
 }
 
 
-.screen-link-button .material-icons {
-    font-size: 18px;
-}
+.screen-resolution-description a:hover {
 
+    text-decoration: underline;
 
-.screen-link-button:hover {
-    color: var(--primary);
-
-    border-color: var(--primary);
-
-    transform: translateY(-1px);
 }
 
 
@@ -429,22 +268,20 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 #tool-content-component {
+
     width: 100%;
 
-    margin: 28px 0 0;
-}
+    margin-top: 48px;
 
-
-#tool-content-component > section {
-    margin-top: 0;
 }
 
 
 /* =========================================
-   ARTICLE
+   EXISTING ARTICLE SUPPORT
 ========================================= */
 
 .tool-article {
+
     width: 100%;
 
     max-width: 900px;
@@ -454,83 +291,76 @@ body.screen-resolution-tool-page {
     color: var(--text);
 
     line-height: 1.8;
+
 }
 
 
 .tool-article h2 {
-    margin: 32px 0 12px;
+
+    margin:
+        32px 0 12px;
 
     color: var(--text);
 
     font-size: 25px;
 
     line-height: 1.35;
+
 }
 
 
 .tool-article h2:first-child {
+
     margin-top: 0;
+
 }
 
 
 .tool-article h3 {
-    margin: 25px 0 10px;
+
+    margin:
+        25px 0 10px;
 
     color: var(--text);
 
     font-size: 20px;
 
     line-height: 1.4;
+
 }
 
 
 .tool-article p {
-    margin: 0 0 16px;
+
+    margin:
+        0 0 16px;
 
     color: var(--text-light);
 
     font-size: 15px;
 
     line-height: 1.75;
+
 }
 
 
 .tool-article ul,
 .tool-article ol {
-    margin: 10px 0 20px;
+
+    margin:
+        10px 0 20px;
 
     padding-left: 24px;
 
     color: var(--text-light);
+
 }
 
 
 .tool-article li {
+
     margin-bottom: 7px;
-}
 
-
-/* =========================================
-   ARTICLE IMAGE
-========================================= */
-
-.tool-article img {
-    display: block;
-
-    width: 100%;
-
-    max-width: 800px;
-
-    height: auto;
-
-    margin: 22px auto;
-
-    border-radius: 12px;
-
-    border: 1px solid var(--border);
-
-    box-shadow:
-        0 8px 24px rgba(18, 38, 63, .07);
 }
 
 
@@ -539,41 +369,50 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .tool-article table {
+
     width: 100%;
 
-    margin: 20px 0 25px;
+    margin:
+        20px 0 25px;
 
     border-collapse: collapse;
 
     font-size: 14px;
 
-    overflow: hidden;
 }
 
 
 .tool-article th,
 .tool-article td {
-    padding: 11px 12px;
 
-    border: 1px solid var(--border);
+    padding:
+        11px 12px;
+
+    border:
+        1px solid var(--border);
 
     text-align: left;
 
     vertical-align: top;
+
 }
 
 
 .tool-article th {
+
     background: var(--bg-soft);
 
     color: var(--text);
 
     font-weight: 700;
+
 }
 
 
 .tool-article td {
+
     color: var(--text-light);
+
 }
 
 
@@ -582,25 +421,32 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .tool-code {
-    margin: 18px 0 24px;
 
-    padding: 16px 18px;
+    margin:
+        18px 0 24px;
+
+    padding:
+        16px 18px;
 
     box-sizing: border-box;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-    border-left: 4px solid var(--primary);
+    border-left:
+        4px solid var(--primary);
 
     border-radius: 10px;
 
     background: var(--bg-soft);
 
     overflow-x: auto;
+
 }
 
 
 .tool-code code {
+
     color: var(--text);
 
     font-family:
@@ -613,6 +459,7 @@ body.screen-resolution-tool-page {
     line-height: 1.65;
 
     white-space: pre;
+
 }
 
 
@@ -621,26 +468,33 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .tool-note {
-    margin: 24px 0;
 
-    padding: 15px 17px;
+    margin:
+        24px 0;
+
+    padding:
+        15px 17px;
 
     border-radius: 10px;
 
     background: var(--bg-soft);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
     color: var(--text-light);
 
     font-size: 13px;
 
     line-height: 1.7;
+
 }
 
 
 .tool-note strong {
+
     color: var(--text);
+
 }
 
 
@@ -651,9 +505,11 @@ body.screen-resolution-tool-page {
 #features,
 #related-tools,
 #faq {
+
     width: 100%;
 
     margin-top: 28px;
+
 }
 
 
@@ -661,155 +517,96 @@ body.screen-resolution-tool-page {
    MOBILE
 ========================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
 
     .screen-resolution-page {
-        padding: 18px 12px 0;
+
+        padding:
+            24px 16px 0;
+
     }
 
 
-    .screen-resolution-card {
-        border-radius: 14px;
+    .screen-resolution-title {
+
+        margin-bottom: 24px;
+
+        font-size: 30px;
+
     }
 
 
-    .screen-resolution-heading {
-        padding: 19px 18px 17px;
+    .screen-resolution-layout {
 
-        gap: 11px;
-    }
-
-
-    .screen-resolution-heading-icon {
-        width: 40px;
-        height: 40px;
-
-        flex-basis: 40px;
-
-        border-radius: 10px;
-    }
-
-
-    .screen-resolution-heading-icon .material-icons {
-        font-size: 22px;
-    }
-
-
-    .screen-resolution-heading h2 {
-        font-size: 20px;
-    }
-
-
-    .screen-resolution-heading p {
-        font-size: 12px;
-    }
-
-
-    .screen-resolution-main {
-        padding: 21px 16px;
-    }
-
-
-    .screen-resolution-question {
-        font-size: 15px;
-    }
-
-
-    .screen-preview {
-        min-height: 160px;
-
-        border-width: 6px;
-
-        border-radius: 13px;
-
-        font-size: 26px;
-    }
-
-
-    .screen-main-result {
         grid-template-columns: 1fr;
 
-        gap: 9px;
+        gap: 24px;
 
-        margin-top: 16px;
     }
 
 
-    .screen-result-item {
-        padding: 12px;
+    .screen-resolution-sidebar {
+
+        padding-top: 0;
+
     }
 
 
-    .screen-information-grid {
-        grid-template-columns: 1fr 1fr;
+    .screen-resolution-check-title {
 
-        gap: 9px;
+        margin-bottom: 11px;
 
-        padding: 0 16px 20px;
     }
 
 
-    .screen-info-card {
-        padding: 12px;
+    .screen-resolution-check-link {
 
-        gap: 8px;
+        display: inline-block;
+
+        margin:
+            0 18px 0 0;
+
     }
 
 
-    .screen-info-card > .material-icons {
-        font-size: 19px;
+    .screen-resolution-content h2 {
+
+        margin-bottom: 22px;
+
+        font-size: 24px;
+
     }
 
 
-    .screen-info-label {
-        font-size: 10px;
+    .screen-resolution-value {
+
+        margin-bottom: 18px;
+
+        font-size: 40px;
+
     }
 
 
-    .screen-info-card strong {
-        font-size: 12px;
+    .screen-resolution-line {
+
+        font-size: 16px;
+
     }
 
 
-    .screen-resolution-note {
-        margin: 0 16px 18px;
+    .screen-resolution-description {
 
-        padding: 12px;
-    }
+        font-size: 14px;
 
-
-    .screen-resolution-links {
-        padding: 0 16px 20px;
     }
 
 
     #tool-content-component {
-        margin-top: 20px;
+
+        margin-top: 38px;
+
     }
 
-
-    .tool-article h2 {
-        font-size: 22px;
-    }
-
-
-    .tool-article h3 {
-        font-size: 18px;
-    }
-
-
-    .tool-article p {
-        font-size: 14px;
-    }
-
-
-    .tool-article table {
-        display: block;
-
-        overflow-x: auto;
-
-        white-space: nowrap;
-    }
 }
 
 
@@ -819,19 +616,32 @@ body.screen-resolution-tool-page {
 
 @media (max-width: 430px) {
 
-    .screen-information-grid {
-        grid-template-columns: 1fr;
+    .screen-resolution-page {
+
+        padding:
+            20px 14px 0;
+
     }
 
 
-    .screen-preview {
-        min-height: 140px;
+    .screen-resolution-title {
 
-        font-size: 23px;
+        font-size: 27px;
+
     }
 
 
-    .screen-resolution-heading {
-        align-items: flex-start;
+    .screen-resolution-content h2 {
+
+        font-size: 22px;
+
     }
+
+
+    .screen-resolution-value {
+
+        font-size: 34px;
+
+    }
+
 }
