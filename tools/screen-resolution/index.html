@@ -144,275 +144,136 @@
 
         <!-- =========================================
              SCREEN RESOLUTION TESTER
-        ========================================== -->
-
+        ========================================= -->
+        
         <section class="screen-resolution-page">
-
+        
             <div class="screen-resolution-container">
-
-
-                <div class="screen-resolution-card">
-
-
-                    <!-- TOOL HEADING -->
-
-                    <div class="screen-resolution-heading">
-
-                        <div class="screen-resolution-heading-icon">
-                            <span class="material-icons">
-                                aspect_ratio
-                            </span>
+        
+        
+                <!-- TOOL TITLE -->
+        
+                <h1 class="screen-resolution-title">
+                    Screen Resolution Tester
+                </h1>
+        
+        
+                <div class="screen-resolution-layout">
+        
+        
+                    <!-- =====================================
+                         CHECK YOUR
+                    ====================================== -->
+        
+                    <aside class="screen-resolution-sidebar">
+        
+                        <div class="screen-resolution-check-title">
+                            Check Your
                         </div>
-
-                        <div>
-                            <h2>
-                                Screen Resolution Tester
-                            </h2>
-
-                            <p>
-                                Instantly detect your screen resolution
-                                and display information.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <!-- MAIN SCREEN DISPLAY -->
-
-                    <div class="screen-resolution-main">
-
-                        <p class="screen-resolution-question">
-                            What is my screen resolution?
-                        </p>
-
-
-                        <div
-                            class="screen-preview"
-                            id="screenResolution"
-                        >
-                            0 × 0
-                        </div>
-
-
-                        <div class="screen-main-result">
-
-                            <div class="screen-result-item">
-
-                                <span class="screen-result-label">
-                                    Screen Width
-                                </span>
-
-                                <strong id="widthValue">
-                                    0px
-                                </strong>
-
-                            </div>
-
-
-                            <div class="screen-result-item">
-
-                                <span class="screen-result-label">
-                                    Screen Height
-                                </span>
-
-                                <strong id="heightValue">
-                                    0px
-                                </strong>
-
-                            </div>
-
-
-                            <div class="screen-result-item">
-
-                                <span class="screen-result-label">
-                                    Total Pixels
-                                </span>
-
-                                <strong id="totalPixels">
-                                    0 MP
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- EXTRA INFORMATION -->
-
-                    <div class="screen-information-grid">
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                fullscreen
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Available Screen
-                                </span>
-
-                                <strong id="availableResolution">
-                                    0 × 0
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                web
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Browser Viewport
-                                </span>
-
-                                <strong id="viewportResolution">
-                                    0 × 0
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                zoom_in
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Device Pixel Ratio
-                                </span>
-
-                                <strong id="pixelRatio">
-                                    1
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                palette
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Color Depth
-                                </span>
-
-                                <strong id="colorDepth">
-                                    24 bit
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                screen_rotation
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Orientation
-                                </span>
-
-                                <strong id="screenOrientation">
-                                    Landscape
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="screen-info-card">
-
-                            <span class="material-icons">
-                                devices
-                            </span>
-
-                            <div>
-
-                                <span class="screen-info-label">
-                                    Screen Position
-                                </span>
-
-                                <strong id="screenPosition">
-                                    0, 0
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- NOTE -->
-
-                    <div class="screen-resolution-note">
-
-                        <span class="material-icons">
-                            info
-                        </span>
-
-                        <p>
-                            Screen resolution is measured using your
-                            browser's Screen API. Results may vary
-                            depending on display scaling, operating
-                            system settings and browser behavior.
-                        </p>
-
-                    </div>
-
-
-                    <!-- QUICK LINKS -->
-
-                    <div class="screen-resolution-links">
-
+        
+        
                         <a
                             href="https://browser-resolution.dozni.com/"
-                            class="screen-link-button"
+                            class="screen-resolution-check-link"
                         >
-                            <span class="material-icons">
-                                web
-                            </span>
-                            Browser Resolution Tester
+                            Browser Resolution
                         </a>
-
+        
+        
+                        <a
+                            href="https://screen-resolution.dozni.com/"
+                            class="screen-resolution-check-link active"
+                        >
+                            Screen Resolution
+                        </a>
+        
+                    </aside>
+        
+        
+                    <!-- =====================================
+                         SCREEN RESOLUTION RESULT
+                    ====================================== -->
+        
+                    <div class="screen-resolution-content">
+        
+        
+                        <h2>
+                            What is my screen resolution?
+                        </h2>
+        
+        
+                        <div
+                            id="screenResolution"
+                            class="screen-resolution-value"
+                            aria-live="polite"
+                        >
+                            0 X 0
+                        </div>
+        
+        
+                        <p class="screen-resolution-line">
+        
+                            Width of screen is
+        
+                            <strong id="widthValue">
+                                0px
+                            </strong>
+        
+                        </p>
+        
+        
+                        <p class="screen-resolution-line">
+        
+                            Height of screen is
+        
+                            <strong id="heightValue">
+                                0px
+                            </strong>
+        
+                        </p>
+        
+        
+                        <p class="screen-resolution-line">
+        
+                            Total pixels on your screen is
+        
+                            <strong id="totalPixels">
+                                0
+                            </strong>
+        
+                            million
+        
+                        </p>
+        
+        
+                        <p class="screen-resolution-description">
+        
+                            This tool calculate the size of your screen.
+        
+                        </p>
+        
+        
+                        <p class="screen-resolution-description">
+        
+                            Check
+        
+                            <a
+                                href="https://browser-resolution.dozni.com/"
+                            >
+                                browser resolution
+                            </a>
+        
+                            instead, or get a full version info for your device.
+        
+                        </p>
+        
+        
                     </div>
-
-
+        
                 </div>
-
+        
             </div>
-
+        
         </section>
 
 
