@@ -1,6 +1,7 @@
 /* =========================================
    DOZNI TOOLS
    SCREEN RESOLUTION TESTER
+   THEME-MATCHED UI
 ========================================= */
 
 
@@ -9,10 +10,8 @@
 ========================================= */
 
 body.screen-resolution-tool-page {
-
     margin: 0;
     padding: 0;
-
 }
 
 
@@ -21,14 +20,11 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-page {
-
     width: 100%;
 
     box-sizing: border-box;
 
-    padding:
-        4px 8px 0;
-
+    padding: 28px 20px 0;
 }
 
 
@@ -37,22 +33,19 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-container {
-
     width: 100%;
 
     max-width: 1180px;
 
     margin: 0 auto;
-
 }
 
 
 /* =========================================
-   MAIN CARD
+   MAIN TOOL CARD
 ========================================= */
 
 .screen-resolution-card {
-
     width: 100%;
 
     min-height: 498px;
@@ -65,18 +58,15 @@ body.screen-resolution-tool-page {
 
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: var(--card);
 
-    border:
-        1px solid #dddddd;
+    border: 1px solid var(--border);
 
-    border-radius: 4px;
+    border-radius: 24px;
 
-    box-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--shadow);
 
     overflow: hidden;
-
 }
 
 
@@ -85,44 +75,40 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-sidebar {
-
     box-sizing: border-box;
 
-    padding:
-        34px 20px;
+    padding: 30px 24px;
+
+    background: var(--card);
 
     border-right:
-        1px solid #dddddd;
-
-    background: #ffffff;
-
+        1px solid var(--border);
 }
 
 
 .screen-resolution-check-title {
+    margin-bottom: 20px;
 
-    margin-bottom: 23px;
-
-    color: #333333;
+    color: var(--text);
 
     font-size: 14px;
 
-    line-height: 1.4;
+    line-height: 1.5;
 
-    font-weight: 400;
-
+    font-weight: 700;
 }
 
 
 .screen-resolution-check-link {
-
     display: block;
 
-    margin-bottom: 14px;
+    margin-bottom: 13px;
 
-    color: #666666;
+    padding: 2px 0;
 
-    font-size: 16px;
+    color: var(--text-light);
+
+    font-size: 15px;
 
     line-height: 1.55;
 
@@ -130,22 +116,21 @@ body.screen-resolution-tool-page {
 
     text-decoration: none;
 
-    letter-spacing: .1px;
-
+    transition:
+        color .2s ease,
+        transform .2s ease;
 }
 
 
 .screen-resolution-check-link:hover {
+    color: var(--primary);
 
-    color: #222222;
-
+    transform: translateX(3px);
 }
 
 
 .screen-resolution-check-link.active {
-
-    color: #666666;
-
+    color: var(--primary);
 }
 
 
@@ -154,41 +139,40 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-content {
+    min-width: 0;
 
     box-sizing: border-box;
 
-    min-width: 0;
-
     padding:
-        37px 35px 25px;
+        36px 40px 30px;
+
+    background: var(--card);
 
     text-align: center;
-
 }
 
 
 .screen-resolution-content h2 {
-
     margin:
-        0 0 22px;
+        0 0 24px;
 
-    color: #111111;
+    color: var(--text);
 
-    font-size: 19px;
+    font-size: 21px;
 
     line-height: 1.4;
 
-    font-weight: 700;
+    font-weight: 800;
 
+    letter-spacing: -.2px;
 }
 
 
 /* =========================================
-   RESOLUTION BOX
+   RESOLUTION DISPLAY
 ========================================= */
 
 .screen-resolution-value {
-
     width: 276px;
 
     height: 176px;
@@ -204,59 +188,58 @@ body.screen-resolution-tool-page {
 
     justify-content: center;
 
+    background: var(--bg);
+
     border:
-        8px solid #ffb000;
+        7px solid var(--primary);
 
-    border-radius: 15px;
+    border-radius: 18px;
 
-    background: #ffffff;
-
-    color: #111111;
+    color: var(--text);
 
     font-size: 29px;
 
     line-height: 1;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    letter-spacing: .2px;
+    letter-spacing: -.3px;
 
+    box-shadow:
+        0 8px 24px rgba(18, 38, 63, .07);
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
 }
 
 
 /* =========================================
-   RESULT LINES
+   RESULT TEXT
 ========================================= */
 
 .screen-resolution-line {
-
     margin:
-        31px 0 0;
+        30px 0 0;
 
-    color: #222222;
+    color: var(--text-light);
 
     font-size: 15px;
 
-    line-height: 1.45;
-
+    line-height: 1.6;
 }
 
 
 .screen-resolution-line
 + .screen-resolution-line {
-
-    margin-top:
-        10px;
-
+    margin-top: 9px;
 }
 
 
 .screen-resolution-line strong {
+    color: var(--text);
 
-    color: #111111;
-
-    font-weight: 700;
-
+    font-weight: 800;
 }
 
 
@@ -265,41 +248,38 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-description {
-
     margin:
-        50px 0 0;
+        48px 0 0;
 
-    color: #222222;
+    color: var(--text-light);
 
     font-size: 14px;
 
-    line-height: 1.5;
-
+    line-height: 1.7;
 }
 
 
 .screen-resolution-description
 + .screen-resolution-description {
-
-    margin-top:
-        8px;
-
+    margin-top: 7px;
 }
 
 
 .screen-resolution-description a {
+    color: var(--primary);
 
-    color: #0099ff;
+    font-weight: 600;
 
     text-decoration: none;
 
+    transition: color .2s ease;
 }
 
 
 .screen-resolution-description a:hover {
+    color: var(--primary-dark);
 
     text-decoration: underline;
-
 }
 
 
@@ -308,12 +288,9 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 #tool-content-component {
-
     width: 100%;
 
-    margin-top:
-        35px;
-
+    margin-top: 40px;
 }
 
 
@@ -324,10 +301,8 @@ body.screen-resolution-tool-page {
 @media (max-width: 760px) {
 
     .screen-resolution-page {
-
         padding:
-            4px 8px 0;
-
+            22px 14px 0;
     }
 
 
@@ -338,27 +313,24 @@ body.screen-resolution-tool-page {
 
         min-height: 0;
 
+        border-radius: 20px;
     }
 
 
     .screen-resolution-sidebar {
 
         padding:
-            20px 18px 17px;
+            20px 20px 17px;
 
         border-right: none;
 
         border-bottom:
-            1px solid #dddddd;
-
+            1px solid var(--border);
     }
 
 
     .screen-resolution-check-title {
-
-        margin-bottom:
-            10px;
-
+        margin-bottom: 10px;
     }
 
 
@@ -375,16 +347,15 @@ body.screen-resolution-tool-page {
     .screen-resolution-content {
 
         padding:
-            28px 18px 30px;
-
+            30px 18px 32px;
     }
 
 
     .screen-resolution-content h2 {
 
-        font-size:
-            18px;
+        margin-bottom: 22px;
 
+        font-size: 19px;
     }
 
 
@@ -396,25 +367,31 @@ body.screen-resolution-tool-page {
         height:
             160px;
 
+        border-width:
+            6px;
+
+        border-radius:
+            16px;
+
         font-size:
             26px;
-
     }
 
 
     .screen-resolution-line {
-
-        font-size:
-            15px;
-
+        font-size: 15px;
     }
 
 
     .screen-resolution-description {
+        margin-top: 38px;
 
-        margin-top:
-            38px;
+        font-size: 14px;
+    }
 
+
+    #tool-content-component {
+        margin-top: 32px;
     }
 
 }
@@ -427,23 +404,17 @@ body.screen-resolution-tool-page {
 @media (max-width: 430px) {
 
     .screen-resolution-content h2 {
-
-        font-size:
-            17px;
-
+        font-size: 18px;
     }
 
 
     .screen-resolution-value {
 
-        height:
-            145px;
+        height: 145px;
 
-        border-width:
-            7px;
+        border-width: 6px;
 
-        font-size:
-            24px;
+        font-size: 24px;
 
     }
 
