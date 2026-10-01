@@ -38,16 +38,16 @@
         }
 
 
-        const screenWidth =
+        const width =
             Number(window.screen.width) || 0;
 
 
-        const screenHeight =
+        const height =
             Number(window.screen.height) || 0;
 
 
         const totalPixels =
-            screenWidth * screenHeight;
+            width * height;
 
 
         const screenResolution =
@@ -66,45 +66,37 @@
             getElement("totalPixels");
 
 
-        /* =====================================
-           SCREEN RESOLUTION
-        ====================================== */
+        /* SCREEN RESOLUTION */
 
         if (screenResolution) {
 
             screenResolution.textContent =
-                `${screenWidth} X ${screenHeight}`;
+                `${width} X ${height}`;
 
         }
 
 
-        /* =====================================
-           WIDTH
-        ====================================== */
+        /* WIDTH */
 
         if (widthValue) {
 
             widthValue.textContent =
-                `${screenWidth.toLocaleString("en-US")}px`;
+                `${width}px`;
 
         }
 
 
-        /* =====================================
-           HEIGHT
-        ====================================== */
+        /* HEIGHT */
 
         if (heightValue) {
 
             heightValue.textContent =
-                `${screenHeight.toLocaleString("en-US")}px`;
+                `${height}px`;
 
         }
 
 
-        /* =====================================
-           TOTAL PIXELS
-        ====================================== */
+        /* TOTAL PIXELS */
 
         if (totalPixelsValue) {
 
@@ -121,8 +113,6 @@
         updateScreenResolution();
 
 
-        /* Browser resize */
-
         window.addEventListener(
             "resize",
             updateScreenResolution,
@@ -132,8 +122,6 @@
         );
 
 
-        /* Device orientation */
-
         window.addEventListener(
             "orientationchange",
             updateScreenResolution,
@@ -142,8 +130,6 @@
             }
         );
 
-
-        /* Screen orientation API */
 
         if (
             window.screen &&
