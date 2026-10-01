@@ -20,11 +20,7 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-page {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 28px 20px 0;
+    padding: 26px 0 32px;
 }
 
 
@@ -33,10 +29,7 @@ body.screen-resolution-tool-page {
 ========================================= */
 
 .screen-resolution-container {
-    width: 100%;
-
-    max-width: 1180px;
-
+    width: min(1200px, 92%);
     margin: 0 auto;
 }
 
