@@ -131,6 +131,335 @@ const toolsData = [
   },
 
 
+      {
+       id: "screen-resolution",
+   
+       name: "Screen Resolution Tester",
+   
+       url: "tools/screen-resolution/",
+   
+       category: "Dev",
+   
+       description:
+           "Check your screen resolution, available screen size, browser viewport and device pixel ratio instantly.",
+   
+       icon: "aspect_ratio",
+   
+       popular: true,
+   
+       categories: [
+           {
+               name: "Dev Tools",
+               url: "https://digital-tool.dozni.com/?category=Dev"
+           }
+       ],
+   
+       howToTitle:
+           "How to Use Screen Resolution Tester?",
+   
+       howTo: [
+           "Open the Screen Resolution Tester in your browser.",
+           "Your screen width and height will be detected automatically.",
+           "Check the displayed screen resolution such as 1920 × 1080.",
+           "Review the available screen size and browser viewport size.",
+           "Check your device pixel ratio, color depth and screen orientation.",
+           "Resize your browser or rotate your device to see the live values update."
+       ],
+   
+       credits: [],
+   
+       content: `
+           <h2>What is screen resolution?</h2>
+   
+           <p>
+               Screen resolution describes the number of pixels displayed
+               across the width and height of a screen. It is normally
+               written as two numbers, such as 1920 × 1080. The first
+               number represents the width in pixels and the second number
+               represents the height in pixels.
+           </p>
+   
+           <p>
+               A higher resolution generally provides more pixels for
+               displaying detailed content. The visible result also
+               depends on screen size, operating-system scaling,
+               display density and the content being viewed.
+           </p>
+   
+           <img
+               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXtX3X28I9IAqvkMJ7Pu2OnsbdP8yMWzdfhcyLZv_kMdw4GxNrXimqgAQ1bYgP4ErKhx7BF4J0VP4krhtg2V7EevTnhzNv0EGcHgu74J6dwg1mdo5q65GoLZnPj_6mtRjrU8Sloln7bFMwEfBxR8SqpDSfiLRuOLuvRj9IewGnhYLJ0C-9kFRCRTOoxKw/s800/Screen-Resolution.webp"
+               alt="Screen resolution checker online"
+               title="Screen Resolution Tester"
+               loading="lazy"
+               decoding="async"
+           >
+   
+           <div class="tool-code">
+               <code>Screen Resolution = Pixel Width × Pixel Height</code>
+           </div>
+   
+   
+           <h2>Why does screen resolution matter?</h2>
+   
+           <p>
+               Screen resolution is useful when designing websites,
+               applications, games, graphics and responsive layouts.
+               Knowing the resolution of a display can help developers
+               understand the space available on a user's device.
+           </p>
+   
+           <p>
+               Designers and developers often test multiple screen sizes
+               to make sure interfaces remain readable and usable on
+               desktops, laptops, tablets and mobile devices.
+           </p>
+   
+   
+           <h2>Common screen resolutions</h2>
+   
+           <p>
+               Some commonly encountered display resolutions include:
+           </p>
+   
+           <table>
+               <thead>
+                   <tr>
+                       <th>Resolution</th>
+                       <th>Common Name</th>
+                       <th>Typical Use</th>
+                   </tr>
+               </thead>
+   
+               <tbody>
+   
+                   <tr>
+                       <td>1280 × 720</td>
+                       <td>HD / 720p</td>
+                       <td>Older or smaller displays</td>
+                   </tr>
+   
+                   <tr>
+                       <td>1366 × 768</td>
+                       <td>HD</td>
+                       <td>Laptops and older desktop displays</td>
+                   </tr>
+   
+                   <tr>
+                       <td>1920 × 1080</td>
+                       <td>Full HD / 1080p</td>
+                       <td>Desktop, laptop and general-purpose displays</td>
+                   </tr>
+   
+                   <tr>
+                       <td>2560 × 1440</td>
+                       <td>QHD / 1440p</td>
+                       <td>Higher-resolution monitors</td>
+                   </tr>
+   
+                   <tr>
+                       <td>3840 × 2160</td>
+                       <td>4K UHD</td>
+                       <td>High-resolution monitors and TVs</td>
+                   </tr>
+   
+               </tbody>
+           </table>
+   
+   
+           <h2>Screen resolution vs browser viewport</h2>
+   
+           <p>
+               Screen resolution and browser viewport size are not the same
+               thing. Screen resolution describes the display reported by
+               the browser's Screen API, while the viewport describes the
+               area currently available to the web page inside the browser
+               window.
+           </p>
+   
+           <p>
+               For example, a display may report 1920 × 1080 while the
+               browser viewport is smaller because of browser chrome,
+               window size, zoom, operating-system scaling or other factors.
+           </p>
+   
+   
+           <h2>What is device pixel ratio?</h2>
+   
+           <p>
+               Device Pixel Ratio, commonly called DPR, describes the
+               relationship between CSS pixels and physical device pixels.
+               A DPR greater than 1 is common on high-density displays.
+           </p>
+   
+           <p>
+               Web developers can use
+               <code>window.devicePixelRatio</code>
+               when building interfaces that need to account for display
+               density.
+           </p>
+   
+   
+           <h2>How does this Screen Resolution Tester work?</h2>
+   
+           <p>
+               The calculator reads screen information directly from the
+               browser using JavaScript. The core screen measurements are
+               obtained from the browser's Screen API.
+           </p>
+   
+           <div class="tool-code">
+               <code>const screenWidth = window.screen.width;
+   const screenHeight = window.screen.height;
+   
+   console.log(
+       "Screen Resolution: " +
+       screenWidth +
+       " × " +
+       screenHeight
+   );</code>
+           </div>
+   
+           <p>
+               The tool also reads the available screen size,
+               browser viewport, device pixel ratio, color depth and
+               orientation where those values are available.
+           </p>
+   
+   
+           <h2>How to use Screen Resolution Tester?</h2>
+   
+           <ol>
+               <li>
+                   Open the Screen Resolution Tester in your browser.
+               </li>
+   
+               <li>
+                   Your screen resolution is detected automatically.
+               </li>
+   
+               <li>
+                   Check the screen width and height shown in the main
+                   result.
+               </li>
+   
+               <li>
+                   Review the additional display information shown below.
+               </li>
+   
+               <li>
+                   Resize the browser window or rotate your device to see
+                   values update automatically.
+               </li>
+           </ol>
+   
+   
+           <h2>Frequently asked questions</h2>
+   
+           <h3>What is 1920 × 1080 resolution?</h3>
+   
+           <p>
+               1920 × 1080 means the display has 1920 pixels across its
+               width and 1080 pixels vertically. It is commonly known as
+               Full HD or 1080p.
+           </p>
+   
+   
+           <h3>What is 1366 × 768 resolution?</h3>
+   
+           <p>
+               1366 × 768 is a common HD-class laptop display resolution,
+               particularly on older and budget-oriented laptops.
+           </p>
+   
+   
+           <h3>What is 4K screen resolution?</h3>
+   
+           <p>
+               4K UHD commonly refers to a resolution of
+               3840 × 2160 pixels.
+           </p>
+   
+   
+           <h3>Does screen resolution change when I resize my browser?</h3>
+   
+           <p>
+               The physical screen resolution reported by
+               <code>window.screen.width</code> and
+               <code>window.screen.height</code> normally does not change
+               when you resize a browser window. The browser viewport,
+               however, does change.
+           </p>
+   
+   
+           <h3>Does this tool store my screen information?</h3>
+   
+           <p>
+               The tool reads display information directly in your browser
+               and does not need to upload that information to a server.
+           </p>
+   
+   
+           <div class="tool-note">
+               <strong>Note:</strong>
+               Screen and viewport values can vary depending on browser
+               behavior, operating-system display scaling, zoom settings
+               and the device being used.
+               See our
+               <a
+                   href="https://www.dozni.com/privacy-policy"
+                   target="_blank"
+                   rel="noopener"
+               >
+                   privacy policy
+               </a>
+               for more information.
+           </div>
+       `,
+   
+       faqs: [
+           {
+               question:
+                   "What is screen resolution?",
+   
+               answer:
+                   "Screen resolution is the number of pixels reported across the width and height of a display, such as 1920 × 1080."
+           },
+   
+           {
+               question:
+                   "What is the difference between screen resolution and viewport size?",
+   
+               answer:
+                   "Screen resolution describes the display size reported by the Screen API, while viewport size describes the area currently available to the web page."
+           },
+   
+           {
+               question:
+                   "What is 1920 × 1080 resolution?",
+   
+               answer:
+                   "1920 × 1080 is commonly known as Full HD or 1080p."
+           },
+   
+           {
+               question:
+                   "What is 4K resolution?",
+   
+               answer:
+                   "4K UHD commonly refers to 3840 × 2160 pixels."
+           },
+   
+           {
+               question:
+                   "Does resizing the browser change my screen resolution?",
+   
+               answer:
+                   "Normally no. Resizing the browser changes the viewport dimensions, while the screen dimensions reported by the browser usually remain the same."
+           }
+       ]
+   },
+
+
    {
     id: "percentage-calculator",
 
