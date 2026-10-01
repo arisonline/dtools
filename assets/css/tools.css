@@ -1,21 +1,23 @@
-/* =========================================
-   UNIVERSAL TOOL CONTENT
-========================================= */
+/* =========================================================
+   UNIVERSAL TOOL ARTICLE
+   USED BY ALL TOOLS
+========================================================= */
 
 
-/* =========================================
-   COMPONENT CONTAINER
-========================================= */
+/* =========================================================
+   TOOL CONTENT COMPONENT
+========================================================= */
 
 #tool-content-component {
     width: 100%;
+
     margin-top: 40px;
 }
 
 
-/* =========================================
+/* =========================================================
    TOOL CONTENT LAYOUT
-========================================= */
+========================================================= */
 
 .tool-content-layout {
     display: flex;
@@ -28,17 +30,19 @@
 }
 
 
-/* =========================================
-   POPULAR TOOLS
-========================================= */
+/* =========================================================
+   POPULAR TOOLS SIDEBAR
+========================================================= */
 
 .popular-tools {
     width: 280px;
+
     min-width: 280px;
 
     flex-shrink: 0;
 
     position: sticky;
+
     top: 20px;
 }
 
@@ -49,11 +53,11 @@
 
 
 .popular-title {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 
     color: var(--text);
 
-    font-size: 21px;
+    font-size: 22px;
 
     line-height: 1.3;
 
@@ -66,7 +70,7 @@
 
     flex-direction: column;
 
-    gap: 14px;
+    gap: 16px;
 }
 
 
@@ -75,9 +79,9 @@
 
     width: max-content;
 
-    color: var(--text-light);
+    color: var(--text);
 
-    font-size: 14px;
+    font-size: 15px;
 
     line-height: 1.5;
 
@@ -86,8 +90,8 @@
     text-decoration: none;
 
     transition:
-        color .2s ease,
-        transform .2s ease;
+        color .25s ease,
+        transform .25s ease;
 }
 
 
@@ -95,14 +99,14 @@
     color: var(--primary);
 
     transform:
-        translateX(3px);
+        translateX(4px);
 }
 
 
 .view-all-tools {
     display: inline-block;
 
-    margin-top: 22px;
+    margin-top: 24px;
 
     color: var(--primary);
 
@@ -114,9 +118,14 @@
 }
 
 
-/* =========================================
-   CONTENT SECTION
-========================================= */
+.view-all-tools:hover {
+    color: var(--primary-dark);
+}
+
+
+/* =========================================================
+   MAIN TOOL CONTENT
+========================================================= */
 
 .tool-content-section {
     flex: 1;
@@ -130,9 +139,9 @@
 }
 
 
-/* =========================================
-   CONTENT CARD
-========================================= */
+/* =========================================================
+   TOOL CONTENT CARD
+========================================================= */
 
 .tool-content-box {
     width: 100%;
@@ -149,15 +158,15 @@
     border-radius: 24px;
 
     box-shadow:
-        0 10px 35px rgba(18,38,63,.05);
+        0 10px 35px rgba(18, 38, 63, .05);
 
     overflow: hidden;
 }
 
 
-/* =========================================
+/* =========================================================
    TOOL PAGE HEADER
-========================================= */
+========================================================= */
 
 .tool-page-header {
     display: flex;
@@ -168,12 +177,16 @@
 
     padding-bottom: 24px;
 
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 
     border-bottom:
         1px solid var(--border);
 }
 
+
+/* =========================================================
+   TOOL PAGE ICON
+========================================================= */
 
 .tool-page-icon {
     width: 60px;
@@ -190,25 +203,41 @@
 
     justify-content: center;
 
-    color: #fff;
+    color: #ffffff;
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, .08);
 }
 
 
+.tool-page-icon .material-icons {
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   TOOL PAGE TITLE
+========================================================= */
+
 .tool-page-title {
     margin:
-        0 0 9px;
+        0 0 10px;
 
     color: var(--text);
 
-    font-size: 40px;
+    font-size: 42px;
 
-    line-height: 1.15;
+    line-height: 1.1;
 
     font-weight: 900;
 
     letter-spacing: -1px;
 }
 
+
+/* =========================================================
+   TOOL PAGE DESCRIPTION
+========================================================= */
 
 .tool-page-description {
     margin: 0;
@@ -219,20 +248,20 @@
 
     font-size: 16px;
 
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 
-/* =========================================
-   CATEGORY
-========================================= */
+/* =========================================================
+   TOOL CATEGORY
+========================================================= */
 
 .tool-page-categories {
-    margin-bottom: 34px;
+    margin-bottom: 40px;
 
-    color: var(--text-light);
+    color: var(--text);
 
-    font-size: 14px;
+    font-size: 15px;
 
     line-height: 1.6;
 }
@@ -247,34 +276,37 @@
 }
 
 
-/* =========================================
-   UNIVERSAL ARTICLE
-========================================= */
+.tool-page-categories a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   TOOL ARTICLE
+========================================================= */
 
 .tool-article {
-    margin: 0;
-
     color: var(--text);
 
     font-size: 16px;
 
-    line-height: 1.85;
+    line-height: 1.9;
+
+    margin-bottom: 20px;
 }
 
 
 .tool-article h2 {
-    margin:
-        42px 0 16px;
-
-    color: var(--text);
-
-    font-size: 29px;
+    font-size: 30px;
 
     line-height: 1.3;
 
-    font-weight: 800;
+    margin:
+        40px 0 18px;
 
-    letter-spacing: -.4px;
+    color: var(--text);
+
+    font-weight: 800;
 }
 
 
@@ -284,28 +316,43 @@
 
 
 .tool-article h3 {
-    margin:
-        30px 0 13px;
-
-    color: var(--text);
-
-    font-size: 21px;
+    font-size: 22px;
 
     line-height: 1.35;
+
+    margin:
+        30px 0 14px;
+
+    color: var(--text);
 
     font-weight: 800;
 }
 
 
 .tool-article p {
+    margin-bottom: 18px;
+
+    color: var(--text);
+
+    line-height: 1.9;
+}
+
+
+.tool-article ul,
+.tool-article ol {
+    padding-left: 24px;
+
     margin:
-        0 0 18px;
+        14px 0 24px;
 
-    color: var(--text-light);
+    color: var(--text);
+}
 
-    font-size: 16px;
 
-    line-height: 1.85;
+.tool-article li {
+    margin-bottom: 10px;
+
+    line-height: 1.8;
 }
 
 
@@ -319,153 +366,44 @@
 
 
 .tool-article a:hover {
-    color: var(--primary-dark);
-
     text-decoration: underline;
+
+    color: var(--primary-dark);
 }
 
 
-.tool-article ul,
-.tool-article ol {
-    margin:
-        14px 0 24px;
-
-    padding-left: 25px;
-
-    color: var(--text-light);
-}
-
-
-.tool-article li {
-    margin-bottom: 10px;
-
-    line-height: 1.8;
-}
-
+/* =========================================================
+   ARTICLE IMAGE
+========================================================= */
 
 .tool-article img {
     display: block;
 
-    width: 100%;
-
-    max-width: 800px;
+    max-width: 100%;
 
     height: auto;
 
     margin:
         28px auto;
 
+    border-radius:
+        14px;
+
     border:
         1px solid var(--border);
-
-    border-radius: 16px;
 
     box-shadow:
-        0 10px 30px rgba(18,38,63,.07);
+        0 8px 24px rgba(18, 38, 63, .06);
 }
 
 
-/* =========================================
-   TABLE
-========================================= */
+/* =========================================================
+   FORMULA BOX
+========================================================= */
 
-.tool-article table {
-    width: 100%;
-
-    margin:
-        24px 0 28px;
-
-    border-collapse: collapse;
-
-    background: var(--card);
-
-    border:
-        1px solid var(--border);
-
-    font-size: 14px;
-}
-
-
-.tool-article th,
-.tool-article td {
-    padding:
-        13px 14px;
-
-    border:
-        1px solid var(--border);
-
-    text-align: left;
-
-    vertical-align: top;
-}
-
-
-.tool-article th {
-    background: var(--bg-soft);
-
-    color: var(--text);
-
-    font-weight: 800;
-}
-
-
-.tool-article td {
-    color: var(--text-light);
-
-    line-height: 1.65;
-}
-
-
-/* =========================================
-   FORMULA / CODE
-========================================= */
-
-.formula-box,
-.tool-code {
+.formula-box {
     margin:
         22px 0;
-
-    padding:
-        18px 20px;
-
-    background: var(--bg-soft);
-
-    border:
-        1px solid var(--border);
-
-    border-left:
-        4px solid var(--primary);
-
-    border-radius: 12px;
-
-    overflow-x: auto;
-}
-
-
-.formula-box code,
-.tool-code code {
-    color: var(--text);
-
-    font-family:
-        Consolas,
-        Monaco,
-        monospace;
-
-    font-size: 14px;
-
-    line-height: 1.7;
-
-    white-space: pre-wrap;
-}
-
-
-/* =========================================
-   NOTE
-========================================= */
-
-.tool-note {
-    margin:
-        28px 0;
 
     padding:
         18px 20px;
@@ -482,8 +420,101 @@
     border-radius:
         12px;
 
+    overflow-x:
+        auto;
+}
+
+
+.formula-box code {
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.7;
+
     color:
-        var(--text-light);
+        var(--text);
+
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   TOOL CODE BOX
+========================================================= */
+
+.tool-code {
+    margin:
+        22px 0;
+
+    padding:
+        18px 20px;
+
+    background:
+        var(--bg-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        4px solid var(--primary);
+
+    border-radius:
+        12px;
+
+    overflow-x:
+        auto;
+}
+
+
+.tool-code code {
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+
+    color:
+        var(--text);
+
+    white-space:
+        pre-wrap;
+}
+
+
+/* =========================================================
+   TOOL NOTE
+========================================================= */
+
+.tool-note {
+    margin-top:
+        28px;
+
+    padding:
+        18px 20px;
+
+    background:
+        var(--bg-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    color:
+        var(--text);
 
     font-size:
         14px;
@@ -499,9 +530,71 @@
 }
 
 
-/* =========================================
-   HOW TO
-========================================= */
+/* =========================================================
+   ARTICLE TABLE
+========================================================= */
+
+.tool-article table {
+    width:
+        100%;
+
+    margin:
+        24px 0 28px;
+
+    border-collapse:
+        collapse;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    font-size:
+        14px;
+}
+
+
+.tool-article th,
+.tool-article td {
+    padding:
+        13px 14px;
+
+    border:
+        1px solid var(--border);
+
+    text-align:
+        left;
+
+    vertical-align:
+        top;
+}
+
+
+.tool-article th {
+    background:
+        var(--bg-soft);
+
+    color:
+        var(--text);
+
+    font-weight:
+        800;
+}
+
+
+.tool-article td {
+    color:
+        var(--text);
+
+    line-height:
+        1.65;
+}
+
+
+/* =========================================================
+   HOW TO USE
+========================================================= */
 
 .tool-content-block {
     margin-top:
@@ -517,7 +610,7 @@
         var(--text);
 
     font-size:
-        29px;
+        30px;
 
     line-height:
         1.3;
@@ -528,8 +621,6 @@
 
 
 .tool-guide-list {
-    margin: 0;
-
     padding-left:
         24px;
 }
@@ -540,7 +631,7 @@
         13px;
 
     color:
-        var(--text-light);
+        var(--text);
 
     font-size:
         16px;
@@ -550,9 +641,9 @@
 }
 
 
-/* =========================================
+/* =========================================================
    CREDITS
-========================================= */
+========================================================= */
 
 .tool-credits {
     display:
@@ -601,7 +692,7 @@
         5px;
 
     color:
-        var(--text-light);
+        var(--text);
 
     font-size:
         14px;
@@ -611,9 +702,9 @@
 }
 
 
-/* =========================================
+/* =========================================================
    SHARE
-========================================= */
+========================================================= */
 
 .tool-share {
     display:
@@ -623,13 +714,13 @@
         center;
 
     gap:
-        12px;
+        14px;
 
     margin-top:
-        34px;
+        40px;
 
     padding-top:
-        24px;
+        25px;
 
     border-top:
         1px solid var(--border);
@@ -652,8 +743,8 @@
     gap:
         8px;
 
-    min-height:
-        42px;
+    height:
+        44px;
 
     padding:
         0 16px;
@@ -678,12 +769,27 @@
 
     cursor:
         pointer;
+
+    transition:
+        .2s ease;
 }
 
 
-/* =========================================
+.share-btn:hover {
+    background:
+        var(--bg-soft);
+
+    color:
+        var(--primary);
+
+    border-color:
+        rgba(29,114,255,.25);
+}
+
+
+/* =========================================================
    RESPONSIVE
-========================================= */
+========================================================= */
 
 @media (max-width: 992px) {
 
@@ -691,6 +797,7 @@
         flex-direction:
             column;
     }
+
 
     .popular-tools {
         width:
@@ -719,25 +826,36 @@
             20px;
     }
 
+
+    .tool-page-header {
+        gap:
+            14px;
+    }
+
+
     .tool-page-title {
         font-size:
-            32px;
+            34px;
     }
+
 
     .tool-page-description {
         font-size:
             15px;
     }
 
+
     .tool-article {
         font-size:
             15px;
     }
 
+
     .tool-article p {
         font-size:
             15px;
     }
+
 
     .tool-article h2,
     .tool-content-block h2 {
@@ -755,15 +873,18 @@
             20px;
     }
 
+
     .tool-page-header {
         flex-direction:
             column;
     }
 
+
     .tool-page-title {
         font-size:
             28px;
     }
+
 
     .tool-article h2,
     .tool-content-block h2 {
@@ -771,9 +892,19 @@
             22px;
     }
 
+
     .tool-article p {
         font-size:
             14px;
+    }
+
+
+    .share-btn {
+        width:
+            100%;
+
+        justify-content:
+            center;
     }
 
 }
