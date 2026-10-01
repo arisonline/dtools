@@ -14,7 +14,7 @@
             id="siteLogoImage"
             alt="DTools"
         >
-    
+
         <span class="logo-text">
             D<span>Tools</span>
         </span>
@@ -25,15 +25,15 @@
 
     <nav class="nav-links">
 
-        <a href="#" >Home</a>
+        <a href="#">Home</a>
 
-        <a href="#" >Tools</a>
+        <a href="#">Tools</a>
 
-        <a href="#" >Features</a>
+        <a href="#">Features</a>
 
-        <a href="#" >Pricing</a>
+        <a href="#">Pricing</a>
 
-        <a href="#" >Contact</a>
+        <a href="#">Contact</a>
 
     </nav>
 
@@ -42,11 +42,32 @@
 
     <div class="nav-right">
 
+
+        <!-- SEARCH BUTTON -->
+
+        <button
+            class="header-search-btn"
+            id="toolSearchButton"
+            type="button"
+            aria-label="Search tools"
+            title="Search tools"
+        >
+
+            <span class="material-icons">
+                search
+            </span>
+
+        </button>
+
+
+        <!-- THEME BUTTON -->
+
         <button
             class="theme-btn"
             id="themeToggle"
             type="button"
             aria-label="Toggle dark mode"
+            title="Toggle dark mode"
         >
 
             <svg
@@ -71,6 +92,8 @@
         </button>
 
 
+        <!-- START FREE -->
+
         <button
             class="primary-btn"
             type="button"
@@ -78,6 +101,99 @@
             Start Free
         </button>
 
+
     </div>
 
 </header>
+
+
+<!-- =========================================
+     TOOL SEARCH OVERLAY
+========================================= -->
+
+<div
+    class="tool-search-overlay"
+    id="toolSearchOverlay"
+    aria-hidden="true"
+>
+
+
+    <div
+        class="tool-search-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="toolSearchTitle"
+    >
+
+
+        <!-- SEARCH HEADER -->
+
+        <div class="tool-search-header">
+
+
+            <div class="tool-search-input-wrap">
+
+                <span class="material-icons">
+                    search
+                </span>
+
+
+                <input
+                    type="search"
+                    id="toolSearchInput"
+                    class="tool-search-input"
+                    placeholder="Search tools..."
+                    autocomplete="off"
+                    spellcheck="false"
+                    aria-label="Search tools"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="tool-search-close"
+                id="toolSearchClose"
+                aria-label="Close search"
+                title="Close"
+            >
+
+                <span class="material-icons">
+                    close
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- SEARCH RESULTS -->
+
+        <div
+            class="tool-search-results"
+            id="toolSearchResults"
+        >
+
+            <div
+                class="tool-search-empty"
+                id="toolSearchEmpty"
+            >
+
+                <span class="material-icons">
+                    search
+                </span>
+
+                <p>
+                    Search for a tool by name or description.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
