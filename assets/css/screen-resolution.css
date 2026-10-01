@@ -1,118 +1,76 @@
 /* =========================================
-   DOZNI TOOLS
-   SCREEN RESOLUTION TESTER
-   THEME-MATCHED UI
+   SCREEN RESOLUTION
+   UNIVERSAL TOOL CONTENT
+   THEME MATCHED
 ========================================= */
 
 
 /* =========================================
-   PAGE
+   MAIN CONTENT AREA
 ========================================= */
 
-body.screen-resolution-tool-page {
-    margin: 0;
-    padding: 0;
-}
-
-
-/* =========================================
-   MAIN SECTION
-========================================= */
-
-.screen-resolution-page {
+#tool-content-component {
     width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 28px 20px 0;
+    margin-top: 42px;
 }
 
 
 /* =========================================
-   CONTAINER
+   TOOL CONTENT LAYOUT
 ========================================= */
 
-.screen-resolution-container {
+.tool-content-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
     width: 100%;
-
-    max-width: 1180px;
-
-    margin: 0 auto;
 }
 
 
 /* =========================================
-   MAIN TOOL CARD
+   POPULAR SIDEBAR
 ========================================= */
 
-.screen-resolution-card {
-    width: 100%;
-
-    min-height: 498px;
-
-    display: grid;
-
-    grid-template-columns:
-        220px
-        minmax(0, 1fr);
-
-    box-sizing: border-box;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 24px;
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
+.tool-content-layout .popular-tools {
+    width: 280px;
+    min-width: 280px;
+    flex-shrink: 0;
 }
 
-
-/* =========================================
-   LEFT SIDEBAR
-========================================= */
-
-.screen-resolution-sidebar {
-    box-sizing: border-box;
-
-    padding: 30px 24px;
-
-    background: var(--card);
-
-    border-right:
-        1px solid var(--border);
+.tool-content-layout .popular-box {
+    position: sticky;
+    top: 20px;
+    padding: 24px;
 }
 
-
-.screen-resolution-check-title {
+.tool-content-layout .popular-title {
     margin-bottom: 20px;
 
     color: var(--text);
 
-    font-size: 14px;
+    font-size: 21px;
+    line-height: 1.3;
 
-    line-height: 1.5;
-
-    font-weight: 700;
+    font-weight: 800;
 }
 
+.tool-content-layout .popular-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
-.screen-resolution-check-link {
-    display: block;
+.tool-content-layout .popular-links a {
+    display: inline-block;
 
-    margin-bottom: 13px;
-
-    padding: 2px 0;
+    width: max-content;
 
     color: var(--text-light);
 
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.5;
 
-    line-height: 1.55;
-
-    font-weight: 700;
+    font-weight: 600;
 
     text-decoration: none;
 
@@ -121,151 +79,268 @@ body.screen-resolution-tool-page {
         transform .2s ease;
 }
 
-
-.screen-resolution-check-link:hover {
+.tool-content-layout .popular-links a:hover {
     color: var(--primary);
 
     transform: translateX(3px);
 }
 
+.tool-content-layout .view-all-tools {
+    display: inline-block;
 
-.screen-resolution-check-link.active {
+    margin-top: 22px;
+
     color: var(--primary);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.tool-content-layout .view-all-tools:hover {
+    color: var(--primary-dark);
 }
 
 
 /* =========================================
-   RIGHT CONTENT
+   MAIN CONTENT
 ========================================= */
 
-.screen-resolution-content {
+.tool-content-section {
+    flex: 1;
     min-width: 0;
+}
+
+.tool-main-content {
+    width: 100%;
+}
+
+
+/* =========================================
+   MAIN CONTENT CARD
+========================================= */
+
+.tool-content-box {
+    width: 100%;
 
     box-sizing: border-box;
 
-    padding:
-        36px 40px 30px;
+    padding: 34px;
 
     background: var(--card);
 
-    text-align: center;
-}
-
-
-.screen-resolution-content h2 {
-    margin:
-        0 0 24px;
-
-    color: var(--text);
-
-    font-size: 21px;
-
-    line-height: 1.4;
-
-    font-weight: 800;
-
-    letter-spacing: -.2px;
-}
-
-
-/* =========================================
-   RESOLUTION DISPLAY
-========================================= */
-
-.screen-resolution-value {
-    width: 276px;
-
-    height: 176px;
-
-    box-sizing: border-box;
-
-    margin:
-        0 auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: var(--bg);
-
     border:
-        7px solid var(--primary);
+        1px solid var(--border);
 
-    border-radius: 18px;
-
-    color: var(--text);
-
-    font-size: 29px;
-
-    line-height: 1;
-
-    font-weight: 800;
-
-    letter-spacing: -.3px;
+    border-radius: 24px;
 
     box-shadow:
-        0 8px 24px rgba(18, 38, 63, .07);
+        0 10px 35px rgba(18, 38, 63, .05);
+
+    overflow: hidden;
 
     transition:
         border-color .25s ease,
         box-shadow .25s ease;
 }
 
+.tool-content-box:hover {
+    border-color:
+        rgba(29, 114, 255, .18);
+
+    box-shadow:
+        0 16px 45px rgba(18, 38, 63, .07);
+}
+
 
 /* =========================================
-   RESULT TEXT
+   TOOL HEADER
 ========================================= */
 
-.screen-resolution-line {
-    margin:
-        30px 0 0;
+.tool-page-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding-bottom: 24px;
+
+    margin-bottom: 22px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+/* =========================================
+   TOOL ICON
+========================================= */
+
+.tool-page-icon {
+    width: 60px;
+    height: 60px;
+
+    min-width: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 22px rgba(29, 114, 255, .16);
+}
+
+.tool-page-icon .material-icons {
+    font-size: 28px;
+}
+
+
+/* =========================================
+   TOOL TITLE
+========================================= */
+
+.tool-page-title {
+    margin: 0 0 9px;
+
+    color: var(--text);
+
+    font-size: 40px;
+
+    line-height: 1.15;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================================
+   TOOL DESCRIPTION
+========================================= */
+
+.tool-page-description {
+    margin: 0;
+
+    max-width: 760px;
 
     color: var(--text-light);
 
-    font-size: 15px;
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.tool-page-categories {
+    margin-bottom: 34px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
 
     line-height: 1.6;
 }
 
+.tool-page-categories a {
+    color: var(--primary);
 
-.screen-resolution-line
-+ .screen-resolution-line {
-    margin-top: 9px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.tool-page-categories a:hover {
+    color: var(--primary-dark);
+
+    text-decoration: underline;
 }
 
 
-.screen-resolution-line strong {
+/* =========================================
+   ARTICLE
+========================================= */
+
+.tool-article {
+    margin: 0;
+
     color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.85;
+}
+
+
+/* =========================================
+   ARTICLE HEADINGS
+========================================= */
+
+.tool-article h2 {
+    margin:
+        42px 0 16px;
+
+    color: var(--text);
+
+    font-size: 29px;
+
+    line-height: 1.3;
+
+    font-weight: 800;
+
+    letter-spacing: -.4px;
+}
+
+.tool-article h2:first-child {
+    margin-top: 0;
+}
+
+.tool-article h3 {
+    margin:
+        30px 0 13px;
+
+    color: var(--text);
+
+    font-size: 21px;
+
+    line-height: 1.35;
 
     font-weight: 800;
 }
 
 
 /* =========================================
-   DESCRIPTION
+   ARTICLE PARAGRAPHS
 ========================================= */
 
-.screen-resolution-description {
+.tool-article p {
     margin:
-        48px 0 0;
+        0 0 18px;
 
     color: var(--text-light);
 
-    font-size: 14px;
+    font-size: 16px;
 
-    line-height: 1.7;
+    line-height: 1.85;
 }
 
 
-.screen-resolution-description
-+ .screen-resolution-description {
-    margin-top: 7px;
-}
+/* =========================================
+   ARTICLE LINKS
+========================================= */
 
-
-.screen-resolution-description a {
+.tool-article a {
     color: var(--primary);
 
     font-weight: 600;
@@ -275,8 +350,7 @@ body.screen-resolution-tool-page {
     transition: color .2s ease;
 }
 
-
-.screen-resolution-description a:hover {
+.tool-article a:hover {
     color: var(--primary-dark);
 
     text-decoration: underline;
@@ -284,13 +358,363 @@ body.screen-resolution-tool-page {
 
 
 /* =========================================
-   UNIVERSAL CONTENT
+   LISTS
 ========================================= */
 
-#tool-content-component {
+.tool-article ul,
+.tool-article ol {
+    margin:
+        14px 0 24px;
+
+    padding-left: 25px;
+
+    color: var(--text-light);
+}
+
+.tool-article li {
+    margin-bottom: 10px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   ARTICLE IMAGE
+========================================= */
+
+.tool-article img {
+    display: block;
+
     width: 100%;
 
-    margin-top: 40px;
+    max-width: 800px;
+
+    height: auto;
+
+    margin:
+        28px auto;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(18, 38, 63, .07);
+
+}
+
+
+/* =========================================
+   FORMULA / CODE BOX
+========================================= */
+
+.tool-code,
+.formula-box {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin:
+        24px 0;
+
+    padding:
+        18px 20px;
+
+    background: var(--bg-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        4px solid var(--primary);
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+}
+
+
+.tool-code code,
+.formula-box code {
+    color: var(--text);
+
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.tool-article table {
+    width: 100%;
+
+    margin:
+        24px 0 28px;
+
+    border-collapse: collapse;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    font-size: 14px;
+}
+
+
+.tool-article th,
+.tool-article td {
+    padding:
+        13px 14px;
+
+    border:
+        1px solid var(--border);
+
+    text-align: left;
+
+    vertical-align: top;
+}
+
+
+.tool-article th {
+    background: var(--bg-soft);
+
+    color: var(--text);
+
+    font-weight: 800;
+}
+
+
+.tool-article td {
+    color: var(--text-light);
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   NOTE BOX
+========================================= */
+
+.tool-note {
+    margin:
+        28px 0;
+
+    padding:
+        18px 20px;
+
+    background: var(--bg-soft);
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        4px solid var(--primary);
+
+    border-radius: 12px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.tool-note strong {
+    color: var(--text);
+}
+
+
+/* =========================================
+   HOW TO USE
+========================================= */
+
+.tool-content-block {
+    margin-top: 42px;
+}
+
+.tool-content-block h2 {
+    margin:
+        0 0 20px;
+
+    color: var(--text);
+
+    font-size: 29px;
+
+    line-height: 1.3;
+
+    font-weight: 800;
+}
+
+.tool-guide-list {
+    margin: 0;
+
+    padding-left: 24px;
+}
+
+.tool-guide-list li {
+    margin-bottom: 13px;
+
+    color: var(--text-light);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   CREDITS
+========================================= */
+
+.tool-credits {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.credit-item {
+    padding:
+        16px 0;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.credit-item:last-child {
+    border-bottom: none;
+}
+
+.credit-item a {
+    color: var(--primary);
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.credit-item span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   SHARE BUTTONS
+========================================= */
+
+.tool-share {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 34px;
+
+    padding-top: 24px;
+
+    border-top:
+        1px solid var(--border);
+
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 42px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.share-btn:hover {
+    color: var(--primary);
+
+    border-color:
+        rgba(29, 114, 255, .25);
+
+    background:
+        var(--bg-soft);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .tool-content-box {
+    background:
+        var(--card);
+
+    box-shadow:
+        0 16px 45px rgba(0,0,0,.20);
+}
+
+body.dark .tool-article table {
+    background:
+        var(--card);
+}
+
+body.dark .share-btn {
+    background:
+        var(--card);
 }
 
 
@@ -298,124 +722,121 @@ body.screen-resolution-tool-page {
    MOBILE
 ========================================= */
 
-@media (max-width: 760px) {
+@media (max-width: 992px) {
 
-    .screen-resolution-page {
-        padding:
-            22px 14px 0;
+    .tool-content-layout {
+        flex-direction: column;
     }
 
-
-    .screen-resolution-card {
-
-        grid-template-columns:
-            1fr;
-
-        min-height: 0;
-
-        border-radius: 20px;
+    .tool-content-layout .popular-tools {
+        width: 100%;
+        min-width: 100%;
     }
 
-
-    .screen-resolution-sidebar {
-
-        padding:
-            20px 20px 17px;
-
-        border-right: none;
-
-        border-bottom:
-            1px solid var(--border);
-    }
-
-
-    .screen-resolution-check-title {
-        margin-bottom: 10px;
-    }
-
-
-    .screen-resolution-check-link {
-
-        display: inline-block;
-
-        margin:
-            0 18px 0 0;
-
-    }
-
-
-    .screen-resolution-content {
-
-        padding:
-            30px 18px 32px;
-    }
-
-
-    .screen-resolution-content h2 {
-
-        margin-bottom: 22px;
-
-        font-size: 19px;
-    }
-
-
-    .screen-resolution-value {
-
-        width:
-            min(276px, 100%);
-
-        height:
-            160px;
-
-        border-width:
-            6px;
-
-        border-radius:
-            16px;
-
-        font-size:
-            26px;
-    }
-
-
-    .screen-resolution-line {
-        font-size: 15px;
-    }
-
-
-    .screen-resolution-description {
-        margin-top: 38px;
-
-        font-size: 14px;
-    }
-
-
-    #tool-content-component {
-        margin-top: 32px;
+    .tool-content-layout .popular-box {
+        position: static;
     }
 
 }
 
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
+@media (max-width: 768px) {
 
-@media (max-width: 430px) {
-
-    .screen-resolution-content h2 {
-        font-size: 18px;
+    #tool-content-component {
+        margin-top: 32px;
     }
 
+    .tool-content-box {
+        padding: 24px;
 
-    .screen-resolution-value {
+        border-radius: 20px;
+    }
 
-        height: 145px;
+    .tool-page-header {
+        gap: 14px;
+    }
 
-        border-width: 6px;
+    .tool-page-title {
+        font-size: 32px;
+    }
 
+    .tool-page-description {
+        font-size: 15px;
+    }
+
+    .tool-article {
+        font-size: 15px;
+    }
+
+    .tool-article p {
+        font-size: 15px;
+    }
+
+    .tool-article h2,
+    .tool-content-block h2 {
         font-size: 24px;
+    }
 
+    .tool-article h3 {
+        font-size: 19px;
+    }
+
+    .tool-article table {
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .tool-content-box {
+        padding: 20px;
+    }
+
+    .tool-page-header {
+        flex-direction: column;
+    }
+
+    .tool-page-icon {
+        width: 54px;
+        height: 54px;
+        min-width: 54px;
+    }
+
+    .tool-page-title {
+        font-size: 27px;
+    }
+
+    .tool-page-categories {
+        margin-bottom: 28px;
+    }
+
+    .tool-article h2,
+    .tool-content-block h2 {
+        font-size: 22px;
+    }
+
+    .tool-article p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .tool-guide-list li {
+        font-size: 14px;
+    }
+
+    .tool-share {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .share-btn {
+        width: 100%;
     }
 
 }
