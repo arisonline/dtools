@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,12 +11,12 @@
     >
 
     <title>
-        Screen Resolution Checker Online - Check Your Display & Viewport Size
+        Screen Resolution Tester - Dozni Tools
     </title>
 
     <meta
         name="description"
-        content="Check your screen resolution instantly. See your screen width, height and total pixels directly in your browser."
+        content="Check your screen resolution, available screen size, browser viewport, pixel density and total pixels instantly with this free online screen resolution tester."
     >
 
     <meta
@@ -24,35 +26,19 @@
 
     <link
         rel="canonical"
-        href="https://dtools.dozni.com/tools/screen-resolution/"
-    >
-
-    <!-- Global DTools CSS -->
-    <link
-        rel="stylesheet"
-        href="../../assets/css/theme.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/tools.css"
-    >
-
-    <!-- Material Icons -->
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        href="https://screen-resolution.dozni.com/"
     >
 
     <!-- Open Graph -->
+
     <meta
         property="og:title"
-        content="Screen Resolution Checker Online"
+        content="Screen Resolution Tester - Dozni Tools"
     >
 
     <meta
         property="og:description"
-        content="Check your device screen resolution, width, height and total pixels online."
+        content="Instantly check your screen resolution, viewport size, device pixel ratio and total pixels."
     >
 
     <meta
@@ -62,10 +48,16 @@
 
     <meta
         property="og:url"
-        content="https://dtools.dozni.com/tools/screen-resolution/"
+        content="https://screen-resolution.dozni.com/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Dozni Tools"
     >
 
     <!-- Twitter -->
+
     <meta
         name="twitter:card"
         content="summary_large_image"
@@ -73,188 +65,412 @@
 
     <meta
         name="twitter:title"
-        content="Screen Resolution Checker Online"
+        content="Screen Resolution Tester - Dozni Tools"
     >
 
     <meta
         name="twitter:description"
-        content="Instantly check your device screen resolution and total pixels."
+        content="Check your device screen resolution and browser viewport instantly."
     >
 
-    <!-- Schema -->
+    <!-- Material Icons -->
+
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+
+    <!-- Global Theme -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+    <!-- Tool-specific CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/screen-resolution.css"
+    >
+
+    <!-- Structured Data -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Screen Resolution Checker",
-        "url": "https://dtools.dozni.com/tools/screen-resolution/",
-        "description": "Online screen resolution checker that displays screen width, height and total pixels.",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Any"
+        "@graph": [
+            {
+                "@type": "WebApplication",
+                "@id": "https://screen-resolution.dozni.com/#app",
+                "url": "https://screen-resolution.dozni.com/",
+                "name": "Screen Resolution Tester",
+                "description": "Free online screen resolution tester that detects screen width, screen height, available screen size, viewport size, device pixel ratio and total pixels.",
+                "applicationCategory": "DeveloperApplication",
+                "operatingSystem": "Any",
+                "inLanguage": "en"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://screen-resolution.dozni.com/#webpage",
+                "url": "https://screen-resolution.dozni.com/",
+                "name": "Screen Resolution Tester - Dozni Tools",
+                "headline": "Screen Resolution Tester",
+                "description": "Check your screen resolution, available screen size, viewport and device pixel ratio instantly.",
+                "inLanguage": "en"
+            }
+        ]
     }
     </script>
+
 </head>
 
-<body>
 
-    <!-- Header -->
+<body
+    class="tool-page screen-resolution-tool-page"
+    data-tool="screen-resolution"
+>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
     <div id="site-header"></div>
 
 
-    <!-- PAGE TITLE -->
-    <section class="screen-resolution-title">
-        <div class="container">
-            <h1>Screen Resolution Tester</h1>
-        </div>
-    </section>
+    <main>
 
 
-    <!-- MAIN TOOL -->
-    <main class="screen-resolution-tool">
+        <!-- =========================================
+             SCREEN RESOLUTION TESTER
+        ========================================== -->
 
-        <div class="screen-resolution-tool-card">
+        <section class="screen-resolution-page">
 
-            <!-- MAIN CHECKER -->
-            <section class="screen-resolution-main">
+            <div class="screen-resolution-container">
 
-                <h2>
-                    What is my screen resolution?
-                </h2>
 
-                <div
-                    class="screen-resolution-display"
-                    id="screenResolution"
-                >
-                    Detecting...
-                </div>
+                <div class="screen-resolution-card">
 
-                <div class="screen-resolution-values">
 
-                    <div class="screen-resolution-value">
-                        <span>
-                            Width of screen is
-                        </span>
+                    <!-- TOOL HEADING -->
 
-                        <strong id="widthValue">
-                            —
-                        </strong>
+                    <div class="screen-resolution-heading">
+
+                        <div class="screen-resolution-heading-icon">
+                            <span class="material-icons">
+                                aspect_ratio
+                            </span>
+                        </div>
+
+                        <div>
+                            <h2>
+                                Screen Resolution Tester
+                            </h2>
+
+                            <p>
+                                Instantly detect your screen resolution
+                                and display information.
+                            </p>
+                        </div>
+
                     </div>
 
 
-                    <div class="screen-resolution-value">
-                        <span>
-                            Height of screen is
-                        </span>
+                    <!-- MAIN SCREEN DISPLAY -->
 
-                        <strong id="heightValue">
-                            —
-                        </strong>
+                    <div class="screen-resolution-main">
+
+                        <p class="screen-resolution-question">
+                            What is my screen resolution?
+                        </p>
+
+
+                        <div
+                            class="screen-preview"
+                            id="screenResolution"
+                        >
+                            0 × 0
+                        </div>
+
+
+                        <div class="screen-main-result">
+
+                            <div class="screen-result-item">
+
+                                <span class="screen-result-label">
+                                    Screen Width
+                                </span>
+
+                                <strong id="widthValue">
+                                    0px
+                                </strong>
+
+                            </div>
+
+
+                            <div class="screen-result-item">
+
+                                <span class="screen-result-label">
+                                    Screen Height
+                                </span>
+
+                                <strong id="heightValue">
+                                    0px
+                                </strong>
+
+                            </div>
+
+
+                            <div class="screen-result-item">
+
+                                <span class="screen-result-label">
+                                    Total Pixels
+                                </span>
+
+                                <strong id="totalPixels">
+                                    0 MP
+                                </strong>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
 
-                    <div class="screen-resolution-value">
-                        <span>
-                            Total pixels on your screen is
-                        </span>
+                    <!-- EXTRA INFORMATION -->
 
-                        <strong id="totalPixels">
-                            —
-                        </strong>
+                    <div class="screen-information-grid">
 
-                        <small>
-                            million
-                        </small>
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                fullscreen
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Available Screen
+                                </span>
+
+                                <strong id="availableResolution">
+                                    0 × 0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                web
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Browser Viewport
+                                </span>
+
+                                <strong id="viewportResolution">
+                                    0 × 0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                zoom_in
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Device Pixel Ratio
+                                </span>
+
+                                <strong id="pixelRatio">
+                                    1
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                palette
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Color Depth
+                                </span>
+
+                                <strong id="colorDepth">
+                                    24 bit
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                screen_rotation
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Orientation
+                                </span>
+
+                                <strong id="screenOrientation">
+                                    Landscape
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="screen-info-card">
+
+                            <span class="material-icons">
+                                devices
+                            </span>
+
+                            <div>
+
+                                <span class="screen-info-label">
+                                    Screen Position
+                                </span>
+
+                                <strong id="screenPosition">
+                                    0, 0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
                     </div>
 
+
+                    <!-- NOTE -->
+
+                    <div class="screen-resolution-note">
+
+                        <span class="material-icons">
+                            info
+                        </span>
+
+                        <p>
+                            Screen resolution is measured using your
+                            browser's Screen API. Results may vary
+                            depending on display scaling, operating
+                            system settings and browser behavior.
+                        </p>
+
+                    </div>
+
+
+                    <!-- QUICK LINKS -->
+
+                    <div class="screen-resolution-links">
+
+                        <a
+                            href="https://browser-resolution.dozni.com/"
+                            class="screen-link-button"
+                        >
+                            <span class="material-icons">
+                                web
+                            </span>
+                            Browser Resolution Tester
+                        </a>
+
+                    </div>
+
+
                 </div>
 
+            </div>
 
-                <p class="screen-resolution-note">
-                    This tool checks the size of your screen.
-                </p>
-
-
-                <p class="screen-resolution-links">
-                    Check
-                    <a
-                        href="../browser-resolution/"
-                    >
-                        browser resolution
-                    </a>
-                    instead, or get a full
-                    <a href="#">
-                        version info
-                    </a>
-                    for your device.
-                </p>
-
-            </section>
+        </section>
 
 
-            <!-- SIDE NAVIGATION -->
-            <aside class="screen-resolution-side">
+        <!-- =========================================
+             UNIVERSAL TOOL CONTENT
+        ========================================== -->
 
-                <div class="screen-resolution-side-title">
-                    Check Your
-                </div>
+        <div id="tool-content-component"></div>
 
-                <a
-                    href="../browser-resolution/"
-                    class="screen-resolution-side-link"
-                >
-                    Browser
-                </a>
 
-                <a
-                    href="#"
-                    class="screen-resolution-side-link"
-                >
-                    Operating System
-                </a>
+        <!-- =========================================
+             FEATURES
+        ========================================== -->
 
-                <a
-                    href="#"
-                    class="screen-resolution-side-link active"
-                >
-                    Screen Resolution
-                </a>
+        <div id="features"></div>
 
-                <a
-                    href="../browser-resolution/"
-                    class="screen-resolution-side-link"
-                >
-                    Browser Resolution
-                </a>
 
-            </aside>
+        <!-- =========================================
+             RELATED TOOLS
+        ========================================== -->
 
-        </div>
+        <div id="related-tools"></div>
+
+
+        <!-- =========================================
+             FAQ
+        ========================================== -->
+
+        <div id="faq"></div>
+
 
     </main>
 
 
-    <!-- UNIVERSAL TOOL CONTENT -->
-    <div id="tool-content-component"></div>
-
-
-    <!-- UNIVERSAL SECTIONS -->
-    <div id="related-tools"></div>
-
-    <div id="features"></div>
-
-    <div id="faq"></div>
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
 
     <div id="site-footer"></div>
 
 
-    <!-- TOOL JS -->
-    <script src="../../assets/js/screen-resolution.js"></script>
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
 
-    <!-- Universal data engine -->
-    <script src="../../assets/js/tools.js"></script>
+    <script
+        src="../../assets/js/screen-resolution.js"
+    ></script>
 
-    <!-- Universal component loader -->
-    <script src="../../assets/js/components.js"></script>
+    <script
+        src="../../assets/js/tools.js"
+    ></script>
+
+    <script
+        src="../../assets/js/components.js"
+    ></script>
+
 
 </body>
+
 </html>
