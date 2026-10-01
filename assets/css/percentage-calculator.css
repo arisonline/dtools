@@ -12,8 +12,8 @@
 }
 
 .percentage-calculator-card {
-    background: var(--card-bg, #ffffff);
-    border: 1px solid var(--border, #e1e5ea);
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
@@ -26,11 +26,12 @@
 
 .percentage-calculator-heading {
     padding: 22px 26px 20px;
-    border-bottom: 1px solid var(--border, #e5e7eb);
+    border-bottom: 1px solid var(--border);
 }
 
 .percentage-calculator-heading h2 {
     margin: 0 0 6px;
+    color: var(--text);
     font-size: 22px;
     line-height: 1.3;
     font-weight: 700;
@@ -38,7 +39,7 @@
 
 .percentage-calculator-heading p {
     margin: 0;
-    color: var(--text-muted, #6b7280);
+    color: var(--text-light);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -61,7 +62,7 @@
 
     padding: 24px 26px;
 
-    border-bottom: 1px solid var(--border, #e5e7eb);
+    border-bottom: 1px solid var(--border);
 
     box-sizing: border-box;
 }
@@ -81,6 +82,8 @@
 .percentage-calculation-left h3 {
     margin: 0 0 18px;
 
+    color: var(--text);
+
     font-size: 17px;
     line-height: 1.4;
     font-weight: 700;
@@ -97,6 +100,8 @@
     flex-wrap: wrap;
     gap: 9px;
 
+    color: var(--text);
+
     font-size: 15px;
     line-height: 1.5;
 }
@@ -111,13 +116,13 @@
 
     padding: 0 11px;
 
-    border: 1px solid #cfd5dc;
+    border: 1px solid var(--border);
     border-radius: 6px;
 
-    background: #fff;
+    background: var(--bg);
+    color: var(--text);
 
-    color: #222;
-
+    font-family: inherit;
     font-size: 14px;
 
     outline: none;
@@ -126,18 +131,21 @@
 
     transition:
         border-color .15s ease,
-        box-shadow .15s ease;
+        box-shadow .15s ease,
+        background .15s ease,
+        color .15s ease;
 }
 
 .percentage-question input:focus {
-    border-color: #1976d2;
+    border-color: var(--primary);
 
     box-shadow:
-        0 0 0 3px rgba(25, 118, 210, .10);
+        0 0 0 3px rgba(29, 114, 255, .10);
 }
 
 .percentage-question input::placeholder {
-    color: #9aa1aa;
+    color: var(--text-light);
+    opacity: .75;
 }
 
 
@@ -152,19 +160,21 @@
 
     margin-top: 20px;
 
+    color: var(--text);
+
     font-size: 15px;
 }
 
 .percentage-answer {
     font-size: 22px;
     font-weight: 700;
-    color: #1976d2;
+    color: var(--primary);
 }
 
 .percentage-result-text {
     margin-top: 7px;
 
-    color: #555;
+    color: var(--text-light);
 
     font-size: 13px;
     line-height: 1.55;
@@ -189,10 +199,9 @@
 
     padding: 43px 18px 18px;
 
-    background: var(--bg-soft, #f7f8fa);
+    background: var(--bg-soft);
 
-    border: 1px solid var(--border, #e0e4e8);
-
+    border: 1px solid var(--border);
     border-radius: 8px;
 
     box-sizing: border-box;
@@ -206,13 +215,15 @@
     font-size: 14px;
     line-height: 2;
 
-    color: var(--text, #333);
+    color: var(--text);
 
     overflow-x: auto;
 }
 
 
-/* Calculation heading */
+/* =========================================================
+   CALCULATION HEADING
+========================================================= */
 
 .calculation-box::before {
     content: "Calculation:";
@@ -231,7 +242,7 @@
     font-size: 14px;
     font-weight: 700;
 
-    color: var(--text, #333);
+    color: var(--text);
 }
 
 
@@ -240,35 +251,8 @@
 ========================================================= */
 
 .calculation-box div {
+    color: var(--text);
     white-space: nowrap;
-}
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-body.dark .percentage-calculator-card {
-    box-shadow: none;
-}
-
-body.dark .percentage-question input {
-    background: #202124;
-    border-color: #444;
-    color: #fff;
-}
-
-body.dark .percentage-question input::placeholder {
-    color: #888;
-}
-
-body.dark .percentage-result-text {
-    color: #aaa;
-}
-
-body.dark .calculation-box {
-    background: #292929;
-    border-color: #414141;
 }
 
 
