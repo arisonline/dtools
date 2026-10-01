@@ -9,10 +9,16 @@
 ========================================= */
 
 body.screen-resolution-tool-page {
+
     margin: 0;
     padding: 0;
+
 }
 
+
+/* =========================================
+   MAIN SECTION
+========================================= */
 
 .screen-resolution-page {
 
@@ -21,7 +27,7 @@ body.screen-resolution-tool-page {
     box-sizing: border-box;
 
     padding:
-        30px 20px 0;
+        4px 8px 0;
 
 }
 
@@ -34,7 +40,7 @@ body.screen-resolution-tool-page {
 
     width: 100%;
 
-    max-width: 940px;
+    max-width: 1180px;
 
     margin: 0 auto;
 
@@ -42,67 +48,68 @@ body.screen-resolution-tool-page {
 
 
 /* =========================================
-   TITLE
+   MAIN CARD
 ========================================= */
 
-.screen-resolution-title {
+.screen-resolution-card {
 
-    margin: 0 0 28px;
+    width: 100%;
 
-    color: var(--text);
-
-    font-size: 34px;
-
-    line-height: 1.2;
-
-    font-weight: 700;
-
-    letter-spacing: -0.6px;
-
-}
-
-
-/* =========================================
-   MAIN LAYOUT
-========================================= */
-
-.screen-resolution-layout {
+    min-height: 498px;
 
     display: grid;
 
     grid-template-columns:
-        175px
+        220px
         minmax(0, 1fr);
 
-    gap: 42px;
+    box-sizing: border-box;
 
-    align-items: start;
+    background: #ffffff;
+
+    border:
+        1px solid #dddddd;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.10);
+
+    overflow: hidden;
 
 }
 
 
 /* =========================================
-   CHECK YOUR SIDEBAR
+   LEFT SIDEBAR
 ========================================= */
 
 .screen-resolution-sidebar {
 
-    padding-top: 5px;
+    box-sizing: border-box;
+
+    padding:
+        34px 20px;
+
+    border-right:
+        1px solid #dddddd;
+
+    background: #ffffff;
 
 }
 
 
 .screen-resolution-check-title {
 
-    margin-bottom: 17px;
+    margin-bottom: 23px;
 
-    color: var(--text);
+    color: #333333;
 
-    font-size: 16px;
+    font-size: 14px;
 
     line-height: 1.4;
 
-    font-weight: 700;
+    font-weight: 400;
 
 }
 
@@ -111,57 +118,65 @@ body.screen-resolution-tool-page {
 
     display: block;
 
-    margin-bottom: 13px;
+    margin-bottom: 14px;
 
-    color: var(--primary);
+    color: #666666;
 
-    font-size: 15px;
+    font-size: 16px;
 
-    line-height: 1.45;
+    line-height: 1.55;
 
     font-weight: 700;
 
     text-decoration: none;
+
+    letter-spacing: .1px;
 
 }
 
 
 .screen-resolution-check-link:hover {
 
-    text-decoration: underline;
+    color: #222222;
 
 }
 
 
 .screen-resolution-check-link.active {
 
-    color: var(--text);
-
-    text-decoration: none;
+    color: #666666;
 
 }
 
 
 /* =========================================
-   RESULT CONTENT
+   RIGHT CONTENT
 ========================================= */
 
 .screen-resolution-content {
 
+    box-sizing: border-box;
+
     min-width: 0;
+
+    padding:
+        37px 35px 25px;
+
+    text-align: center;
 
 }
 
 
 .screen-resolution-content h2 {
 
-    margin: 0 0 28px;
+    margin:
+        0 0 22px;
 
-    color: var(--text);
+    color: #111111;
 
-    font-size: 28px;
+    font-size: 19px;
 
-    line-height: 1.3;
+    line-height: 1.4;
 
     font-weight: 700;
 
@@ -169,51 +184,76 @@ body.screen-resolution-tool-page {
 
 
 /* =========================================
-   RESOLUTION VALUE
+   RESOLUTION BOX
 ========================================= */
 
 .screen-resolution-value {
 
-    margin: 0 0 22px;
+    width: 276px;
 
-    color: var(--text);
+    height: 176px;
 
-    font-size:
-        clamp(
-            40px,
-            5vw,
-            56px
-        );
+    box-sizing: border-box;
 
-    line-height: 1.1;
+    margin:
+        0 auto;
 
-    font-weight: 800;
+    display: flex;
 
-    letter-spacing: -1.5px;
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        8px solid #ffb000;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
 
 }
 
 
 /* =========================================
-   TEXT LINES
+   RESULT LINES
 ========================================= */
 
 .screen-resolution-line {
 
-    margin: 8px 0;
+    margin:
+        31px 0 0;
 
-    color: var(--text-light);
+    color: #222222;
 
-    font-size: 17px;
+    font-size: 15px;
 
-    line-height: 1.65;
+    line-height: 1.45;
+
+}
+
+
+.screen-resolution-line
++ .screen-resolution-line {
+
+    margin-top:
+        10px;
 
 }
 
 
 .screen-resolution-line strong {
 
-    color: var(--text);
+    color: #111111;
 
     font-weight: 700;
 
@@ -226,13 +266,14 @@ body.screen-resolution-tool-page {
 
 .screen-resolution-description {
 
-    margin: 24px 0 0;
+    margin:
+        50px 0 0;
 
-    color: var(--text-light);
+    color: #222222;
 
-    font-size: 15px;
+    font-size: 14px;
 
-    line-height: 1.75;
+    line-height: 1.5;
 
 }
 
@@ -240,16 +281,15 @@ body.screen-resolution-tool-page {
 .screen-resolution-description
 + .screen-resolution-description {
 
-    margin-top: 8px;
+    margin-top:
+        8px;
 
 }
 
 
 .screen-resolution-description a {
 
-    color: var(--primary);
-
-    font-weight: 600;
+    color: #0099ff;
 
     text-decoration: none;
 
@@ -271,244 +311,8 @@ body.screen-resolution-tool-page {
 
     width: 100%;
 
-    margin-top: 48px;
-
-}
-
-
-/* =========================================
-   EXISTING ARTICLE SUPPORT
-========================================= */
-
-.tool-article {
-
-    width: 100%;
-
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    color: var(--text);
-
-    line-height: 1.8;
-
-}
-
-
-.tool-article h2 {
-
-    margin:
-        32px 0 12px;
-
-    color: var(--text);
-
-    font-size: 25px;
-
-    line-height: 1.35;
-
-}
-
-
-.tool-article h2:first-child {
-
-    margin-top: 0;
-
-}
-
-
-.tool-article h3 {
-
-    margin:
-        25px 0 10px;
-
-    color: var(--text);
-
-    font-size: 20px;
-
-    line-height: 1.4;
-
-}
-
-
-.tool-article p {
-
-    margin:
-        0 0 16px;
-
-    color: var(--text-light);
-
-    font-size: 15px;
-
-    line-height: 1.75;
-
-}
-
-
-.tool-article ul,
-.tool-article ol {
-
-    margin:
-        10px 0 20px;
-
-    padding-left: 24px;
-
-    color: var(--text-light);
-
-}
-
-
-.tool-article li {
-
-    margin-bottom: 7px;
-
-}
-
-
-/* =========================================
-   TABLE
-========================================= */
-
-.tool-article table {
-
-    width: 100%;
-
-    margin:
-        20px 0 25px;
-
-    border-collapse: collapse;
-
-    font-size: 14px;
-
-}
-
-
-.tool-article th,
-.tool-article td {
-
-    padding:
-        11px 12px;
-
-    border:
-        1px solid var(--border);
-
-    text-align: left;
-
-    vertical-align: top;
-
-}
-
-
-.tool-article th {
-
-    background: var(--bg-soft);
-
-    color: var(--text);
-
-    font-weight: 700;
-
-}
-
-
-.tool-article td {
-
-    color: var(--text-light);
-
-}
-
-
-/* =========================================
-   CODE
-========================================= */
-
-.tool-code {
-
-    margin:
-        18px 0 24px;
-
-    padding:
-        16px 18px;
-
-    box-sizing: border-box;
-
-    border:
-        1px solid var(--border);
-
-    border-left:
-        4px solid var(--primary);
-
-    border-radius: 10px;
-
-    background: var(--bg-soft);
-
-    overflow-x: auto;
-
-}
-
-
-.tool-code code {
-
-    color: var(--text);
-
-    font-family:
-        Consolas,
-        Monaco,
-        monospace;
-
-    font-size: 14px;
-
-    line-height: 1.65;
-
-    white-space: pre;
-
-}
-
-
-/* =========================================
-   NOTE
-========================================= */
-
-.tool-note {
-
-    margin:
-        24px 0;
-
-    padding:
-        15px 17px;
-
-    border-radius: 10px;
-
-    background: var(--bg-soft);
-
-    border:
-        1px solid var(--border);
-
-    color: var(--text-light);
-
-    font-size: 13px;
-
-    line-height: 1.7;
-
-}
-
-
-.tool-note strong {
-
-    color: var(--text);
-
-}
-
-
-/* =========================================
-   FEATURES / RELATED / FAQ
-========================================= */
-
-#features,
-#related-tools,
-#faq {
-
-    width: 100%;
-
-    margin-top: 28px;
+    margin-top:
+        35px;
 
 }
 
@@ -522,39 +326,38 @@ body.screen-resolution-tool-page {
     .screen-resolution-page {
 
         padding:
-            24px 16px 0;
+            4px 8px 0;
 
     }
 
 
-    .screen-resolution-title {
+    .screen-resolution-card {
 
-        margin-bottom: 24px;
+        grid-template-columns:
+            1fr;
 
-        font-size: 30px;
-
-    }
-
-
-    .screen-resolution-layout {
-
-        grid-template-columns: 1fr;
-
-        gap: 24px;
+        min-height: 0;
 
     }
 
 
     .screen-resolution-sidebar {
 
-        padding-top: 0;
+        padding:
+            20px 18px 17px;
+
+        border-right: none;
+
+        border-bottom:
+            1px solid #dddddd;
 
     }
 
 
     .screen-resolution-check-title {
 
-        margin-bottom: 11px;
+        margin-bottom:
+            10px;
 
     }
 
@@ -569,41 +372,48 @@ body.screen-resolution-tool-page {
     }
 
 
+    .screen-resolution-content {
+
+        padding:
+            28px 18px 30px;
+
+    }
+
+
     .screen-resolution-content h2 {
 
-        margin-bottom: 22px;
-
-        font-size: 24px;
+        font-size:
+            18px;
 
     }
 
 
     .screen-resolution-value {
 
-        margin-bottom: 18px;
+        width:
+            min(276px, 100%);
 
-        font-size: 40px;
+        height:
+            160px;
+
+        font-size:
+            26px;
 
     }
 
 
     .screen-resolution-line {
 
-        font-size: 16px;
+        font-size:
+            15px;
 
     }
 
 
     .screen-resolution-description {
 
-        font-size: 14px;
-
-    }
-
-
-    #tool-content-component {
-
-        margin-top: 38px;
+        margin-top:
+            38px;
 
     }
 
@@ -616,31 +426,24 @@ body.screen-resolution-tool-page {
 
 @media (max-width: 430px) {
 
-    .screen-resolution-page {
-
-        padding:
-            20px 14px 0;
-
-    }
-
-
-    .screen-resolution-title {
-
-        font-size: 27px;
-
-    }
-
-
     .screen-resolution-content h2 {
 
-        font-size: 22px;
+        font-size:
+            17px;
 
     }
 
 
     .screen-resolution-value {
 
-        font-size: 34px;
+        height:
+            145px;
+
+        border-width:
+            7px;
+
+        font-size:
+            24px;
 
     }
 
