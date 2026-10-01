@@ -1,47 +1,465 @@
 /* =========================================
-   SCREEN RESOLUTION
-   UNIVERSAL TOOL CONTENT
-   THEME MATCHED
+   DOZNI TOOLS
+   SCREEN RESOLUTION TESTER
+   THEME-MATCHED UI
 ========================================= */
 
 
 /* =========================================
-   MAIN CONTENT AREA
+   PAGE
+========================================= */
+
+body.screen-resolution-tool-page {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   MAIN SECTION
+========================================= */
+
+.screen-resolution-page {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 28px 20px 0;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.screen-resolution-container {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   MAIN TOOL CARD
+========================================= */
+
+.screen-resolution-card {
+    width: 100%;
+
+    min-height: 498px;
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(0, 1fr);
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   LEFT SIDEBAR
+========================================= */
+
+.screen-resolution-sidebar {
+    box-sizing: border-box;
+
+    padding: 30px 24px;
+
+    background: var(--card);
+
+    border-right:
+        1px solid var(--border);
+}
+
+
+.screen-resolution-check-title {
+    margin-bottom: 20px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    font-weight: 700;
+}
+
+
+.screen-resolution-check-link {
+    display: block;
+
+    margin-bottom: 13px;
+
+    padding: 2px 0;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.55;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.screen-resolution-check-link:hover {
+    color: var(--primary);
+
+    transform: translateX(3px);
+}
+
+
+.screen-resolution-check-link.active {
+    color: var(--primary);
+}
+
+
+/* =========================================
+   RIGHT CONTENT
+========================================= */
+
+.screen-resolution-content {
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    padding:
+        36px 40px 30px;
+
+    background: var(--card);
+
+    text-align: center;
+}
+
+
+.screen-resolution-content h2 {
+    margin:
+        0 0 24px;
+
+    color: var(--text);
+
+    font-size: 21px;
+
+    line-height: 1.4;
+
+    font-weight: 800;
+
+    letter-spacing: -.2px;
+}
+
+
+/* =========================================
+   RESOLUTION DISPLAY
+========================================= */
+
+.screen-resolution-value {
+    width: 276px;
+
+    height: 176px;
+
+    box-sizing: border-box;
+
+    margin:
+        0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--bg);
+
+    border:
+        7px solid var(--primary);
+
+    border-radius: 18px;
+
+    color: var(--text);
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -.3px;
+
+    box-shadow:
+        0 8px 24px rgba(18, 38, 63, .07);
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* =========================================
+   RESULT TEXT
+========================================= */
+
+.screen-resolution-line {
+    margin:
+        30px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.screen-resolution-line
++ .screen-resolution-line {
+    margin-top: 9px;
+}
+
+
+.screen-resolution-line strong {
+    color: var(--text);
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.screen-resolution-description {
+    margin:
+        48px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.screen-resolution-description
++ .screen-resolution-description {
+    margin-top: 7px;
+}
+
+
+.screen-resolution-description a {
+    color: var(--primary);
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color .2s ease;
+}
+
+
+.screen-resolution-description a:hover {
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   UNIVERSAL CONTENT
 ========================================= */
 
 #tool-content-component {
     width: 100%;
-    margin-top: 42px;
+
+    margin-top: 40px;
 }
 
 
 /* =========================================
-   TOOL CONTENT LAYOUT
+   MOBILE
 ========================================= */
+
+@media (max-width: 760px) {
+
+    .screen-resolution-page {
+        padding:
+            22px 14px 0;
+    }
+
+
+    .screen-resolution-card {
+
+        grid-template-columns:
+            1fr;
+
+        min-height: 0;
+
+        border-radius: 20px;
+    }
+
+
+    .screen-resolution-sidebar {
+
+        padding:
+            20px 20px 17px;
+
+        border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .screen-resolution-check-title {
+        margin-bottom: 10px;
+    }
+
+
+    .screen-resolution-check-link {
+
+        display: inline-block;
+
+        margin:
+            0 18px 0 0;
+
+    }
+
+
+    .screen-resolution-content {
+
+        padding:
+            30px 18px 32px;
+    }
+
+
+    .screen-resolution-content h2 {
+
+        margin-bottom: 22px;
+
+        font-size: 19px;
+    }
+
+
+    .screen-resolution-value {
+
+        width:
+            min(276px, 100%);
+
+        height:
+            160px;
+
+        border-width:
+            6px;
+
+        border-radius:
+            16px;
+
+        font-size:
+            26px;
+    }
+
+
+    .screen-resolution-line {
+        font-size: 15px;
+    }
+
+
+    .screen-resolution-description {
+        margin-top: 38px;
+
+        font-size: 14px;
+    }
+
+
+    #tool-content-component {
+        margin-top: 32px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+    .screen-resolution-content h2 {
+        font-size: 18px;
+    }
+
+
+    .screen-resolution-value {
+
+        height: 145px;
+
+        border-width: 6px;
+
+        font-size: 24px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   SCREEN RESOLUTION
+   ARTICLE / UNIVERSAL CONTENT
+========================================= */
+
+
+/* TOOL CONTENT LAYOUT */
 
 .tool-content-layout {
     display: flex;
+
     align-items: flex-start;
+
     gap: 28px;
+
     width: 100%;
 }
 
 
-/* =========================================
-   POPULAR SIDEBAR
-========================================= */
+/* LEFT POPULAR TOOLS */
 
 .tool-content-layout .popular-tools {
     width: 280px;
+
     min-width: 280px;
+
     flex-shrink: 0;
 }
 
+
 .tool-content-layout .popular-box {
     position: sticky;
+
     top: 20px;
+
     padding: 24px;
 }
+
 
 .tool-content-layout .popular-title {
     margin-bottom: 20px;
@@ -49,16 +467,21 @@
     color: var(--text);
 
     font-size: 21px;
+
     line-height: 1.3;
 
     font-weight: 800;
 }
 
+
 .tool-content-layout .popular-links {
     display: flex;
+
     flex-direction: column;
+
     gap: 14px;
 }
+
 
 .tool-content-layout .popular-links a {
     display: inline-block;
@@ -68,6 +491,7 @@
     color: var(--text-light);
 
     font-size: 14px;
+
     line-height: 1.5;
 
     font-weight: 600;
@@ -79,11 +503,14 @@
         transform .2s ease;
 }
 
+
 .tool-content-layout .popular-links a:hover {
     color: var(--primary);
 
-    transform: translateX(3px);
+    transform:
+        translateX(3px);
 }
+
 
 .tool-content-layout .view-all-tools {
     display: inline-block;
@@ -99,28 +526,22 @@
     text-decoration: none;
 }
 
-.tool-content-layout .view-all-tools:hover {
-    color: var(--primary-dark);
-}
 
-
-/* =========================================
-   MAIN CONTENT
-========================================= */
+/* MAIN CONTENT */
 
 .tool-content-section {
     flex: 1;
+
     min-width: 0;
 }
+
 
 .tool-main-content {
     width: 100%;
 }
 
 
-/* =========================================
-   MAIN CONTENT CARD
-========================================= */
+/* CONTENT CARD */
 
 .tool-content-box {
     width: 100%;
@@ -137,27 +558,13 @@
     border-radius: 24px;
 
     box-shadow:
-        0 10px 35px rgba(18, 38, 63, .05);
+        0 10px 35px rgba(18,38,63,.05);
 
     overflow: hidden;
-
-    transition:
-        border-color .25s ease,
-        box-shadow .25s ease;
-}
-
-.tool-content-box:hover {
-    border-color:
-        rgba(29, 114, 255, .18);
-
-    box-shadow:
-        0 16px 45px rgba(18, 38, 63, .07);
 }
 
 
-/* =========================================
-   TOOL HEADER
-========================================= */
+/* TOOL HEADER */
 
 .tool-page-header {
     display: flex;
@@ -175,40 +582,40 @@
 }
 
 
-/* =========================================
-   TOOL ICON
-========================================= */
+/* ICON */
 
 .tool-page-icon {
     width: 60px;
+
     height: 60px;
 
     min-width: 60px;
 
+    border-radius: 18px;
+
     display: flex;
 
     align-items: center;
-    justify-content: center;
 
-    border-radius: 18px;
+    justify-content: center;
 
     color: #ffffff;
 
     box-shadow:
-        0 8px 22px rgba(29, 114, 255, .16);
+        0 8px 22px rgba(29,114,255,.16);
 }
+
 
 .tool-page-icon .material-icons {
     font-size: 28px;
 }
 
 
-/* =========================================
-   TOOL TITLE
-========================================= */
+/* TITLE */
 
 .tool-page-title {
-    margin: 0 0 9px;
+    margin:
+        0 0 9px;
 
     color: var(--text);
 
@@ -222,9 +629,7 @@
 }
 
 
-/* =========================================
-   TOOL DESCRIPTION
-========================================= */
+/* DESCRIPTION */
 
 .tool-page-description {
     margin: 0;
@@ -239,9 +644,7 @@
 }
 
 
-/* =========================================
-   CATEGORY
-========================================= */
+/* CATEGORY */
 
 .tool-page-categories {
     margin-bottom: 34px;
@@ -253,6 +656,7 @@
     line-height: 1.6;
 }
 
+
 .tool-page-categories a {
     color: var(--primary);
 
@@ -261,16 +665,8 @@
     text-decoration: none;
 }
 
-.tool-page-categories a:hover {
-    color: var(--primary-dark);
 
-    text-decoration: underline;
-}
-
-
-/* =========================================
-   ARTICLE
-========================================= */
+/* ARTICLE */
 
 .tool-article {
     margin: 0;
@@ -282,10 +678,6 @@
     line-height: 1.85;
 }
 
-
-/* =========================================
-   ARTICLE HEADINGS
-========================================= */
 
 .tool-article h2 {
     margin:
@@ -302,9 +694,11 @@
     letter-spacing: -.4px;
 }
 
+
 .tool-article h2:first-child {
     margin-top: 0;
 }
+
 
 .tool-article h3 {
     margin:
@@ -320,10 +714,6 @@
 }
 
 
-/* =========================================
-   ARTICLE PARAGRAPHS
-========================================= */
-
 .tool-article p {
     margin:
         0 0 18px;
@@ -336,9 +726,7 @@
 }
 
 
-/* =========================================
-   ARTICLE LINKS
-========================================= */
+/* ARTICLE LINKS */
 
 .tool-article a {
     color: var(--primary);
@@ -346,9 +734,8 @@
     font-weight: 600;
 
     text-decoration: none;
-
-    transition: color .2s ease;
 }
+
 
 .tool-article a:hover {
     color: var(--primary-dark);
@@ -357,9 +744,7 @@
 }
 
 
-/* =========================================
-   LISTS
-========================================= */
+/* LISTS */
 
 .tool-article ul,
 .tool-article ol {
@@ -371,18 +756,15 @@
     color: var(--text-light);
 }
 
+
 .tool-article li {
     margin-bottom: 10px;
-
-    font-size: 16px;
 
     line-height: 1.8;
 }
 
 
-/* =========================================
-   ARTICLE IMAGE
-========================================= */
+/* ARTICLE IMAGE */
 
 .tool-article img {
     display: block;
@@ -402,14 +784,11 @@
     border-radius: 16px;
 
     box-shadow:
-        0 10px 30px rgba(18, 38, 63, .07);
-
+        0 10px 30px rgba(18,38,63,.07);
 }
 
 
-/* =========================================
-   FORMULA / CODE BOX
-========================================= */
+/* CODE */
 
 .tool-code,
 .formula-box {
@@ -423,7 +802,8 @@
     padding:
         18px 20px;
 
-    background: var(--bg-soft);
+    background:
+        var(--bg-soft);
 
     border:
         1px solid var(--border);
@@ -431,7 +811,8 @@
     border-left:
         4px solid var(--primary);
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
     overflow-x: auto;
 }
@@ -454,9 +835,7 @@
 }
 
 
-/* =========================================
-   TABLE
-========================================= */
+/* TABLE */
 
 .tool-article table {
     width: 100%;
@@ -466,14 +845,11 @@
 
     border-collapse: collapse;
 
-    background: var(--card);
+    background:
+        var(--card);
 
     border:
         1px solid var(--border);
-
-    border-radius: 12px;
-
-    overflow: hidden;
 
     font-size: 14px;
 }
@@ -494,24 +870,27 @@
 
 
 .tool-article th {
-    background: var(--bg-soft);
+    background:
+        var(--bg-soft);
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-weight: 800;
+    font-weight:
+        800;
 }
 
 
 .tool-article td {
-    color: var(--text-light);
+    color:
+        var(--text-light);
 
-    line-height: 1.65;
+    line-height:
+        1.65;
 }
 
 
-/* =========================================
-   NOTE BOX
-========================================= */
+/* NOTE */
 
 .tool-note {
     margin:
@@ -520,7 +899,8 @@
     padding:
         18px 20px;
 
-    background: var(--bg-soft);
+    background:
+        var(--bg-soft);
 
     border:
         1px solid var(--border);
@@ -528,69 +908,86 @@
     border-left:
         4px solid var(--primary);
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
-    color: var(--text-light);
+    color:
+        var(--text-light);
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    line-height: 1.8;
+    line-height:
+        1.8;
 }
+
 
 .tool-note strong {
-    color: var(--text);
+    color:
+        var(--text);
 }
 
 
-/* =========================================
-   HOW TO USE
-========================================= */
+/* HOW TO / CREDITS */
 
 .tool-content-block {
-    margin-top: 42px;
+    margin-top:
+        42px;
 }
+
 
 .tool-content-block h2 {
     margin:
         0 0 20px;
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-size: 29px;
+    font-size:
+        29px;
 
-    line-height: 1.3;
+    line-height:
+        1.3;
 
-    font-weight: 800;
+    font-weight:
+        800;
 }
+
 
 .tool-guide-list {
-    margin: 0;
-
-    padding-left: 24px;
+    padding-left:
+        24px;
 }
+
 
 .tool-guide-list li {
-    margin-bottom: 13px;
+    margin-bottom:
+        13px;
 
-    color: var(--text-light);
+    color:
+        var(--text-light);
 
-    font-size: 16px;
+    font-size:
+        16px;
 
-    line-height: 1.8;
+    line-height:
+        1.8;
 }
 
 
-/* =========================================
-   CREDITS
-========================================= */
+/* CREDITS */
 
 .tool-credits {
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    gap: 16px;
+    gap:
+        16px;
 }
+
 
 .credit-item {
     padding:
@@ -600,61 +997,84 @@
         1px solid var(--border);
 }
 
+
 .credit-item:last-child {
-    border-bottom: none;
+    border-bottom:
+        none;
 }
+
 
 .credit-item a {
-    color: var(--primary);
+    color:
+        var(--primary);
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 }
+
 
 .credit-item span {
-    display: block;
+    display:
+        block;
 
-    margin-top: 5px;
+    margin-top:
+        5px;
 
-    color: var(--text-light);
+    color:
+        var(--text-light);
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    line-height: 1.7;
+    line-height:
+        1.7;
 }
 
 
-/* =========================================
-   SHARE BUTTONS
-========================================= */
+/* SHARE */
 
 .tool-share {
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 12px;
+    gap:
+        12px;
 
-    margin-top: 34px;
+    margin-top:
+        34px;
 
-    padding-top: 24px;
+    padding-top:
+        24px;
 
     border-top:
         1px solid var(--border);
 
-    flex-wrap: wrap;
+    flex-wrap:
+        wrap;
 }
 
+
 .share-btn {
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    gap: 8px;
+    justify-content:
+        center;
 
-    min-height: 42px;
+    gap:
+        8px;
+
+    min-height:
+        42px;
 
     padding:
         0 16px;
@@ -662,65 +1082,27 @@
     border:
         1px solid var(--border);
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
-    background: var(--card);
-
-    color: var(--text);
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        color .2s ease,
-        border-color .2s ease,
-        background .2s ease,
-        transform .2s ease;
-}
-
-.share-btn:hover {
-    color: var(--primary);
-
-    border-color:
-        rgba(29, 114, 255, .25);
-
-    background:
-        var(--bg-soft);
-
-    transform:
-        translateY(-1px);
-}
-
-
-/* =========================================
-   DARK MODE
-========================================= */
-
-body.dark .tool-content-box {
     background:
         var(--card);
 
-    box-shadow:
-        0 16px 45px rgba(0,0,0,.20);
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
 }
 
-body.dark .tool-article table {
-    background:
-        var(--card);
-}
 
-body.dark .share-btn {
-    background:
-        var(--card);
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
+/* ARTICLE MOBILE */
 
 @media (max-width: 992px) {
 
@@ -741,10 +1123,6 @@ body.dark .share-btn {
 
 
 @media (max-width: 768px) {
-
-    #tool-content-component {
-        margin-top: 32px;
-    }
 
     .tool-content-box {
         padding: 24px;
@@ -777,18 +1155,6 @@ body.dark .share-btn {
         font-size: 24px;
     }
 
-    .tool-article h3 {
-        font-size: 19px;
-    }
-
-    .tool-article table {
-        display: block;
-
-        overflow-x: auto;
-
-        white-space: nowrap;
-    }
-
 }
 
 
@@ -802,18 +1168,8 @@ body.dark .share-btn {
         flex-direction: column;
     }
 
-    .tool-page-icon {
-        width: 54px;
-        height: 54px;
-        min-width: 54px;
-    }
-
     .tool-page-title {
-        font-size: 27px;
-    }
-
-    .tool-page-categories {
-        margin-bottom: 28px;
+        font-size: 28px;
     }
 
     .tool-article h2,
@@ -823,20 +1179,6 @@ body.dark .share-btn {
 
     .tool-article p {
         font-size: 14px;
-        line-height: 1.8;
-    }
-
-    .tool-guide-list li {
-        font-size: 14px;
-    }
-
-    .tool-share {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .share-btn {
-        width: 100%;
     }
 
 }
