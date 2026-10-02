@@ -1,0 +1,327 @@
+/* =========================================================
+   DOZNI TOOLS
+   JSON VIEWER
+========================================================= */
+
+body.json-viewer-tool-page {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.json-viewer-page {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 26px 20px 0;
+}
+
+.json-viewer-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.json-viewer-card {
+    width: 100%;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 8px rgba(18, 38, 63, .06);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TOP INPUT AREA
+========================================================= */
+
+.json-viewer-input-area {
+    padding: 18px 18px 14px;
+}
+
+.json-viewer-input-area label {
+    display: block;
+
+    margin: 0 0 8px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.json-viewer-input-area input {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--border);
+
+    border-radius: 4px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.json-viewer-input-area input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(29, 114, 255, .10);
+}
+
+.json-viewer-input-area input::placeholder {
+    color: var(--text-light);
+    opacity: .7;
+}
+
+.json-viewer-manual-label {
+    margin-top: 21px !important;
+}
+
+
+/* =========================================================
+   EDITOR LAYOUT
+========================================================= */
+
+.json-viewer-editor-layout {
+    width: 100%;
+
+    min-height: 470px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.2fr);
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   INPUT PANEL
+========================================================= */
+
+.json-viewer-input-panel {
+    min-width: 0;
+
+    border-right: 1px solid var(--border);
+
+    background: var(--bg);
+}
+
+#jsonInput {
+    width: 100%;
+    height: 470px;
+
+    display: block;
+
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+
+    resize: none;
+
+    border: 0;
+
+    outline: none;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Consolas,
+        Monaco,
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+#jsonInput::placeholder {
+    color: var(--text-light);
+    opacity: .7;
+}
+
+
+/* =========================================================
+   OUTPUT PANEL
+========================================================= */
+
+.json-viewer-output-panel {
+    min-width: 0;
+
+    background: var(--bg);
+
+    overflow: hidden;
+}
+
+#jsoneditor {
+    width: 100%;
+    height: 470px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   JSONEDITOR BASE OVERRIDES
+========================================================= */
+
+.jsoneditor {
+    width: 100% !important;
+    height: 100% !important;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--primary) !important;
+
+    background: var(--card) !important;
+}
+
+
+/* MENU */
+
+.jsoneditor .jsoneditor-menu {
+    background: var(--primary) !important;
+
+    border-color: var(--primary) !important;
+}
+
+
+/* BUTTONS */
+
+.jsoneditor .jsoneditor-button {
+    color: #ffffff !important;
+}
+
+
+/* MAIN CONTENT */
+
+.jsoneditor .jsoneditor-outer {
+    background: var(--card) !important;
+}
+
+.jsoneditor .jsoneditor-tree {
+    background: var(--card) !important;
+}
+
+
+/* TEXT */
+
+.jsoneditor .jsoneditor-field,
+.jsoneditor .jsoneditor-value,
+.jsoneditor .jsoneditor-readonly {
+    color: var(--text);
+}
+
+
+/* SEARCH */
+
+.jsoneditor .jsoneditor-search {
+    color: var(--text);
+}
+
+
+/* INPUTS */
+
+.jsoneditor input,
+.jsoneditor textarea {
+    background: var(--bg) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.json-viewer-error {
+    display: none;
+
+    padding: 10px 14px;
+
+    border-top: 1px solid var(--border);
+
+    color: #dc2626;
+
+    background: var(--bg);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.json-viewer-error.active {
+    display: block;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .json-viewer-page {
+        padding: 18px 10px 0;
+    }
+
+    .json-viewer-editor-layout {
+        grid-template-columns: 1fr;
+
+        min-height: 0;
+    }
+
+    .json-viewer-input-panel {
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+    #jsonInput {
+        height: 300px;
+    }
+
+    #jsoneditor {
+        height: 430px;
+    }
+
+    .json-viewer-output-panel {
+        min-height: 430px;
+    }
+
+}
