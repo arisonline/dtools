@@ -325,3 +325,345 @@ body.json-viewer-tool-page {
     }
 
 }
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   JSONEDITOR THEME OVERRIDE
+   MATCH DOZNI GLOBAL LIGHT / DARK THEME
+========================================================= */
+
+
+/* =========================================================
+   EDITOR ROOT
+========================================================= */
+
+#jsoneditor,
+#jsoneditor .jsoneditor,
+#jsoneditor .jsoneditor-outer,
+#jsoneditor .jsoneditor-tree {
+
+    background: var(--card) !important;
+    color: var(--text) !important;
+}
+
+
+/* =========================================================
+   MENU / TOP TOOLBAR
+========================================================= */
+
+#jsoneditor .jsoneditor-menu {
+
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+
+/* Toolbar buttons */
+
+#jsoneditor .jsoneditor-menu button,
+#jsoneditor .jsoneditor-menu .jsoneditor-button {
+
+    color: #ffffff !important;
+}
+
+
+/* Disabled buttons */
+
+#jsoneditor .jsoneditor-menu button:disabled,
+#jsoneditor .jsoneditor-menu .jsoneditor-button:disabled {
+
+    opacity: .55;
+}
+
+
+/* =========================================================
+   TREE AREA
+========================================================= */
+
+#jsoneditor .jsoneditor-tree {
+
+    background: var(--card) !important;
+}
+
+
+/* Tree rows */
+
+#jsoneditor .jsoneditor-tree-inner {
+
+    background: var(--card) !important;
+}
+
+
+/* =========================================================
+   TREE TEXT
+========================================================= */
+
+#jsoneditor .jsoneditor-field,
+#jsoneditor .jsoneditor-readonly,
+#jsoneditor .jsoneditor-value,
+#jsoneditor .jsoneditor-string,
+#jsoneditor .jsoneditor-number,
+#jsoneditor .jsoneditor-boolean,
+#jsoneditor .jsoneditor-null {
+
+    color: var(--text) !important;
+}
+
+
+/* Object / array labels */
+
+#jsoneditor .jsoneditor-type,
+#jsoneditor .jsoneditor-size {
+
+    color: var(--text-light) !important;
+}
+
+
+/* =========================================================
+   SEARCH BAR
+========================================================= */
+
+#jsoneditor .jsoneditor-search {
+
+    background: var(--card) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+#jsoneditor .jsoneditor-search input {
+
+    background: var(--bg) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+#jsoneditor .jsoneditor-search input::placeholder {
+
+    color: var(--text-light) !important;
+}
+
+
+/* =========================================================
+   SELECT / DROPDOWN
+========================================================= */
+
+#jsoneditor select {
+
+    background: var(--bg) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+/* =========================================================
+   EDITABLE INPUTS
+========================================================= */
+
+#jsoneditor input,
+#jsoneditor textarea {
+
+    background: var(--bg) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+/* =========================================================
+   JSONEDITOR TABLE / CELLS
+========================================================= */
+
+#jsoneditor table,
+#jsoneditor td,
+#jsoneditor th {
+
+    background: transparent !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+#jsoneditor .jsoneditor-tree tr:hover {
+
+    background: var(--bg-soft) !important;
+}
+
+
+/* =========================================================
+   SELECTED NODE
+========================================================= */
+
+#jsoneditor .jsoneditor-tree tr.jsoneditor-selected {
+
+    background: var(--bg-soft) !important;
+}
+
+
+/* =========================================================
+   CONTEXT / POPUP MENUS
+========================================================= */
+
+#jsoneditor .jsoneditor-contextmenu,
+#jsoneditor .jsoneditor-menu-item {
+
+    background: var(--card) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+#jsoneditor .jsoneditor-menu-item:hover {
+
+    background: var(--bg-soft) !important;
+
+    color: var(--text) !important;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+#jsoneditor .jsoneditor-modal {
+
+    background: var(--card) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+#jsoneditor .jsoneditor-modal input,
+#jsoneditor .jsoneditor-modal textarea,
+#jsoneditor .jsoneditor-modal select {
+
+    background: var(--bg) !important;
+
+    color: var(--text) !important;
+
+    border-color: var(--border) !important;
+}
+
+
+/* =========================================================
+   CODE MODE / ACE EDITOR
+========================================================= */
+
+#jsoneditor .ace-jsoneditor,
+#jsoneditor .ace-jsoneditor .ace_scroller {
+
+    background: var(--card) !important;
+}
+
+
+#jsoneditor .ace-jsoneditor {
+
+    color: var(--text) !important;
+}
+
+
+#jsoneditor .ace-jsoneditor .ace_gutter {
+
+    background: var(--bg-soft) !important;
+
+    color: var(--text-light) !important;
+}
+
+
+#jsoneditor .ace-jsoneditor .ace_print-margin {
+
+    background: var(--border) !important;
+}
+
+
+/* =========================================================
+   ACE CURSOR / SELECTION
+========================================================= */
+
+#jsoneditor .ace-jsoneditor .ace_cursor {
+
+    color: var(--text) !important;
+}
+
+
+#jsoneditor .ace-jsoneditor .ace_marker-layer .ace_selection {
+
+    background: rgba(29, 114, 255, .20) !important;
+}
+
+
+/* =========================================================
+   ACE TEXT
+========================================================= */
+
+#jsoneditor .ace-jsoneditor .ace_text-layer {
+
+    color: var(--text) !important;
+}
+
+
+/* =========================================================
+   DARK MODE EXTRA OVERRIDES
+========================================================= */
+
+body.dark #jsoneditor .jsoneditor,
+body.dark #jsoneditor .jsoneditor-outer,
+body.dark #jsoneditor .jsoneditor-tree {
+
+    background: var(--card) !important;
+}
+
+
+body.dark #jsoneditor .ace-jsoneditor,
+body.dark #jsoneditor .ace-jsoneditor .ace_scroller {
+
+    background: var(--card) !important;
+}
+
+
+body.dark #jsoneditor .ace-jsoneditor .ace_gutter {
+
+    background: var(--bg-soft) !important;
+
+    color: var(--text-light) !important;
+}
+
+
+/* =========================================================
+   INTERNAL SEPARATORS
+========================================================= */
+
+#jsoneditor .jsoneditor-separator {
+
+    color: var(--text-light) !important;
+}
+
+
+#jsoneditor .jsoneditor-field[contenteditable="true"],
+#jsoneditor .jsoneditor-value[contenteditable="true"] {
+
+    color: var(--text) !important;
+}
