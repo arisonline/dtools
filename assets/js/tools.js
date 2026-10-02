@@ -387,6 +387,563 @@ const toolsData = [
    },
 
 
+
+      {
+       id: "browser-resolution",
+   
+       name: "Browser Resolution Tester",
+   
+       url: "tools/browser-resolution/",
+   
+       category: "Dev",
+   
+       description:
+           "Check your browser resolution, viewport width, viewport height and total browser pixels instantly.",
+   
+       icon: "web",
+   
+       popular: true,
+   
+   
+       /* =====================================
+          CATEGORIES
+       ===================================== */
+   
+       categories: [
+   
+           {
+               name: "Dev Tools",
+               url: "https://digital-tool.dozni.com/?category=Dev"
+           }
+   
+       ],
+   
+   
+       /* =====================================
+          HOW TO USE
+       ===================================== */
+   
+       howToTitle:
+           "How to Use Browser Resolution Tester?",
+   
+       howTo: [
+   
+           "Open the Browser Resolution Tester in your browser.",
+   
+           "Your current browser viewport width and height will be detected automatically.",
+   
+           "Check the displayed browser resolution in pixels.",
+   
+           "Review the total number of pixels available in your browser viewport.",
+   
+           "Resize your browser window to see the viewport dimensions update in real time.",
+   
+           "For testing different device sizes, use your browser's developer tools and device emulation."
+   
+       ],
+   
+   
+       /* =====================================
+          CREDITS
+       ===================================== */
+   
+       credits: [],
+   
+   
+       /* =====================================
+          TOOL CONTENT
+       ===================================== */
+   
+       content: `
+   
+           <h2>
+               What is browser resolution?
+           </h2>
+   
+   
+           <p>
+               The size of the viewable portion, also known as the viewport,
+               of your web browser window is known as browser resolution.
+               The width and height of the viewable portion of your web
+               browser window are measured in CSS pixels.
+           </p>
+   
+   
+           <p>
+               Web developers, designers, and anyone else testing how
+               websites look on various devices must be aware of the
+               browser viewport.
+           </p>
+   
+   
+           <p>
+               When you resize your browser window, the viewport dimensions
+               change accordingly. This has a direct effect on how content
+               is rendered on websites.
+           </p>
+   
+   
+           <img
+               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvoGox49PP7EOlv7FX2zWoH0aWwpaCq4XW0vfw2L188iWqIZQfG3On4SW809kD1TUkkmK-GkePUY6c5cTu7nzMsk6iHkX15sGdqK71XX5mRvz32KCDESL8SjuNiIiIH8rPi2_XEKkFSAnE_KksFmD4b0ltpNBmqkqzQr0YARNWc8b0qKH4_lpU9qzKtU0/s800/Browser-Resolution.webp"
+               alt="Browser resolution checker online"
+               title="Browser Resolution Checker Online"
+               loading="lazy"
+               decoding="async"
+           >
+   
+   
+           <h2>
+               Browser resolution vs screen resolution
+           </h2>
+   
+   
+           <p>
+               Many people confuse screen resolution with browser resolution.
+               However, they have different functions in web development.
+           </p>
+   
+   
+           <p>
+               The total number of physical pixels that your device can
+               display is known as the screen resolution. For example,
+               a Full HD monitor displays 1920 pixels horizontally and
+               1080 pixels vertically, giving you 2,073,600 total pixels.
+           </p>
+   
+   
+           <p>
+               The visible portion of your browser window where web pages
+               are rendered is known as browser resolution or viewport size.
+               Browser toolbars, bookmark bars, and other browser interface
+               elements are outside the webpage viewport.
+           </p>
+   
+   
+           <p>
+               Even on a 1920 × 1080 display, your browser viewport might
+               be only 1920 × 950 pixels when the browser is maximised,
+               depending on the browser interface and operating-system setup.
+           </p>
+   
+   
+           <h2>
+               Why is browser resolution important?
+           </h2>
+   
+   
+           <p>
+               This distinction is important because responsive websites
+               choose which layout to display based on viewport dimensions.
+               A developer building breakpoints at 768px, 1024px, and
+               1440px needs to know the browser viewport size rather than
+               relying only on screen resolution.
+           </p>
+   
+   
+           <p>
+               Our browser resolution checker uses JavaScript to instantly
+               determine your browser viewport dimensions. The tool measures
+               the width and height of your browser viewport using the
+               <code>window.innerWidth</code> and
+               <code>window.innerHeight</code> properties.
+           </p>
+   
+   
+           <p>
+               The browser resolution instantly changes when you resize
+               the browser window. Our tool provides real-time information
+               about the viewport size and calculates how many CSS pixels
+               are available in the viewport overall.
+           </p>
+   
+   
+           <h2>
+               Common viewport sizes to test
+           </h2>
+   
+   
+           <p>
+               Prioritize testing these viewport widths based on the devices
+               and screen sizes used by your audience:
+           </p>
+   
+   
+           <ul>
+   
+               <li>
+                   <strong>Mobile Portrait:</strong>
+                   320px, 360px, 375px, 390px, 414px, 428px
+               </li>
+   
+               <li>
+                   <strong>Mobile Landscape:</strong>
+                   568px, 640px, 667px, 736px, 812px, 844px
+               </li>
+   
+               <li>
+                   <strong>Tablet Portrait:</strong>
+                   768px, 800px, 820px, 834px
+               </li>
+   
+               <li>
+                   <strong>Tablet Landscape:</strong>
+                   1024px, 1112px, 1180px, 1194px
+               </li>
+   
+               <li>
+                   <strong>Desktop Small:</strong>
+                   1280px, 1366px, 1440px
+               </li>
+   
+               <li>
+                   <strong>Desktop Large:</strong>
+                   1920px, 2560px, 3840px
+               </li>
+   
+           </ul>
+   
+   
+           <p>
+               Testing at a range of common viewport sizes can help identify
+               responsive layout problems across different devices and
+               screen configurations.
+           </p>
+   
+   
+           <h2>
+               How does JavaScript detect browser resolution?
+           </h2>
+   
+   
+           <p>
+               JavaScript allows developers to programmatically detect the
+               current browser viewport dimensions using
+               <code>window.innerWidth</code> and
+               <code>window.innerHeight</code>.
+           </p>
+   
+   
+           <div class="tool-code">
+   
+               <code>
+   // Get current viewport dimensions
+   const viewportWidth = window.innerWidth;
+   const viewportHeight = window.innerHeight;
+   const totalPixels = viewportWidth * viewportHeight;
+   
+   // Log the values
+   console.log(
+       \`Width: \${viewportWidth}px\`
+   );
+   
+   console.log(
+       \`Height: \${viewportHeight}px\`
+   );
+   
+   console.log(
+       \`Total Pixels: \${totalPixels.toLocaleString()}\`
+   );
+   
+   // Detect viewport changes
+   window.addEventListener('resize', () => {
+   
+       const newWidth = window.innerWidth;
+       const newHeight = window.innerHeight;
+   
+       console.log(
+           \`Resized to: \${newWidth}x\${newHeight}\`
+       );
+   
+   });
+               </code>
+   
+           </div>
+   
+   
+           <p>
+               This code allows developers to respond dynamically to changes
+               in the available viewport space. It is useful for responsive
+               layouts, debugging and browser-size testing.
+           </p>
+   
+   
+           <h2>
+               Screen resolution, viewport size and DPR
+           </h2>
+   
+   
+           <p>
+               <strong>Screen Resolution:</strong>
+               The display dimensions reported by the device and browser.
+               For example, a display may report 2560 × 1600 pixels.
+           </p>
+   
+   
+           <p>
+               <strong>Viewport Size:</strong>
+               The CSS pixel dimensions currently available to the webpage
+               inside the browser window. For example, a viewport may be
+               1440 × 900 CSS pixels.
+           </p>
+   
+   
+           <p>
+               <strong>Device Pixel Ratio (DPR):</strong>
+               The relationship between physical device pixels and CSS pixels.
+               High-density displays commonly use a DPR greater than 1.
+           </p>
+   
+   
+           <div class="formula-box">
+   
+               <code>
+                   Physical Pixels ≈ CSS Pixels × Device Pixel Ratio
+               </code>
+   
+           </div>
+   
+   
+           <p>
+               For example, a device with a CSS viewport width of 1440px
+               and a DPR of 2 may use approximately 2880 physical pixels
+               across that dimension.
+           </p>
+   
+   
+           <h2>
+               How to check your browser resolution
+           </h2>
+   
+   
+           <p>
+               When you visit this page, our tool automatically shows the
+               current viewport dimensions of your browser. To see your
+               current browser width and height in pixels, simply look at
+               the values displayed by the tool.
+           </p>
+   
+   
+           <p>
+               Only the webpage viewport is measured by browser resolution.
+               The browser interface, such as toolbars and other browser
+               chrome, is outside the webpage viewport.
+           </p>
+   
+   
+           <p>
+               Resize your browser window to see the real-time dimensions
+               change automatically.
+           </p>
+   
+   
+           <h2>
+               Can I test different browser resolutions?
+           </h2>
+   
+   
+           <p>
+               Yes. You can use the browser's developer tools, usually
+               opened with F12 or the browser's developer menu, to emulate
+               different device sizes and viewport dimensions.
+           </p>
+   
+   
+           <p>
+               This is particularly useful when developing responsive
+               websites because you can test layouts at multiple viewport
+               widths without physically changing devices.
+           </p>
+   
+   
+           <h2>
+               Does browser resolution affect responsive websites?
+           </h2>
+   
+   
+           <p>
+               Yes. Responsive websites commonly use viewport dimensions
+               to determine which layout, navigation style, spacing,
+               typography and other interface elements should be displayed.
+           </p>
+   
+   
+           <p>
+               Responsive images and other resources may also be selected
+               based on viewport size, device characteristics and browser
+               behavior.
+           </p>
+   
+   
+           <h2>
+               What viewport width should I use for mobile design?
+           </h2>
+   
+   
+           <p>
+               A useful starting point for responsive testing is around
+               320px wide. Developers can then add and test breakpoints
+               around common widths such as 768px, 1024px and 1440px,
+               while also checking the actual viewport sizes used by their
+               audience.
+           </p>
+   
+   
+           <h2>
+               Why does a phone with a high-resolution display report a smaller viewport?
+           </h2>
+   
+   
+           <p>
+               Device pixel ratio and browser scaling allow mobile devices
+               to use many physical pixels while reporting a smaller CSS
+               viewport. For example, a phone with a high-resolution display
+               may report a viewport around 360 × 640 CSS pixels.
+           </p>
+   
+   
+           <h2>
+               Is browser resolution accurate?
+           </h2>
+   
+   
+           <p>
+               Modern browsers provide reliable viewport measurements through
+               standard JavaScript APIs such as
+               <code>window.innerWidth</code> and
+               <code>window.innerHeight</code>.
+               The reported values can vary with browser zoom, window size,
+               device configuration and other browser settings.
+           </p>
+   
+   
+           <h2>
+               When should you test browser resolution?
+           </h2>
+   
+   
+           <p>
+               Test viewport dimensions during initial development, after
+               major layout changes, and periodically as new devices and
+               screen configurations become common among your visitors.
+           </p>
+   
+   
+           <p>
+               Regular browser resolution testing helps developers identify
+               responsive layout issues before they affect real users.
+               Understanding viewport dimensions makes it easier to build
+               websites that adapt smoothly across desktops, tablets and
+               mobile devices.
+           </p>
+   
+   
+           <h2>
+               Free online browser resolution checker
+           </h2>
+   
+   
+           <p>
+               Our free browser resolution tester gives you instant viewport
+               measurements without installing software or browser extensions.
+               Use it during development and responsive testing to verify
+               that your layouts work correctly at different browser sizes.
+           </p>
+   
+   
+           <p>
+               Remember that viewport dimensions are particularly important
+               when building responsive websites. Focus on CSS pixel
+               measurements, account for device pixel ratios on high-DPI
+               displays, and verify that your layouts adapt smoothly across
+               the range of viewport sizes used by your audience.
+           </p>
+   
+   
+           <p>
+               Start testing your browser resolution now to ensure your
+               website looks great on different devices and viewport sizes.
+           </p>
+   
+   
+           <p>
+               We hope you liked the Browser Resolution Tester tool.
+               To use other digital tools, visit Dozni Tools regularly.
+           </p>
+   
+   
+           <div class="tool-note">
+   
+               <strong>Privacy:</strong>
+   
+               This browser resolution detection tool operates entirely
+               within your browser. We do not collect, store, or transmit
+               any information about your browser, device, or usage patterns.
+               All analysis happens locally on your device.
+   
+           </div>
+   
+       `,
+   
+   
+       /* =====================================
+          FAQ
+       ===================================== */
+   
+       faqs: [
+   
+           {
+               question:
+                   "What is browser resolution?",
+   
+               answer:
+                   "Browser resolution refers to the width and height of the visible webpage viewport, normally measured in CSS pixels."
+           },
+   
+           {
+               question:
+                   "What is the difference between browser resolution and screen resolution?",
+   
+               answer:
+                   "Screen resolution describes the display dimensions, while browser resolution describes the viewport available to the webpage inside the browser."
+           },
+   
+           {
+               question:
+                   "Does resizing my browser change the browser resolution?",
+   
+               answer:
+                   "Yes. Resizing the browser window changes the viewport width and height, and the tool updates the values in real time."
+           },
+   
+           {
+               question:
+                   "What JavaScript properties are used to detect browser resolution?",
+   
+               answer:
+                   "The tool uses window.innerWidth and window.innerHeight to measure the browser viewport."
+           },
+   
+           {
+               question:
+                   "Does device pixel ratio affect browser resolution?",
+   
+               answer:
+                   "Device pixel ratio affects the relationship between CSS pixels and physical device pixels, but the browser viewport is reported in CSS pixels."
+           },
+   
+           {
+               question:
+                   "Can I test different viewport sizes?",
+   
+               answer:
+                   "Yes. Browser developer tools provide device emulation that lets you test different viewport widths and heights."
+           }
+   
+       ]
+   
+   },
+
+
    {
     id: "percentage-calculator",
 
