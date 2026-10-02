@@ -335,146 +335,95 @@ body.json-viewer-tool-page {
 
 
 /* =========================================================
-   JSONEDITOR MODE FILTER / DROPDOWN
-   MATCH DOZNI THEME
+   JSONEDITOR TOP TOOLBAR
+   ONLY THIS SECTION
 ========================================================= */
 
-
-/* Mode selector container */
-
-#jsoneditor .selectr-container {
-
-    color: var(--text) !important;
-
-}
-
-
-/* Selected mode button */
-
-#jsoneditor .selectr-selected {
-
-    background: var(--bg) !important;
-
-    color: var(--text) !important;
-
+#jsoneditor .jsoneditor-menu {
+    background: var(--card) !important;
     border-color: var(--border) !important;
-}
-
-
-/* Dropdown */
-
-#jsoneditor .selectr-options-container {
-
-    background: var(--card) !important;
-
-    border: 1px solid var(--border) !important;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, .12) !important;
-}
-
-
-/* Dropdown options */
-
-#jsoneditor .selectr-option {
-
-    background: var(--card) !important;
-
     color: var(--text) !important;
+}
 
-    border: none !important;
 
+/* Toolbar buttons */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-button,
+#jsoneditor .jsoneditor-menu button {
+    background: transparent !important;
+    color: var(--text) !important;
+    border-color: transparent !important;
 }
 
 
 /* Hover */
 
-#jsoneditor .selectr-option:hover {
-
+#jsoneditor .jsoneditor-menu .jsoneditor-button:hover,
+#jsoneditor .jsoneditor-menu button:hover {
     background: var(--bg-soft) !important;
-
-    color: var(--text) !important;
-
+    color: var(--primary) !important;
 }
 
 
-/* Selected option */
+/* Search area */
 
-#jsoneditor .selectr-option.selected,
-#jsoneditor .selectr-option.active {
-
-    background: var(--primary) !important;
-
-    color: #ffffff !important;
-
-}
-
-
-/* Search/filter inside dropdown */
-
-#jsoneditor .selectr-input {
-
+#jsoneditor .jsoneditor-menu .jsoneditor-search {
     background: var(--bg) !important;
-
     color: var(--text) !important;
-
     border-color: var(--border) !important;
-
 }
 
 
-#jsoneditor .selectr-input::placeholder {
+/* Search input */
 
+#jsoneditor .jsoneditor-menu .jsoneditor-search input {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+
+
+/* Placeholder */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-search input::placeholder {
     color: var(--text-light) !important;
-
 }
 
 
-/* Arrow */
+/* Tree / mode selector */
 
-#jsoneditor .selectr-selected::after {
-
-    border-color:
-        var(--text-light)
-        transparent
-        transparent
-        transparent !important;
-
+#jsoneditor .jsoneditor-menu .jsoneditor-modes,
+#jsoneditor .jsoneditor-menu .selectr-selected {
+    background: var(--card) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
 }
 
-/* =========================================================
-   JSONEDITOR RIGHT AREA
-========================================================= */
 
-#jsoneditor .jsoneditor-menu,
-#jsoneditor .jsoneditor-outer,
-#jsoneditor .jsoneditor-tree,
-#jsoneditor .jsoneditor-tree-inner,
-#jsoneditor .jsoneditor-frame {
+/* Mode dropdown */
 
-    background-color: var(--card) !important;
+#jsoneditor .jsoneditor-menu .selectr-options-container {
+    background: var(--card) !important;
+    border-color: var(--border) !important;
+}
 
+
+/* Dropdown options */
+
+#jsoneditor .jsoneditor-menu .selectr-option {
+    background: var(--card) !important;
     color: var(--text) !important;
 }
 
 
-
-/* =========================================================
-   JSONEDITOR TOOLBAR ICONS
-========================================================= */
-
-#jsoneditor .jsoneditor-menu button,
-#jsoneditor .jsoneditor-menu .jsoneditor-button {
-
-    color: #ffffff !important;
-
-    opacity: 1 !important;
+#jsoneditor .jsoneditor-menu .selectr-option:hover {
+    background: var(--bg-soft) !important;
+    color: var(--primary) !important;
 }
 
 
-#jsoneditor .jsoneditor-menu button:hover,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:hover {
-
-    background-color: rgba(255,255,255,.12) !important;
-
+#jsoneditor .jsoneditor-menu .selectr-option.active,
+#jsoneditor .jsoneditor-menu .selectr-option.selected {
+    background: var(--primary) !important;
+    color: #fff !important;
 }
