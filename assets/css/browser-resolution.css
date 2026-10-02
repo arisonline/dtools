@@ -1,0 +1,454 @@
+/* =========================================================
+   DOZNI TOOLS
+   BROWSER RESOLUTION
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+body.browser-resolution-tool-page {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.browser-resolution-page {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px 20px 0;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.browser-resolution-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   MAIN TOOL CARD
+========================================================= */
+
+.browser-resolution-card {
+    width: 100%;
+    min-height: 498px;
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(0, 1fr);
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 2px 8px rgba(18, 38, 63, .08);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.browser-resolution-sidebar {
+    box-sizing: border-box;
+
+    padding: 35px 20px;
+
+    background: var(--card);
+
+    border-right: 1px solid var(--border);
+}
+
+
+.browser-resolution-check-title {
+
+    margin-bottom: 25px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    font-weight: 500;
+}
+
+
+.browser-resolution-check-link {
+
+    display: block;
+
+    margin-bottom: 13px;
+
+    padding: 2px 0;
+
+    color: var(--text-light);
+
+    font-size: 16px;
+
+    line-height: 1.55;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.browser-resolution-check-link:hover {
+
+    color: var(--primary);
+
+    transform: translateX(3px);
+}
+
+
+.browser-resolution-check-link.active {
+
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
+.browser-resolution-content {
+
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    padding: 37px 40px 28px;
+
+    background: var(--card);
+
+    text-align: center;
+}
+
+
+.browser-resolution-content h2 {
+
+    margin: 0 0 37px;
+
+    color: var(--text);
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    font-weight: 800;
+
+    letter-spacing: -.1px;
+}
+
+
+/* =========================================================
+   BROWSER RESOLUTION DISPLAY
+========================================================= */
+
+.browser-resolution-value {
+
+    width: 268px;
+
+    height: 168px;
+
+    box-sizing: border-box;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    background: var(--bg);
+
+    border: 4px solid var(--primary);
+
+    border-radius: 5px;
+
+    color: var(--text);
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -.3px;
+
+    box-shadow:
+        0 5px 16px rgba(18, 38, 63, .06);
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+
+/* Browser top bar */
+
+.browser-resolution-value::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 20px;
+
+    box-sizing: border-box;
+
+    background: var(--primary);
+
+    border-radius:
+        1px 1px 0 0;
+}
+
+
+/* Browser dots */
+
+.browser-resolution-value::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 7px;
+
+    left: 7px;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        #ef5350;
+
+    box-shadow:
+        15px 0 0 #ffb300,
+        30px 0 0 #22c55e;
+}
+
+
+/* =========================================================
+   RESULT TEXT
+========================================================= */
+
+.browser-resolution-line {
+
+    margin: 28px 0 0;
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.browser-resolution-line + .browser-resolution-line {
+
+    margin-top: 9px;
+}
+
+
+.browser-resolution-line strong {
+
+    color: var(--text);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.browser-resolution-description {
+
+    margin: 50px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.browser-resolution-description + .browser-resolution-description {
+
+    margin-top: 7px;
+}
+
+
+.browser-resolution-description a {
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease;
+}
+
+
+.browser-resolution-description a:hover {
+
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .browser-resolution-page {
+
+        padding: 22px 14px 0;
+
+    }
+
+
+    .browser-resolution-card {
+
+        grid-template-columns: 1fr;
+
+        min-height: 0;
+
+        border-radius: 5px;
+
+    }
+
+
+    .browser-resolution-sidebar {
+
+        padding: 20px 20px 17px;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+    .browser-resolution-check-title {
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .browser-resolution-check-link {
+
+        display: inline-block;
+
+        margin: 0 18px 0 0;
+
+    }
+
+
+    .browser-resolution-content {
+
+        padding: 30px 18px 32px;
+
+    }
+
+
+    .browser-resolution-content h2 {
+
+        margin-bottom: 30px;
+
+        font-size: 19px;
+
+    }
+
+
+    .browser-resolution-value {
+
+        width: min(268px, 100%);
+
+        height: 160px;
+
+        font-size: 26px;
+
+    }
+
+
+    .browser-resolution-line {
+
+        font-size: 15px;
+
+    }
+
+
+    .browser-resolution-description {
+
+        margin-top: 38px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .browser-resolution-content h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .browser-resolution-value {
+
+        height: 145px;
+
+        font-size: 24px;
+
+    }
+
+}
