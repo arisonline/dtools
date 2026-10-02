@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JSON Viewer and Formatter - Dozni Tools</title>
+
+    <meta
+        name="description"
+        content="Free online JSON Viewer and Formatter. Paste JSON or load JSON from a URL to view, validate and explore data in a collapsible tree."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href="https://dtools.dozni.com/tools/json-viewer/"
+    >
+
+
+    <!-- =========================================
+         FAVICON
+    ========================================== -->
+
+    <link
+        rel="icon"
+        href="../../assets/icons/favicons_favicon.ico"
+        type="image/x-icon"
+    >
+
+    <link
+        rel="icon"
+        href="../../assets/icons/favicons_favicon.svg"
+        type="image/svg+xml"
+    >
+
+    <link
+        rel="icon"
+        href="../../assets/icons/favicons_favicon-96x96.png"
+        type="image/png"
+        sizes="96x96"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="../../assets/icons/favicons_apple-touch-icon.png"
+    >
+
+    <link
+        rel="manifest"
+        href="../../assets/icons/favicons_site.webmanifest"
+    >
+
+
+    <!-- =========================================
+         MATERIAL ICONS
+    ========================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         JSONEDITOR
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor.min.css"
+    >
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor-minimalist.js"
+    ></script>
+
+
+    <!-- =========================================
+         GLOBAL THEME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+
+    <!-- =========================================
+         UNIVERSAL TOOL STYLES
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/tools.css"
+    >
+
+
+    <!-- =========================================
+         JSON VIEWER
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/json-viewer.css"
+    >
+
+</head>
+
+
+<body
+    class="tool-page json-viewer-tool-page"
+    data-tool="json-viewer"
+>
+
+
+    <!-- HEADER -->
+
+    <div id="site-header"></div>
+
+
+    <main>
+
+
+        <!-- =========================================
+             JSON VIEWER
+        ========================================== -->
+
+        <section class="json-viewer-page">
+
+            <div class="json-viewer-container">
+
+                <div class="json-viewer-card">
+
+
+                    <!-- INPUT HEADER -->
+
+                    <div class="json-viewer-input-area">
+
+                        <label for="jsonUrl">
+                            Enter JSON URL:
+                        </label>
+
+                        <input
+                            type="url"
+                            id="jsonUrl"
+                            spellcheck="false"
+                            autocomplete="off"
+                            placeholder="https://www.example.com/data.json"
+                        >
+
+
+                        <label
+                            for="jsonInput"
+                            class="json-viewer-manual-label"
+                        >
+                            Or Paste Manual JSON below
+                        </label>
+
+                    </div>
+
+
+                    <!-- EDITOR -->
+
+                    <div class="json-viewer-editor-layout">
+
+
+                        <!-- LEFT -->
+
+                        <div class="json-viewer-input-panel">
+
+                            <textarea
+                                id="jsonInput"
+                                spellcheck="false"
+                                placeholder="Enter JSON data here..."
+                            >{
+  "id": 1001,
+  "type": "donut",
+  "name": "Cake",
+  "description": "http://en.wikipedia.org/wiki/Doughnut",
+  "price": 2.55,
+  "available": {
+    "store": 42,
+    "warehouse": 600
+  },
+  "topping": [
+    {
+      "id": 5001,
+      "type": "None"
+    },
+    {
+      "id": 5002,
+      "type": "Glazed"
+    },
+    {
+      "id": 5005,
+      "type": "Sugar"
+    },
+    {
+      "id": 5003,
+      "type": "Chocolate"
+    },
+    {
+      "id": 5004,
+      "type": "Maple"
+    }
+  ]
+}</textarea>
+
+                        </div>
+
+
+                        <!-- RIGHT -->
+
+                        <div class="json-viewer-output-panel">
+
+                            <div
+                                id="jsoneditor"
+                                aria-label="JSON Viewer"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div
+                        class="json-viewer-error"
+                        id="jsonViewerError"
+                        role="alert"
+                        aria-live="polite"
+                    ></div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- UNIVERSAL TOOL CONTENT -->
+
+        <div id="tool-content-component"></div>
+
+
+        <!-- FEATURES -->
+
+        <div id="features"></div>
+
+
+        <!-- RELATED TOOLS -->
+
+        <div id="related-tools"></div>
+
+
+        <!-- FAQ -->
+
+        <div id="faq"></div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <div id="site-footer"></div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../../assets/js/json-viewer.js"></script>
+
+    <script src="../../assets/js/tools.js"></script>
+
+    <script src="../../assets/js/components.js"></script>
+
+</body>
+
+</html>
