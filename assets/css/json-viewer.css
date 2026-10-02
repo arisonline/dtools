@@ -213,9 +213,8 @@ body.json-viewer-tool-page {
 /* MENU */
 
 .jsoneditor .jsoneditor-menu {
-    background: var(--primary) !important;
-
-    border-color: var(--primary) !important;
+    background: var(--card) !important;
+    border-color: var(--border) !important;
 }
 
 
