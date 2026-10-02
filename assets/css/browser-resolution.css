@@ -19,9 +19,7 @@ body.browser-resolution-tool-page {
 ========================================================= */
 
 .browser-resolution-page {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 28px 20px 0;
+    padding: 26px 0 32px;
 }
 
 
@@ -30,8 +28,7 @@ body.browser-resolution-tool-page {
 ========================================================= */
 
 .browser-resolution-container {
-    width: 100%;
-    max-width: 1180px;
+    width: min(1200px, 92%);
     margin: 0 auto;
 }
 
@@ -53,15 +50,6 @@ body.browser-resolution-tool-page {
     box-sizing: border-box;
 
     background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 4px;
-
-    box-shadow:
-        0 2px 8px rgba(18, 38, 63, .08);
-
-    overflow: hidden;
 }
 
 
