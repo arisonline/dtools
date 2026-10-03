@@ -1,179 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>JSON Viewer and Formatter - Dozni Tools</title>
-
+    <title>JSON Viewer - Dozni</title>
     <meta
         name="description"
-        content="Free online JSON Viewer and Formatter. Paste JSON or load JSON from a URL to view, format, search and explore JSON data in a collapsible tree."
+        content="View, format and explore JSON data online with JSON Viewer."
     >
 
-    <meta
-        name="robots"
-        content="index, follow"
-    >
-
-    <link
-        rel="canonical"
-        href="https://dtools.dozni.com/tools/json-viewer/"
-    >
-
-
-    <!-- FAVICON -->
-
-    <link
-        rel="icon"
-        href="../../assets/icons/favicons_favicon.ico"
-        type="image/x-icon"
-    >
-
-    <link
-        rel="icon"
-        href="../../assets/icons/favicons_favicon.svg"
-        type="image/svg+xml"
-    >
-
-    <link
-        rel="icon"
-        href="../../assets/icons/favicons_favicon-96x96.png"
-        type="image/png"
-        sizes="96x96"
-    >
-
-    <link
-        rel="apple-touch-icon"
-        href="../../assets/icons/favicons_apple-touch-icon.png"
-    >
-
-    <link
-        rel="manifest"
-        href="../../assets/icons/favicons_site.webmanifest"
-    >
-
-
-    <!-- MATERIAL ICONS -->
-
+    <!-- Material Icons -->
     <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
     >
 
-
-    <!-- GLOBAL THEME -->
-
+    <!-- JSONEditor -->
     <link
         rel="stylesheet"
-        href="../../assets/css/theme.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor.min.css"
     >
 
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <link rel="stylesheet" href="../../assets/css/tools.css">
 
-    <!-- UNIVERSAL TOOL STYLES -->
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/tools.css"
-    >
-
-
-    <!-- JSON VIEWER -->
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/json-viewer.css"
-    >
-
+    <!-- JSON Viewer CSS MUST be LAST -->
+    <link rel="stylesheet" href="../../assets/css/json-viewer.css">
 </head>
 
-
-<body
-    class="tool-page json-viewer-tool-page"
-    data-tool="json-viewer"
->
-
-
-    <!-- HEADER -->
+<body class="tool-page json-viewer-tool-page" data-tool="json-viewer">
 
     <div id="site-header"></div>
 
-
     <main>
 
-
-        <!-- =========================================
-             JSON VIEWER
-        ========================================== -->
-
         <section class="json-viewer-page">
-
             <div class="json-viewer-container">
 
                 <div class="json-viewer-card">
 
-
                     <!-- URL -->
+                    <div class="json-viewer-input-area">
 
-                    <div class="json-viewer-url-area">
-
-                        <label for="jsonUrl">
+                        <label for="urlInput">
                             Enter JSON URL:
                         </label>
 
-                        <div class="json-viewer-url-row">
-
+                        <div class="json-url-row">
                             <input
                                 type="url"
-                                id="jsonUrl"
+                                id="urlInput"
                                 placeholder="https://example.com/data.json"
-                                spellcheck="false"
                                 autocomplete="off"
                             >
 
                             <button
                                 type="button"
-                                class="json-viewer-load-btn"
-                                id="loadJsonUrl"
+                                id="loadUrlButton"
+                                class="json-load-button"
                             >
                                 Load
                             </button>
-
                         </div>
 
-
                         <label
-                            for="jsonInput"
-                            class="json-viewer-manual-label"
+                            for="manualInput"
+                            class="json-manual-label"
                         >
                             Or Paste Manual JSON below
                         </label>
 
                     </div>
 
-
-                    <!-- =================================
-                         EDITOR AREA
-                    ================================== -->
-
-                    <div class="json-viewer-editor-layout">
-
-
-                        <!-- LEFT -->
-
-                        <div class="json-viewer-input-panel">
-
-                            <textarea
-                                id="jsonInput"
-                                spellcheck="false"
-                                placeholder="Enter JSON data here..."
-                            >{
+                    <!-- JSON INPUT -->
+                    <textarea
+                        id="manualInput"
+                        class="json-manual-input"
+                        spellcheck="false"
+                    >{
   "id": 1001,
   "type": "donut",
   "name": "Cake",
@@ -207,206 +113,48 @@
   ]
 }</textarea>
 
-                        </div>
-
-
-                        <!-- RIGHT -->
-
-                        <div class="json-viewer-output-panel">
-
-
-                            <!-- TOOLBAR -->
-
-                            <div class="json-viewer-toolbar">
-
-
-                                <!-- MODES -->
-
-                                <div class="json-viewer-modes">
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-mode active"
-                                        data-mode="tree"
-                                    >
-                                        Tree
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-mode"
-                                        data-mode="code"
-                                    >
-                                        Code
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-mode"
-                                        data-mode="form"
-                                    >
-                                        Form
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-mode"
-                                        data-mode="text"
-                                    >
-                                        Text
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-mode"
-                                        data-mode="view"
-                                    >
-                                        View
-                                    </button>
-
-                                </div>
-
-
-                                <!-- ACTIONS -->
-
-                                <div class="json-viewer-actions">
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-action"
-                                        id="jsonExpandAll"
-                                        title="Expand all"
-                                        aria-label="Expand all"
-                                    >
-                                        <span class="material-icons">
-                                            unfold_more
-                                        </span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-action"
-                                        id="jsonCollapseAll"
-                                        title="Collapse all"
-                                        aria-label="Collapse all"
-                                    >
-                                        <span class="material-icons">
-                                            unfold_less
-                                        </span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-action"
-                                        id="jsonFormat"
-                                        title="Format JSON"
-                                        aria-label="Format JSON"
-                                    >
-                                        <span class="material-icons">
-                                            format_align_left
-                                        </span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="json-viewer-action"
-                                        id="jsonSort"
-                                        title="Sort keys"
-                                        aria-label="Sort keys"
-                                    >
-                                        <span class="material-icons">
-                                            sort
-                                        </span>
-                                    </button>
-
-                                </div>
-
-
-                                <!-- SEARCH -->
-
-                                <div class="json-viewer-search">
-
-                                    <span class="material-icons">
-                                        search
-                                    </span>
-
-                                    <input
-                                        type="search"
-                                        id="jsonSearch"
-                                        placeholder="Search"
-                                        autocomplete="off"
-                                    >
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- VIEWER -->
-
-                            <div
-                                class="json-viewer-display"
-                                id="jsonViewerDisplay"
-                            ></div>
-
-
-                        </div>
-
-                    </div>
-
-
                     <!-- ERROR -->
-
                     <div
-                        class="json-viewer-error"
                         id="jsonViewerError"
-                        role="alert"
+                        class="json-viewer-error"
                         aria-live="polite"
                     ></div>
 
+                    <!-- JSONEDITOR -->
+                    <div
+                        id="jsoneditor"
+                        class="json-editor-container"
+                    ></div>
 
                 </div>
 
             </div>
-
         </section>
 
-
-        <!-- UNIVERSAL TOOL CONTENT -->
-
+        <!-- Shared content -->
         <div id="tool-content-component"></div>
-
-
-        <!-- FEATURES -->
-
         <div id="features"></div>
-
-
-        <!-- RELATED TOOLS -->
-
         <div id="related-tools"></div>
-
-
-        <!-- FAQ -->
-
         <div id="faq"></div>
 
     </main>
 
-
-    <!-- FOOTER -->
-
     <div id="site-footer"></div>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- JSONEditor JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor.min.js">
+    </script>
 
+    <!-- Tool JS -->
     <script src="../../assets/js/json-viewer.js"></script>
 
+    <!-- Universal tool JS -->
     <script src="../../assets/js/tools.js"></script>
 
+    <!-- Components -->
     <script src="../../assets/js/components.js"></script>
 
 </body>
-
 </html>
