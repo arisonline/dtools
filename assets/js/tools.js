@@ -1239,7 +1239,6 @@ const toolsData = [
        categories: [
            {
                name: "Color Tools",
-   
                url: "https://digital-tool.dozni.com/?category=Color"
            }
        ],
@@ -1248,72 +1247,145 @@ const toolsData = [
            "How to Use Random Color Generator?",
    
        howTo: [
-           "A random color is generated automatically when the page loads.",
-           "Click the New Random Color button to generate another color.",
-           "Click the HEX, RGB, HSL or HSV value to copy that color code.",
-           "Click the color preview to copy the HEX value.",
-           "Use Get Shades to continue working with the current color."
+           "When you refresh or load this page, a new random color will be generated for you every time.",
+           "Also, a new random color will be generated when you click the 'New Random Color' button.",
+           "Click to copy the value of the selected color in HEX, RGB, HSL, or HSV.",
+           "Lastly, you can use other tools to work with the current color such as getting shades, changing hues, etc. Or you can change color families such as pastel or material, by selecting the menu presented above.",
+           "In case your browser does not support our webpage or the screen looks blank, please refresh the page."
        ],
    
-       credits: [
-           "TinyColor2 is used for color generation and color conversion.",
-           "SweetAlert2 is used for copy notifications."
-       ],
+       credits: [],
    
        content: `
-           <h2>Random Color Generator</h2>
+           <div class="tool-description-header">
+   
+               <div class="tool-description-title">
+   
+                   <span class="material-icons">
+                       youtube_searched_for
+                   </span>
+   
+                   <span>
+                       Any Random Color Generator
+                   </span>
+   
+               </div>
+   
+               <div class="tool-description-categories">
+                   Categories →
+                   <a href="https://digital-tool.dozni.com/?category=Color">
+                       Color Tools
+                   </a>
+               </div>
+   
+           </div>
+   
+   
+           <hr class="tool-description-divider">
+   
+   
+           <h3>
+               Introduction to the Random Color Generator
+           </h3>
    
            <p>
-               Dozni Random Color Generator creates a new random color
-               instantly and provides the color in HEX, RGB, HSL and HSV
-               formats.
+               Want a easy and quick of color tool? Our Random Color Generator
+               is here to add a splash of creativity to your day. It's super easy
+               to use and brings a random color straight to your fingertips.
+               Just pick a color and go!
+           </p>
+   
+   
+           <img
+               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJ7QTqx0UsMeeelHXCooflXi3GjQs12c0uQFqu05XqJY2weRCy4I3ncCyLZ4kd1qm6JUzKIlQf2SvE-8QrEw4ZGJPxk6gnLiPnBuduvKlbZF0mQNHeHXfsUsgvY2BTGSsJ-Yfrb6GEwpVfG70JAnDACL2qkaeL4iVtke15dD4ZQqVd1DBnKPn9QAPMSJE/s800/random-colors.webp"
+               alt="Random color generator online free"
+               title="Random Color Generator Online"
+               width="320"
+               height="240"
+               loading="lazy"
+               decoding="async"
+               class="tool-description-image"
+           >
+   
+   
+           <h3>
+               How It Works
+           </h3>
+   
+           <p>
+               Our tool is like a magical color picker. When you click the
+               "Random Color" button or load the page, a brand new color generated
+               every time. You can copy the colors with more then three formats
+               like hex, rgb, hsl, or hsv color codes.
+           </p>
+   
+   
+           <h3>
+               Play with the Color tools
+           </h3>
+   
+           <p>
+               You can do cool things with your chosen color. Like make it Lighter,
+               Darker, Saturated, Desaturated etc. Feeling a bit specific mood?
+               Switch to different color families like Pastels, Material, or Bright
+               colors. Change it whenever you want, without leaving your seat
+               (webpage). It's like having your own little color playground.
+           </p>
+   
+   
+           <h3>
+               How to Make the Random Color Tool
+           </h3>
+   
+           <p>
+               It is not a rocket science to create this tool. You can also make it,
+               by using some lines of code. In order to get a random color, you can
+               use a random function and then generate random numbers between 0-255
+               for Red, Green and Blue (RGB).
            </p>
    
            <p>
-               Every generated color is handled directly in your browser.
-               You can copy any color value with a single click.
+               If you're an coder, check this below example code for details:
            </p>
+   
+   
+           <pre><code>random_color = { r: Random(0, 255), g: Random(0, 255), b: Random(0, 255) }</code></pre>
+   
+   
+           <div class="tool-description-note">
+   
+               <strong>Note:</strong>
+   
+               We do not store any of your data, as everything is done inside your
+               browser. Every time the webpage refreshes or loads, it clears the
+               previous input data.
+   
+           </div>
        `,
    
        faqs: [
            {
                question:
-                   "What formats are available?",
+                   "What formats does the Random Color Generator provide?",
    
                answer:
-                   "The tool provides HEX, RGB, HSL and HSV color values."
+                   "The tool provides HEX, RGB, HSL, and HSV color codes."
            },
    
            {
                question:
-                   "How do I generate another color?",
+                   "How do I generate a new random color?",
    
                answer:
-                   "Click the New Random Color button."
+                   "A new color is generated when the page loads, and you can generate another one by clicking the 'New Random Color' button."
            },
    
            {
                question:
-                   "How do I copy a color code?",
+                   "How can I copy a color code?",
    
                answer:
-                   "Click the HEX, RGB, HSL or HSV field to copy its value."
-           },
-   
-           {
-               question:
-                   "Can I copy the color by clicking the preview?",
-   
-               answer:
-                   "Yes. Clicking the color preview copies its HEX value."
-           },
-   
-           {
-               question:
-                   "Does the tool store my colors?",
-   
-               answer:
-                   "The color generation and conversion happen directly in your browser."
+                   "Click the HEX, RGB, HSL, or HSV color value to copy it."
            }
        ]
    },
