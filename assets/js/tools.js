@@ -93,320 +93,6 @@ const homeFaqs = [
 ========================================= */
 
 const toolsData = [
-
-  {
-    id: "json-formatter",
-
-    name: "JSON Formatter",
-
-    url: "tools/json-formatter/",
-
-    category: "Dev",
-
-    description:
-      "Beautify and validate JSON instantly.",
-
-    icon: "code",
-
-    popular: true,
-
-    faqs: [
-
-      {
-        question: "What does the JSON Formatter do?",
-
-        answer:
-          "It formats and beautifies JSON data into an easy-to-read structure."
-      },
-
-      {
-        question: "Can I validate JSON?",
-
-        answer:
-          "Yes. Invalid JSON is detected and the formatting process will identify the problem."
-      }
-
-    ]
-
-  },
-
-
-
-      {
-       id: "json-viewer",
-   
-       name: "JSON Viewer",
-   
-       url: "tools/json-viewer/",
-   
-       category: "Dev",
-   
-       description:
-           "View, validate and explore JSON data in a formatted collapsible tree. Paste JSON or load JSON from a URL.",
-   
-       icon: "account_tree",
-   
-       popular: true,
-   
-   
-       /* =====================================
-          CATEGORIES
-       ===================================== */
-   
-       categories: [
-   
-           {
-               name: "Dev Tools",
-   
-               url:
-                   "https://digital-tool.dozni.com/?category=Dev"
-           }
-   
-       ],
-   
-   
-       /* =====================================
-          HOW TO USE
-       ===================================== */
-   
-       howToTitle:
-           "How to Use JSON Viewer?",
-   
-       howTo: [
-   
-           "Paste your JSON code into the input area.",
-   
-           "The JSON data will be displayed automatically in the tree viewer.",
-   
-           "You can also enter a JSON URL and load the data directly from that URL.",
-   
-           "Expand or collapse objects and arrays to explore the JSON structure.",
-   
-           "Use the available JSONEditor modes such as Tree, Code, Form, Text and View when needed."
-   
-       ],
-   
-   
-       /* =====================================
-          CREDITS
-       ===================================== */
-   
-       credits: [
-   
-           {
-               name: "JSONEditor",
-   
-               url:
-                   "https://github.com/josdejong/jsoneditor",
-   
-               description:
-                   "JSON editor and tree viewer library."
-           }
-   
-       ],
-   
-   
-       /* =====================================
-          CONTENT
-       ===================================== */
-   
-       content: `
-   
-           <h2>
-               What is a JSON Viewer?
-           </h2>
-   
-   
-           <p>
-               A JSON Viewer is a tool that displays JSON data in an
-               easier-to-read structure. Instead of viewing a large block
-               of plain JSON text, you can explore objects and arrays using
-               a collapsible tree.
-           </p>
-   
-   
-           <p>
-               This free online JSON Viewer lets you paste JSON data or
-               load JSON from a URL and inspect its structure directly in
-               your browser.
-           </p>
-   
-   
-           <h2>
-               JSON Viewer and JSON Formatter
-           </h2>
-   
-   
-           <p>
-               A JSON formatter mainly improves the indentation and
-               readability of JSON text. A JSON viewer goes a step further
-               by allowing you to explore nested objects and arrays
-               interactively.
-           </p>
-   
-   
-           <p>
-               This tool provides a tree-based view of JSON data and also
-               provides additional editor modes for working with the data.
-           </p>
-   
-   
-           <h2>
-               How to view JSON online
-           </h2>
-   
-   
-           <p>
-               Paste valid JSON into the input panel. The viewer will
-               automatically parse the JSON and display it as a structured
-               tree.
-           </p>
-   
-   
-           <p>
-               You can also enter a publicly accessible JSON URL. The tool
-               fetches the JSON data and displays it in the same viewer.
-           </p>
-   
-   
-           <h2>
-               Supported JSON structure
-           </h2>
-   
-   
-           <p>
-               JSON can contain objects, arrays, strings, numbers,
-               booleans and null values. Nested structures can contain
-               multiple levels of objects and arrays.
-           </p>
-   
-   
-           <div class="tool-code">
-   
-               <code>{
-       "name": "Cake",
-       "price": 2.55,
-       "available": {
-           "store": 42,
-           "warehouse": 600
-       },
-       "topping": [
-           "None",
-           "Glazed",
-           "Chocolate"
-       ]
-   }</code>
-   
-           </div>
-   
-   
-           <h2>
-               Load JSON from a URL
-           </h2>
-   
-   
-           <p>
-               Enter a JSON URL in the URL field and press Enter or move
-               away from the field. The tool will request the JSON data and
-               display the returned object in the viewer.
-           </p>
-   
-   
-           <p>
-               The remote server must allow the request through the
-               browser's cross-origin security rules. If the server blocks
-               browser requests, the URL cannot be loaded directly.
-           </p>
-   
-   
-           <h2>
-               Explore JSON in Tree view
-           </h2>
-   
-   
-           <p>
-               Tree view makes it easier to inspect deeply nested JSON.
-               Objects and arrays can be expanded or collapsed so you can
-               focus on the parts of the data you need.
-           </p>
-   
-   
-           <h2>
-               Is my JSON processed in the browser?
-           </h2>
-   
-   
-           <p>
-               JSON that you paste into this tool is processed directly
-               by the page in your browser. The tool does not need to send
-               pasted JSON to a server for normal parsing and viewing.
-           </p>
-   
-   
-           <div class="tool-note">
-   
-               <strong>Note:</strong>
-   
-               When loading JSON from an external URL, your browser requests
-               that URL directly. The availability of the request depends on
-               the remote server and its CORS configuration.
-   
-           </div>
-   
-       `,
-   
-   
-       /* =====================================
-          FAQ
-       ===================================== */
-   
-       faqs: [
-   
-           {
-               question:
-                   "What is a JSON Viewer?",
-   
-               answer:
-                   "A JSON Viewer displays JSON data in a structured and readable format, commonly using a collapsible tree."
-           },
-   
-           {
-               question:
-                   "Can I paste JSON directly into the viewer?",
-   
-               answer:
-                   "Yes. Paste your JSON into the input panel and the viewer automatically parses and displays it."
-           },
-   
-           {
-               question:
-                   "Can I load JSON from a URL?",
-   
-               answer:
-                   "Yes. Enter a JSON URL and the tool will try to fetch and display the returned JSON."
-           },
-   
-           {
-               question:
-                   "Why can't my JSON URL load?",
-   
-               answer:
-                   "The remote server may block browser requests with its CORS policy, or the URL may not return valid JSON."
-           },
-   
-           {
-               question:
-                   "What JSON editor modes are available?",
-   
-               answer:
-                   "The viewer is configured with Tree, Code, Form, Text and View modes."
-           }
-   
-       ]
-   
-   },
-
-
       {
        id: "screen-resolution",
    
@@ -1635,135 +1321,278 @@ const toolsData = [
    
 
    {
-     id: "image-cropper",
+       id: "json-viewer",
    
-     name: "Image Cropper Online",
+       name: "JSON Viewer",
    
-     url: "tools/image-cropper/",
+       url: "tools/json-viewer/",
    
-     category: "Image",
+       category: "Dev",
    
-     description:
-       "Free Online Image Cropping Tool using HTML Canvas. Download cropped image in JPG or PNG format.",
+       description:
+           "View, validate and explore JSON data in a formatted collapsible tree. Paste JSON or load JSON from a URL.",
    
-     icon: "crop",
+       icon: "account_tree",
    
-     popular: true,
+       popular: true,
    
-     categories: [
-       {
-         name: "Design Tools",
-         url: "#"
+   
+       /* =====================================
+          CATEGORIES
+       ===================================== */
+   
+       categories: [
+   
+           {
+               name: "Dev Tools",
+   
+               url:
+                   "https://digital-tool.dozni.com/?category=Dev"
+           }
+   
+       ],
+   
+   
+       /* =====================================
+          HOW TO USE
+       ===================================== */
+   
+       howToTitle:
+           "How to Use JSON Viewer?",
+   
+       howTo: [
+   
+           "Paste your JSON code into the input area.",
+   
+           "The JSON data will be displayed automatically in the tree viewer.",
+   
+           "You can also enter a JSON URL and load the data directly from that URL.",
+   
+           "Expand or collapse objects and arrays to explore the JSON structure.",
+   
+           "Use the available JSONEditor modes such as Tree, Code, Form, Text and View when needed."
+   
+       ],
+   
+   
+       /* =====================================
+          CREDITS
+       ===================================== */
+   
+       credits: [
+   
+           {
+               name: "JSONEditor",
+   
+               url:
+                   "https://github.com/josdejong/jsoneditor",
+   
+               description:
+                   "JSON editor and tree viewer library."
+           }
+   
+       ],
+   
+   
+       /* =====================================
+          CONTENT
+       ===================================== */
+   
+       content: `
+   
+           <h2>
+               What is a JSON Viewer?
+           </h2>
+   
+   
+           <p>
+               A JSON Viewer is a tool that displays JSON data in an
+               easier-to-read structure. Instead of viewing a large block
+               of plain JSON text, you can explore objects and arrays using
+               a collapsible tree.
+           </p>
+   
+   
+           <p>
+               This free online JSON Viewer lets you paste JSON data or
+               load JSON from a URL and inspect its structure directly in
+               your browser.
+           </p>
+   
+   
+           <h2>
+               JSON Viewer and JSON Formatter
+           </h2>
+   
+   
+           <p>
+               A JSON formatter mainly improves the indentation and
+               readability of JSON text. A JSON viewer goes a step further
+               by allowing you to explore nested objects and arrays
+               interactively.
+           </p>
+   
+   
+           <p>
+               This tool provides a tree-based view of JSON data and also
+               provides additional editor modes for working with the data.
+           </p>
+   
+   
+           <h2>
+               How to view JSON online
+           </h2>
+   
+   
+           <p>
+               Paste valid JSON into the input panel. The viewer will
+               automatically parse the JSON and display it as a structured
+               tree.
+           </p>
+   
+   
+           <p>
+               You can also enter a publicly accessible JSON URL. The tool
+               fetches the JSON data and displays it in the same viewer.
+           </p>
+   
+   
+           <h2>
+               Supported JSON structure
+           </h2>
+   
+   
+           <p>
+               JSON can contain objects, arrays, strings, numbers,
+               booleans and null values. Nested structures can contain
+               multiple levels of objects and arrays.
+           </p>
+   
+   
+           <div class="tool-code">
+   
+               <code>{
+       "name": "Cake",
+       "price": 2.55,
+       "available": {
+           "store": 42,
+           "warehouse": 600
        },
-       {
-         name: "Image Tools",
-         url: "#"
-       }
-     ],
+       "topping": [
+           "None",
+           "Glazed",
+           "Chocolate"
+       ]
+   }</code>
    
-     howToTitle:
-       "How to Use Image Cropper Online?",
+           </div>
    
-     howTo: [
    
-       "Drag and drop image from your local system to the canvas above.",
+           <h2>
+               Load JSON from a URL
+           </h2>
    
-       "Use the Aspect Ratio options to choose aspect ratio of Crop Tool.",
    
-       "You can increase the Crop Tool size by dragging the corners and edges.",
+           <p>
+               Enter a JSON URL in the URL field and press Enter or move
+               away from the field. The tool will request the JSON data and
+               display the returned object in the viewer.
+           </p>
    
-       "Move the crop tool by holding the mouse button over it and dragging.",
    
-       "Once you have selected the desired area, choose to export either JPG (optimized for small size) or PNG (high-quality).",
+           <p>
+               The remote server must allow the request through the
+               browser's cross-origin security rules. If the server blocks
+               browser requests, the URL cannot be loaded directly.
+           </p>
    
-       "If the cropped image opens in a new tab, instead of downloading, right click and do \"Save As\" to save the cropped image.",
    
-       "We do not store any of your images as everything is done client side."
+           <h2>
+               Explore JSON in Tree view
+           </h2>
    
-     ],
    
-     credits: [
+           <p>
+               Tree view makes it easier to inspect deeply nested JSON.
+               Objects and arrays can be expanded or collapsed so you can
+               focus on the parts of the data you need.
+           </p>
    
-       {
-         name: "CropperJS",
-         url: "#",
-         description: "JavaScript image cropper"
-       },
    
-       {
-         name: "download.js",
-         url: "#",
-         description: "Client-side file downloading using JS and HTML5 by dandavis"
-       }
+           <h2>
+               Is my JSON processed in the browser?
+           </h2>
    
-     ],
    
-     faqs: [
+           <p>
+               JSON that you paste into this tool is processed directly
+               by the page in your browser. The tool does not need to send
+               pasted JSON to a server for normal parsing and viewing.
+           </p>
    
-       {
-         question:
-           "How do I crop an image online?",
    
-         answer:
-           "Drag and drop your image into the cropper, adjust the crop area and export the result in JPG or PNG format."
-       },
+           <div class="tool-note">
    
-       {
-         question:
-           "Which image formats can I download?",
+               <strong>Note:</strong>
    
-         answer:
-           "You can export the cropped image as JPG or PNG."
-       },
+               When loading JSON from an external URL, your browser requests
+               that URL directly. The availability of the request depends on
+               the remote server and its CORS configuration.
    
-       {
-         question:
-           "Are my images stored?",
+           </div>
    
-         answer:
-           "No. Images are processed client-side and are not permanently stored."
-       }
+       `,
    
-     ]
    
-   },
-
-
-  {
-    id: "image-resizer",
-
-    name: "Image Resizer",
-
-    url: "tools/image-resizer/",
-
-    category: "Image",
-
-    description:
-      "Resize JPG, PNG and WEBP images quickly.",
-
-    icon: "photo_size_select_large",
-
-    popular: true,
-
-    faqs: [
-
-      {
-        question: "How can I resize an image?",
-
-        answer:
-          "Upload your image, select the desired dimensions and download the resized image."
-      },
-
-      {
-        question: "Which image formats are supported?",
-
-        answer:
-          "The Image Resizer supports common formats such as JPG, PNG and WEBP."
-      }
-
-    ]
-
-  }
+       /* =====================================
+          FAQ
+       ===================================== */
+   
+       faqs: [
+   
+           {
+               question:
+                   "What is a JSON Viewer?",
+   
+               answer:
+                   "A JSON Viewer displays JSON data in a structured and readable format, commonly using a collapsible tree."
+           },
+   
+           {
+               question:
+                   "Can I paste JSON directly into the viewer?",
+   
+               answer:
+                   "Yes. Paste your JSON into the input panel and the viewer automatically parses and displays it."
+           },
+   
+           {
+               question:
+                   "Can I load JSON from a URL?",
+   
+               answer:
+                   "Yes. Enter a JSON URL and the tool will try to fetch and display the returned JSON."
+           },
+   
+           {
+               question:
+                   "Why can't my JSON URL load?",
+   
+               answer:
+                   "The remote server may block browser requests with its CORS policy, or the URL may not return valid JSON."
+           },
+   
+           {
+               question:
+                   "What JSON editor modes are available?",
+   
+               answer:
+                   "The viewer is configured with Tree, Code, Form, Text and View modes."
+           }
+   
+       ]
+   
+   }
 
 ];
 
