@@ -14,13 +14,8 @@
     justify-content: center;
 }
 
-
-/* =========================================================
-   SINGLE OUTER TOOL CARD
-   ========================================================= */
-
 .random-color-card {
-    width: min(1000px, 94%);
+    width: min(1200px, 94%);
 
     background: var(--card);
 
@@ -96,8 +91,6 @@
 
     align-items: center;
     justify-content: center;
-
-    box-sizing: border-box;
 }
 
 .random-color-preview {
@@ -156,8 +149,6 @@
     flex-direction: column;
 
     justify-content: center;
-
-    box-sizing: border-box;
 }
 
 .random-color-value-row {
@@ -214,8 +205,7 @@
 
     transition:
         border-color .15s ease,
-        background-color .15s ease,
-        box-shadow .15s ease;
+        background-color .15s ease;
 }
 
 .random-color-value-row input:hover {
@@ -342,17 +332,6 @@ body.dark .random-color-preview {
 
     box-shadow:
         0 8px 25px rgba(0, 0, 0, .35);
-}
-
-body.dark .random-color-value-row input {
-    background: var(--bg-soft);
-
-    color: var(--text);
-}
-
-body.dark .random-color-value-row input:focus {
-    box-shadow:
-        0 0 0 2px rgba(77, 147, 255, .16);
 }
 
 
