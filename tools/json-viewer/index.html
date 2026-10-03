@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>JSON Viewer - Dozni</title>
+
     <meta
         name="description"
         content="View, format and explore JSON data online with JSON Viewer."
     >
+
 
     <!-- Material Icons -->
     <link
@@ -16,45 +23,83 @@
         rel="stylesheet"
     >
 
+
     <!-- JSONEditor -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor.min.css"
     >
 
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="../../assets/css/theme.css">
-    <link rel="stylesheet" href="../../assets/css/tools.css">
 
-    <!-- JSON Viewer CSS MUST be LAST -->
-    <link rel="stylesheet" href="../../assets/css/json-viewer.css">
+    <!-- Site CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/tools.css"
+    >
+
+
+    <!-- JSON Viewer CSS -->
+    <!-- MUST BE LAST -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/json-viewer.css"
+    >
+
 </head>
 
-<body class="tool-page json-viewer-tool-page" data-tool="json-viewer">
 
+<body
+    class="tool-page json-viewer-tool-page"
+    data-tool="json-viewer"
+>
+
+
+    <!-- HEADER -->
     <div id="site-header"></div>
+
 
     <main>
 
+
+        <!-- =================================================
+             JSON VIEWER
+             ================================================= -->
+
         <section class="json-viewer-page">
+
             <div class="json-viewer-container">
 
+
+                <!-- URL / MAIN TOOL CARD -->
                 <div class="json-viewer-card">
 
-                    <!-- URL -->
+
+                    <!-- ================================
+                         URL INPUT
+                         ================================ -->
+
                     <div class="json-viewer-input-area">
 
                         <label for="urlInput">
                             Enter JSON URL:
                         </label>
 
+
                         <div class="json-url-row">
+
                             <input
                                 type="url"
                                 id="urlInput"
-                                placeholder="https://example.com/data.json"
+                                spellcheck="false"
                                 autocomplete="off"
+                                placeholder="https://www.dozni.com/example.json"
                             >
+
 
                             <button
                                 type="button"
@@ -63,7 +108,9 @@
                             >
                                 Load
                             </button>
+
                         </div>
+
 
                         <label
                             for="manualInput"
@@ -74,12 +121,27 @@
 
                     </div>
 
-                    <!-- JSON INPUT -->
-                    <textarea
-                        id="manualInput"
-                        class="json-manual-input"
-                        spellcheck="false"
-                    >{
+
+                    <!-- ================================
+                         INPUT + OUTPUT
+                         45% / 55%
+                         ================================ -->
+
+                    <div class="json-viewer-editor-layout">
+
+
+                        <!-- ============================
+                             LEFT : INPUT
+                             ============================ -->
+
+                        <div class="json-viewer-input-panel">
+
+                            <textarea
+                                id="manualInput"
+                                class="json-manual-input"
+                                spellcheck="false"
+                                placeholder="Enter JSON data here..."
+                            >{
   "id": 1001,
   "type": "donut",
   "name": "Cake",
@@ -113,48 +175,90 @@
   ]
 }</textarea>
 
-                    <!-- ERROR -->
+                        </div>
+
+
+                        <!-- ============================
+                             RIGHT : OUTPUT
+                             ============================ -->
+
+                        <div class="json-viewer-output-panel">
+
+                            <div
+                                id="jsoneditor"
+                                class="json-editor-container"
+                            ></div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- ================================
+                         ERROR
+                         ================================ -->
+
                     <div
                         id="jsonViewerError"
                         class="json-viewer-error"
                         aria-live="polite"
                     ></div>
 
-                    <!-- JSONEDITOR -->
-                    <div
-                        id="jsoneditor"
-                        class="json-editor-container"
-                    ></div>
 
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Shared content -->
+
+        <!-- =================================================
+             SHARED TOOL CONTENT
+             ================================================= -->
+
         <div id="tool-content-component"></div>
+
         <div id="features"></div>
+
         <div id="related-tools"></div>
+
         <div id="faq"></div>
+
 
     </main>
 
+
+    <!-- FOOTER -->
     <div id="site-footer"></div>
 
 
-    <!-- JSONEditor JS -->
+    <!-- =================================================
+         JSONEDITOR
+         ================================================= -->
+
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.32.2/jsoneditor.min.js">
     </script>
 
-    <!-- Tool JS -->
-    <script src="../../assets/js/json-viewer.js"></script>
 
-    <!-- Universal tool JS -->
-    <script src="../../assets/js/tools.js"></script>
+    <!-- JSON VIEWER JS -->
+    <script
+        src="../../assets/js/json-viewer.js">
+    </script>
 
-    <!-- Components -->
-    <script src="../../assets/js/components.js"></script>
+
+    <!-- UNIVERSAL TOOLS JS -->
+    <script
+        src="../../assets/js/tools.js">
+    </script>
+
+
+    <!-- COMPONENTS -->
+    <script
+        src="../../assets/js/components.js">
+    </script>
+
 
 </body>
 </html>
