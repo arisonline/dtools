@@ -647,7 +647,7 @@
 
 #jsoneditor .jsoneditor-contextmenu button {
 
-    background: transparent !important;
+    background-color: var(--primary) !important;
 
     color: var(--text) !important;
 
