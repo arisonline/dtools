@@ -1,6 +1,7 @@
 /* =========================================================
    DOZNI TOOLS
    JSON VIEWER
+   PURE HTML / CSS / JS
 ========================================================= */
 
 (function () {
@@ -8,42 +9,13 @@
     "use strict";
 
 
-    let editor = null;
+    let jsonData = null;
 
+    let currentMode = "tree";
 
-    const DEFAULT_OPTIONS = {
+    let expandedNodes = new WeakSet();
 
-        mode: "tree",
-
-        modes: [
-            "code",
-            "form",
-            "text",
-            "tree",
-            "view"
-        ],
-
-        indentation: 4,
-
-        escapeUnicode: true,
-
-        onError: function (error) {
-
-            showError(
-                error && error.toString
-                    ? error.toString()
-                    : "Invalid JSON."
-            );
-
-        },
-
-        onChange: function () {
-
-            clearError();
-
-        }
-
-    };
+    let searchTerm = "";
 
 
     /* =====================================================
@@ -57,14 +29,32 @@
             urlInput:
                 document.getElementById("jsonUrl"),
 
-            manualInput:
+            loadButton:
+                document.getElementById("loadJsonUrl"),
+
+            input:
                 document.getElementById("jsonInput"),
 
-            editor:
-                document.getElementById("jsoneditor"),
+            display:
+                document.getElementById("jsonViewerDisplay"),
 
             error:
-                document.getElementById("jsonViewerError")
+                document.getElementById("jsonViewerError"),
+
+            search:
+                document.getElementById("jsonSearch"),
+
+            expand:
+                document.getElementById("jsonExpandAll"),
+
+            collapse:
+                document.getElementById("jsonCollapseAll"),
+
+            format:
+                document.getElementById("jsonFormat"),
+
+            sort:
+                document.getElementById("jsonSort")
 
         };
 
@@ -80,12 +70,15 @@
         const elements =
             getElements();
 
+
         if (!elements.error) {
             return;
         }
 
+
         elements.error.textContent =
             message || "Invalid JSON.";
+
 
         elements.error.classList.add(
             "active"
@@ -99,9 +92,11 @@
         const elements =
             getElements();
 
+
         if (!elements.error) {
             return;
         }
+
 
         elements.error.textContent = "";
 
@@ -113,17 +108,16 @@
 
 
     /* =====================================================
-       PREPROCESS JSON
-       Preserves the behavior of the old tool
+       PARSE JSON
     ===================================================== */
 
-    function preprocessJSON(jsonString) {
+    function parseJSON(value) {
 
-        let value =
-            String(jsonString || "").trim();
+        let text =
+            String(value || "").trim();
 
 
-        if (!value) {
+        if (!text) {
 
             throw new Error(
                 "JSON input is empty."
@@ -133,366 +127,826 @@
 
 
         /*
-           Support the old tool's relaxed input:
-
-           'name': 'value'
-           name: "value"
+           First try strict JSON.
         */
 
-        value =
-            value.replace(
-                /'/g,
-                '"'
-            );
+        try {
+
+            return JSON.parse(text);
+
+        } catch (strictError) {
+
+            /*
+               Keep compatibility with your old tool.
+
+               Supports:
+               name: "value"
+               'name': 'value'
+            */
+
+            text =
+                text.replace(
+                    /([{,]\s*)([a-zA-Z_$][\w$]*)(\s*:)/g,
+                    '$1"$2"$3'
+                );
 
 
-        value =
-            value.replace(
-                /([{,]\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)/g,
-                '$1"$2"$3'
-            );
+            text =
+                text.replace(
+                    /'/g,
+                    '"'
+                );
 
 
-        return JSON.parse(value);
+            return JSON.parse(text);
+
+        }
 
     }
 
 
     /* =====================================================
-       DESTROY EDITOR
+       ESCAPE HTML
     ===================================================== */
 
-    function destroyEditor() {
+    function escapeHTML(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================================
+       VALUE HTML
+    ===================================================== */
+
+    function getValueHTML(value) {
+
+        if (typeof value === "string") {
+
+            return `
+                <span class="json-tree-value json-tree-string">
+                    "${escapeHTML(value)}"
+                </span>
+            `;
+
+        }
+
+
+        if (typeof value === "number") {
+
+            return `
+                <span class="json-tree-value json-tree-number">
+                    ${value}
+                </span>
+            `;
+
+        }
+
+
+        if (typeof value === "boolean") {
+
+            return `
+                <span class="json-tree-value json-tree-boolean">
+                    ${value}
+                </span>
+            `;
+
+        }
+
+
+        if (value === null) {
+
+            return `
+                <span class="json-tree-value json-tree-null">
+                    null
+                </span>
+            `;
+
+        }
+
+
+        return "";
+    }
+
+
+    /* =====================================================
+       NODE TYPE
+    ===================================================== */
+
+    function getNodeType(value) {
+
+        if (Array.isArray(value)) {
+            return "array";
+        }
+
 
         if (
-            editor &&
-            typeof editor.destroy === "function"
+            value !== null &&
+            typeof value === "object"
+        ) {
+            return "object";
+        }
+
+
+        return "value";
+
+    }
+
+
+    /* =====================================================
+       OBJECT SIZE
+    ===================================================== */
+
+    function getObjectSize(value) {
+
+        if (Array.isArray(value)) {
+            return value.length;
+        }
+
+
+        if (
+            value !== null &&
+            typeof value === "object"
+        ) {
+            return Object.keys(value).length;
+        }
+
+
+        return 0;
+
+    }
+
+
+    /* =====================================================
+       TREE NODE
+    ===================================================== */
+
+    function createTreeNode(
+        key,
+        value,
+        level,
+        parent
+    ) {
+
+        const type =
+            getNodeType(value);
+
+
+        const node =
+            document.createElement("li");
+
+
+        node.className =
+            "json-tree-node";
+
+
+        if (
+            value !== null &&
+            typeof value === "object"
         ) {
 
-            try {
+            const isExpanded =
+                expandedNodes.has(value);
 
-                editor.destroy();
 
-            } catch (error) {
+            const line =
+                document.createElement("div");
 
-                console.warn(
-                    "JSONEditor destroy error:",
-                    error
+
+            line.className =
+                "json-tree-line";
+
+
+            const toggle =
+                document.createElement("button");
+
+
+            toggle.type =
+                "button";
+
+
+            toggle.className =
+                "json-tree-toggle";
+
+
+            toggle.innerHTML = `
+
+                <span class="material-icons">
+                    ${isExpanded
+                        ? "expand_more"
+                        : "chevron_right"}
+                </span>
+
+            `;
+
+
+            toggle.addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+
+                    if (
+                        expandedNodes.has(value)
+                    ) {
+
+                        expandedNodes.delete(
+                            value
+                        );
+
+                    } else {
+
+                        expandedNodes.add(
+                            value
+                        );
+
+                    }
+
+
+                    renderTree();
+
+                }
+            );
+
+
+            line.appendChild(
+                toggle
+            );
+
+
+            const keyElement =
+                document.createElement("span");
+
+
+            keyElement.className =
+                "json-tree-key";
+
+
+            if (key !== null) {
+
+                keyElement.textContent =
+                    Array.isArray(parent)
+                        ? `[${key}]`
+                        : `"${key}"`;
+
+            } else {
+
+                keyElement.textContent =
+                    type === "array"
+                        ? "[root]"
+                        : "{root}";
+
+            }
+
+
+            line.appendChild(
+                keyElement
+            );
+
+
+            line.insertAdjacentHTML(
+                "beforeend",
+                `
+                    <span class="json-tree-meta">
+                        ${type === "array"
+                            ? `[${getObjectSize(value)}]`
+                            : `{${getObjectSize(value)}}`}
+                    </span>
+                `
+            );
+
+
+            node.appendChild(
+                line
+            );
+
+
+            const children =
+                document.createElement("ul");
+
+
+            if (!isExpanded) {
+
+                children.classList.add(
+                    "json-tree-hidden"
+                );
+
+            }
+
+
+            Object.entries(value).forEach(
+                function ([childKey, childValue]) {
+
+                    children.appendChild(
+                        createTreeNode(
+                            childKey,
+                            childValue,
+                            level + 1,
+                            value
+                        )
+                    );
+
+                }
+            );
+
+
+            node.appendChild(
+                children
+            );
+
+
+            return node;
+
+        }
+
+
+        const line =
+            document.createElement("div");
+
+
+        line.className =
+            "json-tree-line";
+
+
+        const spacer =
+            document.createElement("span");
+
+
+        spacer.className =
+            "json-tree-spacer";
+
+
+        line.appendChild(
+            spacer
+        );
+
+
+        if (key !== null) {
+
+            const keyElement =
+                document.createElement("span");
+
+
+            keyElement.className =
+                "json-tree-key";
+
+
+            keyElement.textContent =
+                Array.isArray(parent)
+                    ? `[${key}]`
+                    : `"${key}"`;
+
+
+            line.appendChild(
+                keyElement
+            );
+
+
+            line.insertAdjacentHTML(
+                "beforeend",
+                `
+                    <span class="json-tree-colon">
+                        :
+                    </span>
+                `
+            );
+
+        }
+
+
+        line.insertAdjacentHTML(
+            "beforeend",
+            getValueHTML(value)
+        );
+
+
+        node.appendChild(
+            line
+        );
+
+
+        return node;
+
+    }
+
+
+    /* =====================================================
+       TREE
+    ===================================================== */
+
+    function renderTree() {
+
+        const elements =
+            getElements();
+
+
+        if (!elements.display) {
+            return;
+        }
+
+
+        elements.display.innerHTML =
+            "";
+
+
+        if (jsonData === null) {
+
+            elements.display.innerHTML = `
+
+                <div class="json-viewer-empty">
+
+                    <span class="material-icons">
+                        account_tree
+                    </span>
+
+                    <div>
+                        Enter JSON data to begin.
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+           Root starts expanded.
+        */
+
+        if (
+            jsonData !== null &&
+            typeof jsonData === "object"
+        ) {
+
+            if (
+                !expandedNodes.has(jsonData)
+            ) {
+
+                expandedNodes.add(
+                    jsonData
                 );
 
             }
 
         }
 
-        editor = null;
 
-    }
+        const tree =
+            document.createElement("ul");
 
 
+        tree.className =
+            "json-tree";
 
 
+        if (
+            jsonData !== null &&
+            typeof jsonData === "object"
+        ) {
 
-   /* =========================================================
-   JSONEDITOR TOOLBAR THEME
-   APPLY AFTER JSONEDITOR CREATION
-========================================================= */
+            Object.entries(jsonData).forEach(
+                function ([key, value]) {
 
-function applyJsonEditorToolbarTheme() {
+                    tree.appendChild(
+                        createTreeNode(
+                            key,
+                            value,
+                            0,
+                            jsonData
+                        )
+                    );
 
-    const oldStyle =
-        document.getElementById(
-            "dozni-jsoneditor-theme"
-        );
-
-    if (oldStyle) {
-        oldStyle.remove();
-    }
-
-
-    const style =
-        document.createElement("style");
-
-
-    style.id =
-        "dozni-jsoneditor-theme";
-
-
-    style.textContent = `
-
-        /* TOP TOOLBAR */
-
-        #jsoneditor .jsoneditor-menu {
-            background: var(--card) !important;
-            background-color: var(--card) !important;
-
-            border-color: var(--border) !important;
-
-            color: var(--text) !important;
-        }
-
-
-        /* TOOLBAR BUTTONS */
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-button,
-
-        #jsoneditor .jsoneditor-menu
-        button {
-
-            background: transparent !important;
-
-            background-color: transparent !important;
-
-            color: var(--text) !important;
-
-            border-color: transparent !important;
-        }
-
-
-        /* BUTTON HOVER */
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-button:hover,
-
-        #jsoneditor .jsoneditor-menu
-        button:hover {
-
-            background: var(--bg-soft) !important;
-
-            background-color: var(--bg-soft) !important;
-
-            color: var(--primary) !important;
-        }
-
-
-        /* SEARCH AREA */
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-search {
-
-            background: var(--bg) !important;
-
-            background-color: var(--bg) !important;
-
-            color: var(--text) !important;
-
-            border-color: var(--border) !important;
-        }
-
-
-        /* SEARCH INPUT */
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-search input {
-
-            background: var(--bg) !important;
-
-            background-color: var(--bg) !important;
-
-            color: var(--text) !important;
-
-            border-color: var(--border) !important;
-        }
-
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-search input::placeholder {
-
-            color: var(--text-light) !important;
-        }
-
-
-        /* MODE SELECTOR */
-
-        #jsoneditor .jsoneditor-menu
-        .jsoneditor-modes,
-
-        #jsoneditor .jsoneditor-menu
-        .selectr-selected {
-
-            background: var(--card) !important;
-
-            background-color: var(--card) !important;
-
-            color: var(--text) !important;
-
-            border-color: var(--border) !important;
-        }
-
-
-        /* MODE DROPDOWN */
-
-        #jsoneditor .selectr-options-container {
-
-            background: var(--card) !important;
-
-            background-color: var(--card) !important;
-
-            border-color: var(--border) !important;
-        }
-
-
-        #jsoneditor .selectr-option {
-
-            background: var(--card) !important;
-
-            background-color: var(--card) !important;
-
-            color: var(--text) !important;
-        }
-
-
-        #jsoneditor .selectr-option:hover {
-
-            background: var(--bg-soft) !important;
-
-            background-color: var(--bg-soft) !important;
-
-            color: var(--primary) !important;
-        }
-
-
-        #jsoneditor .selectr-option.selected,
-
-        #jsoneditor .selectr-option.active {
-
-            background: var(--primary) !important;
-
-            background-color: var(--primary) !important;
-
-            color: #ffffff !important;
-        }
-
-    `;
-
-
-    document.head.appendChild(style);
-
-}
-
-
-    /* =====================================================
-       INITIALIZE EDITOR
-    ===================================================== */
-
-    function initializeJsonEditor(data) {
-
-    const elements =
-        getElements();
-
-
-    if (!elements.editor) {
-        return;
-    }
-
-
-    if (
-        typeof window.JSONEditor !==
-        "function"
-    ) {
-
-        showError(
-            "JSON Viewer library failed to load."
-        );
-
-        return;
-
-    }
-
-
-    clearError();
-
-
-    destroyEditor();
-
-
-    editor =
-        new window.JSONEditor(
-            elements.editor,
-            DEFAULT_OPTIONS,
-            data
-        );
-
-
-    /*
-       JSONEditor injects its own CSS
-       when initialized.
-
-       Apply our theme AFTER that.
-    */
-
-    setTimeout(function () {
-
-        applyJsonEditorToolbarTheme();
-
-
-        const expandAllButton =
-            elements.editor.querySelector(
-                ".jsoneditor-expand-all"
+                }
             );
 
+        } else {
 
-        if (expandAllButton) {
-
-            expandAllButton.click();
+            tree.appendChild(
+                createTreeNode(
+                    null,
+                    jsonData,
+                    0,
+                    null
+                )
+            );
 
         }
 
-    }, 100);
 
-}
+        elements.display.appendChild(
+            tree
+        );
+
+
+        applySearch();
+
+    }
+
 
     /* =====================================================
-       MANUAL JSON
+       FORMAT JSON
     ===================================================== */
 
-    function handleManualInput() {
+    function renderCode() {
 
         const elements =
             getElements();
 
 
-        if (!elements.manualInput) {
+        if (!elements.display) {
             return;
         }
 
 
-        const value =
-            elements.manualInput.value;
+        if (jsonData === null) {
 
+            elements.display.innerHTML = `
 
-        /*
-           If URL is currently being used,
-           allow manual input to take over.
-        */
+                <div class="json-viewer-empty">
 
-        if (elements.urlInput) {
+                    <span class="material-icons">
+                        code
+                    </span>
 
-            elements.urlInput.value = "";
+                    Enter JSON data to begin.
+
+                </div>
+
+            `;
+
+            return;
 
         }
 
 
-        if (!value.trim()) {
+        const pre =
+            document.createElement("pre");
 
-            clearError();
+
+        pre.className =
+            "json-viewer-code";
+
+
+        pre.textContent =
+            JSON.stringify(
+                jsonData,
+                null,
+                4
+            );
+
+
+        elements.display.appendChild(
+            pre
+        );
+
+    }
+
+
+    /* =====================================================
+       TEXT MODE
+    ===================================================== */
+
+    function renderText() {
+
+        const elements =
+            getElements();
+
+
+        if (!elements.display) {
+            return;
+        }
+
+
+        const textarea =
+            document.createElement("textarea");
+
+
+        textarea.className =
+            "json-viewer-text";
+
+
+        textarea.value =
+            JSON.stringify(
+                jsonData,
+                null,
+                4
+            );
+
+
+        textarea.addEventListener(
+            "input",
+            function () {
+
+                try {
+
+                    jsonData =
+                        parseJSON(
+                            textarea.value
+                        );
+
+                    clearError();
+
+                } catch (error) {
+
+                    showError(
+                        error.message
+                    );
+
+                }
+
+            }
+        );
+
+
+        elements.display.appendChild(
+            textarea
+        );
+
+    }
+
+
+    /* =====================================================
+       FORM MODE
+    ===================================================== */
+
+    function renderForm() {
+
+        const elements =
+            getElements();
+
+
+        if (!elements.display) {
+            return;
+        }
+
+
+        const pre =
+            document.createElement("pre");
+
+
+        pre.className =
+            "json-viewer-code";
+
+
+        pre.textContent =
+            JSON.stringify(
+                jsonData,
+                null,
+                2
+            );
+
+
+        elements.display.innerHTML = "";
+
+
+        elements.display.appendChild(
+            pre
+        );
+
+    }
+
+
+    /* =====================================================
+       VIEW MODE
+    ===================================================== */
+
+    function renderView() {
+
+        renderTree();
+
+    }
+
+
+    /* =====================================================
+       RENDER CURRENT MODE
+    ===================================================== */
+
+    function renderCurrentMode() {
+
+        if (!jsonData) {
+
+            renderTree();
 
             return;
 
+        }
+
+
+        switch (currentMode) {
+
+            case "code":
+                renderCode();
+                break;
+
+            case "text":
+                renderText();
+                break;
+
+            case "form":
+                renderForm();
+                break;
+
+            case "view":
+                renderView();
+                break;
+
+            case "tree":
+            default:
+                renderTree();
+                break;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SET MODE
+    ===================================================== */
+
+    function setMode(mode) {
+
+        currentMode =
+            mode;
+
+
+        document
+            .querySelectorAll(
+                ".json-viewer-mode"
+            )
+            .forEach(
+                function (button) {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.mode === mode
+                    );
+
+                }
+            );
+
+
+        renderCurrentMode();
+
+    }
+
+
+    /* =====================================================
+       READ INPUT
+    ===================================================== */
+
+    function updateFromInput() {
+
+        const elements =
+            getElements();
+
+
+        if (!elements.input) {
+            return;
         }
 
 
         try {
 
-            const data =
-                preprocessJSON(value);
+            jsonData =
+                parseJSON(
+                    elements.input.value
+                );
 
 
-            initializeJsonEditor(
-                data
-            );
+            clearError();
+
+
+            expandedNodes =
+                new WeakSet();
+
+
+            searchTerm = "";
+
+
+            if (elements.search) {
+
+                elements.search.value = "";
+
+            }
+
+
+            renderCurrentMode();
 
         } catch (error) {
+
+            jsonData = null;
+
 
             showError(
                 "Invalid JSON: " +
@@ -505,10 +959,10 @@ function applyJsonEditorToolbarTheme() {
 
 
     /* =====================================================
-       URL JSON
+       LOAD URL
     ===================================================== */
 
-    async function handleURLInput() {
+    async function loadFromURL() {
 
         const elements =
             getElements();
@@ -524,7 +978,13 @@ function applyJsonEditorToolbarTheme() {
 
 
         if (!url) {
+
+            showError(
+                "Enter a JSON URL first."
+            );
+
             return;
+
         }
 
 
@@ -540,7 +1000,7 @@ function applyJsonEditorToolbarTheme() {
             if (!response.ok) {
 
                 throw new Error(
-                    "Unable to load the JSON URL. HTTP " +
+                    "HTTP " +
                     response.status
                 );
 
@@ -551,9 +1011,13 @@ function applyJsonEditorToolbarTheme() {
                 await response.json();
 
 
-            if (elements.manualInput) {
+            jsonData =
+                data;
 
-                elements.manualInput.value =
+
+            if (elements.input) {
+
+                elements.input.value =
                     JSON.stringify(
                         data,
                         null,
@@ -563,10 +1027,21 @@ function applyJsonEditorToolbarTheme() {
             }
 
 
-            initializeJsonEditor(
-                data
-            );
+            expandedNodes =
+                new WeakSet();
 
+
+            searchTerm = "";
+
+
+            if (elements.search) {
+
+                elements.search.value = "";
+
+            }
+
+
+            renderCurrentMode();
 
         } catch (error) {
 
@@ -581,25 +1056,163 @@ function applyJsonEditorToolbarTheme() {
 
 
     /* =====================================================
-       INITIAL SAMPLE
+       EXPAND ALL
     ===================================================== */
 
-    function initializeFromTextarea() {
+    function expandAll() {
+
+        if (
+            jsonData === null ||
+            typeof jsonData !== "object"
+        ) {
+            return;
+        }
+
+
+        expandedNodes =
+            new WeakSet();
+
+
+        function walk(value) {
+
+            if (
+                value !== null &&
+                typeof value === "object"
+            ) {
+
+                expandedNodes.add(
+                    value
+                );
+
+
+                Object.values(value).forEach(
+                    walk
+                );
+
+            }
+
+        }
+
+
+        walk(jsonData);
+
+
+        renderTree();
+
+    }
+
+
+    /* =====================================================
+       COLLAPSE ALL
+    ===================================================== */
+
+    function collapseAll() {
+
+        expandedNodes =
+            new WeakSet();
+
+
+        renderTree();
+
+    }
+
+
+    /* =====================================================
+       SORT OBJECT
+    ===================================================== */
+
+    function sortObject(value) {
+
+        if (
+            value === null ||
+            typeof value !== "object"
+        ) {
+
+            return value;
+
+        }
+
+
+        if (Array.isArray(value)) {
+
+            return value.map(
+                sortObject
+            );
+
+        }
+
+
+        const result = {};
+
+
+        Object.keys(value)
+            .sort(function (a, b) {
+
+                return a.localeCompare(
+                    b
+                );
+
+            })
+            .forEach(function (key) {
+
+                result[key] =
+                    sortObject(
+                        value[key]
+                    );
+
+            });
+
+
+        return result;
+
+    }
+
+
+    function sortJSON() {
+
+        if (jsonData === null) {
+            return;
+        }
+
+
+        jsonData =
+            sortObject(
+                jsonData
+            );
+
 
         const elements =
             getElements();
 
 
-        if (!elements.manualInput) {
-            return;
+        if (elements.input) {
+
+            elements.input.value =
+                JSON.stringify(
+                    jsonData,
+                    null,
+                    2
+                );
+
         }
 
 
-        const initialValue =
-            elements.manualInput.value.trim();
+        renderCurrentMode();
+
+    }
 
 
-        if (!initialValue) {
+    /* =====================================================
+       FORMAT INPUT
+    ===================================================== */
+
+    function formatJSON() {
+
+        const elements =
+            getElements();
+
+
+        if (!elements.input) {
             return;
         }
 
@@ -607,14 +1220,27 @@ function applyJsonEditorToolbarTheme() {
         try {
 
             const data =
-                preprocessJSON(
-                    initialValue
+                parseJSON(
+                    elements.input.value
                 );
 
 
-            initializeJsonEditor(
-                data
-            );
+            jsonData =
+                data;
+
+
+            elements.input.value =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+
+
+            clearError();
+
+
+            renderCurrentMode();
 
         } catch (error) {
 
@@ -622,6 +1248,69 @@ function applyJsonEditorToolbarTheme() {
                 "Invalid JSON: " +
                 error.message
             );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    function applySearch() {
+
+        const term =
+            searchTerm.trim().toLowerCase();
+
+
+        if (!term) {
+            return;
+        }
+
+
+        const lines =
+            document.querySelectorAll(
+                ".json-tree-line"
+            );
+
+
+        lines.forEach(
+            function (line) {
+
+                const text =
+                    line.textContent
+                        .toLowerCase();
+
+
+                if (
+                    text.includes(term)
+                ) {
+
+                    line.classList.add(
+                        "json-tree-search-match"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    function handleSearch(value) {
+
+        searchTerm =
+            String(value || "");
+
+
+        if (
+            currentMode === "tree" ||
+            currentMode === "view"
+        ) {
+
+            renderCurrentMode();
 
         }
 
@@ -638,23 +1327,27 @@ function applyJsonEditorToolbarTheme() {
             getElements();
 
 
-        if (elements.manualInput) {
+        if (elements.input) {
 
-            elements.manualInput.addEventListener(
+            elements.input.addEventListener(
                 "input",
-                handleManualInput
+                updateFromInput
+            );
+
+        }
+
+
+        if (elements.loadButton) {
+
+            elements.loadButton.addEventListener(
+                "click",
+                loadFromURL
             );
 
         }
 
 
         if (elements.urlInput) {
-
-            elements.urlInput.addEventListener(
-                "change",
-                handleURLInput
-            );
-
 
             elements.urlInput.addEventListener(
                 "keydown",
@@ -666,9 +1359,87 @@ function applyJsonEditorToolbarTheme() {
 
                         event.preventDefault();
 
-                        handleURLInput();
+                        loadFromURL();
 
                     }
+
+                }
+            );
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".json-viewer-mode"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            setMode(
+                                button.dataset.mode
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        if (elements.expand) {
+
+            elements.expand.addEventListener(
+                "click",
+                expandAll
+            );
+
+        }
+
+
+        if (elements.collapse) {
+
+            elements.collapse.addEventListener(
+                "click",
+                collapseAll
+            );
+
+        }
+
+
+        if (elements.format) {
+
+            elements.format.addEventListener(
+                "click",
+                formatJSON
+            );
+
+        }
+
+
+        if (elements.sort) {
+
+            elements.sort.addEventListener(
+                "click",
+                sortJSON
+            );
+
+        }
+
+
+        if (elements.search) {
+
+            elements.search.addEventListener(
+                "input",
+                function () {
+
+                    handleSearch(
+                        elements.search.value
+                    );
 
                 }
             );
@@ -682,30 +1453,28 @@ function applyJsonEditorToolbarTheme() {
        INIT
     ===================================================== */
 
-    function initJsonViewer() {
+    function init() {
 
         initEvents();
 
-        initializeFromTextarea();
+        updateFromInput();
 
     }
 
 
     if (
-        document.readyState ===
-        "loading"
+        document.readyState === "loading"
     ) {
 
         document.addEventListener(
             "DOMContentLoaded",
-            initJsonViewer
+            init
         );
 
     } else {
 
-        initJsonViewer();
+        init();
 
     }
-
 
 })();
