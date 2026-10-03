@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Random Color Generator Online - HEX, RGB, HSL, HSV Color Codes | Dozni
+    </title>
+
+    <meta
+        name="description"
+        content="Generate random colors instantly and get HEX, RGB, HSL and HSV color codes. Create unlimited colors online with Dozni Random Color Generator."
+    >
+
+    <meta
+        name="keywords"
+        content="random color generator, color generator, hex color generator, rgb color generator, hsl color generator, hsv color generator, random hex color"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href="https://dtools.dozni.com/tools/random-color/"
+    >
+
+
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
+
+
+    <!-- TinyColor -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/tinycolor2@1.4.2/dist/tinycolor-min.js">
+    </script>
+
+
+    <!-- SweetAlert -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css"
+    >
+
+
+    <!-- Global Theme -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+    <!-- Universal Tool Styling -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/tools.css"
+    >
+
+    <!-- Tool Styling -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/random-color.css"
+    >
+
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Random Color Generator Online - HEX, RGB, HSL, HSV"
+    >
+
+    <meta
+        property="og:description"
+        content="Generate random colors instantly with HEX, RGB, HSL and HSV values."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://dtools.dozni.com/tools/random-color/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Dozni Digital Tools"
+    >
+
+
+    <!-- Twitter -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Random Color Generator Online"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Generate random HEX, RGB, HSL and HSV colors instantly."
+    >
+
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Random Color Generator",
+        "url": "https://dtools.dozni.com/tools/random-color/",
+        "description": "Free random color generator that creates colors in HEX, RGB, HSL and HSV formats.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en"
+    }
+    </script>
+
+</head>
+
+
+<body
+    class="tool-page random-color-tool-page"
+    data-tool="random-color"
+>
+
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             TOOL
+             ===================================================== -->
+
+        <section class="random-color-page">
+
+            <div class="random-color-container">
+
+                <div class="random-color-card">
+
+
+                    <!-- Tool Header -->
+
+                    <div class="random-color-header">
+
+                        <h1>
+                            Random Color Generator
+                        </h1>
+
+                        <p>
+                            Generate a random color and get its HEX, RGB,
+                            HSL and HSV values instantly.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Main Tool -->
+
+                    <div class="random-color-tool">
+
+
+                        <!-- Color Preview -->
+
+                        <div class="random-color-preview-section">
+
+                            <div
+                                id="colorBox"
+                                class="random-color-preview"
+                                title="Click to copy HEX color"
+                            ></div>
+
+                            <p class="random-color-copy-hint">
+                                Click the color to copy HEX
+                            </p>
+
+                        </div>
+
+
+                        <!-- Color Values -->
+
+                        <div class="random-color-values">
+
+
+                            <div class="random-color-value-row">
+
+                                <label for="hexOutput">
+                                    HEX
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hexOutput"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="random-color-value-row">
+
+                                <label for="rgbOutput">
+                                    RGB
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="rgbOutput"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="random-color-value-row">
+
+                                <label for="hslOutput">
+                                    HSL
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hslOutput"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="random-color-value-row">
+
+                                <label for="hsvOutput">
+                                    HSV
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hsvOutput"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <p class="random-color-click-hint">
+                                Click a color value to copy it
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Generate -->
+
+                    <div class="random-color-actions">
+
+                        <button
+                            type="button"
+                            id="generateBtn"
+                            class="random-color-generate-button"
+                        >
+                            <span class="material-icons">
+                                refresh
+                            </span>
+
+                            New Random Color
+                        </button>
+
+                    </div>
+
+
+                    <!-- Related Color Tool -->
+
+                    <div class="random-color-related">
+
+                        <span>
+                            Work with this color:
+                        </span>
+
+                        <a href="../color-shades/">
+                            Get Shades
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Shared Content -->
+        <div id="tool-content-component"></div>
+
+        <div id="features"></div>
+
+        <div id="related-tools"></div>
+
+        <div id="faq"></div>
+
+
+    </main>
+
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+
+    <!-- SweetAlert -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.js">
+    </script>
+
+
+    <!-- Tool JS -->
+    <script src="../../assets/js/random-color.js"></script>
+
+    <!-- Universal Tool JS -->
+    <script src="../../assets/js/tools.js"></script>
+
+    <!-- Shared Components -->
+    <script src="../../assets/js/components.js"></script>
+
+</body>
+
+</html>
