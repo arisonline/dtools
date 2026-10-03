@@ -1,46 +1,10 @@
 /* =========================================================
    JSON VIEWER
-   JSONEditor based
    ========================================================= */
 
 (function () {
 
-    const SAMPLE_JSON = {
-        id: 1001,
-        type: "donut",
-        name: "Cake",
-        description: "http://en.wikipedia.org/wiki/Doughnut",
-        price: 2.55,
-        available: {
-            store: 42,
-            warehouse: 600
-        },
-        topping: [
-            {
-                id: 5001,
-                type: "None"
-            },
-            {
-                id: 5002,
-                type: "Glazed"
-            },
-            {
-                id: 5005,
-                type: "Sugar"
-            },
-            {
-                id: 5003,
-                type: "Chocolate"
-            },
-            {
-                id: 5004,
-                type: "Maple"
-            }
-        ]
-    };
-
-
-    let editor = null;
+    "use strict";
 
 
     /* =====================================================
@@ -63,6 +27,10 @@
         document.getElementById("jsonViewerError");
 
 
+    let editor = null;
+    let historyObserver = null;
+
+
     /* =====================================================
        ERROR
        ===================================================== */
@@ -72,7 +40,8 @@
         if (!errorBox) return;
 
         errorBox.textContent = message;
-        errorBox.classList.add("show");
+
+        errorBox.style.display = "block";
     }
 
 
@@ -81,7 +50,8 @@
         if (!errorBox) return;
 
         errorBox.textContent = "";
-        errorBox.classList.remove("show");
+
+        errorBox.style.display = "none";
     }
 
 
@@ -91,185 +61,305 @@
 
     function preprocessJSON(jsonString) {
 
-        let text = String(jsonString || "").trim();
+        if (!jsonString) {
+            return null;
+        }
 
-        if (!text) {
-            throw new Error("JSON input is empty.");
+        let cleaned = jsonString.trim();
+
+        if (!cleaned) {
+            return null;
         }
 
 
         /*
-         * Replace single quoted strings
+         * Preserve the behavior of the original tool:
+         * allow single quotes and simple unquoted keys.
          */
-        text = text.replace(
-            /'([^'\\]*(?:\\.[^'\\]*)*)'/g,
-            function (_, value) {
-                return '"' +
-                    value
-                        .replace(/"/g, '\\"')
-                        .replace(/\\"/g, '"')
-                    +
-                    '"';
-            }
+
+        cleaned = cleaned.replace(
+            /'/g,
+            '"'
         );
 
 
-        /*
-         * Quote unquoted object keys
-         */
-        text = text.replace(
-            /([{,]\s*)([A-Za-z_$][A-Za-z0-9_$]*)\s*:/g,
-            '$1"$2":'
+        cleaned = cleaned.replace(
+            /([{,]\s*)([A-Za-z_$][\w$-]*)(\s*:)/g,
+            '$1"$2"$3'
         );
 
 
-        return text;
+        return JSON.parse(cleaned);
     }
 
 
     /* =====================================================
-       PARSE JSON
+       HISTORY BUTTON STATE
        ===================================================== */
 
-    function parseJSON(value) {
+    function isHistoryButtonAvailable(button) {
 
-        const processed =
-            preprocessJSON(value);
+        if (!button) {
+            return false;
+        }
 
-        return JSON.parse(processed);
+
+        if (button.disabled) {
+            return false;
+        }
+
+
+        if (
+            button.getAttribute("aria-disabled") === "true"
+        ) {
+            return false;
+        }
+
+
+        if (
+            button.classList.contains(
+                "jsoneditor-disabled"
+            )
+        ) {
+            return false;
+        }
+
+
+        return true;
     }
+
+
+    function updateHistoryButtons() {
+
+        const undoButton =
+            document.querySelector(
+                "#jsoneditor .jsoneditor-undo"
+            );
+
+        const redoButton =
+            document.querySelector(
+                "#jsoneditor .jsoneditor-redo"
+            );
+
+
+        if (undoButton) {
+
+            undoButton.classList.toggle(
+                "json-history-available",
+                isHistoryButtonAvailable(
+                    undoButton
+                )
+            );
+        }
+
+
+        if (redoButton) {
+
+            redoButton.classList.toggle(
+                "json-history-available",
+                isHistoryButtonAvailable(
+                    redoButton
+                )
+            );
+        }
+    }
+
+
+    /* =====================================================
+       WATCH HISTORY
+       ===================================================== */
+
+    function watchHistoryButtons() {
+
+        if (historyObserver) {
+
+            historyObserver.disconnect();
+
+            historyObserver = null;
+        }
+
+
+        const menu =
+            document.querySelector(
+                "#jsoneditor .jsoneditor-menu"
+            );
+
+
+        if (!menu) {
+            return;
+        }
+
+
+        historyObserver =
+            new MutationObserver(function () {
+
+                updateHistoryButtons();
+
+            });
+
+
+        historyObserver.observe(
+            menu,
+            {
+                subtree: true,
+
+                attributes: true,
+
+                attributeFilter: [
+                    "disabled",
+                    "class",
+                    "aria-disabled"
+                ]
+            }
+        );
+
+
+        updateHistoryButtons();
+    }
+
+
+    /* =====================================================
+       EDITOR OPTIONS
+       ===================================================== */
+
+    const options = {
+
+        mode: "tree",
+
+        modes: [
+            "code",
+            "form",
+            "text",
+            "tree",
+            "view"
+        ],
+
+        history: true,
+
+        mainMenuBar: true,
+
+        navigationBar: false,
+
+        statusBar: true,
+
+        search: true,
+
+        indentation: 4,
+
+        escapeUnicode: true,
+
+
+        onError: function (err) {
+
+            showError(
+                err && err.message
+                    ? err.message
+                    : String(err)
+            );
+        },
+
+
+        onChange: function () {
+
+            clearError();
+
+            setTimeout(
+                updateHistoryButtons,
+                0
+            );
+        }
+    };
 
 
     /* =====================================================
        INITIALIZE EDITOR
        ===================================================== */
 
-       function initializeEditor(data) {
-   
-       if (
-           typeof window.JSONEditor === "undefined" ||
-           !editorContainer
-       ) {
-           showError(
-               "JSONEditor could not be loaded."
-           );
-   
-           return;
-       }
-   
-   
-       clearError();
-   
-   
-       if (editor) {
-   
-           try {
-               editor.destroy();
-           } catch (error) {
-               console.warn(
-                   "Could not destroy JSONEditor:",
-                   error
-               );
-           }
-   
-           editor = null;
-       }
-   
-   
-       const options = {
-   
-           mode: "tree",
-   
-           modes: [
-               "code",
-               "form",
-               "text",
-               "tree",
-               "view"
-           ],
-   
-           history: true,
-   
-           mainMenuBar: true,
-   
-           navigationBar: false,
-   
-           statusBar: false,
-   
-           search: true,
-   
-           indentation: 4,
-   
-           escapeUnicode: true,
-   
-           onError: function (err) {
-   
-               showError(
-                   err && err.message
-                       ? err.message
-                       : String(err)
-               );
-           },
-   
-           onChange: function () {
-   
-               console.log(
-                   "JSON changed"
-               );
-           }
-       };
-   
-   
-       try {
-   
-           editor =
-               new window.JSONEditor(
-                   editorContainer,
-                   options,
-                   data
-               );
-   
-   
-           /*
-            * Fully expand the initial JSON
-            */
-           setTimeout(function () {
-   
-               if (
-                   editor &&
-                   typeof editor.expandAll === "function"
-               ) {
-   
-                   editor.expandAll();
-   
-               } else {
-   
-                   /*
-                    * Fallback for this JSONEditor version
-                    */
-                   const expandButton =
-                       document.querySelector(
-                           "#jsoneditor .jsoneditor-expand-all"
-                       );
-   
-                   if (expandButton) {
-                       expandButton.click();
-                   }
-   
-               }
-   
-           }, 50);
-   
-   
-       } catch (error) {
-   
-           console.error(error);
-   
-           showError(
-               "Unable to create JSON editor."
-           );
-       }
-   }
+    function initializeJsonEditor(data) {
+
+        clearError();
+
+
+        if (!editorContainer) {
+            return;
+        }
+
+
+        /*
+         * Destroy previous editor
+         */
+
+        if (editor) {
+
+            try {
+                editor.destroy();
+            } catch (error) {
+                // Ignore destroy error
+            }
+
+            editor = null;
+        }
+
+
+        /*
+         * Create new editor
+         */
+
+        editor =
+            new window.JSONEditor(
+                editorContainer,
+                options,
+                data
+            );
+
+
+        /*
+         * Wait until JSONEditor builds toolbar
+         */
+
+        setTimeout(function () {
+
+            if (!editor) {
+                return;
+            }
+
+
+            /*
+             * Expand everything initially
+             */
+
+            if (
+                typeof editor.expandAll ===
+                "function"
+            ) {
+
+                editor.expandAll();
+
+            } else {
+
+                const expandButton =
+                    document.querySelector(
+                        "#jsoneditor .jsoneditor-expand-all"
+                    );
+
+
+                if (expandButton) {
+
+                    expandButton.click();
+                }
+            }
+
+
+            /*
+             * Start watching Undo / Redo
+             */
+
+            watchHistoryButtons();
+
+            updateHistoryButtons();
+
+        }, 100);
+    }
 
 
     /* =====================================================
@@ -278,7 +368,10 @@
 
     function handleManualInput() {
 
-        if (!manualInput) return;
+        if (!manualInput) {
+            return;
+        }
+
 
         const value =
             manualInput.value.trim();
@@ -286,9 +379,7 @@
 
         if (!value) {
 
-            clearError();
-
-            initializeEditor({});
+            initializeJsonEditor({});
 
             return;
         }
@@ -296,28 +387,111 @@
 
         try {
 
-            const parsed =
-                parseJSON(value);
+            const jsonData =
+                preprocessJSON(value);
 
-            initializeEditor(parsed);
+
+            initializeJsonEditor(jsonData);
 
         } catch (error) {
 
             showError(
                 "Invalid JSON: " +
-                (error.message || error)
+                error.message
             );
+
+            /*
+             * Keep the editor visible with empty object
+             */
+
+            initializeJsonEditor({});
         }
     }
 
 
     /* =====================================================
-       LOAD URL
+       FETCH JSON FROM URL
        ===================================================== */
 
-    async function loadJSONFromURL() {
+    async function fetchDataFromURL(url) {
 
-        if (!urlInput) return;
+        clearError();
+
+
+        if (!url) {
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(url);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP " +
+                    response.status +
+                    " - " +
+                    response.statusText
+                );
+            }
+
+
+            const text =
+                await response.text();
+
+
+            const data =
+                preprocessJSON(text);
+
+
+            initializeJsonEditor(data);
+
+
+            /*
+             * Put fetched JSON into input area too
+             */
+
+            if (manualInput) {
+
+                manualInput.value =
+                    JSON.stringify(
+                        data,
+                        null,
+                        4
+                    );
+            }
+
+
+        } catch (error) {
+
+            showError(
+                "Unable to load JSON: " +
+                error.message
+            );
+
+
+            /*
+             * Keep current editor instead
+             * of destroying it
+             */
+        }
+    }
+
+
+    /* =====================================================
+       LOAD URL BUTTON
+       ===================================================== */
+
+    function handleURLInput() {
+
+        if (!urlInput) {
+            return;
+        }
+
 
         const url =
             urlInput.value.trim();
@@ -333,87 +507,7 @@
         }
 
 
-        clearError();
-
-
-        if (loadUrlButton) {
-
-            loadUrlButton.disabled = true;
-            loadUrlButton.textContent =
-                "Loading...";
-        }
-
-
-        try {
-
-            const response =
-                await fetch(url, {
-                    method: "GET"
-                });
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "HTTP " +
-                    response.status +
-                    " " +
-                    response.statusText
-                );
-            }
-
-
-            const text =
-                await response.text();
-
-
-            const data =
-                parseJSON(text);
-
-
-            /*
-             * Disable manual input exactly like
-             * the original tool behavior.
-             */
-            if (manualInput) {
-
-                manualInput.disabled = true;
-
-                manualInput.value =
-                    JSON.stringify(
-                        data,
-                        null,
-                        4
-                    );
-            }
-
-
-            initializeEditor(data);
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            showError(
-                "Unable to load JSON URL: " +
-                (error.message || error)
-            );
-
-            if (manualInput) {
-                manualInput.disabled = false;
-            }
-
-        } finally {
-
-            if (loadUrlButton) {
-
-                loadUrlButton.disabled = false;
-
-                loadUrlButton.textContent =
-                    "Load";
-            }
-        }
+        fetchDataFromURL(url);
     }
 
 
@@ -427,28 +521,8 @@
             "input",
             function () {
 
-                /*
-                 * Do not recreate the editor for every
-                 * tiny character when the JSON is invalid.
-                 */
-                try {
+                handleManualInput();
 
-                    const parsed =
-                        parseJSON(
-                            manualInput.value
-                        );
-
-                    clearError();
-
-                    initializeEditor(parsed);
-
-                } catch (error) {
-
-                    showError(
-                        "Invalid JSON: " +
-                        (error.message || error)
-                    );
-                }
             }
         );
     }
@@ -458,7 +532,7 @@
 
         loadUrlButton.addEventListener(
             "click",
-            loadJSONFromURL
+            handleURLInput
         );
     }
 
@@ -469,8 +543,13 @@
             "keydown",
             function (event) {
 
-                if (event.key === "Enter") {
-                    loadJSONFromURL();
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    handleURLInput();
                 }
             }
         );
@@ -478,30 +557,35 @@
 
 
     /* =====================================================
-       START
+       INITIAL LOAD
        ===================================================== */
 
-    function initJSONViewer() {
+    window.addEventListener(
+        "load",
+        function () {
 
-        if (!editorContainer) return;
+            let initialData = {};
 
-        initializeEditor(SAMPLE_JSON);
-    }
+            try {
+
+                initialData =
+                    preprocessJSON(
+                        manualInput
+                            ? manualInput.value
+                            : "{}"
+                    ) || {};
+
+            } catch (error) {
+
+                initialData = {};
+            }
 
 
-    if (
-        document.readyState ===
-        "loading"
-    ) {
+            initializeJsonEditor(
+                initialData
+            );
+        }
+    );
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            initJSONViewer
-        );
-
-    } else {
-
-        initJSONViewer();
-    }
 
 })();
