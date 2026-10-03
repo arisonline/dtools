@@ -1223,16 +1223,16 @@ const toolsData = [
       {
        id: "random-color",
    
-       name: "Random Color Generator",
+       name: "Any Random Color Generator",
    
        url: "tools/random-color/",
    
        category: "Color",
    
        description:
-           "Generate random colors instantly and get HEX, RGB, HSL and HSV color codes.",
+           "Want a easy and quick of color tool? Generate random colors instantly and get HEX, RGB, HSL, and HSV color codes.",
    
-       icon: "palette",
+       icon: "youtube_searched_for",
    
        popular: true,
    
@@ -1248,45 +1248,21 @@ const toolsData = [
    
        howTo: [
            "When you refresh or load this page, a new random color will be generated for you every time.",
+   
            "Also, a new random color will be generated when you click the 'New Random Color' button.",
+   
            "Click to copy the value of the selected color in HEX, RGB, HSL, or HSV.",
+   
            "Lastly, you can use other tools to work with the current color such as getting shades, changing hues, etc. Or you can change color families such as pastel or material, by selecting the menu presented above.",
+   
            "In case your browser does not support our webpage or the screen looks blank, please refresh the page."
        ],
    
        credits: [],
    
        content: `
-           <div class="tool-description-header">
    
-               <div class="tool-description-title">
-   
-                   <span class="material-icons">
-                       youtube_searched_for
-                   </span>
-   
-                   <span>
-                       Any Random Color Generator
-                   </span>
-   
-               </div>
-   
-               <div class="tool-description-categories">
-                   Categories →
-                   <a href="https://digital-tool.dozni.com/?category=Color">
-                       Color Tools
-                   </a>
-               </div>
-   
-           </div>
-   
-   
-           <hr class="tool-description-divider">
-   
-   
-           <h3>
-               Introduction to the Random Color Generator
-           </h3>
+           <h3>Introduction to the Random Color Generator</h3>
    
            <p>
                Want a easy and quick of color tool? Our Random Color Generator
@@ -1304,13 +1280,10 @@ const toolsData = [
                height="240"
                loading="lazy"
                decoding="async"
-               class="tool-description-image"
            >
    
    
-           <h3>
-               How It Works
-           </h3>
+           <h3>How It Works</h3>
    
            <p>
                Our tool is like a magical color picker. When you click the
@@ -1320,9 +1293,7 @@ const toolsData = [
            </p>
    
    
-           <h3>
-               Play with the Color tools
-           </h3>
+           <h3>Play with the Color tools</h3>
    
            <p>
                You can do cool things with your chosen color. Like make it Lighter,
@@ -1333,26 +1304,25 @@ const toolsData = [
            </p>
    
    
-           <h3>
-               How to Make the Random Color Tool
-           </h3>
+           <h3>How to Make the Random Color Tool</h3>
    
            <p>
                It is not a rocket science to create this tool. You can also make it,
                by using some lines of code. In order to get a random color, you can
-               use a random function and then generate random numbers between 0-255
-               for Red, Green and Blue (RGB).
+               use a random function and then generate random numbers between
+               0-255 for Red, Green and Blue (RGB).
            </p>
+   
    
            <p>
                If you're an coder, check this below example code for details:
            </p>
    
    
-           <pre><code>random_color = { r: Random(0, 255), g: Random(0, 255), b: Random(0, 255) }</code></pre>
+           <pre class="tool-code"><code>random_color = { r: Random(0, 255), g: Random(0, 255), b: Random(0, 255) }</code></pre>
    
    
-           <div class="tool-description-note">
+           <div class="tool-note">
    
                <strong>Note:</strong>
    
@@ -1361,15 +1331,16 @@ const toolsData = [
                previous input data.
    
            </div>
+   
        `,
    
        faqs: [
            {
                question:
-                   "What formats does the Random Color Generator provide?",
+                   "What formats are available in the Random Color Generator?",
    
                answer:
-                   "The tool provides HEX, RGB, HSL, and HSV color codes."
+                   "The Random Color Generator provides HEX, RGB, HSL, and HSV color codes."
            },
    
            {
@@ -1377,15 +1348,23 @@ const toolsData = [
                    "How do I generate a new random color?",
    
                answer:
-                   "A new color is generated when the page loads, and you can generate another one by clicking the 'New Random Color' button."
+                   "A new random color is generated when the page loads. You can also click the 'New Random Color' button."
            },
    
            {
                question:
-                   "How can I copy a color code?",
+                   "How do I copy a color code?",
    
                answer:
                    "Click the HEX, RGB, HSL, or HSV color value to copy it."
+           },
+   
+           {
+               question:
+                   "Does the tool store my color data?",
+   
+               answer:
+                   "The color generation and conversion happen inside your browser."
            }
        ]
    },
