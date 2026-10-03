@@ -1,119 +1,66 @@
 /* =========================================================
    JSON VIEWER
-   Single tool section
-   45% Input / 55% Output
-   Theme compatible
    ========================================================= */
-
-
-/* =========================================================
-   PAGE
-   ========================================================= */
-
-.json-viewer-tool-page {
-    margin: 0;
-    padding: 0;
-}
 
 .json-viewer-page {
     width: 100%;
-    box-sizing: border-box;
-    padding: 28px 20px 0;
+    padding: 20px 0 40px;
 }
 
 .json-viewer-container {
     width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
-
-
-/* =========================================================
-   ONE COMPLETE TOOL SECTION
-   ========================================================= */
 
 .json-viewer-card {
-    width: 100%;
-    box-sizing: border-box;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
+    width: min(1200px, 94%);
 }
 
 
 /* =========================================================
-   URL SECTION
-   No separate card / no separate shadow
+   URL / MANUAL INPUT HEADER
    ========================================================= */
 
 .json-viewer-input-area {
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 17px 20px;
-
     background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
 
-    border: 0;
-
-    border-bottom: 1px solid var(--border);
-
-    border-radius: 0;
-
-    box-shadow: none;
-
-    margin: 0;
+    padding: 16px;
+    margin-bottom: 2px;
 }
 
 .json-viewer-input-area label {
     display: block;
 
-    margin: 0 0 8px;
-
     color: var(--text);
-
     font-size: 14px;
-
     font-weight: 600;
+
+    margin-bottom: 8px;
 }
 
 .json-url-row {
     display: flex;
-
-    width: 100%;
-
     gap: 8px;
-
-    box-sizing: border-box;
+    width: 100%;
 }
 
 #urlInput {
     flex: 1;
 
-    width: 100%;
-
     min-width: 0;
-
     height: 38px;
-
-    box-sizing: border-box;
 
     padding: 0 12px;
 
-    background: var(--bg);
-
-    color: var(--text);
-
     border: 1px solid var(--border);
+    border-radius: 8px;
 
-    border-radius: 7px;
+    background: var(--bg);
+    color: var(--text);
 
     outline: none;
 
@@ -124,60 +71,42 @@
     border-color: var(--primary);
 }
 
-#urlInput::placeholder {
-    color: var(--text-light);
-}
-
 .json-load-button {
-    flex: 0 0 auto;
-
     height: 38px;
 
     padding: 0 18px;
 
-    box-sizing: border-box;
-
-    border: 1px solid var(--primary);
-
-    border-radius: 7px;
+    border: none;
+    border-radius: 8px;
 
     background: var(--primary);
-
     color: #fff;
 
     font-size: 14px;
-
     font-weight: 600;
 
     cursor: pointer;
 
     transition:
         background-color .15s ease,
-        border-color .15s ease;
+        transform .15s ease;
 }
 
 .json-load-button:hover {
     background: var(--primary-dark);
-
-    border-color: var(--primary-dark);
 }
 
-.json-load-button:disabled {
-    opacity: .65;
-
-    cursor: not-allowed;
+.json-load-button:active {
+    transform: translateY(1px);
 }
 
 .json-manual-label {
-    margin-top: 16px !important;
-
-    margin-bottom: 0 !important;
+    margin-top: 14px;
 }
 
 
 /* =========================================================
-   INPUT / OUTPUT
-   ONE CONTINUOUS SECTION
+   EDITOR MAIN LAYOUT
    ========================================================= */
 
 .json-viewer-editor-layout {
@@ -185,25 +114,21 @@
 
     width: 100%;
 
-    min-height: 560px;
-
-    box-sizing: border-box;
+    min-height: 500px;
 
     background: var(--card);
 
-    border: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
 
-    border-radius: 0;
-
-    box-shadow: none;
+    box-shadow: var(--shadow);
 
     overflow: hidden;
 }
 
 
 /* =========================================================
-   LEFT INPUT
-   45%
+   LEFT INPUT PANEL
    ========================================================= */
 
 .json-viewer-input-panel {
@@ -211,77 +136,49 @@
 
     min-width: 0;
 
-    box-sizing: border-box;
-
-    background: var(--bg);
-
-    border: 0;
-
     border-right: 1px solid var(--border);
+
+    background: var(--card);
 }
 
 .json-manual-input {
     display: block;
 
     width: 100%;
+    height: 100%;
+    min-height: 500px;
 
-    height: 560px;
-
-    min-height: 560px;
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 15px;
+    padding: 14px;
 
     resize: none;
 
-    overflow: auto;
-
+    border: none;
     outline: none;
 
-    border: 0;
-
-    border-radius: 0;
-
-    background: var(--bg);
+    background: var(--card);
 
     color: var(--text);
 
     font-family:
         Monaco,
+        Menlo,
         Consolas,
         "Courier New",
         monospace;
 
     font-size: 13px;
-
     line-height: 1.55;
 
-    tab-size: 4;
-}
-
-.json-manual-input:focus {
-    outline: none;
-
-    border: 0;
+    box-sizing: border-box;
 }
 
 .json-manual-input::placeholder {
     color: var(--text-light);
 }
 
-.json-manual-input:disabled {
-    opacity: .65;
-
-    cursor: not-allowed;
-}
-
 
 /* =========================================================
-   RIGHT OUTPUT
-   55%
+   RIGHT OUTPUT PANEL
    ========================================================= */
 
 .json-viewer-output-panel {
@@ -289,25 +186,228 @@
 
     min-width: 0;
 
-    box-sizing: border-box;
-
     background: var(--card);
-
-    border: 0;
-
-    overflow: hidden;
 }
 
 .json-editor-container {
     width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
 
-    height: 560px;
 
-    min-height: 560px;
+/* =========================================================
+   JSONEDITOR BASE
+   ========================================================= */
 
-    box-sizing: border-box;
+/*
+   Keep JSONEditor native structure/icons.
+   Only recolor the toolbar.
+*/
 
-    overflow: hidden;
+#jsoneditor {
+    width: 100%;
+    height: 100%;
+
+    min-height: 500px;
+
+    font-size: 12px;
+
+    background: var(--card);
+}
+
+
+/* =========================================================
+   EXACT-STYLE JSONEDITOR TOOLBAR
+   ========================================================= */
+
+#jsoneditor .jsoneditor {
+    border: thin solid #f8b404 !important;
+}
+
+
+/*
+   Main toolbar
+*/
+
+#jsoneditor .jsoneditor-menu {
+    background-color: #f8b404 !important;
+
+    color: #fff !important;
+
+    border: thin solid #f8b404 !important;
+
+    min-height: 35px !important;
+}
+
+
+/*
+   Keep native JSONEditor buttons/icons
+*/
+
+#jsoneditor .jsoneditor-menu .jsoneditor-button {
+    color: #fff !important;
+}
+
+
+/*
+   Search area
+*/
+
+#jsoneditor .jsoneditor-menu .jsoneditor-search {
+    background-color: #f8b404 !important;
+    color: #fff !important;
+}
+
+
+/*
+   Native toolbar buttons
+*/
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-expand-all,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-collapse-all,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-sort,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-transform {
+    background-color: #f8b404 !important;
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   UNDO / REDO
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   Do not replace the native JSONEditor icons.
+   Only change their visual state.
+*/
+
+
+/* Unavailable / muted */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-undo,
+#jsoneditor .jsoneditor-menu .jsoneditor-redo {
+
+    background-color: #f8b404 !important;
+
+    color: #fff !important;
+
+    opacity: .35 !important;
+
+    border-color: transparent !important;
+
+    box-shadow: none !important;
+
+    transition:
+        opacity .15s ease,
+        background-color .15s ease;
+}
+
+
+/*
+   Available
+*/
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo.json-history-available,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo.json-history-available {
+
+    background-color: #f8b404 !important;
+
+    color: #fff !important;
+
+    opacity: 1 !important;
+
+    border-color: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+/*
+   Available hover
+*/
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo.json-history-available:hover,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo.json-history-available:hover {
+
+    background-color: #e5a400 !important;
+
+    opacity: 1 !important;
+}
+
+
+/*
+   Native disabled state
+*/
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo:disabled,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo:disabled,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo.jsoneditor-disabled,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo.jsoneditor-disabled {
+
+    background-color: #f8b404 !important;
+
+    color: #fff !important;
+
+    opacity: .35 !important;
+
+    border-color: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   JSONEDITOR SEARCH
+   ========================================================= */
+
+#jsoneditor .jsoneditor-search input {
+    background: #fff !important;
+}
+
+
+/* =========================================================
+   JSONEDITOR TREE AREA
+   ========================================================= */
+
+#jsoneditor .jsoneditor-tree {
+    background-color: var(--card) !important;
+
+    color: var(--text) !important;
+}
+
+
+/* =========================================================
+   JSONEDITOR STATUS / BOTTOM BAR
+   ========================================================= */
+
+#jsoneditor .jsoneditor-statusbar {
+    background: #eeeeee !important;
+
+    color: #777 !important;
+
+    border-top: 1px solid #ddd !important;
 }
 
 
@@ -318,607 +418,17 @@
 .json-viewer-error {
     display: none;
 
-    box-sizing: border-box;
+    margin-top: 10px;
 
-    width: 100%;
+    padding: 10px 12px;
 
-    margin: 0;
+    border-radius: 8px;
 
-    padding: 9px 14px;
+    background: #fee2e2;
 
-    border: 0;
-
-    border-top: 1px solid #dc2626;
-
-    border-radius: 0;
-
-    background: var(--card);
-
-    color: #dc2626;
+    color: #991b1b;
 
     font-size: 13px;
-}
-
-.json-viewer-error.show {
-    display: block;
-}
-
-
-/* =========================================================
-   JSONEDITOR
-   ========================================================= */
-
-#jsoneditor {
-    width: 100% !important;
-
-    height: 100% !important;
-
-    min-height: 560px !important;
-
-    box-sizing: border-box;
-
-    background: var(--card) !important;
-
-    font-size: 12px;
-}
-
-#jsoneditor .jsoneditor {
-    width: 100% !important;
-
-    height: 100% !important;
-
-    min-height: 560px !important;
-
-    box-sizing: border-box;
-
-    background: var(--card) !important;
-
-    border: 0 !important;
-
-    border-radius: 0 !important;
-
-    color: var(--text) !important;
-}
-
-
-/* =========================================================
-   FULL JSONEDITOR TOP BAR
-   ONE CONTINUOUS THEME COLOR
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu {
-    width: 100% !important;
-
-    min-height: 35px !important;
-
-    height: 35px !important;
-
-    box-sizing: border-box;
-
-    margin: 0 !important;
-
-    padding: 2px 4px !important;
-
-    background: var(--primary) !important;
-
-    border: 0 !important;
-
-    color: #fff !important;
-}
-
-
-/* =========================================================
-   TOOLBAR BUTTONS
-   Same background as the full toolbar
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button,
-#jsoneditor .jsoneditor-menu .jsoneditor-button {
-
-    box-sizing: border-box;
-
-    width: 28px !important;
-
-    height: 28px !important;
-
-    min-width: 28px !important;
-
-    padding: 0 !important;
-
-    margin: 1px !important;
-
-    background-color: var(--primary) !important;
-
-    color: #fff !important;
-
-    border: 1px solid transparent !important;
-
-    border-radius: 3px !important;
-
-    box-shadow: none !important;
-
-    opacity: 1 !important;
-
-    outline: none !important;
-
-    cursor: pointer;
-}
-
-#jsoneditor .jsoneditor-menu > button:hover,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:hover {
-
-    background-color: var(--primary-dark) !important;
-
-    border-color: rgba(255,255,255,.35) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button:focus,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:focus {
-
-    outline: none !important;
-
-    box-shadow: none !important;
-}
-
-#jsoneditor .jsoneditor-menu > button:active,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:active {
-
-    background-color: var(--primary-dark) !important;
-}
-
-
-/* =========================================================
-   SORT / TRANSFORM
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu .jsoneditor-sort,
-#jsoneditor .jsoneditor-menu .jsoneditor-transform {
-
-    display: inline-block !important;
-
-    visibility: visible !important;
-
-    opacity: 1 !important;
-
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu .jsoneditor-sort:hover,
-#jsoneditor .jsoneditor-menu .jsoneditor-transform:hover {
-
-    background-color: var(--primary-dark) !important;
-}
-
-
-/* =========================================================
-   UNDO / REDO
-   Available = highlighted
-   Unavailable = muted gray
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu .jsoneditor-undo,
-#jsoneditor .jsoneditor-menu .jsoneditor-redo {
-
-    position: relative !important;
-
-    background-color: #64748b !important;
-
-    color: #ffffff !important;
-
-    border: 1px solid transparent !important;
-
-    opacity: 1 !important;
-
-    box-shadow: none !important;
-
-    transition:
-        background-color .15s ease,
-        border-color .15s ease,
-        box-shadow .15s ease,
-        transform .15s ease;
-}
-
-
-/* =========================================================
-   MUTED / UNAVAILABLE
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-undo:not(.json-history-available),
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-redo:not(.json-history-available) {
-
-    background-color: #64748b !important;
-
-    color: rgba(255,255,255,.72) !important;
-
-    border-color: transparent !important;
-
-    opacity: 1 !important;
-
-    box-shadow: none !important;
-}
-
-
-/* Native disabled state */
-#jsoneditor .jsoneditor-menu
-.jsoneditor-undo:disabled,
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-redo:disabled {
-
-    background-color: #64748b !important;
-
-    color: rgba(255,255,255,.72) !important;
-
-    border-color: transparent !important;
-
-    opacity: 1 !important;
-
-    box-shadow: none !important;
-
-    cursor: default !important;
-}
-
-
-/* =========================================================
-   AVAILABLE
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-undo.json-history-available,
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-redo.json-history-available {
-
-    background-color: var(--primary-dark) !important;
-
-    color: #ffffff !important;
-
-    border-color: rgba(255,255,255,.60) !important;
-
-    opacity: 1 !important;
-
-    box-shadow:
-        0 0 0 1px rgba(255,255,255,.18),
-        0 2px 5px rgba(0,0,0,.18) !important;
-}
-
-
-/* =========================================================
-   AVAILABLE HOVER
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-undo.json-history-available:hover,
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-redo.json-history-available:hover {
-
-    background-color: var(--primary-dark) !important;
-
-    border-color: rgba(255,255,255,.85) !important;
-
-    box-shadow:
-        0 0 0 1px rgba(255,255,255,.25),
-        0 3px 7px rgba(0,0,0,.22) !important;
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   MUTED HOVER
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-undo:not(.json-history-available):hover,
-
-#jsoneditor .jsoneditor-menu
-.jsoneditor-redo:not(.json-history-available):hover {
-
-    background-color: #6b7280 !important;
-
-    border-color: rgba(255,255,255,.15) !important;
-
-    color: rgba(255,255,255,.85) !important;
-}
-
-
-/* =========================================================
-   MODE SWITCHER
-   ========================================================= */
-
-#jsoneditor .jsoneditor-modes {
-
-    background: var(--primary) !important;
-
-    color: #fff !important;
-}
-
-#jsoneditor .jsoneditor-modes button {
-
-    width: auto !important;
-
-    min-width: auto !important;
-
-    height: 28px !important;
-
-    padding: 0 7px !important;
-
-    margin: 1px !important;
-
-    background: var(--primary) !important;
-
-    color: #fff !important;
-
-    border: 0 !important;
-
-    box-shadow: none !important;
-}
-
-#jsoneditor .jsoneditor-modes button:hover {
-
-    background: var(--primary-dark) !important;
-
-    color: #fff !important;
-}
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-#jsoneditor table.jsoneditor-search {
-
-    position: absolute !important;
-
-    right: 4px !important;
-
-    top: 4px !important;
-
-    background: transparent !important;
-
-    border-collapse: collapse;
-}
-
-#jsoneditor table.jsoneditor-search div.jsoneditor-frame {
-
-    background: var(--card) !important;
-
-    border: 1px solid var(--border) !important;
-
-    border-radius: 4px !important;
-
-    box-shadow: none !important;
-}
-
-#jsoneditor table.jsoneditor-search input {
-
-    width: 120px !important;
-
-    height: 22px !important;
-
-    box-sizing: border-box;
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-
-    border: 0 !important;
-
-    outline: none !important;
-
-    box-shadow: none !important;
-}
-
-#jsoneditor table.jsoneditor-search input::placeholder {
-
-    color: var(--text-light) !important;
-}
-
-#jsoneditor table.jsoneditor-search button {
-
-    width: 18px !important;
-
-    height: 24px !important;
-
-    padding: 0 !important;
-
-    margin: 0 !important;
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-
-    border: 0 !important;
-
-    opacity: 1 !important;
-}
-
-#jsoneditor table.jsoneditor-search button:hover {
-
-    background: var(--bg-soft) !important;
-}
-
-
-/* =========================================================
-   EDITOR BODY
-   ========================================================= */
-
-#jsoneditor .jsoneditor-outer {
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-}
-
-#jsoneditor .jsoneditor-tree {
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-}
-
-
-/* =========================================================
-   JSON VALUES
-   ========================================================= */
-
-#jsoneditor .jsoneditor-field {
-
-    color: var(--text) !important;
-}
-
-#jsoneditor .jsoneditor-readonly {
-
-    color: var(--text-light) !important;
-}
-
-#jsoneditor .jsoneditor-value.jsoneditor-string {
-
-    color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-value.jsoneditor-number {
-
-    color: #0f766e !important;
-}
-
-#jsoneditor .jsoneditor-value.jsoneditor-boolean {
-
-    color: #9333ea !important;
-}
-
-#jsoneditor .jsoneditor-value.jsoneditor-null {
-
-    color: #dc2626 !important;
-}
-
-#jsoneditor .jsoneditor-value.jsoneditor-object,
-#jsoneditor .jsoneditor-value.jsoneditor-array {
-
-    color: var(--text-light) !important;
-}
-
-#jsoneditor td.jsoneditor-separator {
-
-    color: var(--text-light) !important;
-}
-
-
-/* =========================================================
-   EDITING FIELDS
-   ========================================================= */
-
-#jsoneditor textarea,
-#jsoneditor input,
-#jsoneditor select {
-
-    background: var(--bg) !important;
-
-    color: var(--text) !important;
-
-    border-color: var(--border) !important;
-
-    outline: none !important;
-}
-
-#jsoneditor textarea:focus,
-#jsoneditor input:focus,
-#jsoneditor select:focus {
-
-    border-color: var(--primary) !important;
-}
-
-
-/* =========================================================
-   CONTEXT MENU
-   ========================================================= */
-
-#jsoneditor .jsoneditor-contextmenu ul {
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-
-    border: 1px solid var(--border) !important;
-
-    box-shadow: var(--shadow) !important;
-}
-
-#jsoneditor .jsoneditor-contextmenu ul li button {
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-
-    border: 0 !important;
-}
-
-#jsoneditor .jsoneditor-contextmenu ul li button:hover {
-
-    background: var(--bg-soft) !important;
-}
-
-
-/* =========================================================
-   MODALS
-   ========================================================= */
-
-#jsoneditor .jsoneditor-modal {
-
-    background: var(--card) !important;
-
-    color: var(--text) !important;
-
-    border: 1px solid var(--border) !important;
-
-    box-shadow: var(--shadow) !important;
-}
-
-#jsoneditor .jsoneditor-modal input,
-#jsoneditor .jsoneditor-modal select,
-#jsoneditor .jsoneditor-modal textarea {
-
-    background: var(--bg) !important;
-
-    color: var(--text) !important;
-
-    border: 1px solid var(--border) !important;
-}
-
-#jsoneditor .jsoneditor-modal button {
-
-    background: var(--primary) !important;
-
-    color: #fff !important;
-
-    border: 1px solid var(--primary) !important;
-
-    border-radius: 6px !important;
-}
-
-#jsoneditor .jsoneditor-modal button:hover {
-
-    background: var(--primary-dark) !important;
-
-    border-color: var(--primary-dark) !important;
-}
-
-
-/* =========================================================
-   STATUS BAR
-   ========================================================= */
-
-#jsoneditor .jsoneditor-statusbar {
-
-    background: var(--bg-soft) !important;
-
-    color: var(--text-light) !important;
-
-    border-top: 1px solid var(--border) !important;
 }
 
 
@@ -926,87 +436,82 @@
    DARK MODE
    ========================================================= */
 
-body.dark .json-viewer-card {
-
+body.dark .json-viewer-input-area,
+body.dark .json-viewer-editor-layout,
+body.dark .json-viewer-input-panel,
+body.dark .json-viewer-output-panel,
+body.dark .json-manual-input,
+body.dark #jsoneditor {
     background: var(--card);
-
-    border-color: var(--border);
 }
 
-body.dark #jsoneditor .jsoneditor {
-
+body.dark #jsoneditor .jsoneditor-tree {
     background: var(--card) !important;
-
-    color: var(--text) !important;
-}
-
-body.dark #jsoneditor .jsoneditor-menu {
-
-    background: var(--primary) !important;
-
-    border-color: var(--primary) !important;
-}
-
-body.dark #jsoneditor .jsoneditor-menu > button,
-body.dark #jsoneditor .jsoneditor-modes button {
-
-    background: var(--primary) !important;
-
-    color: #fff !important;
-}
-
-body.dark #jsoneditor .jsoneditor-menu > button:hover,
-body.dark #jsoneditor .jsoneditor-modes button:hover {
-
-    background: var(--primary-dark) !important;
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE
    ========================================================= */
 
-@media (max-width: 768px) {
-
-    .json-viewer-page {
-        padding: 18px 12px 0;
-    }
+@media (max-width: 800px) {
 
     .json-viewer-editor-layout {
-
         flex-direction: column;
 
         min-height: auto;
     }
 
-    .json-viewer-input-panel {
-
+    .json-viewer-input-panel,
+    .json-viewer-output-panel {
         width: 100%;
+    }
 
-        border-right: 0;
+    .json-viewer-input-panel {
+        border-right: none;
 
         border-bottom: 1px solid var(--border);
     }
 
-    .json-viewer-output-panel {
+    .json-manual-input {
+        min-height: 300px;
+    }
 
+    .json-editor-container,
+    #jsoneditor {
+        min-height: 450px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .json-viewer-page {
+        padding-top: 10px;
+    }
+
+    .json-viewer-card {
+        width: 96%;
+    }
+
+    .json-viewer-input-area {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .json-viewer-editor-layout {
+        border-radius: 12px;
+    }
+
+    .json-url-row {
+        flex-direction: column;
+    }
+
+    #urlInput {
         width: 100%;
     }
 
-    .json-manual-input {
-
-        height: 400px;
-
-        min-height: 400px;
+    .json-load-button {
+        width: 100%;
     }
-
-    #jsoneditor,
-    #jsoneditor .jsoneditor,
-    .json-editor-container {
-
-        height: 500px !important;
-
-        min-height: 500px !important;
-    }
-
 }
