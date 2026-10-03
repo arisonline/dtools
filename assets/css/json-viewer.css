@@ -347,26 +347,21 @@
 
 /* =========================================================
    FULL JSONEDITOR TOP SECTION
-   EVERYTHING = THEME COLOR
    ========================================================= */
 
 #jsoneditor .jsoneditor-menu {
-
     position: relative !important;
 
     width: 100% !important;
-
     min-height: 35px !important;
+    height: 35px !important;
 
     box-sizing: border-box;
 
     margin: 0 !important;
-
     padding: 2px 4px !important;
 
     background-color: var(--primary) !important;
-
-    background-image: none !important;
 
     border: 1px solid var(--primary) !important;
 
@@ -375,38 +370,33 @@
 
 
 /* =========================================================
-   TOOLBAR SEPARATORS
+   TOOLBAR BUTTONS
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu .jsoneditor-separator {
+#jsoneditor .jsoneditor-menu > button,
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button {
 
-    background: rgba(255,255,255,.28) !important;
+    width: 26px !important;
+    height: 26px !important;
 
-    border-color: rgba(255,255,255,.28) !important;
+    min-width: 26px !important;
 
-    opacity: 1 !important;
-}
+    box-sizing: border-box;
 
+    margin: 2px !important;
+    padding: 0 !important;
 
-/* =========================================================
-   ALL MAIN TOOLBAR BUTTONS
-   THEME COLOR
-   ========================================================= */
+    border: 1px solid transparent !important;
 
-#jsoneditor .jsoneditor-menu button,
-#jsoneditor .jsoneditor-menu .jsoneditor-button {
+    border-radius: 2px !important;
 
     background-color: var(--primary) !important;
 
     color: #ffffff !important;
 
-    border: 0 !important;
-
-    border-radius: 3px !important;
+    opacity: 1 !important;
 
     box-shadow: none !important;
-
-    opacity: 1 !important;
 
     outline: none !important;
 
@@ -418,38 +408,31 @@
    HOVER
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu button:hover,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:hover {
+#jsoneditor .jsoneditor-menu > button:hover,
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:hover {
 
     background-color: var(--primary-dark) !important;
 
+    border-color: rgba(255,255,255,.35) !important;
+
     color: #ffffff !important;
 
-    border: 0 !important;
+    opacity: 1 !important;
 }
 
 
 /* =========================================================
-   ACTIVE
+   ACTIVE / FOCUS
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu button:active,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:active {
+#jsoneditor .jsoneditor-menu > button:active,
+#jsoneditor .jsoneditor-menu > button:focus,
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:active,
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:focus {
 
     background-color: var(--primary-dark) !important;
 
-    color: #ffffff !important;
-}
-
-
-/* =========================================================
-   FOCUS
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu button:focus,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:focus {
-
-    background-color: var(--primary) !important;
+    border-color: rgba(255,255,255,.45) !important;
 
     color: #ffffff !important;
 
@@ -463,81 +446,191 @@
    DISABLED
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu button:disabled,
-#jsoneditor .jsoneditor-menu .jsoneditor-button:disabled {
+#jsoneditor .jsoneditor-menu > button:disabled {
 
     background-color: var(--primary) !important;
 
-    color: rgba(255,255,255,.45) !important;
+    color: rgba(255,255,255,.65) !important;
 
     opacity: 1 !important;
+
+    border-color: transparent !important;
 }
 
 
 /* =========================================================
-   PRESERVE NATIVE JSONEDITOR ICONS
+   NATIVE JSONEDITOR ICONS
    ========================================================= */
 
 /*
-   Do NOT use:
-   background: ...
-   
-   because that can remove JSONEditor's icon sprite.
-   
-   Only background-color is changed above.
+   Important:
+   Do NOT use "background: ...".
+   That would remove JSONEditor's SVG icon sprite.
+
+   We only override background-color.
 */
 
 
-#jsoneditor .jsoneditor-menu .jsoneditor-expand-all,
-#jsoneditor .jsoneditor-menu .jsoneditor-collapse-all,
-#jsoneditor .jsoneditor-menu .jsoneditor-undo,
-#jsoneditor .jsoneditor-menu .jsoneditor-redo,
-#jsoneditor .jsoneditor-menu .jsoneditor-sort,
-#jsoneditor .jsoneditor-menu .jsoneditor-transform,
-#jsoneditor .jsoneditor-menu .jsoneditor-compact {
-
-    display: inline-block !important;
-
-    visibility: visible !important;
-
-    opacity: 1 !important;
-
+#jsoneditor .jsoneditor-menu > button.jsoneditor-collapse-all {
     background-color: var(--primary) !important;
+}
 
-    color: #ffffff !important;
+#jsoneditor .jsoneditor-menu > button.jsoneditor-expand-all {
+    background-color: var(--primary) !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
+    background-color: var(--primary) !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-redo {
+    background-color: var(--primary) !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-sort {
+    background-color: var(--primary) !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-transform {
+    background-color: var(--primary) !important;
 }
 
 
 /* =========================================================
-   SORT BUTTON
+   UNDO FALLBACK
+   Guarantees visible icon
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu .jsoneditor-sort {
+#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
+    position: relative !important;
 
-    display: inline-block !important;
-
-    visibility: visible !important;
+    font-size: 0 !important;
 }
 
-#jsoneditor .jsoneditor-menu .jsoneditor-sort:hover {
+
+/*
+   Hide native sprite ONLY for Undo.
+   We use Material Icons as a guaranteed fallback.
+*/
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
+    background-image: none !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-undo::before {
+
+    content: "undo";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: "Material Icons";
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   REDO FALLBACK
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-redo {
+    position: relative !important;
+
+    font-size: 0 !important;
+
+    background-image: none !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-redo::before {
+
+    content: "redo";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: "Material Icons";
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   UNDO / REDO HOVER
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-undo:hover,
+#jsoneditor .jsoneditor-menu > button.jsoneditor-redo:hover {
 
     background-color: var(--primary-dark) !important;
 }
 
 
 /* =========================================================
-   TRANSFORM BUTTON
+   COLLAPSE / EXPAND
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-collapse-all,
+#jsoneditor .jsoneditor-menu > button.jsoneditor-expand-all {
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   SORT
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-sort {
+
+    display: block !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+}
+
+#jsoneditor .jsoneditor-menu > button.jsoneditor-sort:hover {
+
+    background-color: var(--primary-dark) !important;
+}
+
+
+/* =========================================================
+   TRANSFORM
    FILTER / SORT / TRANSFORM
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu .jsoneditor-transform {
+#jsoneditor .jsoneditor-menu > button.jsoneditor-transform {
 
-    display: inline-block !important;
+    display: block !important;
 
     visibility: visible !important;
+
+    opacity: 1 !important;
 }
 
-#jsoneditor .jsoneditor-menu .jsoneditor-transform:hover {
+#jsoneditor .jsoneditor-menu > button.jsoneditor-transform:hover {
 
     background-color: var(--primary-dark) !important;
 }
@@ -545,68 +638,90 @@
 
 /* =========================================================
    MODE SWITCHER
-   Form / Code / Text / Tree / View
    ========================================================= */
 
-#jsoneditor .jsoneditor-modes {
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes {
+
+    display: inline-block !important;
+
+    float: left;
 
     background: var(--primary) !important;
 
     color: #ffffff !important;
 }
 
-#jsoneditor .jsoneditor-modes button {
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button {
+
+    width: auto !important;
+
+    min-width: auto !important;
+
+    height: 26px !important;
+
+    padding-left: 6px !important;
+    padding-right: 6px !important;
 
     background-color: var(--primary) !important;
 
+    background-image: none !important;
+
     color: #ffffff !important;
 
-    border: 0 !important;
-
-    box-shadow: none !important;
+    border: 1px solid transparent !important;
 }
 
-#jsoneditor .jsoneditor-modes button:hover {
+#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:hover {
 
     background-color: var(--primary-dark) !important;
 
-    color: #ffffff !important;
-}
-
-#jsoneditor .jsoneditor-modes button:focus,
-#jsoneditor .jsoneditor-modes button:active {
-
-    background-color: var(--primary-dark) !important;
-
-    color: #ffffff !important;
-
-    outline: none !important;
+    border-color: rgba(255,255,255,.35) !important;
 }
 
 
 /* =========================================================
-   SEARCH AREA
+   TOOLBAR SEPARATORS
    ========================================================= */
 
-#jsoneditor .jsoneditor-search {
+#jsoneditor .jsoneditor-menu > button.jsoneditor-separator {
 
-    background-color: var(--primary) !important;
+    margin-left: 10px !important;
+}
 
-    color: #ffffff !important;
 
-    border: 0 !important;
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+#jsoneditor table.jsoneditor-search {
+
+    position: absolute !important;
+
+    right: 4px !important;
+
+    top: 4px !important;
+
+    background: transparent !important;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
 }
 
 
 /* Search frame */
 
-#jsoneditor .jsoneditor-search .jsoneditor-frame {
+#jsoneditor table.jsoneditor-search div.jsoneditor-frame {
 
-    background-color: var(--card) !important;
+    background: var(--card) !important;
 
     border: 1px solid var(--border) !important;
 
     border-radius: 4px !important;
+
+    padding: 0 2px !important;
+
+    margin: 0 !important;
 
     box-shadow: none !important;
 }
@@ -614,9 +729,19 @@
 
 /* Search input */
 
-#jsoneditor .jsoneditor-search input {
+#jsoneditor table.jsoneditor-search input {
 
-    background-color: var(--card) !important;
+    width: 120px !important;
+
+    height: 22px !important;
+
+    box-sizing: border-box;
+
+    margin: 1px !important;
+
+    padding: 0 5px !important;
+
+    background: var(--card) !important;
 
     color: var(--text) !important;
 
@@ -627,32 +752,46 @@
     box-shadow: none !important;
 }
 
-#jsoneditor .jsoneditor-search input::placeholder {
+#jsoneditor table.jsoneditor-search input::placeholder {
 
     color: var(--text-light) !important;
 }
 
 
-/* Search buttons */
+/* Results */
 
-#jsoneditor .jsoneditor-search button {
+#jsoneditor table.jsoneditor-search div.jsoneditor-results {
+
+    color: #ffffff !important;
+
+    background: transparent !important;
+
+    padding-right: 5px;
+}
+
+
+/* Search navigation buttons */
+
+#jsoneditor table.jsoneditor-search button {
+
+    width: 16px !important;
+    height: 24px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: 0 !important;
 
     background-color: var(--card) !important;
 
     color: var(--text) !important;
 
-    border: 0 !important;
-
-    box-shadow: none !important;
-
     opacity: 1 !important;
 }
 
-#jsoneditor .jsoneditor-search button:hover {
+#jsoneditor table.jsoneditor-search button:hover {
 
     background-color: var(--bg-soft) !important;
-
-    color: var(--text) !important;
 }
 
 
