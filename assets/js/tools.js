@@ -1220,6 +1220,105 @@ const toolsData = [
    },
 
 
+      {
+       id: "random-color",
+   
+       name: "Random Color Generator",
+   
+       url: "tools/random-color/",
+   
+       category: "Color",
+   
+       description:
+           "Generate random colors instantly and get HEX, RGB, HSL and HSV color codes.",
+   
+       icon: "palette",
+   
+       popular: true,
+   
+       categories: [
+           {
+               name: "Color Tools",
+   
+               url: "https://digital-tool.dozni.com/?category=Color"
+           }
+       ],
+   
+       howToTitle:
+           "How to Use Random Color Generator?",
+   
+       howTo: [
+           "A random color is generated automatically when the page loads.",
+           "Click the New Random Color button to generate another color.",
+           "Click the HEX, RGB, HSL or HSV value to copy that color code.",
+           "Click the color preview to copy the HEX value.",
+           "Use Get Shades to continue working with the current color."
+       ],
+   
+       credits: [
+           "TinyColor2 is used for color generation and color conversion.",
+           "SweetAlert2 is used for copy notifications."
+       ],
+   
+       content: `
+           <h2>Random Color Generator</h2>
+   
+           <p>
+               Dozni Random Color Generator creates a new random color
+               instantly and provides the color in HEX, RGB, HSL and HSV
+               formats.
+           </p>
+   
+           <p>
+               Every generated color is handled directly in your browser.
+               You can copy any color value with a single click.
+           </p>
+       `,
+   
+       faqs: [
+           {
+               question:
+                   "What formats are available?",
+   
+               answer:
+                   "The tool provides HEX, RGB, HSL and HSV color values."
+           },
+   
+           {
+               question:
+                   "How do I generate another color?",
+   
+               answer:
+                   "Click the New Random Color button."
+           },
+   
+           {
+               question:
+                   "How do I copy a color code?",
+   
+               answer:
+                   "Click the HEX, RGB, HSL or HSV field to copy its value."
+           },
+   
+           {
+               question:
+                   "Can I copy the color by clicking the preview?",
+   
+               answer:
+                   "Yes. Clicking the color preview copies its HEX value."
+           },
+   
+           {
+               question:
+                   "Does the tool store my colors?",
+   
+               answer:
+                   "The color generation and conversion happen directly in your browser."
+           }
+       ]
+   },
+
+
    {
     id: "percentage-calculator",
 
