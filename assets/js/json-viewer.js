@@ -144,92 +144,132 @@
        INITIALIZE EDITOR
        ===================================================== */
 
-    function initializeEditor(data) {
-
-        if (
-            typeof window.JSONEditor === "undefined" ||
-            !editorContainer
-        ) {
-            showError(
-                "JSONEditor could not be loaded."
-            );
-            return;
-        }
-
-
-        clearError();
-
-
-        if (editor) {
-
-            try {
-                editor.destroy();
-            } catch (error) {
-                console.warn(
-                    "Could not destroy JSONEditor:",
-                    error
-                );
-            }
-
-            editor = null;
-        }
-
-
-        const options = {
-             mode: "tree",
-         
-             modes: [
-                 "code",
-                 "form",
-                 "text",
-                 "tree",
-                 "view"
-             ],
-         
-             mainMenuBar: true,
-         
-             navigationBar: false,
-         
-             statusBar: false,
-         
-             search: true,
-         
-             indentation: 4,
-         
-             escapeUnicode: true,
-         
-             onError: function (err) {
-                 showError(
-                     err && err.message
-                         ? err.message
-                         : String(err)
-                 );
-             },
-         
-             onChange: function () {
-                 console.log("JSON changed");
-             }
-         };
-
-
-        try {
-
-            editor =
-                new window.JSONEditor(
-                    editorContainer,
-                    options,
-                    data
-                );
-
-        } catch (error) {
-
-            console.error(error);
-
-            showError(
-                "Unable to create JSON editor."
-            );
-        }
-    }
+       function initializeEditor(data) {
+   
+       if (
+           typeof window.JSONEditor === "undefined" ||
+           !editorContainer
+       ) {
+           showError(
+               "JSONEditor could not be loaded."
+           );
+   
+           return;
+       }
+   
+   
+       clearError();
+   
+   
+       if (editor) {
+   
+           try {
+               editor.destroy();
+           } catch (error) {
+               console.warn(
+                   "Could not destroy JSONEditor:",
+                   error
+               );
+           }
+   
+           editor = null;
+       }
+   
+   
+       const options = {
+   
+           mode: "tree",
+   
+           modes: [
+               "code",
+               "form",
+               "text",
+               "tree",
+               "view"
+           ],
+   
+           history: true,
+   
+           mainMenuBar: true,
+   
+           navigationBar: false,
+   
+           statusBar: false,
+   
+           search: true,
+   
+           indentation: 4,
+   
+           escapeUnicode: true,
+   
+           onError: function (err) {
+   
+               showError(
+                   err && err.message
+                       ? err.message
+                       : String(err)
+               );
+           },
+   
+           onChange: function () {
+   
+               console.log(
+                   "JSON changed"
+               );
+           }
+       };
+   
+   
+       try {
+   
+           editor =
+               new window.JSONEditor(
+                   editorContainer,
+                   options,
+                   data
+               );
+   
+   
+           /*
+            * Fully expand the initial JSON
+            */
+           setTimeout(function () {
+   
+               if (
+                   editor &&
+                   typeof editor.expandAll === "function"
+               ) {
+   
+                   editor.expandAll();
+   
+               } else {
+   
+                   /*
+                    * Fallback for this JSONEditor version
+                    */
+                   const expandButton =
+                       document.querySelector(
+                           "#jsoneditor .jsoneditor-expand-all"
+                       );
+   
+                   if (expandButton) {
+                       expandButton.click();
+                   }
+   
+               }
+   
+           }, 50);
+   
+   
+       } catch (error) {
+   
+           console.error(error);
+   
+           showError(
+               "Unable to create JSON editor."
+           );
+       }
+   }
 
 
     /* =====================================================
