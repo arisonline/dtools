@@ -195,31 +195,29 @@
        SWEETALERT
        ===================================================== */
 
-    function showCopyMessage(value) {
-
-        if (
-            typeof Swal === "undefined"
-        ) {
-            return;
-        }
-
-
-        Swal.fire({
-
-            html: value,
-
-            showConfirmButton: true,
-
-            confirmButtonText: "OK",
-
-            heightAuto: false,
-
-            icon: "success",
-
-            timer: 1500
-
-        });
-    }
+       function showCopyMessage(value) {
+   
+       if (typeof Swal === "undefined") {
+           return;
+       }
+   
+       Swal.fire({
+           toast: true,
+           position: "top-end",
+   
+           icon: "success",
+   
+           title: "Copied",
+           text: value,
+   
+           showConfirmButton: false,
+   
+           timer: 1200,
+           timerProgressBar: true,
+   
+           heightAuto: false
+       });
+   }
 
 
     /* =====================================================
