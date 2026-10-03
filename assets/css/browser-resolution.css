@@ -50,6 +50,12 @@ body.browser-resolution-tool-page {
     box-sizing: border-box;
 
     background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius:10px;
+
+    box-shadow: var(--shadow);
 }
 
 
