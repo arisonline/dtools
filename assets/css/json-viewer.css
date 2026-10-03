@@ -492,73 +492,137 @@
 
 /* =========================================================
    UNDO / REDO
+   Available = highlighted
+   Unavailable = muted gray
    ========================================================= */
-
-/*
-   We preserve the native icon sprite for normal buttons.
-*/
 
 #jsoneditor .jsoneditor-menu .jsoneditor-undo,
 #jsoneditor .jsoneditor-menu .jsoneditor-redo {
 
     position: relative !important;
 
-    background-color: var(--primary) !important;
+    background-color: #64748b !important;
 
-    opacity: .42 !important;
+    color: #ffffff !important;
 
-    transition:
-        background-color .15s ease,
-        opacity .15s ease,
-        box-shadow .15s ease;
-}
-
-
-/* ---------------------------------------------------------
-   AVAILABLE STATE
-   Added by JavaScript
-   --------------------------------------------------------- */
-
-#jsoneditor .jsoneditor-menu .jsoneditor-undo.json-history-available,
-#jsoneditor .jsoneditor-menu .jsoneditor-redo.json-history-available {
+    border: 1px solid transparent !important;
 
     opacity: 1 !important;
 
-    background-color: var(--primary-dark) !important;
+    box-shadow: none !important;
 
-    border-color: rgba(255,255,255,.55) !important;
-
-    box-shadow:
-        0 0 0 1px rgba(255,255,255,.18),
-        0 2px 6px rgba(0,0,0,.15) !important;
+    transition:
+        background-color .15s ease,
+        border-color .15s ease,
+        box-shadow .15s ease,
+        transform .15s ease;
 }
 
 
-/* stronger hover */
+/* =========================================================
+   MUTED / UNAVAILABLE
+   ========================================================= */
 
-#jsoneditor .jsoneditor-menu .jsoneditor-undo.json-history-available:hover,
-#jsoneditor .jsoneditor-menu .jsoneditor-redo.json-history-available:hover {
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo:not(.json-history-available),
 
-    background-color: var(--primary-dark) !important;
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo:not(.json-history-available) {
 
-    border-color: rgba(255,255,255,.8) !important;
-}
+    background-color: #64748b !important;
 
-
-/* ---------------------------------------------------------
-   DISABLED STATE
-   --------------------------------------------------------- */
-
-#jsoneditor .jsoneditor-menu .jsoneditor-undo:disabled,
-#jsoneditor .jsoneditor-menu .jsoneditor-redo:disabled {
-
-    opacity: .38 !important;
-
-    background-color: var(--primary) !important;
+    color: rgba(255,255,255,.72) !important;
 
     border-color: transparent !important;
 
+    opacity: 1 !important;
+
     box-shadow: none !important;
+}
+
+
+/* Native disabled state */
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo:disabled,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo:disabled {
+
+    background-color: #64748b !important;
+
+    color: rgba(255,255,255,.72) !important;
+
+    border-color: transparent !important;
+
+    opacity: 1 !important;
+
+    box-shadow: none !important;
+
+    cursor: default !important;
+}
+
+
+/* =========================================================
+   AVAILABLE
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo.json-history-available,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo.json-history-available {
+
+    background-color: var(--primary-dark) !important;
+
+    color: #ffffff !important;
+
+    border-color: rgba(255,255,255,.60) !important;
+
+    opacity: 1 !important;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.18),
+        0 2px 5px rgba(0,0,0,.18) !important;
+}
+
+
+/* =========================================================
+   AVAILABLE HOVER
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo.json-history-available:hover,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo.json-history-available:hover {
+
+    background-color: var(--primary-dark) !important;
+
+    border-color: rgba(255,255,255,.85) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.25),
+        0 3px 7px rgba(0,0,0,.22) !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MUTED HOVER
+   ========================================================= */
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-undo:not(.json-history-available):hover,
+
+#jsoneditor .jsoneditor-menu
+.jsoneditor-redo:not(.json-history-available):hover {
+
+    background-color: #6b7280 !important;
+
+    border-color: rgba(255,255,255,.15) !important;
+
+    color: rgba(255,255,255,.85) !important;
 }
 
 
