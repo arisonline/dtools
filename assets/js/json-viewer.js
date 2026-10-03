@@ -176,42 +176,40 @@
 
 
         const options = {
-
-            /*
-             * Match the interface in your screenshot
-             */
-            mode: "form",
-
-            modes: [
-                "code",
-                "form",
-                "text",
-                "tree",
-                "view"
-            ],
-
-            indentation: 4,
-
-            escapeUnicode: true,
-
-            search: true,
-
-            onError: function (error) {
-
-                showError(
-                    error && error.message
-                        ? error.message
-                        : String(error)
-                );
-            },
-
-            onChange: function () {
-                /*
-                 * JSONEditor manages the
-                 * editor state automatically.
-                 */
-            }
-        };
+             mode: "tree",
+         
+             modes: [
+                 "code",
+                 "form",
+                 "text",
+                 "tree",
+                 "view"
+             ],
+         
+             mainMenuBar: true,
+         
+             navigationBar: false,
+         
+             statusBar: false,
+         
+             search: true,
+         
+             indentation: 4,
+         
+             escapeUnicode: true,
+         
+             onError: function (err) {
+                 showError(
+                     err && err.message
+                         ? err.message
+                         : String(err)
+                 );
+             },
+         
+             onChange: function () {
+                 console.log("JSON changed");
+             }
+         };
 
 
         try {
