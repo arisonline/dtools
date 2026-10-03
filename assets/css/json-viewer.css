@@ -1,6 +1,7 @@
 /* =========================================================
    JSON VIEWER
-   Original-style layout
+   Single tool section
+   45% Input / 55% Output
    Theme compatible
    ========================================================= */
 
@@ -28,29 +29,47 @@
 
 
 /* =========================================================
-   TOP URL AREA
+   ONE COMPLETE TOOL SECTION
    ========================================================= */
 
 .json-viewer-card {
     width: 100%;
     box-sizing: border-box;
-}
-
-.json-viewer-input-area {
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 16px 18px;
 
     background: var(--card);
 
     border: 1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     box-shadow: var(--shadow);
 
-    margin-bottom: 2px;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   URL SECTION
+   No separate card / no separate shadow
+   ========================================================= */
+
+.json-viewer-input-area {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 17px 20px;
+
+    background: var(--card);
+
+    border: 0;
+
+    border-bottom: 1px solid var(--border);
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    margin: 0;
 }
 
 .json-viewer-input-area label {
@@ -61,6 +80,7 @@
     color: var(--text);
 
     font-size: 14px;
+
     font-weight: 600;
 }
 
@@ -78,13 +98,14 @@
     flex: 1;
 
     width: 100%;
+
     min-width: 0;
 
-    height: 36px;
+    height: 38px;
 
     box-sizing: border-box;
 
-    padding: 0 11px;
+    padding: 0 12px;
 
     background: var(--bg);
 
@@ -110,9 +131,11 @@
 .json-load-button {
     flex: 0 0 auto;
 
-    height: 36px;
+    height: 38px;
 
-    padding: 0 17px;
+    padding: 0 18px;
+
+    box-sizing: border-box;
 
     border: 1px solid var(--primary);
 
@@ -135,25 +158,26 @@
 
 .json-load-button:hover {
     background: var(--primary-dark);
+
     border-color: var(--primary-dark);
 }
 
 .json-load-button:disabled {
     opacity: .65;
+
     cursor: not-allowed;
 }
 
 .json-manual-label {
     margin-top: 16px !important;
+
     margin-bottom: 0 !important;
 }
 
 
 /* =========================================================
    INPUT / OUTPUT
-   ORIGINAL:
-   INPUT = 45%
-   OUTPUT = 55%
+   ONE CONTINUOUS SECTION
    ========================================================= */
 
 .json-viewer-editor-layout {
@@ -167,11 +191,11 @@
 
     background: var(--card);
 
-    border: 1px solid var(--border);
+    border: 0;
 
-    border-radius: 16px;
+    border-radius: 0;
 
-    box-shadow: var(--shadow);
+    box-shadow: none;
 
     overflow: hidden;
 }
@@ -179,6 +203,7 @@
 
 /* =========================================================
    LEFT INPUT
+   45%
    ========================================================= */
 
 .json-viewer-input-panel {
@@ -188,9 +213,11 @@
 
     box-sizing: border-box;
 
-    border-right: 1px solid var(--border);
-
     background: var(--bg);
+
+    border: 0;
+
+    border-right: 1px solid var(--border);
 }
 
 .json-manual-input {
@@ -206,7 +233,7 @@
 
     margin: 0;
 
-    padding: 14px;
+    padding: 15px;
 
     resize: none;
 
@@ -237,6 +264,7 @@
 
 .json-manual-input:focus {
     outline: none;
+
     border: 0;
 }
 
@@ -246,12 +274,14 @@
 
 .json-manual-input:disabled {
     opacity: .65;
+
     cursor: not-allowed;
 }
 
 
 /* =========================================================
    RIGHT OUTPUT
+   55%
    ========================================================= */
 
 .json-viewer-output-panel {
@@ -262,6 +292,8 @@
     box-sizing: border-box;
 
     background: var(--card);
+
+    border: 0;
 
     overflow: hidden;
 }
@@ -290,13 +322,15 @@
 
     width: 100%;
 
-    margin-top: 8px;
+    margin: 0;
 
-    padding: 9px 12px;
+    padding: 9px 14px;
 
-    border: 1px solid #dc2626;
+    border: 0;
 
-    border-radius: 7px;
+    border-top: 1px solid #dc2626;
+
+    border-radius: 0;
 
     background: var(--card);
 
@@ -311,7 +345,7 @@
 
 
 /* =========================================================
-   JSONEDITOR MAIN
+   JSONEDITOR
    ========================================================= */
 
 #jsoneditor {
@@ -339,300 +373,192 @@
 
     background: var(--card) !important;
 
-    border: 1px solid var(--border) !important;
+    border: 0 !important;
+
+    border-radius: 0 !important;
 
     color: var(--text) !important;
 }
 
 
 /* =========================================================
-   FULL JSONEDITOR TOP SECTION
+   FULL JSONEDITOR TOP BAR
+   ONE CONTINUOUS THEME COLOR
    ========================================================= */
 
 #jsoneditor .jsoneditor-menu {
-    position: relative !important;
-
     width: 100% !important;
+
     min-height: 35px !important;
+
     height: 35px !important;
 
     box-sizing: border-box;
 
     margin: 0 !important;
+
     padding: 2px 4px !important;
 
-    background-color: var(--primary) !important;
+    background: var(--primary) !important;
 
-    border: 1px solid var(--primary) !important;
+    border: 0 !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
 
 /* =========================================================
    TOOLBAR BUTTONS
+   Same background as the full toolbar
    ========================================================= */
 
 #jsoneditor .jsoneditor-menu > button,
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button {
-
-    width: 26px !important;
-    height: 26px !important;
-
-    min-width: 26px !important;
+#jsoneditor .jsoneditor-menu .jsoneditor-button {
 
     box-sizing: border-box;
 
-    margin: 2px !important;
+    width: 28px !important;
+
+    height: 28px !important;
+
+    min-width: 28px !important;
+
     padding: 0 !important;
 
-    border: 1px solid transparent !important;
-
-    border-radius: 2px !important;
+    margin: 1px !important;
 
     background-color: var(--primary) !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 
-    opacity: 1 !important;
+    border: 1px solid transparent !important;
+
+    border-radius: 3px !important;
 
     box-shadow: none !important;
+
+    opacity: 1 !important;
 
     outline: none !important;
 
     cursor: pointer;
 }
 
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-
 #jsoneditor .jsoneditor-menu > button:hover,
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:hover {
+#jsoneditor .jsoneditor-menu .jsoneditor-button:hover {
 
     background-color: var(--primary-dark) !important;
 
     border-color: rgba(255,255,255,.35) !important;
-
-    color: #ffffff !important;
-
-    opacity: 1 !important;
 }
 
-
-/* =========================================================
-   ACTIVE / FOCUS
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button:active,
 #jsoneditor .jsoneditor-menu > button:focus,
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:active,
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:focus {
-
-    background-color: var(--primary-dark) !important;
-
-    border-color: rgba(255,255,255,.45) !important;
-
-    color: #ffffff !important;
+#jsoneditor .jsoneditor-menu .jsoneditor-button:focus {
 
     outline: none !important;
 
     box-shadow: none !important;
 }
 
+#jsoneditor .jsoneditor-menu > button:active,
+#jsoneditor .jsoneditor-menu .jsoneditor-button:active {
+
+    background-color: var(--primary-dark) !important;
+}
+
 
 /* =========================================================
-   DISABLED
+   SORT / TRANSFORM
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu > button:disabled {
+#jsoneditor .jsoneditor-menu .jsoneditor-sort,
+#jsoneditor .jsoneditor-menu .jsoneditor-transform {
+
+    display: inline-block !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    background-color: var(--primary) !important;
+}
+
+#jsoneditor .jsoneditor-menu .jsoneditor-sort:hover,
+#jsoneditor .jsoneditor-menu .jsoneditor-transform:hover {
+
+    background-color: var(--primary-dark) !important;
+}
+
+
+/* =========================================================
+   UNDO / REDO
+   ========================================================= */
+
+/*
+   We preserve the native icon sprite for normal buttons.
+*/
+
+#jsoneditor .jsoneditor-menu .jsoneditor-undo,
+#jsoneditor .jsoneditor-menu .jsoneditor-redo {
+
+    position: relative !important;
 
     background-color: var(--primary) !important;
 
-    color: rgba(255,255,255,.65) !important;
+    opacity: .42 !important;
+
+    transition:
+        background-color .15s ease,
+        opacity .15s ease,
+        box-shadow .15s ease;
+}
+
+
+/* ---------------------------------------------------------
+   AVAILABLE STATE
+   Added by JavaScript
+   --------------------------------------------------------- */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-undo.json-history-available,
+#jsoneditor .jsoneditor-menu .jsoneditor-redo.json-history-available {
 
     opacity: 1 !important;
+
+    background-color: var(--primary-dark) !important;
+
+    border-color: rgba(255,255,255,.55) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.18),
+        0 2px 6px rgba(0,0,0,.15) !important;
+}
+
+
+/* stronger hover */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-undo.json-history-available:hover,
+#jsoneditor .jsoneditor-menu .jsoneditor-redo.json-history-available:hover {
+
+    background-color: var(--primary-dark) !important;
+
+    border-color: rgba(255,255,255,.8) !important;
+}
+
+
+/* ---------------------------------------------------------
+   DISABLED STATE
+   --------------------------------------------------------- */
+
+#jsoneditor .jsoneditor-menu .jsoneditor-undo:disabled,
+#jsoneditor .jsoneditor-menu .jsoneditor-redo:disabled {
+
+    opacity: .38 !important;
+
+    background-color: var(--primary) !important;
 
     border-color: transparent !important;
-}
 
-
-/* =========================================================
-   NATIVE JSONEDITOR ICONS
-   ========================================================= */
-
-/*
-   Important:
-   Do NOT use "background: ...".
-   That would remove JSONEditor's SVG icon sprite.
-
-   We only override background-color.
-*/
-
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-collapse-all {
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-expand-all {
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-redo {
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-sort {
-    background-color: var(--primary) !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-transform {
-    background-color: var(--primary) !important;
-}
-
-
-/* =========================================================
-   UNDO FALLBACK
-   Guarantees visible icon
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
-    position: relative !important;
-
-    font-size: 0 !important;
-}
-
-
-/*
-   Hide native sprite ONLY for Undo.
-   We use Material Icons as a guaranteed fallback.
-*/
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-undo {
-    background-image: none !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-undo::before {
-
-    content: "undo";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    font-family: "Material Icons";
-
-    font-size: 18px;
-
-    line-height: 1;
-
-    color: #ffffff;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   REDO FALLBACK
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-redo {
-    position: relative !important;
-
-    font-size: 0 !important;
-
-    background-image: none !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-redo::before {
-
-    content: "redo";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    font-family: "Material Icons";
-
-    font-size: 18px;
-
-    line-height: 1;
-
-    color: #ffffff;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   UNDO / REDO HOVER
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-undo:hover,
-#jsoneditor .jsoneditor-menu > button.jsoneditor-redo:hover {
-
-    background-color: var(--primary-dark) !important;
-}
-
-
-/* =========================================================
-   COLLAPSE / EXPAND
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-collapse-all,
-#jsoneditor .jsoneditor-menu > button.jsoneditor-expand-all {
-
-    color: #ffffff !important;
-}
-
-
-/* =========================================================
-   SORT
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-sort {
-
-    display: block !important;
-
-    visibility: visible !important;
-
-    opacity: 1 !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-sort:hover {
-
-    background-color: var(--primary-dark) !important;
-}
-
-
-/* =========================================================
-   TRANSFORM
-   FILTER / SORT / TRANSFORM
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-transform {
-
-    display: block !important;
-
-    visibility: visible !important;
-
-    opacity: 1 !important;
-}
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-transform:hover {
-
-    background-color: var(--primary-dark) !important;
+    box-shadow: none !important;
 }
 
 
@@ -640,52 +566,39 @@
    MODE SWITCHER
    ========================================================= */
 
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes {
-
-    display: inline-block !important;
-
-    float: left;
+#jsoneditor .jsoneditor-modes {
 
     background: var(--primary) !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button {
+#jsoneditor .jsoneditor-modes button {
 
     width: auto !important;
 
     min-width: auto !important;
 
-    height: 26px !important;
+    height: 28px !important;
 
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+    padding: 0 7px !important;
 
-    background-color: var(--primary) !important;
+    margin: 1px !important;
 
-    background-image: none !important;
+    background: var(--primary) !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 
-    border: 1px solid transparent !important;
+    border: 0 !important;
+
+    box-shadow: none !important;
 }
 
-#jsoneditor .jsoneditor-menu > .jsoneditor-modes > button:hover {
+#jsoneditor .jsoneditor-modes button:hover {
 
-    background-color: var(--primary-dark) !important;
+    background: var(--primary-dark) !important;
 
-    border-color: rgba(255,255,255,.35) !important;
-}
-
-
-/* =========================================================
-   TOOLBAR SEPARATORS
-   ========================================================= */
-
-#jsoneditor .jsoneditor-menu > button.jsoneditor-separator {
-
-    margin-left: 10px !important;
+    color: #fff !important;
 }
 
 
@@ -704,12 +617,7 @@
     background: transparent !important;
 
     border-collapse: collapse;
-
-    border-spacing: 0;
 }
-
-
-/* Search frame */
 
 #jsoneditor table.jsoneditor-search div.jsoneditor-frame {
 
@@ -719,15 +627,8 @@
 
     border-radius: 4px !important;
 
-    padding: 0 2px !important;
-
-    margin: 0 !important;
-
     box-shadow: none !important;
 }
-
-
-/* Search input */
 
 #jsoneditor table.jsoneditor-search input {
 
@@ -736,10 +637,6 @@
     height: 22px !important;
 
     box-sizing: border-box;
-
-    margin: 1px !important;
-
-    padding: 0 5px !important;
 
     background: var(--card) !important;
 
@@ -757,41 +654,28 @@
     color: var(--text-light) !important;
 }
 
-
-/* Results */
-
-#jsoneditor table.jsoneditor-search div.jsoneditor-results {
-
-    color: #ffffff !important;
-
-    background: transparent !important;
-
-    padding-right: 5px;
-}
-
-
-/* Search navigation buttons */
-
 #jsoneditor table.jsoneditor-search button {
 
-    width: 16px !important;
+    width: 18px !important;
+
     height: 24px !important;
 
     padding: 0 !important;
+
     margin: 0 !important;
 
-    border: 0 !important;
-
-    background-color: var(--card) !important;
+    background: var(--card) !important;
 
     color: var(--text) !important;
+
+    border: 0 !important;
 
     opacity: 1 !important;
 }
 
 #jsoneditor table.jsoneditor-search button:hover {
 
-    background-color: var(--bg-soft) !important;
+    background: var(--bg-soft) !important;
 }
 
 
@@ -815,7 +699,7 @@
 
 
 /* =========================================================
-   JSON TEXT
+   JSON VALUES
    ========================================================= */
 
 #jsoneditor .jsoneditor-field {
@@ -861,7 +745,7 @@
 
 
 /* =========================================================
-   JSONEDITOR EDITING FIELDS
+   EDITING FIELDS
    ========================================================= */
 
 #jsoneditor textarea,
@@ -902,26 +786,21 @@
 
 #jsoneditor .jsoneditor-contextmenu ul li button {
 
-    background-color: var(--card) !important;
+    background: var(--card) !important;
 
     color: var(--text) !important;
 
     border: 0 !important;
-
-    box-shadow: none !important;
 }
 
 #jsoneditor .jsoneditor-contextmenu ul li button:hover {
 
-    background-color: var(--bg-soft) !important;
-
-    color: var(--text) !important;
+    background: var(--bg-soft) !important;
 }
 
 
 /* =========================================================
    MODALS
-   SORT / TRANSFORM / FILTER
    ========================================================= */
 
 #jsoneditor .jsoneditor-modal {
@@ -946,34 +825,20 @@
     border: 1px solid var(--border) !important;
 }
 
-#jsoneditor .jsoneditor-modal input:focus,
-#jsoneditor .jsoneditor-modal select:focus,
-#jsoneditor .jsoneditor-modal textarea:focus {
-
-    border-color: var(--primary) !important;
-
-    outline: none !important;
-}
-
-
-/* Modal buttons */
-
 #jsoneditor .jsoneditor-modal button {
 
-    background-color: var(--primary) !important;
+    background: var(--primary) !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 
     border: 1px solid var(--primary) !important;
 
     border-radius: 6px !important;
-
-    cursor: pointer;
 }
 
 #jsoneditor .jsoneditor-modal button:hover {
 
-    background-color: var(--primary-dark) !important;
+    background: var(--primary-dark) !important;
 
     border-color: var(--primary-dark) !important;
 }
@@ -997,17 +862,14 @@
    DARK MODE
    ========================================================= */
 
-body.dark #jsoneditor .jsoneditor {
+body.dark .json-viewer-card {
 
-    background: var(--card) !important;
+    background: var(--card);
 
-    border-color: var(--border) !important;
-
-    color: var(--text) !important;
+    border-color: var(--border);
 }
 
-body.dark #jsoneditor .jsoneditor-outer,
-body.dark #jsoneditor .jsoneditor-tree {
+body.dark #jsoneditor .jsoneditor {
 
     background: var(--card) !important;
 
@@ -1016,47 +878,23 @@ body.dark #jsoneditor .jsoneditor-tree {
 
 body.dark #jsoneditor .jsoneditor-menu {
 
-    background-color: var(--primary) !important;
+    background: var(--primary) !important;
 
     border-color: var(--primary) !important;
 }
 
-body.dark #jsoneditor .jsoneditor-menu button,
+body.dark #jsoneditor .jsoneditor-menu > button,
 body.dark #jsoneditor .jsoneditor-modes button {
 
-    background-color: var(--primary) !important;
+    background: var(--primary) !important;
 
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
-body.dark #jsoneditor .jsoneditor-menu button:hover,
+body.dark #jsoneditor .jsoneditor-menu > button:hover,
 body.dark #jsoneditor .jsoneditor-modes button:hover {
 
-    background-color: var(--primary-dark) !important;
-}
-
-body.dark #jsoneditor .jsoneditor-search {
-
-    background-color: var(--primary) !important;
-}
-
-body.dark #jsoneditor .jsoneditor-search .jsoneditor-frame,
-body.dark #jsoneditor .jsoneditor-search input {
-
-    background-color: var(--card) !important;
-
-    color: var(--text) !important;
-}
-
-body.dark #jsoneditor textarea,
-body.dark #jsoneditor input,
-body.dark #jsoneditor select {
-
-    background: var(--bg) !important;
-
-    color: var(--text) !important;
-
-    border-color: var(--border) !important;
+    background: var(--primary-dark) !important;
 }
 
 
@@ -1068,18 +906,6 @@ body.dark #jsoneditor select {
 
     .json-viewer-page {
         padding: 18px 12px 0;
-    }
-
-    .json-viewer-input-area {
-        padding: 14px;
-    }
-
-    .json-url-row {
-        flex-direction: column;
-    }
-
-    .json-load-button {
-        width: 100%;
     }
 
     .json-viewer-editor-layout {
@@ -1104,8 +930,6 @@ body.dark #jsoneditor select {
     }
 
     .json-manual-input {
-
-        width: 100%;
 
         height: 400px;
 
