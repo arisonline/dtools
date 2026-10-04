@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Color Shades Generator - Shades & Tints in HEX, RGB, HSL, HSV | Dozni
+    </title>
+
+    <meta
+        name="description"
+        content="Generate multiple shades and tints from any color. Supports HEX, RGB, HSL, HSV and named colors. Free online Color Shades Generator."
+    >
+
+    <meta
+        name="keywords"
+        content="color shades generator, color tints, color palette generator, hex to rgb, color shades, random color generator, color picker, hsl hsv"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href="https://dtools.dozni.com/tools/color-shades/"
+    >
+
+
+    <!-- Material Icons -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
+
+
+    <!-- TinyColor2 -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/tinycolor2@1.4.2/dist/tinycolor-min.js">
+    </script>
+
+
+    <!-- SweetAlert2 -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css"
+    >
+
+
+    <!-- Theme -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/theme.css"
+    >
+
+    <!-- Universal Tool CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/tools.css"
+    >
+
+    <!-- Tool CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/color-shades.css"
+    >
+
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Free Online Color Shades Generator"
+    >
+
+    <meta
+        property="og:description"
+        content="Generate lighter and darker shades of any color instantly."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://dtools.dozni.com/tools/color-shades/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Dozni Digital Tools"
+    >
+
+
+    <!-- Twitter -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Color Shades Generator"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Generate color shades and tints online."
+    >
+
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Color Shades Generator",
+        "url": "https://dtools.dozni.com/tools/color-shades/",
+        "description": "Generate multiple shades and tints from any base color in HEX, RGB, HSL and HSV formats.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en"
+    }
+    </script>
+
+</head>
+
+
+<body
+    class="tool-page color-shades-tool-page"
+    data-tool="color-shades"
+>
+
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             COLOR SHADES TOOL
+             ===================================================== -->
+
+        <section class="color-shades-page">
+
+            <div class="color-shades-container">
+
+                <div class="color-shades-card">
+
+
+                    <!-- =================================================
+                         INPUT SECTION
+                         ================================================= -->
+
+                    <div class="color-shades-input-section">
+
+                        <label
+                            for="colorInput"
+                            class="color-shades-label"
+                        >
+                            Enter Color
+                        </label>
+
+
+                        <div class="color-shades-input-row">
+
+
+                            <input
+                                type="text"
+                                id="colorInput"
+                                value="#fe34ee"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="#808080 or rgb(128, 128, 128) or red"
+                            >
+
+
+                            <input
+                                type="color"
+                                id="baseColor"
+                                value="#fe34ee"
+                                title="Color Picker"
+                            >
+
+
+                        </div>
+
+
+                        <div class="color-shades-input-actions">
+
+                            <span>
+                                Example: #808080 or rgb(128, 128, 128) or red
+                            </span>
+
+
+                            <button
+                                type="button"
+                                id="randomColorButton"
+                                class="color-shades-random-button"
+                            >
+                                <span class="material-icons">
+                                    shuffle
+                                </span>
+
+                                Get Random Color
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="colorInputError"
+                            class="color-shades-error"
+                            aria-live="polite"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SHADE RANGE
+                         ================================================= -->
+
+                    <div class="color-shades-range-section">
+
+                        <div class="color-shades-range-header">
+
+                            <label for="shadeRange">
+                                Color Shades
+                            </label>
+
+                            <span id="shadeRangeCounter">
+                                10
+                            </span>
+
+                        </div>
+
+
+                        <div class="color-shades-range-row">
+
+                            <input
+                                type="range"
+                                id="shadeRange"
+                                min="4"
+                                max="26"
+                                value="10"
+                            >
+
+                        </div>
+
+
+                        <p class="color-shades-range-help">
+                            Change the slider above to adjust the number of
+                            color shades.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PALETTE
+                         ================================================= -->
+
+                    <div class="color-shades-palette-section">
+
+                        <div class="color-shades-palette-title">
+                            Color Shades
+                        </div>
+
+
+                        <div
+                            class="color-shades-palette"
+                            id="colorPalette"
+                        ></div>
+
+
+                        <p class="color-shades-palette-help">
+                            Select a color shade above to get color values below
+                        </p>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SELECTED COLOR / OUTPUT
+                         ================================================= -->
+
+                    <div class="color-shades-output">
+
+
+                        <!-- Preview -->
+
+                        <div class="color-shades-selected-section">
+
+                            <div
+                                id="selectedColorBox"
+                                class="selected-color-box"
+                                title="Click to copy HEX"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Codes -->
+
+                        <div class="color-shades-codes">
+
+
+                            <div class="color-code-row">
+
+                                <label for="hexCode">
+                                    HEX
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hexCode"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="color-code-row">
+
+                                <label for="rgbCode">
+                                    RGB
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="rgbCode"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="color-code-row">
+
+                                <label for="hslCode">
+                                    HSL
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hslCode"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <div class="color-code-row">
+
+                                <label for="hsvCode">
+                                    HSV
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="hsvCode"
+                                    readonly
+                                >
+
+                            </div>
+
+
+                            <p class="color-shades-copy-help">
+                                Click to copy value in desired type above.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Shared Content -->
+        <div id="tool-content-component"></div>
+
+        <div id="features"></div>
+
+        <div id="related-tools"></div>
+
+        <div id="faq"></div>
+
+
+    </main>
+
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+
+    <!-- SweetAlert2 -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.js">
+    </script>
+
+
+    <!-- Tool JS -->
+    <script src="../../assets/js/color-shades.js"></script>
+
+    <!-- Universal JS -->
+    <script src="../../assets/js/tools.js"></script>
+
+    <!-- Components -->
+    <script src="../../assets/js/components.js"></script>
+
+</body>
+
+</html>
