@@ -29,6 +29,9 @@
     const hsvOutput =
         document.getElementById("hsvOutput");
 
+    const getShadesLink =
+        document.getElementById("getShadesLink");
+
 
     /* =====================================================
        RANDOM COLOR
@@ -90,46 +93,56 @@
        UPDATE UI
        ===================================================== */
 
-    function updateColor(color) {
-
-        const colorCodes =
-            getColorCodes(color);
-
-
-        if (colorBox) {
-
-            colorBox.style.backgroundColor =
-                colorCodes.hex;
-        }
-
-
-        if (hexOutput) {
-
-            hexOutput.value =
-                colorCodes.hex;
-        }
-
-
-        if (rgbOutput) {
-
-            rgbOutput.value =
-                colorCodes.rgb;
-        }
-
-
-        if (hslOutput) {
-
-            hslOutput.value =
-                colorCodes.hsl;
-        }
-
-
-        if (hsvOutput) {
-
-            hsvOutput.value =
-                colorCodes.hsv;
-        }
-    }
+       function updateColor(color) {
+      
+          const colorCodes =
+              getColorCodes(color);
+      
+          if (colorBox) {
+              colorBox.style.backgroundColor =
+                  colorCodes.hex;
+          }
+      
+          if (hexOutput) {
+              hexOutput.value =
+                  colorCodes.hex;
+          }
+      
+          if (rgbOutput) {
+              rgbOutput.value =
+                  colorCodes.rgb;
+          }
+      
+          if (hslOutput) {
+              hslOutput.value =
+                  colorCodes.hsl;
+          }
+      
+          if (hsvOutput) {
+              hsvOutput.value =
+                  colorCodes.hsv;
+          }
+      
+      
+          /* Send the same HEX color to Color Shades */
+      
+          if (getShadesLink) {
+      
+              const shadesUrl =
+                  new URL(
+                      "../color-shades/",
+                      window.location.href
+                  );
+      
+              shadesUrl.searchParams.set(
+                  "color",
+                  colorCodes.hex
+              );
+      
+              getShadesLink.href =
+                  shadesUrl.href;
+          }
+      }
 
 
     /* =====================================================
