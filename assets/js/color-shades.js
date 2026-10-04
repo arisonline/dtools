@@ -48,13 +48,17 @@
         document.getElementById("colorInputError");
 
 
-    /*
-     * Default fallback color.
-     * This is only used if the color input
-     * itself is invalid. Direct page refreshes
-     * without a stored color generate a new
-     * random color instead.
-     */
+    /* =====================================================
+       STORAGE KEY
+       ===================================================== */
+
+    const SHADES_STORAGE_KEY =
+        "dozni-color-shades";
+
+
+    /* =====================================================
+       DEFAULT
+       ===================================================== */
 
     let selectedColor =
         "#fe34ee";
@@ -130,62 +134,175 @@
 
 
     /* =====================================================
-       SESSION STORAGE
+       READ COOKIE
        ===================================================== */
 
-    function getStoredColor() {
+    function getCookieValue(name) {
 
         try {
 
-            const storedColor =
-                sessionStorage.getItem(
-                    "dozni-color-shades"
-                );
+            const cookies =
+                document.cookie.split(";");
 
 
-            if (!storedColor) {
-                return null;
+            for (
+                let i = 0;
+                i < cookies.length;
+                i++
+            ) {
+
+                const cookie =
+                    cookies[i].trim();
+
+
+                if (
+                    cookie.indexOf(
+                        name + "="
+                    ) === 0
+                ) {
+
+                    return decodeURIComponent(
+                        cookie.substring(
+                            name.length + 1
+                        )
+                    );
+                }
             }
-
-
-            const parsedColor =
-                parseColor(storedColor);
-
-
-            if (!parsedColor) {
-
-                sessionStorage.removeItem(
-                    "dozni-color-shades"
-                );
-
-                return null;
-            }
-
-
-            /*
-             * Normalize to HEX.
-             */
-
-            const normalizedColor =
-                parsedColor.toHexString();
-
-
-            /*
-             * Consume the stored color
-             * only once.
-             */
-
-            sessionStorage.removeItem(
-                "dozni-color-shades"
-            );
-
-
-            return normalizedColor;
 
         } catch (error) {
 
             return null;
         }
+
+
+        return null;
+    }
+
+
+    /* =====================================================
+       DELETE COOKIE
+       ===================================================== */
+
+    function deleteColorCookie() {
+
+        try {
+
+            if (
+                location.hostname === "dozni.com" ||
+                location.hostname.endsWith(".dozni.com")
+            ) {
+
+                document.cookie =
+                    SHADES_STORAGE_KEY +
+                    "=; path=/; domain=.dozni.com; max-age=0; SameSite=Lax";
+            }
+
+        } catch (error) {
+
+            // Ignore cookie removal error.
+        }
+    }
+
+
+    /* =====================================================
+       GET TRANSFERRED COLOR
+       ===================================================== */
+
+    function getTransferredColor() {
+
+        let storedColor =
+            null;
+
+
+        /*
+         * First try sessionStorage.
+         * This is used when both tools are
+         * on the same origin.
+         */
+
+        try {
+
+            storedColor =
+                sessionStorage.getItem(
+                    SHADES_STORAGE_KEY
+                );
+
+        } catch (error) {
+
+            storedColor =
+                null;
+        }
+
+
+        /*
+         * If sessionStorage has nothing,
+         * try the Dozni shared cookie.
+         */
+
+        if (!storedColor) {
+
+            storedColor =
+                getCookieValue(
+                    SHADES_STORAGE_KEY
+                );
+        }
+
+
+        /*
+         * Nothing was transferred.
+         */
+
+        if (!storedColor) {
+
+            return null;
+        }
+
+
+        /*
+         * Validate.
+         */
+
+        const parsedColor =
+            parseColor(
+                storedColor
+            );
+
+
+        /*
+         * Always consume the stored
+         * transfer value.
+         */
+
+        try {
+
+            sessionStorage.removeItem(
+                SHADES_STORAGE_KEY
+            );
+
+        } catch (error) {
+
+            // Ignore storage removal error.
+        }
+
+
+        deleteColorCookie();
+
+
+        /*
+         * Invalid transfer.
+         */
+
+        if (!parsedColor) {
+
+            return null;
+        }
+
+
+        /*
+         * Return normalized HEX.
+         */
+
+        return parsedColor.toHexString();
     }
 
 
@@ -236,7 +353,7 @@
 
 
     /* =====================================================
-       GENERATE A RANDOM COLOR
+       CREATE RANDOM COLOR
        ===================================================== */
 
     function createRandomColor() {
@@ -244,7 +361,8 @@
         return (
             "#" +
             Math.floor(
-                Math.random() * 16777216
+                Math.random() *
+                16777216
             )
                 .toString(16)
                 .padStart(6, "0")
@@ -272,10 +390,6 @@
             tinyColor.toHsv();
 
 
-        /*
-         * Reduce HSV value progressively.
-         */
-
         const step =
             hsv.v / count;
 
@@ -298,6 +412,7 @@
                 ),
 
                 a: 1
+
             };
 
 
@@ -323,10 +438,6 @@
 
         const result = [];
 
-
-        /*
-         * Move RGB progressively toward white.
-         */
 
         const rgb =
             tinycolor(color).toRgb();
@@ -471,7 +582,8 @@
             count < 1
         ) {
 
-            count = 10;
+            count =
+                10;
         }
 
 
@@ -489,11 +601,12 @@
             );
 
 
-        const colors = [];
+        const colors =
+            [];
 
 
         /*
-         * Lightest tint first.
+         * Lightest first.
          */
 
         for (
@@ -504,9 +617,11 @@
 
             colors.push({
 
-                color: tints[i],
+                color:
+                    tints[i],
 
-                type: "Tint"
+                type:
+                    "Tint"
 
             });
         }
@@ -514,8 +629,6 @@
 
         /*
          * Then darker shades.
-         * Skip the first shade because
-         * it is the original base color.
          */
 
         for (
@@ -526,16 +639,18 @@
 
             colors.push({
 
-                color: shades[i],
+                color:
+                    shades[i],
 
-                type: "Shade"
+                type:
+                    "Shade"
 
             });
         }
 
 
         /*
-         * Render the palette.
+         * Render.
          */
 
         colors.forEach(
@@ -557,8 +672,7 @@
 
 
         /*
-         * Select the base color if it
-         * exists in the palette.
+         * Select base color.
          */
 
         const baseBox =
@@ -608,7 +722,7 @@
 
 
         /*
-         * Remove old active state.
+         * Remove active state.
          */
 
         const activeBoxes =
@@ -629,8 +743,7 @@
 
 
         /*
-         * Add active state to
-         * selected palette box.
+         * Activate selected box.
          */
 
         if (clickedElement) {
@@ -642,7 +755,7 @@
 
 
         /*
-         * Update color preview.
+         * Preview.
          */
 
         if (selectedColorBox) {
@@ -653,11 +766,13 @@
 
 
         /*
-         * Update all color codes.
+         * Codes.
          */
 
         const colorObject =
-            tinycolor(selectedColor);
+            tinycolor(
+                selectedColor
+            );
 
 
         if (hexCode) {
@@ -688,10 +803,6 @@
         }
 
 
-        /*
-         * Optional toast.
-         */
-
         if (showToast) {
 
             showCopyToast(
@@ -702,7 +813,7 @@
 
 
     /* =====================================================
-       UPDATE RANGE COUNTER
+       RANGE COUNTER
        ===================================================== */
 
     function updateShadeRangeCounter() {
@@ -711,6 +822,7 @@
             !shadeRangeCounter ||
             !shadeRange
         ) {
+
             return;
         }
 
@@ -721,7 +833,7 @@
 
 
     /* =====================================================
-       GENERATE NEW RANDOM COLOR
+       RANDOM COLOR BUTTON
        ===================================================== */
 
     function generateRandomColor() {
@@ -735,6 +847,7 @@
                 randomColor
             )
         ) {
+
             return;
         }
 
@@ -749,11 +862,6 @@
 
     if (colorInput) {
 
-        /*
-         * Update live when the user
-         * types a valid color.
-         */
-
         colorInput.addEventListener(
             "input",
             function () {
@@ -766,14 +874,8 @@
                     parseColor(value);
 
 
-                /*
-                 * Don't destroy the
-                 * current palette while
-                 * the user is typing an
-                 * incomplete value.
-                 */
-
                 if (!parsed) {
+
                     return;
                 }
 
@@ -798,11 +900,6 @@
         );
 
 
-        /*
-         * Validate when the user
-         * finishes editing.
-         */
-
         colorInput.addEventListener(
             "change",
             function () {
@@ -821,10 +918,6 @@
             }
         );
 
-
-        /*
-         * Enter key support.
-         */
 
         colorInput.addEventListener(
             "keydown",
@@ -896,7 +989,7 @@
 
 
     /* =====================================================
-       SHADE RANGE
+       RANGE
        ===================================================== */
 
     if (shadeRange) {
@@ -907,7 +1000,6 @@
 
                 updateShadeRangeCounter();
 
-
                 renderPalette();
 
             }
@@ -916,7 +1008,7 @@
 
 
     /* =====================================================
-       COPY VALUE
+       COPY
        ===================================================== */
 
     async function copyValue(value) {
@@ -933,10 +1025,6 @@
             );
 
         } catch (error) {
-
-            /*
-             * Clipboard fallback.
-             */
 
             const textarea =
                 document.createElement(
@@ -1003,6 +1091,7 @@
             typeof Swal ===
             "undefined"
         ) {
+
             return;
         }
 
@@ -1140,47 +1229,37 @@
 
 
         /*
-         * IMPORTANT:
-         *
-         * 1. First check whether Random Color
-         *    Generator passed a color through
-         *    sessionStorage.
-         *
-         * 2. If yes, use that exact color.
-         *
-         * 3. Remove the stored value immediately
-         *    so a normal refresh does NOT keep using
-         *    that same color.
-         *
-         * 4. If no stored color exists, create a
-         *    completely NEW random color.
+         * First:
+         * Try to receive the exact color
+         * from Random Color Generator.
          */
 
-        const storedColor =
-            getStoredColor();
+        const transferredColor =
+            getTransferredColor();
 
 
-        if (storedColor) {
+        if (transferredColor) {
 
             /*
-             * Color came from Random Color Generator.
+             * A color was passed from
+             * Random Color Generator.
              */
 
             selectedColor =
-                storedColor;
+                transferredColor;
 
 
             if (colorInput) {
 
                 colorInput.value =
-                    storedColor;
+                    transferredColor;
             }
 
 
             if (baseColor) {
 
                 baseColor.value =
-                    storedColor;
+                    transferredColor;
             }
 
 
@@ -1195,31 +1274,36 @@
 
 
         /*
-         * No color was passed from another tool.
+         * No color was passed.
          *
-         * Generate a NEW random color on
-         * every direct page load / refresh.
+         * IMPORTANT:
+         * Generate a brand-new random color.
+         *
+         * Therefore:
+         *
+         * Refresh → new color
+         * Direct visit → new color
          */
 
-        const freshRandomColor =
+        const randomColor =
             createRandomColor();
 
 
         selectedColor =
-            freshRandomColor;
+            randomColor;
 
 
         if (colorInput) {
 
             colorInput.value =
-                freshRandomColor;
+                randomColor;
         }
 
 
         if (baseColor) {
 
             baseColor.value =
-                freshRandomColor;
+                randomColor;
         }
 
 
@@ -1234,7 +1318,20 @@
        START
        ===================================================== */
 
-    initialize();
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
+
+    } else {
+
+        initialize();
+    }
 
 
 })();
