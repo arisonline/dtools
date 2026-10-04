@@ -1,0 +1,652 @@
+/* =========================================================
+   COLOR SHADES GENERATOR
+   ========================================================= */
+
+.color-shades-page {
+    width: 100%;
+    padding: 20px 0 40px;
+}
+
+.color-shades-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.color-shades-card {
+    width: min(1200px, 94%);
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   INPUT SECTION
+   ========================================================= */
+
+.color-shades-input-section {
+    padding: 20px 24px;
+
+    background: var(--card);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.color-shades-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.color-shades-input-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+#colorInput {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-family:
+        Monaco,
+        Menlo,
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+}
+
+#colorInput:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 2px rgba(29, 114, 255, .10);
+}
+
+
+#baseColor {
+    width: 82px;
+
+    height: 82px;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.color-shades-input-actions {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 9px;
+}
+
+.color-shades-input-actions > span {
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.color-shades-random-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    min-height: 36px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+}
+
+.color-shades-random-button:hover {
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    color: #fff;
+}
+
+.color-shades-random-button .material-icons {
+    font-size: 16px;
+}
+
+.color-shades-error {
+    display: none;
+
+    margin-top: 10px;
+
+    padding: 8px 10px;
+
+    border-radius: 6px;
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RANGE
+   ========================================================= */
+
+.color-shades-range-section {
+    padding: 18px 24px;
+
+    background: var(--card);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.color-shades-range-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.color-shades-range-header label {
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#shadeRangeCounter {
+    min-width: 42px;
+
+    height: 36px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.color-shades-range-row {
+    width: 100%;
+}
+
+#shadeRange {
+    width: 100%;
+
+    height: 15px;
+
+    margin: 0;
+
+    appearance: none;
+
+    background: var(--bg-soft);
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+#shadeRange::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 20px;
+    height: 28px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 5px;
+
+    background: var(--text-light);
+
+    cursor: pointer;
+}
+
+#shadeRange::-moz-range-thumb {
+    width: 20px;
+    height: 28px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 5px;
+
+    background: var(--text-light);
+
+    cursor: pointer;
+}
+
+#shadeRange::-webkit-slider-thumb:hover,
+#shadeRange::-moz-range-thumb:hover {
+    background: var(--primary);
+}
+
+.color-shades-range-help {
+    margin: 8px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PALETTE
+   ========================================================= */
+
+.color-shades-palette-section {
+    padding: 20px 24px;
+
+    background: var(--card);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.color-shades-palette-title {
+    margin-bottom: 12px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.color-shades-palette {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(35px, 1fr)
+        );
+
+    width: 100%;
+
+    min-height: 76px;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    border: 1px solid var(--border);
+}
+
+.color-shade-box {
+    min-width: 0;
+
+    height: 76px;
+
+    border: none;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        transform .12s ease,
+        box-shadow .12s ease;
+
+    box-sizing: border-box;
+}
+
+.color-shade-box:hover {
+    transform: translateY(-2px);
+
+    z-index: 2;
+
+    box-shadow:
+        0 4px 12px rgba(18, 38, 63, .20);
+}
+
+.color-shade-box.active {
+    box-shadow:
+        inset 0 0 0 3px var(--primary);
+
+    z-index: 3;
+}
+
+.color-shades-palette-help {
+    margin: 10px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   OUTPUT
+   ========================================================= */
+
+.color-shades-output {
+    display: flex;
+
+    width: 100%;
+
+    min-height: 290px;
+
+    background: var(--card);
+}
+
+
+/* =========================================================
+   SELECTED COLOR
+   ========================================================= */
+
+.color-shades-selected-section {
+    width: 50%;
+
+    padding: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: var(--card);
+}
+
+.selected-color-box {
+    width: min(250px, 80%);
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(18, 38, 63, .10);
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+.selected-color-box:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(18, 38, 63, .16);
+}
+
+
+/* =========================================================
+   COLOR CODES
+   ========================================================= */
+
+.color-shades-codes {
+    width: 50%;
+
+    padding: 30px;
+
+    border-left: 1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.color-code-row {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    margin-bottom: 12px;
+}
+
+.color-code-row label {
+    width: 48px;
+
+    flex-shrink: 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.color-code-row input {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 38px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-family:
+        Monaco,
+        Menlo,
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.color-code-row input:hover,
+.color-code-row input:focus {
+    border-color: var(--primary);
+}
+
+.color-shades-copy-help {
+    margin: 4px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark .selected-color-box {
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .35);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .color-shades-output {
+        flex-direction: column;
+    }
+
+    .color-shades-selected-section,
+    .color-shades-codes {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .color-shades-codes {
+        border-left: none;
+
+        border-top: 1px solid var(--border);
+    }
+
+    .color-shades-input-row {
+        align-items: stretch;
+    }
+
+    #baseColor {
+        width: 70px;
+        height: 70px;
+    }
+
+    .color-shade-box {
+        height: 64px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .color-shades-page {
+        padding-top: 10px;
+    }
+
+    .color-shades-card {
+        width: 96%;
+
+        border-radius: 12px;
+    }
+
+    .color-shades-input-section,
+    .color-shades-range-section,
+    .color-shades-palette-section {
+        padding: 16px;
+    }
+
+    .color-shades-input-row {
+        flex-direction: column;
+    }
+
+    #baseColor {
+        width: 100%;
+        height: 70px;
+    }
+
+    .color-shades-input-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .color-shades-random-button {
+        width: 100%;
+    }
+
+    .color-shades-output {
+        min-height: auto;
+    }
+
+    .color-shades-selected-section,
+    .color-shades-codes {
+        padding: 20px 14px;
+    }
+
+    .selected-color-box {
+        width: min(230px, 80%);
+    }
+
+    .color-code-row label {
+        width: 42px;
+    }
+
+    .color-code-row input {
+        font-size: 11px;
+    }
+
+}
