@@ -605,182 +605,589 @@ typeEffect();
 
 <script>
 
-const filterMain =
-document.getElementById("filterMain");
+window.setupHomeToolExplorer = function () {
 
-const dropdownMenu =
-document.getElementById("dropdownMenu");
+  const filterMain =
+    document.getElementById("filterMain");
 
-const moreBtn =
-document.getElementById("moreBtn");
+  const dropdownMenu =
+    document.getElementById("dropdownMenu");
 
-const filterDropdown =
-document.getElementById("filterDropdown");
+  const moreBtn =
+    document.getElementById("moreBtn");
 
-const toolCards =
-document.querySelectorAll(".modern-tool-card");
+  const filterDropdown =
+    document.getElementById("filterDropdown");
 
-/* STORE ORIGINAL BUTTONS */
+  const toolGrid =
+    document.querySelector(".tools-grid-modern");
 
-const allButtons =
-[...filterMain.querySelectorAll(".filter-btn")];
+  const toolsSection =
+    document.querySelector(".tools-section");
 
-/* RESPONSIVE DISTRIBUTION */
+  const heroExploreBtn =
+    document.querySelector(".hero-actions .primary-btn");
 
-function setupFilters(){
 
-  /* RESET */
-
-  dropdownMenu.innerHTML = "";
-
-  allButtons.forEach(btn => {
-    filterMain.appendChild(btn);
-  });
-
-  moreBtn.style.display = "none";
-
-  /* WIDTH */
-
-  const totalWidth =
-  filterMain.offsetWidth;
-
-  let usedWidth = 0;
-
-  const hiddenButtons = [];
-
-  /* TEMP AUTO WIDTH */
-
-  allButtons.forEach(btn=>{
-    btn.style.flex = "none";
-  });
-
-  /* CHECK WIDTH */
-
-  allButtons.forEach(btn=>{
-
-    usedWidth +=
-    btn.offsetWidth + 8;
-
-  });
-
-  /* ALL FIT */
-
-  if(usedWidth <= totalWidth){
-
-    allButtons.forEach(btn=>{
-      btn.style.flex = "1";
-    });
-
+  if (
+    !filterMain ||
+    !dropdownMenu ||
+    !moreBtn ||
+    !filterDropdown ||
+    !toolGrid
+  ) {
     return;
   }
 
-  /* SHOW MORE */
 
-  moreBtn.style.display = "flex";
+  if (
+    filterMain.dataset.initialized === "true"
+  ) {
+    return;
+  }
 
-  usedWidth =
-  moreBtn.offsetWidth + 8;
 
-  allButtons.forEach(btn=>{
+  filterMain.dataset.initialized = "true";
 
-    const btnWidth =
-    btn.offsetWidth + 8;
 
-    if(usedWidth + btnWidth < totalWidth){
+  /* =====================================
+     TOOLS DATA
+  ====================================== */
 
-      usedWidth += btnWidth;
+  const source =
+    Array.isArray(window.toolsData)
+      ? window.toolsData
+      : (
+          typeof toolsData !== "undefined"
+            ? toolsData
+            : []
+        );
 
-    }else{
 
-      hiddenButtons.push(btn);
+  if (!source.length) {
+    return;
+  }
 
+
+  /* =====================================
+     TOOL URL
+  ====================================== */
+
+  function getToolUrl(tool) {
+
+    const rawUrl =
+      String(tool.url || "").trim();
+
+
+    if (!rawUrl) {
+      return "#";
     }
 
-  });
 
-  /* MOVE */
-
-  hiddenButtons.forEach(btn=>{
-
-    dropdownMenu.appendChild(btn);
-
-  });
-
-  /* STRETCH REMAINING */
-
-  [...filterMain.querySelectorAll(".filter-btn")]
-  .forEach(btn=>{
-
-    btn.style.flex = "1";
-
-  });
-
-}
-
-/* FILTER FUNCTION */
-
-document.addEventListener("click",(e)=>{
-
-  const btn =
-  e.target.closest(".filter-btn");
-
-  if(!btn || btn.classList.contains("more-btn"))
-  return;
-
-  /* ACTIVE */
-
-  document
-  .querySelectorAll(".filter-btn")
-  .forEach(el=>el.classList.remove("active"));
-
-  btn.classList.add("active");
-
-  /* FILTER */
-
-  const filter =
-  btn.dataset.filter;
-
-  toolCards.forEach(card=>{
-
-    const category =
-    card.dataset.category;
-
-    if(filter === "all" || category === filter){
-
-      card.style.display = "flex";
-
-    }else{
-
-      card.style.display = "none";
-
+    if (
+      rawUrl.startsWith("http://") ||
+      rawUrl.startsWith("https://")
+    ) {
+      return rawUrl;
     }
 
-  });
 
-  /* UPDATE MORE BTN */
-
-  if(btn.parentElement === dropdownMenu){
-
-    moreBtn.innerHTML =
-    btn.textContent + " +";
-
-  }else{
-
-    moreBtn.innerHTML =
-    "More +";
+    return SITE_BASE +
+      rawUrl.replace(/^\/+/, "");
 
   }
 
-});
 
-/* INIT */
+  /* =====================================
+     ESCAPE HTML
+  ====================================== */
 
-setupFilters();
+  function escapeHtml(value) {
 
-window.addEventListener(
-  "resize",
-  setupFilters
-);
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  /* =====================================
+     ICON COLORS
+  ====================================== */
+
+  const iconColors = [
+    "pink",
+    "blue",
+    "purple",
+    "green",
+    "orange",
+    "cyan"
+  ];
+
+
+  /* =====================================
+     RENDER TOOLS
+  ====================================== */
+
+  function renderTools(filter) {
+
+    const cleanFilter =
+      String(filter || "all")
+        .toLowerCase();
+
+
+    const results =
+      source.filter(tool => {
+
+        const category =
+          String(
+            tool.category || ""
+          )
+          .trim()
+          .toLowerCase();
+
+
+        return (
+          cleanFilter === "all" ||
+          category === cleanFilter
+        );
+
+      });
+
+
+    if (!results.length) {
+
+      toolGrid.innerHTML = `
+        <div
+          class="tool-search-no-results"
+          style="grid-column:1/-1;"
+        >
+          No tools found in this category.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    toolGrid.innerHTML =
+      results
+        .map((tool, index) => {
+
+          const iconClass =
+            iconColors[
+              index % iconColors.length
+            ];
+
+
+          const icon =
+            escapeHtml(
+              tool.icon || "build"
+            );
+
+
+          const name =
+            escapeHtml(
+              tool.name || "Tool"
+            );
+
+
+          const description =
+            escapeHtml(
+              tool.description || ""
+            );
+
+
+          const url =
+            getToolUrl(tool);
+
+
+          return `
+            <a
+              href="${url}"
+              class="modern-tool-card"
+              aria-label="${name}"
+            >
+
+              <div
+                class="modern-tool-icon ${iconClass}"
+              >
+
+                <span class="material-icons">
+                  ${icon}
+                </span>
+
+              </div>
+
+              <div class="tool-content">
+
+                <h3>
+                  ${name}
+                </h3>
+
+                <p>
+                  ${description}
+                </p>
+
+              </div>
+
+            </a>
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  /* =====================================
+     FILTER BUTTONS
+  ====================================== */
+
+  const allButtons =
+    [
+      ...filterMain.querySelectorAll(
+        ".filter-btn"
+      )
+    ];
+
+
+  function applyFilter(btn) {
+
+    if (!btn) {
+      return;
+    }
+
+
+    const filter =
+      btn.dataset.filter || "all";
+
+
+    document
+      .querySelectorAll(
+        "#filterMain .filter-btn, #dropdownMenu .filter-btn"
+      )
+      .forEach(el => {
+
+        el.classList.remove(
+          "active"
+        );
+
+      });
+
+
+    btn.classList.add(
+      "active"
+    );
+
+
+    renderTools(
+      filter
+    );
+
+
+    if (
+      btn.parentElement ===
+      dropdownMenu
+    ) {
+
+      moreBtn.textContent =
+        btn.textContent.trim() + " +";
+
+    } else {
+
+      moreBtn.textContent =
+        "More +";
+
+    }
+
+
+    filterDropdown.classList.remove(
+      "open"
+    );
+
+  }
+
+
+  /* =====================================
+     RESPONSIVE FILTERS
+  ====================================== */
+
+  function setupFilters() {
+
+    dropdownMenu.innerHTML = "";
+
+
+    allButtons.forEach(btn => {
+
+      filterMain.appendChild(
+        btn
+      );
+
+    });
+
+
+    moreBtn.style.display =
+      "none";
+
+
+    filterDropdown.classList.remove(
+      "open"
+    );
+
+
+    allButtons.forEach(btn => {
+
+      btn.style.flex =
+        "none";
+
+    });
+
+
+    const totalWidth =
+      filterMain.offsetWidth;
+
+
+    let usedWidth = 0;
+
+
+    const hiddenButtons = [];
+
+
+    allButtons.forEach(btn => {
+
+      usedWidth +=
+        btn.offsetWidth + 8;
+
+    });
+
+
+    if (
+      usedWidth <= totalWidth
+    ) {
+
+      allButtons.forEach(btn => {
+
+        btn.style.flex =
+          "1";
+
+      });
+
+      return;
+    }
+
+
+    moreBtn.style.display =
+      "flex";
+
+
+    usedWidth =
+      moreBtn.offsetWidth + 8;
+
+
+    allButtons.forEach(btn => {
+
+      const btnWidth =
+        btn.offsetWidth + 8;
+
+
+      if (
+        usedWidth + btnWidth <
+        totalWidth
+      ) {
+
+        usedWidth +=
+          btnWidth;
+
+      } else {
+
+        hiddenButtons.push(
+          btn
+        );
+
+      }
+
+    });
+
+
+    hiddenButtons.forEach(btn => {
+
+      dropdownMenu.appendChild(
+        btn
+      );
+
+    });
+
+
+    [
+      ...filterMain.querySelectorAll(
+        ".filter-btn"
+      )
+    ]
+    .forEach(btn => {
+
+      btn.style.flex =
+        "1";
+
+    });
+
+  }
+
+
+  /* =====================================
+     FILTER EVENTS
+  ====================================== */
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      const btn =
+        event.target.closest(
+          "#filterMain .filter-btn, #dropdownMenu .filter-btn"
+        );
+
+
+      if (!btn) {
+        return;
+      }
+
+
+      applyFilter(
+        btn
+      );
+
+    }
+  );
+
+
+  /* =====================================
+     MORE BUTTON
+  ====================================== */
+
+  moreBtn.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+
+      filterDropdown.classList.toggle(
+        "open"
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !filterDropdown.contains(
+          event.target
+        )
+      ) {
+
+        filterDropdown.classList.remove(
+          "open"
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =====================================
+     EXPLORE TOOLS BUTTON
+  ====================================== */
+
+  if (heroExploreBtn) {
+
+    heroExploreBtn.addEventListener(
+      "click",
+      function () {
+
+        if (!toolsSection) {
+          return;
+        }
+
+
+        toolsSection.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      }
+    );
+
+  }
+
+
+  /* =====================================
+     INITIAL FILTER
+  ====================================== */
+
+  let initialFilter =
+    "all";
+
+
+  try {
+
+    const storedFilter =
+      sessionStorage.getItem(
+        "dozni-home-filter"
+      );
+
+
+    if (storedFilter) {
+
+      initialFilter =
+        storedFilter.toLowerCase();
+
+
+      sessionStorage.removeItem(
+        "dozni-home-filter"
+      );
+
+    }
+
+  } catch (error) {}
+
+
+  const initialButton =
+    allButtons.find(btn =>
+      (
+        btn.dataset.filter ||
+        "all"
+      ).toLowerCase() ===
+      initialFilter
+    ) || allButtons[0];
+
+
+  /* =====================================
+     INITIALIZE
+  ====================================== */
+
+  setupFilters();
+
+
+  applyFilter(
+    initialButton
+  );
+
+
+  window.addEventListener(
+    "resize",
+    setupFilters
+  );
+
+};
 
 </script>
 
