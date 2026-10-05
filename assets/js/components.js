@@ -9,6 +9,78 @@ const SITE_BASE =
 
 
 
+/* =========================================
+   FOOTER
+========================================= */
+
+function initFooter() {
+
+    /* =====================================
+       FOOTER LOGO
+    ====================================== */
+
+    const footerLogo =
+        document.querySelector(
+            "#site-footer .footer-logo"
+        );
+
+    const footerLogoImage =
+        document.getElementById(
+            "footerLogoImage"
+        );
+
+
+    if (footerLogo) {
+
+        footerLogo.href =
+            SITE_BASE;
+
+    }
+
+
+    if (footerLogoImage) {
+
+        footerLogoImage.src =
+            SITE_BASE +
+            "assets/icons/favicons_web-app-manifest-192x192.png";
+
+        footerLogoImage.alt =
+            "DTools";
+
+    }
+
+
+    /* =====================================
+       FOOTER INTERNAL LINKS
+    ====================================== */
+
+    const footerLinks =
+        document.querySelectorAll(
+            "#site-footer a[data-path]"
+        );
+
+
+    footerLinks.forEach(function (link) {
+
+        const path =
+            link.getAttribute("data-path");
+
+
+        if (!path) {
+            return;
+        }
+
+
+        link.href =
+            SITE_BASE +
+            path.replace(/^\/+/, "");
+
+    });
+
+}
+
+
+
 
 function initSiteLogo() {
 
@@ -638,6 +710,8 @@ async function initComponents() {
         "site-footer",
         "footer.html"
     );
+
+   initFooter();
 
 
     /*
