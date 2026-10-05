@@ -50,6 +50,52 @@ function initFooter() {
     }
 
 
+   /* =====================================
+      HOMEPAGE FILTER LINKS
+   ====================================== */
+   
+      const filterLinks =
+          document.querySelectorAll(
+              "#site-footer a[data-home-filter]"
+          );
+      
+      
+      filterLinks.forEach(function (link) {
+      
+          const filter =
+              link.getAttribute(
+                  "data-home-filter"
+              );
+      
+      
+          if (!filter) {
+              return;
+          }
+      
+      
+          link.href =
+              SITE_BASE;
+      
+      
+          link.addEventListener(
+              "click",
+              function () {
+      
+                  try {
+      
+                      sessionStorage.setItem(
+                          "dozni-home-filter",
+                          filter
+                      );
+      
+                  } catch (error) {}
+      
+              }
+          );
+      
+      });
+
+
     /* =====================================
        FOOTER INTERNAL LINKS
     ====================================== */
@@ -76,6 +122,27 @@ function initFooter() {
             path.replace(/^\/+/, "");
 
     });
+
+}
+
+
+
+
+
+/* =========================================
+   HOME TOOL EXPLORER
+========================================= */
+
+function initHomeToolExplorer() {
+
+    if (
+        typeof window.setupHomeToolExplorer ===
+        "function"
+    ) {
+
+        window.setupHomeToolExplorer();
+
+    }
 
 }
 
@@ -732,6 +799,8 @@ async function initComponents() {
         );
 
     }
+
+   initHomeToolExplorer();
 
 }
 
