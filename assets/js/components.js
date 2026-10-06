@@ -813,6 +813,333 @@ function initToolSearch() {
 
 
 
+
+/* =========================================
+   START FREE / SUPABASE AUTH
+========================================= */
+
+function initStartFree() {
+
+    const openButton =
+        document.getElementById("startFreeButton");
+
+    const modal =
+        document.getElementById("startFreeModal");
+
+    const closeButton =
+        document.getElementById("startFreeClose");
+
+    const form =
+        document.getElementById("startFreeForm");
+
+    const status =
+        document.getElementById("startFreeStatus");
+
+    const submitButton =
+        document.getElementById("startFreeSubmit");
+
+    if (
+        !openButton ||
+        !modal ||
+        !closeButton ||
+        !form ||
+        !status ||
+        !submitButton
+    ) {
+        return;
+    }
+
+    const privacyLink =
+        document.getElementById("startFreePrivacyLink");
+
+    const termsLink =
+        document.getElementById("startFreeTermsLink");
+
+    if (privacyLink) {
+        privacyLink.href =
+            SITE_BASE + "privacy-policy/";
+        privacyLink.target = "_blank";
+        privacyLink.rel = "noopener";
+    }
+
+    if (termsLink) {
+        termsLink.href =
+            SITE_BASE + "terms-and-conditions/";
+        termsLink.target = "_blank";
+        termsLink.rel = "noopener";
+    }
+
+    function setStatus(message, type) {
+
+        status.textContent =
+            message || "";
+
+        status.className =
+            "dtools-auth-status" +
+            (type ? " " + type : "");
+
+    }
+
+    function openModal() {
+
+        modal.classList.add("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.style.overflow =
+            "hidden";
+
+        setStatus("");
+
+        setTimeout(function () {
+
+            document
+                .getElementById("startFreeName")
+                ?.focus();
+
+        }, 50);
+
+    }
+
+    function closeModal() {
+
+        modal.classList.remove("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+    openButton.addEventListener(
+        "click",
+        openModal
+    );
+
+    closeButton.addEventListener(
+        "click",
+        closeModal
+    );
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === modal
+            ) {
+                closeModal();
+            }
+
+        }
+    );
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("active")
+            ) {
+                closeModal();
+            }
+
+        }
+    );
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            setStatus(
+                "Creating your account...",
+                "loading"
+            );
+
+            submitButton.disabled =
+                true;
+
+            try {
+
+                if (!dtoolsSupabase) {
+                    await initSupabase();
+                }
+
+                const fullName =
+                    document
+                        .getElementById(
+                            "startFreeName"
+                        )
+                        .value
+                        .trim();
+
+                const email =
+                    document
+                        .getElementById(
+                            "startFreeEmail"
+                        )
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+                const password =
+                    document
+                        .getElementById(
+                            "startFreePassword"
+                        )
+                        .value;
+
+                const termsAccepted =
+                    document
+                        .getElementById(
+                            "startFreeTerms"
+                        )
+                        .checked;
+
+                const marketingConsent =
+                    document
+                        .getElementById(
+                            "startFreeMarketing"
+                        )
+                        .checked;
+
+                const partnerConsent =
+                    document
+                        .getElementById(
+                            "startFreePartner"
+                        )
+                        .checked;
+
+                const interests =
+                    Array.from(
+                        form.querySelectorAll(
+                            'input[name="interest"]:checked'
+                        )
+                    ).map(function (input) {
+                        return input.value;
+                    });
+
+                if (!fullName) {
+                    throw new Error(
+                        "Please enter your name."
+                    );
+                }
+
+                if (!email) {
+                    throw new Error(
+                        "Please enter your email."
+                    );
+                }
+
+                if (password.length < 6) {
+                    throw new Error(
+                        "Password must be at least 6 characters."
+                    );
+                }
+
+                if (!termsAccepted) {
+                    throw new Error(
+                        "Please accept the Privacy Policy and Terms & Conditions."
+                    );
+                }
+
+                const result =
+                    await dtoolsSupabase.auth.signUp({
+
+                        email: email,
+
+                        password: password,
+
+                        options: {
+
+                            emailRedirectTo:
+                                window.location.origin +
+                                SITE_BASE,
+
+                            data: {
+
+                                full_name:
+                                    fullName,
+
+                                interests:
+                                    interests,
+
+                                marketing_consent:
+                                    marketingConsent,
+
+                                partner_consent:
+                                    partnerConsent,
+
+                                consent_version:
+                                    "2026-10-06",
+
+                                consent_at:
+                                    new Date().toISOString()
+
+                            }
+
+                        }
+
+                    });
+
+                if (result.error) {
+                    throw result.error;
+                }
+
+                form.reset();
+
+                if (
+                    result.data.user &&
+                    result.data.session
+                ) {
+
+                    setStatus(
+                        "Account created successfully. You are signed in.",
+                        "success"
+                    );
+
+                } else {
+
+                    setStatus(
+                        "Account created. Please check your email to confirm your account.",
+                        "success"
+                    );
+
+                }
+
+            } catch (error) {
+
+                setStatus(
+                    error.message ||
+                    "Unable to create your account.",
+                    "error"
+                );
+
+            } finally {
+
+                submitButton.disabled =
+                    false;
+
+            }
+
+        }
+    );
+
+}
+
+
+
+
 /* =========================================
    INITIALIZE COMPONENTS
 ========================================= */
@@ -833,6 +1160,10 @@ async function initComponents() {
           initTheme();
       
           initToolSearch();
+      
+          await initSupabase();
+      
+          initStartFree();
       
       }
 
