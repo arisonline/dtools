@@ -470,6 +470,8 @@ body.dark .tool-illustration rect[fill="#eff6ff"]{
 
 .tools-section{
   scroll-margin-top:20px;
+  margin-top:200px;
+  margin-bottom:200px;
 }
 
 .tools-header{
