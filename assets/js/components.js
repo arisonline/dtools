@@ -79,20 +79,49 @@ function initFooter() {
       
       
           link.addEventListener(
-              "click",
-              function () {
-      
-                  try {
-      
-                      sessionStorage.setItem(
-                          "dozni-home-filter",
-                          filter
-                      );
-      
-                  } catch (error) {}
-      
-              }
-          );
+             "click",
+             function (event) {
+         
+                 /* =====================================
+                    ALREADY ON HOMEPAGE
+                 ====================================== */
+         
+                 if (
+                     typeof window.setHomeToolFilter ===
+                     "function"
+                 ) {
+         
+                     event.preventDefault();
+         
+                     window.setHomeToolFilter(
+                         filter
+                     );
+         
+                     history.replaceState(
+                         null,
+                         "",
+                         SITE_BASE + "#tools-section"
+                     );
+         
+                     return;
+                 }
+         
+         
+                 /* =====================================
+                    FROM TOOL / OTHER PAGE
+                 ====================================== */
+         
+                 try {
+         
+                     sessionStorage.setItem(
+                         "dozni-home-filter",
+                         filter
+                     );
+         
+                 } catch (error) {}
+         
+             }
+         );
       
       });
 
