@@ -912,6 +912,42 @@ window.setupHomeToolExplorer = function () {
   }
 
 
+
+
+    /* =====================================
+       EXTERNAL CATEGORY FILTER
+    ===================================== */
+    
+    window.setHomeToolFilter = function (filter) {
+    
+      const cleanFilter =
+        String(filter || "all").toLowerCase();
+    
+      const targetButton =
+        allButtons.find(btn =>
+          (
+            btn.dataset.filter || "all"
+          ).toLowerCase() === cleanFilter
+        ) || allButtons[0];
+    
+      setupFilters();
+    
+      applyFilter(targetButton);
+    
+      if (toolsSection) {
+    
+        toolsSection.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+    
+      }
+    
+    };
+
+    
+
+
   /* =====================================
      RESPONSIVE FILTERS
   ====================================== */
