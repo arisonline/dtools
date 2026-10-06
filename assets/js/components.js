@@ -42,7 +42,7 @@ function initFooter() {
 
         footerLogoImage.src =
             SITE_BASE +
-            "assets/icons/favicons_web-app-manifest-192x192.png";
+            "assets/icons/favicons_favicon.svg";
 
         footerLogoImage.alt =
             "DTools";
