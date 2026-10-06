@@ -192,7 +192,7 @@
 
 </section>
 
-<section class="tools-section">
+<section class="tools-section" id="tools-section">
 
   <div class="container">
 
@@ -1177,15 +1177,36 @@ window.setupHomeToolExplorer = function () {
   setupFilters();
 
 
-  applyFilter(
-    initialButton
-  );
-
-
-  window.addEventListener(
-    "resize",
-    setupFilters
-  );
+    applyFilter(
+      initialButton
+    );
+    
+    
+    if (
+      initialFilter !== "all" &&
+      toolsSection
+    ) {
+    
+      requestAnimationFrame(() => {
+    
+        setTimeout(() => {
+    
+          toolsSection.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+    
+        },50);
+    
+      });
+    
+    }
+    
+    
+    window.addEventListener(
+      "resize",
+      setupFilters
+    );
 
 };
 
