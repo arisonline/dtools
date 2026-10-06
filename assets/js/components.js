@@ -55,6 +55,28 @@ async function initSupabase() {
             SUPABASE_PUBLISHABLE_KEY
         );
 
+    /*
+       AUTH STATE
+    */
+
+    dtoolsSupabase.auth.onAuthStateChange(
+        function (event, session) {
+
+            updateDToolsAuthUI(
+                session
+            );
+
+        }
+    );
+
+
+   const sessionResult =
+    await dtoolsSupabase.auth.getSession();
+
+   updateDToolsAuthUI(
+       sessionResult.data.session
+   );
+
 }
 
 
@@ -814,6 +836,126 @@ function initToolSearch() {
 
 
 
+
+/* =========================================
+   DTOOLS AUTH UI
+========================================= */
+
+async function updateDToolsAuthUI(session) {
+
+    const startButton =
+        document.getElementById(
+            "startFreeButton"
+        );
+
+    const form =
+        document.getElementById(
+            "startFreeForm"
+        );
+
+    const accountView =
+        document.getElementById(
+            "dtoolsAccountView"
+        );
+
+    const accountEmail =
+        document.getElementById(
+            "dtoolsAccountEmail"
+        );
+
+    const accountName =
+        document.getElementById(
+            "dtoolsAccountName"
+        );
+
+    if (!startButton) {
+        return;
+    }
+
+
+    /*
+       SIGNED IN
+    */
+
+    if (session) {
+
+        startButton.textContent =
+            "Account";
+
+        startButton.dataset.authenticated =
+            "true";
+
+
+        if (form) {
+
+            form.style.display =
+                "none";
+
+        }
+
+
+        if (accountView) {
+
+            accountView.style.display =
+                "block";
+
+        }
+
+
+        if (accountEmail) {
+
+            accountEmail.textContent =
+                session.user.email || "";
+
+        }
+
+
+        if (accountName) {
+
+            const name =
+                session.user.user_metadata
+                    ?.full_name || "DTools User";
+
+            accountName.textContent =
+                name;
+
+        }
+
+        return;
+    }
+
+
+    /*
+       SIGNED OUT
+    */
+
+    startButton.textContent =
+        "Start Free";
+
+    startButton.dataset.authenticated =
+        "false";
+
+
+    if (form) {
+
+        form.style.display =
+            "block";
+
+    }
+
+
+    if (accountView) {
+
+        accountView.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+
 /* =========================================
    START FREE / SUPABASE AUTH
 ========================================= */
@@ -837,6 +979,9 @@ function initStartFree() {
 
     const submitButton =
         document.getElementById("startFreeSubmit");
+
+    const logoutButton =
+        document.getElementById("dtoolsLogoutButton");
 
     if (
         !openButton ||
@@ -917,6 +1062,47 @@ function initStartFree() {
             "";
 
     }
+
+
+
+       if (logoutButton) {
+   
+       logoutButton.addEventListener(
+           "click",
+           async function () {
+   
+               logoutButton.disabled =
+                   true;
+   
+               try {
+   
+                   const result =
+                       await dtoolsSupabase.auth.signOut();
+   
+                   if (result.error) {
+                       throw result.error;
+                   }
+   
+                   closeModal();
+   
+               } catch (error) {
+   
+                   console.error(
+                       "Logout error:",
+                       error
+                   );
+   
+               } finally {
+   
+                   logoutButton.disabled =
+                       false;
+   
+               }
+   
+           }
+       );
+   
+   }
 
     openButton.addEventListener(
         "click",
