@@ -108,6 +108,186 @@
 </header>
 
 
+
+
+<div
+    class="dtools-auth-overlay"
+    id="startFreeModal"
+    aria-hidden="true"
+>
+    <div
+        class="dtools-auth-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="startFreeTitle"
+    >
+
+        <button
+            type="button"
+            class="dtools-auth-close"
+            id="startFreeClose"
+            aria-label="Close"
+        >
+            <span class="material-icons">close</span>
+        </button>
+
+        <div class="dtools-auth-header">
+
+            <div class="dtools-auth-icon">
+                <span class="material-icons">person_add</span>
+            </div>
+
+            <div>
+                <h2 id="startFreeTitle">
+                    Create your free DTools account
+                </h2>
+
+                <p>
+                    Save your preferences and get relevant DTools updates.
+                </p>
+            </div>
+
+        </div>
+
+        <form id="startFreeForm" novalidate>
+
+            <label class="dtools-auth-label">
+                Full name
+            </label>
+
+            <input
+                class="dtools-auth-input"
+                id="startFreeName"
+                type="text"
+                placeholder="Your name"
+                required
+            >
+
+            <label class="dtools-auth-label">
+                Email
+            </label>
+
+            <input
+                class="dtools-auth-input"
+                id="startFreeEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+            <label class="dtools-auth-label">
+                Password
+            </label>
+
+            <input
+                class="dtools-auth-input"
+                id="startFreePassword"
+                type="password"
+                placeholder="Minimum 6 characters"
+                minlength="6"
+                required
+            >
+
+            <div class="dtools-auth-label">
+                What are you interested in?
+            </div>
+
+            <div class="dtools-interest-grid">
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="image">
+                    <span>Image Tools</span>
+                </label>
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="pdf">
+                    <span>PDF Tools</span>
+                </label>
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="dev">
+                    <span>Developer Tools</span>
+                </label>
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="color">
+                    <span>Color Tools</span>
+                </label>
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="seo">
+                    <span>SEO / Marketing</span>
+                </label>
+
+                <label class="dtools-check">
+                    <input type="checkbox" name="interest" value="productivity">
+                    <span>Productivity</span>
+                </label>
+
+            </div>
+
+            <label class="dtools-consent">
+                <input
+                    type="checkbox"
+                    id="startFreeTerms"
+                    required
+                >
+                <span>
+                    I agree to the
+                    <a href="#" id="startFreePrivacyLink">
+                        Privacy Policy
+                    </a>
+                    and
+                    <a href="#" id="startFreeTermsLink">
+                        Terms & Conditions
+                    </a>.
+                </span>
+            </label>
+
+            <label class="dtools-consent">
+                <input
+                    type="checkbox"
+                    id="startFreeMarketing"
+                >
+                <span>
+                    Send me DTools offers, updates and promotions.
+                </span>
+            </label>
+
+            <label class="dtools-consent">
+                <input
+                    type="checkbox"
+                    id="startFreePartner"
+                >
+                <span>
+                    Send me relevant offers from selected DTools partners.
+                </span>
+            </label>
+
+            <div
+                class="dtools-auth-status"
+                id="startFreeStatus"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+            <button
+                class="primary-btn dtools-auth-submit"
+                id="startFreeSubmit"
+                type="submit"
+            >
+                Create Free Account
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
 <!-- =========================================
      TOOL SEARCH OVERLAY
 ========================================= -->
