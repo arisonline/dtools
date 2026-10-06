@@ -1,3 +1,65 @@
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+    "https://gsacwyixmsvwbyngvuqn.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_IF1cpxuIbtc7BqxTtbXHjQ_1xMUsVO1";
+
+
+let dtoolsSupabase = null;
+
+
+async function loadSupabase() {
+
+    if (
+        window.supabase &&
+        window.supabase.createClient
+    ) {
+        return;
+    }
+
+
+    await new Promise(function(resolve, reject) {
+
+        const script =
+            document.createElement("script");
+
+        script.src =
+            "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+
+        script.onload =
+            resolve;
+
+        script.onerror =
+            reject;
+
+        document.head.appendChild(
+            script
+        );
+
+    });
+
+}
+
+
+async function initSupabase() {
+
+    await loadSupabase();
+
+    dtoolsSupabase =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+}
+
+
+
+
 /* ========================================= 
    DOZNI COMPONENT LOADER
 ========================================= */
