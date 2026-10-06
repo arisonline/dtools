@@ -105,7 +105,7 @@ body{
 }
 
 .logo-text span{
-    color:black;
+    color:var(--text);
 }
 
 
