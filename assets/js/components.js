@@ -1105,9 +1105,68 @@ function initStartFree() {
    }
 
     openButton.addEventListener(
-        "click",
-        openModal
-    );
+       "click",
+       async function () {
+   
+           if (!dtoolsSupabase) {
+               await initSupabase();
+           }
+   
+   
+           const result =
+               await dtoolsSupabase.auth.getSession();
+   
+           const session =
+               result.data.session;
+   
+   
+           if (session) {
+   
+               const form =
+                   document.getElementById(
+                       "startFreeForm"
+                   );
+   
+               const accountView =
+                   document.getElementById(
+                       "dtoolsAccountView"
+                   );
+   
+               if (form) {
+                   form.style.display = "none";
+               }
+   
+               if (accountView) {
+                   accountView.style.display = "block";
+               }
+   
+           } else {
+   
+               const form =
+                   document.getElementById(
+                       "startFreeForm"
+                   );
+   
+               const accountView =
+                   document.getElementById(
+                       "dtoolsAccountView"
+                   );
+   
+               if (form) {
+                   form.style.display = "block";
+               }
+   
+               if (accountView) {
+                   accountView.style.display = "none";
+               }
+   
+           }
+   
+   
+           openModal();
+   
+       }
+   );
 
     closeButton.addEventListener(
         "click",
