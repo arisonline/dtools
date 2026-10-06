@@ -101,11 +101,11 @@ body{
 /* LOGO TEXT */
 
 .logo-text{
-    color:var(--text);
+    color:var(--primary);
 }
 
 .logo-text span{
-    color:var(--text);
+    color:black;
 }
 
 
