@@ -622,6 +622,9 @@ body.dark .tool-illustration rect[fill="#eff6ff"]{
   display:flex;
   align-items:flex-start;
 
+  text-decoration:none;
+  color:inherit;
+
   gap:14px;
 
   padding:18px;
