@@ -984,6 +984,16 @@ MODERN WHITE SEO FOOTER
   border-radius:10px;
 }
 
+
+.footer-logo-text{
+  color:var(--text);
+}
+
+.footer-logo-text strong{
+  color:var(--primary);
+  font-weight:800;
+}
+
 /* DESCRIPTION */
 
 .footer-description{
