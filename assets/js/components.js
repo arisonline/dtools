@@ -74,7 +74,8 @@ function initFooter() {
       
       
           link.href =
-              SITE_BASE;
+             SITE_BASE +
+             "#tools-section";
       
       
           link.addEventListener(
