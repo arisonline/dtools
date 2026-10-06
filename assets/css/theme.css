@@ -468,6 +468,10 @@ body.dark .tool-illustration rect[fill="#eff6ff"]{
 
 /* HEADER */
 
+.tools-section{
+  scroll-margin-top:20px;
+}
+
 .tools-header{
   text-align:left;
   margin-bottom:42px;
