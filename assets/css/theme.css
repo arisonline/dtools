@@ -125,8 +125,12 @@ body{
 
 }
 
-.logo span{
+.logo > .logo-text{
   color:var(--primary);
+}
+
+.logo-text span{
+  color:var(--text);
 }
 
 .nav-links{
