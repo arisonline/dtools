@@ -2475,7 +2475,7 @@ PROFESSIONAL FAQ
 }
 
 
-.tool-search-input-wrap .material-icons {
+.tool-search-input-wrap svg {
 
     flex: 0 0 auto;
 
@@ -2567,7 +2567,7 @@ PROFESSIONAL FAQ
 }
 
 
-.tool-search-close .material-icons {
+.tool-search-close svg {
 
     font-size: 21px;
 
@@ -2661,7 +2661,7 @@ PROFESSIONAL FAQ
 }
 
 
-.tool-search-result-icon .material-icons {
+.tool-search-result-icon svg {
 
     font-size: 21px;
 
@@ -2759,7 +2759,7 @@ PROFESSIONAL FAQ
 }
 
 
-.tool-search-empty .material-icons {
+.tool-search-empty svg {
 
     font-size: 34px;
 
@@ -3175,7 +3175,7 @@ PROFESSIONAL FAQ
   justify-content:center;
 }
 
-.dtools-account-avatar .material-icons{
+.dtools-account-avatar svg{
   font-size:32px;
 }
 
