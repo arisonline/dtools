@@ -910,6 +910,248 @@ const toolsData = [
    },
 
 
+         {
+          id: "color-shades",
+   
+          name: "Color Shades Generator",
+   
+          url: "tools/color-shades/",
+   
+          category: "Color",
+   
+          description:
+              "Generate beautiful color shades and tints from any color and get HEX, RGB, HSL and HSV color values instantly.",
+   
+          icon: "build",
+   
+          popular: true,
+   
+          categories: [
+              {
+                  name: "Color Tools",
+                  url: "https://digital-tool.dozni.com/?category=Color"
+              }
+          ],
+   
+          howToTitle:
+              "How to Use Color Shades Generator?",
+   
+          howTo: [
+   
+              "Enter a color using HEX, RGB, HSL, HSV or a supported color name.",
+   
+              "Use the color picker to choose a base color visually.",
+   
+              "Adjust the Color Shades slider to change the number of shades and tints.",
+   
+              "Select any color from the generated palette.",
+   
+              "View the selected color in HEX, RGB, HSL and HSV formats.",
+   
+              "Click a color value to copy it to your clipboard.",
+   
+              "Use the Random Color button to generate a new base color instantly."
+   
+          ],
+   
+          credits: [],
+   
+          content: `
+   
+              <h2>
+                  What is a Color Shades Generator?
+              </h2>
+   
+              <p>
+                  A Color Shades Generator is an online tool that creates
+                  lighter tints and darker shades from a selected base color.
+                  It helps designers, developers and creators explore related
+                  colors and build useful color combinations quickly.
+              </p>
+   
+              <p>
+                  This free Color Shades Generator lets you enter a HEX,
+                  RGB, HSL, HSV or named color and generate a complete
+                  collection of related shades and tints directly in your browser.
+              </p>
+   
+   
+              <h2>
+                  How does the Color Shades Generator work?
+              </h2>
+   
+              <p>
+                  The tool starts with a base color and generates multiple
+                  variations by changing its brightness and color values.
+                  Lighter variations are displayed as tints, while darker
+                  variations are displayed as shades.
+              </p>
+   
+              <p>
+                  You can adjust the number of generated colors using the
+                  shade slider and select any color from the palette to view
+                  its exact color values.
+              </p>
+   
+   
+              <h2>
+                  Color shades and tints
+              </h2>
+   
+              <p>
+                  A shade is created by making a color darker, while a tint
+                  is created by making a color lighter by moving it toward white.
+                  Using both makes it easier to create complete color palettes
+                  for websites, applications, illustrations and designs.
+              </p>
+   
+   
+              <h2>
+                  Supported color formats
+              </h2>
+   
+              <p>
+                  The Color Shades Generator supports several commonly used
+                  color formats:
+              </p>
+   
+              <ul>
+   
+                  <li>
+                      <strong>HEX:</strong>
+                      Example: #3498db
+                  </li>
+   
+                  <li>
+                      <strong>RGB:</strong>
+                      Example: rgb(52, 152, 219)
+                  </li>
+   
+                  <li>
+                      <strong>HSL:</strong>
+                      Example: hsl(204, 70%, 53%)
+                  </li>
+   
+                  <li>
+                      <strong>HSV:</strong>
+                      Example: hsv(204, 76%, 86%)
+                  </li>
+   
+                  <li>
+                      <strong>Named colors:</strong>
+                      Example: red, blue or green
+                  </li>
+   
+              </ul>
+   
+   
+              <h2>
+                  How to create a color palette from one color
+              </h2>
+   
+              <p>
+                  Start with your main brand or design color and enter it into
+                  the color input. The tool automatically generates lighter
+                  and darker variations that can be used for backgrounds,
+                  borders, buttons, text, hover states and other interface elements.
+              </p>
+   
+              <p>
+                  Select the colors you like from the generated palette and
+                  copy their HEX, RGB, HSL or HSV values for use in your project.
+              </p>
+   
+   
+              <h2>
+                  Color shades for web design
+              </h2>
+   
+              <p>
+                  Color shades are useful when building consistent interfaces.
+                  A single base color can be expanded into multiple visual
+                  variations for primary buttons, secondary elements, cards,
+                  borders, highlights and backgrounds.
+              </p>
+   
+   
+              <h2>
+                  Color Shades Generator online
+              </h2>
+   
+              <p>
+                  This free online tool works directly in your browser and
+                  does not require additional software. Enter a color, generate
+                  shades and tints, select a variation and copy the color code
+                  you need.
+              </p>
+   
+   
+              <div class="tool-note">
+   
+                  <strong>Privacy:</strong>
+   
+                  Color generation and color conversion are performed directly
+                  in your browser. The tool does not need to upload your selected
+                  color to a server.
+   
+              </div>
+   
+          `,
+   
+          faqs: [
+   
+              {
+                  question:
+                      "What is a color shade?",
+   
+                  answer:
+                      "A color shade is a darker variation of a base color."
+              },
+   
+              {
+                  question:
+                      "What is a color tint?",
+   
+                  answer:
+                      "A color tint is a lighter variation of a color created by moving the color toward white."
+              },
+   
+              {
+                  question:
+                      "Which color formats are supported?",
+   
+                  answer:
+                      "The Color Shades Generator supports HEX, RGB, HSL, HSV and supported named colors."
+              },
+   
+              {
+                  question:
+                      "Can I enter a HEX color?",
+   
+                  answer:
+                      "Yes. You can enter a HEX value such as #3498db and generate related shades and tints."
+              },
+   
+              {
+                  question:
+                      "Can I generate random colors?",
+   
+                  answer:
+                      "Yes. Use the Get Random Color button to generate a new random base color."
+              },
+   
+              {
+                  question:
+                      "Can I copy the generated color values?",
+   
+                  answer:
+                      "Yes. Select a color from the palette and click its HEX, RGB, HSL or HSV value to copy it."
+              }
+   
+          ]
+      },
+
+
       {
        id: "random-color",
    
