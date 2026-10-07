@@ -1162,6 +1162,41 @@ async function updateDToolsAuthUI(session) {
 
 
 
+
+
+
+
+
+async function signInWithGoogleOAuth() {
+
+    if (!dtoolsSupabase) {
+        await initSupabase();
+    }
+
+    const result =
+        await dtoolsSupabase.auth.signInWithOAuth({
+
+            provider: "google",
+
+            options: {
+
+                redirectTo:
+                    window.location.origin +
+                    SITE_BASE
+
+            }
+
+        });
+
+    if (result.error) {
+        throw result.error;
+    }
+
+}
+
+
+
+
 /* =========================================
    START FREE / SUPABASE AUTH
 ========================================= */
