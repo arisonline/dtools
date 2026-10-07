@@ -2340,9 +2340,9 @@ PROFESSIONAL FAQ
 
 
 .header-search-btn svg {
-
-    font-size: 22px;
-
+    width: 22px;
+    height: 22px;
+    display: block;
 }
 
 
@@ -2476,13 +2476,11 @@ PROFESSIONAL FAQ
 
 
 .tool-search-input-wrap svg {
-
     flex: 0 0 auto;
-
+    width: 22px;
+    height: 22px;
     color: var(--text-light);
-
-    font-size: 22px;
-
+    display: block;
 }
 
 
@@ -2568,9 +2566,9 @@ PROFESSIONAL FAQ
 
 
 .tool-search-close svg {
-
-    font-size: 21px;
-
+    width: 21px;
+    height: 21px;
+    display: block;
 }
 
 
@@ -2662,9 +2660,9 @@ PROFESSIONAL FAQ
 
 
 .tool-search-result-icon svg {
-
-    font-size: 21px;
-
+    width: 21px;
+    height: 21px;
+    display: block;
 }
 
 
@@ -2760,13 +2758,11 @@ PROFESSIONAL FAQ
 
 
 .tool-search-empty svg {
-
-    font-size: 34px;
-
+    width: 34px;
+    height: 34px;
     color: var(--primary);
-
     opacity: .75;
-
+    display: block;
 }
 
 
@@ -3175,8 +3171,10 @@ PROFESSIONAL FAQ
   justify-content:center;
 }
 
-.dtools-account-avatar svg{
-  font-size:32px;
+.dtools-account-avatar svg {
+    width: 32px;
+    height: 32px;
+    display: block;
 }
 
 .dtools-account-box h3{
