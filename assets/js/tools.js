@@ -446,7 +446,7 @@ const toolsData = [
    
    
            <img
-                src="assets/images/browser-resolution.webp"
+                src="../../assets/images/browser-resolution.webp"
                 alt="Browser resolution checker showing browser viewport size"
                 title="Browser Resolution Checker"
                 width="800"
