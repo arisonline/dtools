@@ -210,8 +210,10 @@
 }
 
 
-.tool-page-icon .material-icons {
-    font-size: 28px;
+.tool-page-icon svg {
+    width: 28px;
+    height: 28px;
+    display: block;
 }
 
 
