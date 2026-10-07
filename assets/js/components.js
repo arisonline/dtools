@@ -119,6 +119,250 @@ const SITE_BASE =
 
 
 /* =========================================
+   DTOOLS SVG ICONS
+========================================= */
+
+function getDToolsIconSvg(icon) {
+
+    const icons = {
+
+        search: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></circle>
+
+                <path
+                    d="M16.5 16.5L21 21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        `,
+
+        close: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <path
+                    d="M6 6L18 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+
+                <path
+                    d="M18 6L6 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        `,
+
+        build: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <path
+                    d="M14.7 6.1a4 4 0 0 0-5.2 5.2l-5.9 5.9a2 2 0 1 0 2.8 2.8l5.9-5.9a4 4 0 0 0 5.2-5.2l-2.2 2.2-2-2 2.2-2.2a4 4 0 0 0-.8-.8Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                ></path>
+
+                <path
+                    d="M15.3 4.7 19.3 8.7"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        `,
+
+        web: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></rect>
+
+                <path
+                    d="M3 9H21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></path>
+
+                <path
+                    d="M7 7H7.01M10 7H10.01"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        `,
+
+        aspect_ratio: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></rect>
+
+                <path
+                    d="M8 8H11M8 8V11M16 16H13M16 16V13"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        `,
+
+        youtube_searched_for: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <circle
+                    cx="10.5"
+                    cy="10.5"
+                    r="5.5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></circle>
+
+                <path
+                    d="M15 15L20 20"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+
+                <path
+                    d="M8.2 8.5L13 10.5L8.2 12.5V8.5Z"
+                    fill="currentColor"
+                ></path>
+            </svg>
+        `,
+
+        percent: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <path
+                    d="M7 7L17 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                ></path>
+
+                <circle
+                    cx="7"
+                    cy="7"
+                    r="2.2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></circle>
+
+                <circle
+                    cx="17"
+                    cy="17"
+                    r="2.2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></circle>
+            </svg>
+        `,
+
+        account_tree: `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <rect
+                    x="4"
+                    y="4"
+                    width="6"
+                    height="4"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></rect>
+
+                <rect
+                    x="14"
+                    y="16"
+                    width="6"
+                    height="4"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></rect>
+
+                <rect
+                    x="14"
+                    y="4"
+                    width="6"
+                    height="4"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                ></rect>
+
+                <path
+                    d="M10 6H14M7 8V16C7 17.1 7.9 18 9 18H14"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                ></path>
+            </svg>
+        `
+
+    };
+
+    return icons[icon] || icons.build;
+}
+
+
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -581,9 +825,7 @@ function initToolSearch() {
             searchResults.innerHTML = `
                 <div class="tool-search-empty">
 
-                    <span class="material-icons">
-                        search
-                    </span>
+                    ${getDToolsIconSvg("search")}
 
                     <p>
                         Search for a tool by name,
@@ -701,13 +943,9 @@ function initToolSearch() {
                                 class="tool-search-result-icon"
                             >
 
-                                <span
-                                    class="material-icons"
-                                >
-                                    ${escapeSearchText(
-                                        tool.icon || "build"
-                                    )}
-                                </span>
+                                ${getDToolsIconSvg(
+                                     tool.icon || "build"
+                                 )}
 
                             </div>
 
