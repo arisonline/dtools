@@ -9,6 +9,13 @@ const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_IF1cpxuIbtc7BqxTtbXHjQ_1xMUsVO1";
 
 
+const DTOOLS_GOOGLE_CLIENT_ID =
+    "774957596163-ho4nk5j1lh841f9rjvirrqihb8jeho8q.apps.googleusercontent.com";
+
+let dtoolsGoogleOneTapNonce = null;
+let dtoolsRecoveryMode = false;
+
+
 let dtoolsSupabase = null;
 
 
@@ -836,6 +843,205 @@ function initToolSearch() {
 
 
 
+async function loadGoogleIdentityServices() {
+
+    if (
+        window.google &&
+        window.google.accounts &&
+        window.google.accounts.id
+    ) {
+        return;
+    }
+
+    if (window.dtoolsGoogleScriptPromise) {
+        return window.dtoolsGoogleScriptPromise;
+    }
+
+    window.dtoolsGoogleScriptPromise =
+        new Promise(function(resolve, reject) {
+
+            const script =
+                document.createElement("script");
+
+            script.src =
+                "https://accounts.google.com/gsi/client";
+
+            script.async = true;
+            script.defer = true;
+
+            script.onload = resolve;
+            script.onerror = reject;
+
+            document.head.appendChild(script);
+
+        });
+
+    return window.dtoolsGoogleScriptPromise;
+}
+
+
+function generateDToolsNonce() {
+
+    const bytes =
+        new Uint8Array(32);
+
+    crypto.getRandomValues(bytes);
+
+    return btoa(
+        String.fromCharCode.apply(
+            null,
+            bytes
+        )
+    );
+}
+
+
+async function sha256Base64Url(value) {
+
+    const encoded =
+        new TextEncoder().encode(value);
+
+    const hash =
+        await crypto.subtle.digest(
+            "SHA-256",
+            encoded
+        );
+
+    const bytes =
+        new Uint8Array(hash);
+
+    let binary = "";
+
+    bytes.forEach(function(byte) {
+
+        binary +=
+            String.fromCharCode(byte);
+
+    });
+
+    return btoa(binary)
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/g, "");
+
+}
+
+
+async function initGoogleOneTap() {
+
+    if (!DTOOLS_GOOGLE_CLIENT_ID) {
+        return;
+    }
+
+    if (!dtoolsSupabase) {
+        return;
+    }
+
+    const sessionResult =
+        await dtoolsSupabase.auth.getSession();
+
+    if (sessionResult.data.session) {
+        return;
+    }
+
+    try {
+
+        await loadGoogleIdentityServices();
+
+        const rawNonce =
+            generateDToolsNonce();
+
+        const hashedNonce =
+            await sha256Base64Url(
+                rawNonce
+            );
+
+        dtoolsGoogleOneTapNonce =
+            rawNonce;
+
+        window.google.accounts.id.initialize({
+
+            client_id:
+                DTOOLS_GOOGLE_CLIENT_ID,
+
+            context:
+                "signin",
+
+            auto_select:
+                false,
+
+            nonce:
+                hashedNonce,
+
+            use_fedcm_for_prompt:
+                true,
+
+            itp_support:
+                true,
+
+            callback:
+                async function(response) {
+
+                    try {
+
+                        if (
+                            !response ||
+                            !response.credential
+                        ) {
+                            return;
+                        }
+
+                        const result =
+                            await dtoolsSupabase
+                                .auth
+                                .signInWithIdToken({
+                                    provider:
+                                        "google",
+
+                                    token:
+                                        response.credential,
+
+                                    nonce:
+                                        dtoolsGoogleOneTapNonce
+                                });
+
+                        if (result.error) {
+                            throw result.error;
+                        }
+
+                    } catch (error) {
+
+                        console.error(
+                            "Google One Tap error:",
+                            error
+                        );
+
+                    } finally {
+
+                        dtoolsGoogleOneTapNonce =
+                            null;
+
+                    }
+
+                }
+
+        });
+
+        window.google.accounts.id.prompt();
+
+    } catch (error) {
+
+        console.error(
+            "Google One Tap initialization error:",
+            error
+        );
+
+    }
+
+}
+
+
+
 
 /* =========================================
    DTOOLS AUTH UI
@@ -1409,6 +1615,11 @@ async function initComponents() {
           await initSupabase();
       
           initStartFree();
+
+          setTimeout(
+             initGoogleOneTap,
+             800
+          );
       
       }
 
