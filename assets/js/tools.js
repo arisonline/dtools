@@ -1954,6 +1954,23 @@ function renderPopularTools() {
 
 function renderToolContent(content) {
 
+   const toolPageIcon =
+        document.getElementById(
+            "tool-page-icon"
+        );
+
+    if (
+        toolPageIcon &&
+        typeof getDToolsIconSvg === "function"
+    ) {
+
+        toolPageIcon.innerHTML =
+            getDToolsIconSvg(
+                content.icon || "build"
+            );
+    }
+   
+
   const title =
     document.getElementById("tool-page-title");
 
