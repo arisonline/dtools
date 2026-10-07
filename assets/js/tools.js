@@ -446,12 +446,14 @@ const toolsData = [
    
    
            <img
-               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvoGox49PP7EOlv7FX2zWoH0aWwpaCq4XW0vfw2L188iWqIZQfG3On4SW809kD1TUkkmK-GkePUY6c5cTu7nzMsk6iHkX15sGdqK71XX5mRvz32KCDESL8SjuNiIiIH8rPi2_XEKkFSAnE_KksFmD4b0ltpNBmqkqzQr0YARNWc8b0qKH4_lpU9qzKtU0/s800/Browser-Resolution.webp"
-               alt="Browser resolution checker online"
-               title="Browser Resolution Checker Online"
-               loading="lazy"
-               decoding="async"
-           >
+                src="assets/images/browser-resolution.webp"
+                alt="Browser resolution checker showing browser viewport size"
+                title="Browser Resolution Checker"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+            >
    
    
            <h2>
