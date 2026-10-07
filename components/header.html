@@ -149,169 +149,522 @@
 
         </div>
 
-        <form id="startFreeForm" novalidate>
+        <!-- =========================================
+             SIGN UP VIEW
+        ========================================= -->
 
-            <label class="dtools-auth-label">
-                Full name
-            </label>
+        <div
+            id="dtoolsSignupView"
+            class="dtools-auth-view"
+        >
 
-            <input
-                class="dtools-auth-input"
-                id="startFreeName"
-                type="text"
-                placeholder="Your name"
-                required
-            >
+            <div class="dtools-google-wrap">
 
-            <label class="dtools-auth-label">
-                Email
-            </label>
+                <button
+                    type="button"
+                    class="dtools-google-button"
+                    id="dtoolsGoogleSignupButton"
+                >
+                    <span class="dtools-google-icon">G</span>
+                    <span>Continue with Google</span>
+                </button>
 
-            <input
-                class="dtools-auth-input"
-                id="startFreeEmail"
-                type="email"
-                placeholder="you@example.com"
-                required
-            >
-
-            <label class="dtools-auth-label">
-                Password
-            </label>
-
-            <input
-                class="dtools-auth-input"
-                id="startFreePassword"
-                type="password"
-                placeholder="Minimum 6 characters"
-                minlength="6"
-                required
-            >
-
-            <div class="dtools-auth-label">
-                What are you interested in?
-            </div>
-
-            <div class="dtools-interest-grid">
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="image">
-                    <span>Image Tools</span>
-                </label>
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="pdf">
-                    <span>PDF Tools</span>
-                </label>
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="dev">
-                    <span>Developer Tools</span>
-                </label>
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="color">
-                    <span>Color Tools</span>
-                </label>
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="seo">
-                    <span>SEO / Marketing</span>
-                </label>
-
-                <label class="dtools-check">
-                    <input type="checkbox" name="interest" value="productivity">
-                    <span>Productivity</span>
-                </label>
+                <div class="dtools-auth-divider">
+                    <span>or</span>
+                </div>
 
             </div>
 
-            <label class="dtools-consent">
+
+            <form
+                id="startFreeForm"
+                novalidate
+            >
+
+                <label class="dtools-auth-label">
+                    Full name
+                </label>
+
                 <input
-                    type="checkbox"
-                    id="startFreeTerms"
+                    class="dtools-auth-input"
+                    id="startFreeName"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Your name"
                     required
                 >
-                <span>
-                    I agree to the
-                    <a href="#" id="startFreePrivacyLink">
-                        Privacy Policy
-                    </a>
-                    and
-                    <a href="#" id="startFreeTermsLink">
-                        Terms & Conditions
-                    </a>.
-                </span>
-            </label>
 
-            <label class="dtools-consent">
+                <label class="dtools-auth-label">
+                    Email
+                </label>
+
                 <input
-                    type="checkbox"
-                    id="startFreeMarketing"
+                    class="dtools-auth-input"
+                    id="startFreeEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    required
                 >
-                <span>
-                    Send me DTools offers, updates and promotions.
-                </span>
-            </label>
 
-            <label class="dtools-consent">
+                <label class="dtools-auth-label">
+                    Password
+                </label>
+
                 <input
-                    type="checkbox"
-                    id="startFreePartner"
+                    class="dtools-auth-input"
+                    id="startFreePassword"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Minimum 6 characters"
+                    minlength="6"
+                    required
                 >
-                <span>
-                    Send me relevant offers from selected DTools partners.
-                </span>
-            </label>
 
-            <div
-                class="dtools-auth-status"
-                id="startFreeStatus"
-                role="status"
-                aria-live="polite"
-            ></div>
+                <div class="dtools-auth-label">
+                    What are you interested in?
+                </div>
 
-            <button
-                class="primary-btn dtools-auth-submit"
-                id="startFreeSubmit"
-                type="submit"
+                <div class="dtools-interest-grid">
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="image"
+                        >
+                        <span>Image Tools</span>
+                    </label>
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="pdf"
+                        >
+                        <span>PDF Tools</span>
+                    </label>
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="dev"
+                        >
+                        <span>Developer Tools</span>
+                    </label>
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="color"
+                        >
+                        <span>Color Tools</span>
+                    </label>
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="seo"
+                        >
+                        <span>SEO / Marketing</span>
+                    </label>
+
+                    <label class="dtools-check">
+                        <input
+                            type="checkbox"
+                            name="interest"
+                            value="productivity"
+                        >
+                        <span>Productivity</span>
+                    </label>
+
+                </div>
+
+                <label class="dtools-consent">
+
+                    <input
+                        type="checkbox"
+                        id="startFreeTerms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the
+                        <a
+                            href="#"
+                            id="startFreePrivacyLink"
+                        >
+                            Privacy Policy
+                        </a>
+                        and
+                        <a
+                            href="#"
+                            id="startFreeTermsLink"
+                        >
+                            Terms & Conditions
+                        </a>.
+                    </span>
+
+                </label>
+
+
+                <label class="dtools-consent">
+
+                    <input
+                        type="checkbox"
+                        id="startFreeMarketing"
+                    >
+
+                    <span>
+                        Send me DTools offers, updates and promotions.
+                    </span>
+
+                </label>
+
+
+                <label class="dtools-consent">
+
+                    <input
+                        type="checkbox"
+                        id="startFreePartner"
+                    >
+
+                    <span>
+                        Send me relevant offers from selected DTools partners.
+                    </span>
+
+                </label>
+
+
+                <div
+                    class="dtools-auth-status"
+                    id="startFreeStatus"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    class="primary-btn dtools-auth-submit"
+                    id="startFreeSubmit"
+                    type="submit"
+                >
+                    Create Free Account
+                </button>
+
+
+                <p class="dtools-auth-switch">
+
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        class="dtools-auth-link"
+                        id="dtoolsShowLogin"
+                    >
+                        Sign in
+                    </button>
+
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================================
+             LOGIN VIEW
+        ========================================= -->
+
+        <div
+            id="dtoolsLoginView"
+            class="dtools-auth-view"
+            style="display:none;"
+        >
+
+            <div class="dtools-google-wrap">
+
+                <button
+                    type="button"
+                    class="dtools-google-button"
+                    id="dtoolsGoogleLoginButton"
+                >
+                    <span class="dtools-google-icon">G</span>
+                    <span>Continue with Google</span>
+                </button>
+
+                <div class="dtools-auth-divider">
+                    <span>or</span>
+                </div>
+
+            </div>
+
+
+            <form
+                id="dtoolsLoginForm"
+                novalidate
             >
-                Create Free Account
-            </button>
 
-        </form>
+                <label class="dtools-auth-label">
+                    Email
+                </label>
+
+                <input
+                    class="dtools-auth-input"
+                    id="dtoolsLoginEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    required
+                >
 
 
+                <label class="dtools-auth-label">
+                    Password
+                </label>
+
+                <input
+                    class="dtools-auth-input"
+                    id="dtoolsLoginPassword"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Your password"
+                    required
+                >
+
+
+                <div class="dtools-auth-actions-row">
+
+                    <button
+                        type="button"
+                        id="dtoolsForgotPasswordLink"
+                        class="dtools-auth-text-button"
+                    >
+                        Forgot password?
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="dtools-auth-status"
+                    id="dtoolsLoginStatus"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn dtools-auth-submit"
+                    id="dtoolsLoginSubmit"
+                >
+                    Sign In
+                </button>
+
+
+                <p class="dtools-auth-switch">
+
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        class="dtools-auth-link"
+                        id="dtoolsShowSignup"
+                    >
+                        Create one
+                    </button>
+
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================================
+             FORGOT PASSWORD VIEW
+        ========================================= -->
+
+        <div
+            id="dtoolsForgotView"
+            class="dtools-auth-view"
+            style="display:none;"
+        >
+
+            <div class="dtools-auth-mini-heading">
+
+                <h3>
+                    Reset your password
+                </h3>
+
+                <p>
+                    Enter your email and we'll send you
+                    a secure password reset link.
+                </p>
+
+            </div>
+
+
+            <form
+                id="dtoolsForgotForm"
+                novalidate
+            >
+
+                <label class="dtools-auth-label">
+                    Email
+                </label>
+
+                <input
+                    class="dtools-auth-input"
+                    id="dtoolsForgotEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+
+                <div
+                    class="dtools-auth-status"
+                    id="dtoolsForgotStatus"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn dtools-auth-submit"
+                    id="dtoolsForgotSubmit"
+                >
+                    Send Reset Link
+                </button>
+
+
+                <button
+                    type="button"
+                    id="dtoolsBackToLogin"
+                    class="dtools-auth-secondary-button"
+                >
+                    Back to Sign In
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================================
+             RESET PASSWORD VIEW
+        ========================================= -->
+
+        <div
+            id="dtoolsResetView"
+            class="dtools-auth-view"
+            style="display:none;"
+        >
+
+            <div class="dtools-auth-mini-heading">
+
+                <h3>
+                    Choose a new password
+                </h3>
+
+                <p>
+                    Enter your new DTools password.
+                </p>
+
+            </div>
+
+
+            <form
+                id="dtoolsResetForm"
+                novalidate
+            >
+
+                <label class="dtools-auth-label">
+                    New password
+                </label>
+
+                <input
+                    class="dtools-auth-input"
+                    id="dtoolsResetPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Minimum 6 characters"
+                    minlength="6"
+                    required
+                >
+
+
+                <label class="dtools-auth-label">
+                    Confirm password
+                </label>
+
+                <input
+                    class="dtools-auth-input"
+                    id="dtoolsResetPasswordConfirm"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Confirm password"
+                    minlength="6"
+                    required
+                >
+
+
+                <div
+                    class="dtools-auth-status"
+                    id="dtoolsResetStatus"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn dtools-auth-submit"
+                    id="dtoolsResetSubmit"
+                >
+                    Update Password
+                </button>
+
+            </form>
+
+        </div>
 
 
         <!-- =========================================
              ACCOUNT VIEW
         ========================================= -->
-        
+
         <div
             id="dtoolsAccountView"
+            class="dtools-auth-view"
             style="display:none;"
         >
-        
+
             <div class="dtools-account-box">
-        
+
                 <div class="dtools-account-avatar">
                     <span class="material-icons">
                         person
                     </span>
                 </div>
-        
+
                 <h3 id="dtoolsAccountName">
                     DTools User
                 </h3>
-        
+
                 <p id="dtoolsAccountEmail">
                     user@example.com
                 </p>
-        
+
             </div>
-        
-        
+
             <button
                 type="button"
                 class="primary-btn dtools-logout-button"
@@ -319,7 +672,7 @@
             >
                 Sign Out
             </button>
-        
+
         </div>
 
 
