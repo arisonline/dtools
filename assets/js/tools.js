@@ -149,12 +149,14 @@ const toolsData = [
            </p>
    
            <img
-               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXtX3X28I9IAqvkMJ7Pu2OnsbdP8yMWzdfhcyLZv_kMdw4GxNrXimqgAQ1bYgP4ErKhx7BF4J0VP4krhtg2V7EevTnhzNv0EGcHgu74J6dwg1mdo5q65GoLZnPj_6mtRjrU8Sloln7bFMwEfBxR8SqpDSfiLRuOLuvRj9IewGnhYLJ0C-9kFRCRTOoxKw/s800/Screen-Resolution.webp"
-               alt="Screen resolution checker online"
-               title="Screen Resolution Tester"
-               loading="lazy"
-               decoding="async"
-           >
+                src="../../assets/images/screen-resolution.webp"
+                alt="Screen resolution checker showing screen viewport size"
+                title="Screen Resolution Checker"
+                width="700"
+                height="400"
+                loading="lazy"
+                decoding="async"
+            >
    
            <div class="tool-code">
                <code>Screen Resolution = Pixel Width × Pixel Height</code>
@@ -961,14 +963,14 @@ const toolsData = [
    
    
            <img
-               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJ7QTqx0UsMeeelHXCooflXi3GjQs12c0uQFqu05XqJY2weRCy4I3ncCyLZ4kd1qm6JUzKIlQf2SvE-8QrEw4ZGJPxk6gnLiPnBuduvKlbZF0mQNHeHXfsUsgvY2BTGSsJ-Yfrb6GEwpVfG70JAnDACL2qkaeL4iVtke15dD4ZQqVd1DBnKPn9QAPMSJE/s800/random-colors.webp"
-               alt="Random color generator online free"
-               title="Random Color Generator Online"
-               width="320"
-               height="240"
-               loading="lazy"
-               decoding="async"
-           >
+             src="../../assets/images/random-colors.webp"
+             alt="Random color generator image"
+             title="Any Random Color Generator"
+             width="600"
+             height="350"
+             loading="lazy"
+             decoding="async"
+         >
    
    
            <h3>How It Works</h3>
@@ -1167,11 +1169,14 @@ const toolsData = [
 
 
         <img
-            class="percentage-image"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguZwT-ScLQgBgdfQvYXrYMYwM9kc94swoBzXilkWXNeR1MHAmcUuGAAks2rlaVTCLYOO0JssTdvCgCFWD4zZW-Dpw7u0IcDB5XFMEb9FDCnz9CKtt_pMSRtaazhpiGwy_ec2KagmFfHRO2V9LZKzB8GHrS6D6Lj2z9Tm64PKXvsj9-vOLdneim9cEO4G8/s800/percentage-calculator.gif"
-            alt="Percentage calculator online free"
-            loading="lazy"
-        >
+             src="../../assets/images/percentage-calculator.gif"
+             alt="Calculate percentage or principle amount"
+             title="Percentage Calculator"
+             width="600"
+             height="300"
+             loading="lazy"
+             decoding="async"
+         >
 
 
         <h2>
