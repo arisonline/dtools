@@ -650,3 +650,16 @@ body.dark .selected-color-box {
     }
 
 }
+
+
+
+
+
+.color-shades-random-button svg {
+
+    width: 16px;
+    height: 16px;
+
+    display: block;
+
+}
