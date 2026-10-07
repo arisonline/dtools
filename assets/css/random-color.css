@@ -441,3 +441,13 @@ body.dark .random-color-preview {
         text-align: center;
     }
 }
+
+
+.random-color-generate-button svg {
+
+    width: 16px;
+    height: 16px;
+
+    display: block;
+
+}
