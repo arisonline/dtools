@@ -67,14 +67,32 @@ async function initSupabase() {
     */
 
     dtoolsSupabase.auth.onAuthStateChange(
-        function (event, session) {
-
-            updateDToolsAuthUI(
-                session
-            );
-
-        }
-    );
+       function (event, session) {
+   
+           if (
+               event === "PASSWORD_RECOVERY"
+           ) {
+   
+               dtoolsRecoveryMode =
+                   true;
+   
+           }
+   
+           if (
+               event === "SIGNED_OUT"
+           ) {
+   
+               dtoolsRecoveryMode =
+                   false;
+   
+           }
+   
+           updateDToolsAuthUI(
+               session
+           );
+   
+       }
+   );
 
 
    const sessionResult =
@@ -1054,9 +1072,24 @@ async function updateDToolsAuthUI(session) {
             "startFreeButton"
         );
 
-    const form =
+    const signupView =
         document.getElementById(
-            "startFreeForm"
+            "dtoolsSignupView"
+        );
+
+    const loginView =
+        document.getElementById(
+            "dtoolsLoginView"
+        );
+
+    const forgotView =
+        document.getElementById(
+            "dtoolsForgotView"
+        );
+
+    const resetView =
+        document.getElementById(
+            "dtoolsResetView"
         );
 
     const accountView =
@@ -1074,7 +1107,52 @@ async function updateDToolsAuthUI(session) {
             "dtoolsAccountName"
         );
 
+
     if (!startButton) {
+        return;
+    }
+
+
+    /*
+       PASSWORD RECOVERY
+    */
+
+    if (
+        dtoolsRecoveryMode
+    ) {
+
+        startButton.textContent =
+            "Start Free";
+
+        startButton.dataset.authenticated =
+            "false";
+
+
+        if (signupView) {
+            signupView.style.display =
+                "none";
+        }
+
+        if (loginView) {
+            loginView.style.display =
+                "none";
+        }
+
+        if (forgotView) {
+            forgotView.style.display =
+                "none";
+        }
+
+        if (resetView) {
+            resetView.style.display =
+                "block";
+        }
+
+        if (accountView) {
+            accountView.style.display =
+                "none";
+        }
+
         return;
     }
 
@@ -1092,19 +1170,29 @@ async function updateDToolsAuthUI(session) {
             "true";
 
 
-        if (form) {
-
-            form.style.display =
+        if (signupView) {
+            signupView.style.display =
                 "none";
-
         }
 
+        if (loginView) {
+            loginView.style.display =
+                "none";
+        }
+
+        if (forgotView) {
+            forgotView.style.display =
+                "none";
+        }
+
+        if (resetView) {
+            resetView.style.display =
+                "none";
+        }
 
         if (accountView) {
-
             accountView.style.display =
                 "block";
-
         }
 
 
@@ -1120,7 +1208,10 @@ async function updateDToolsAuthUI(session) {
 
             const name =
                 session.user.user_metadata
-                    ?.full_name || "DTools User";
+                    ?.full_name ||
+                session.user.user_metadata
+                    ?.name ||
+                "DTools User";
 
             accountName.textContent =
                 name;
@@ -1142,30 +1233,38 @@ async function updateDToolsAuthUI(session) {
         "false";
 
 
-    if (form) {
-
-        form.style.display =
+    if (signupView) {
+        signupView.style.display =
             "block";
-
     }
 
+    if (loginView) {
+        loginView.style.display =
+            "none";
+    }
+
+    if (forgotView) {
+        forgotView.style.display =
+            "none";
+    }
+
+    if (resetView) {
+        resetView.style.display =
+            "none";
+    }
 
     if (accountView) {
-
         accountView.style.display =
             "none";
-
     }
 
 }
 
 
 
-
-
-
-
-
+/* =========================================
+   GOOGLE OAUTH
+========================================= */
 
 async function signInWithGoogleOAuth() {
 
@@ -1176,7 +1275,8 @@ async function signInWithGoogleOAuth() {
     const result =
         await dtoolsSupabase.auth.signInWithOAuth({
 
-            provider: "google",
+            provider:
+                "google",
 
             options: {
 
@@ -1196,7 +1296,6 @@ async function signInWithGoogleOAuth() {
 
 
 
-
 /* =========================================
    START FREE / SUPABASE AUTH
 ========================================= */
@@ -1204,25 +1303,40 @@ async function signInWithGoogleOAuth() {
 function initStartFree() {
 
     const openButton =
-        document.getElementById("startFreeButton");
+        document.getElementById(
+            "startFreeButton"
+        );
 
     const modal =
-        document.getElementById("startFreeModal");
+        document.getElementById(
+            "startFreeModal"
+        );
 
     const closeButton =
-        document.getElementById("startFreeClose");
+        document.getElementById(
+            "startFreeClose"
+        );
 
     const form =
-        document.getElementById("startFreeForm");
+        document.getElementById(
+            "startFreeForm"
+        );
 
     const status =
-        document.getElementById("startFreeStatus");
+        document.getElementById(
+            "startFreeStatus"
+        );
 
     const submitButton =
-        document.getElementById("startFreeSubmit");
+        document.getElementById(
+            "startFreeSubmit"
+        );
 
     const logoutButton =
-        document.getElementById("dtoolsLogoutButton");
+        document.getElementById(
+            "dtoolsLogoutButton"
+        );
+
 
     if (
         !openButton ||
@@ -1232,43 +1346,388 @@ function initStartFree() {
         !status ||
         !submitButton
     ) {
+
+        console.error(
+            "DTools auth elements are missing."
+        );
+
         return;
+
     }
+
+
+    /*
+       PRIVACY / TERMS
+    */
 
     const privacyLink =
-        document.getElementById("startFreePrivacyLink");
+        document.getElementById(
+            "startFreePrivacyLink"
+        );
 
     const termsLink =
-        document.getElementById("startFreeTermsLink");
+        document.getElementById(
+            "startFreeTermsLink"
+        );
+
 
     if (privacyLink) {
+
         privacyLink.href =
-            SITE_BASE + "privacy-policy/";
-        privacyLink.target = "_blank";
-        privacyLink.rel = "noopener";
+            SITE_BASE +
+            "privacy-policy/";
+
+        privacyLink.target =
+            "_blank";
+
+        privacyLink.rel =
+            "noopener";
+
     }
+
 
     if (termsLink) {
+
         termsLink.href =
-            SITE_BASE + "terms-and-conditions/";
-        termsLink.target = "_blank";
-        termsLink.rel = "noopener";
+            SITE_BASE +
+            "terms-and-conditions/";
+
+        termsLink.target =
+            "_blank";
+
+        termsLink.rel =
+            "noopener";
+
     }
 
-    function setStatus(message, type) {
 
-        status.textContent =
+    /*
+       VIEW ELEMENTS
+    */
+
+    const signupView =
+        document.getElementById(
+            "dtoolsSignupView"
+        );
+
+    const loginView =
+        document.getElementById(
+            "dtoolsLoginView"
+        );
+
+    const forgotView =
+        document.getElementById(
+            "dtoolsForgotView"
+        );
+
+    const resetView =
+        document.getElementById(
+            "dtoolsResetView"
+        );
+
+    const accountView =
+        document.getElementById(
+            "dtoolsAccountView"
+        );
+
+
+    /*
+       LOGIN ELEMENTS
+    */
+
+    const loginForm =
+        document.getElementById(
+            "dtoolsLoginForm"
+        );
+
+    const loginEmail =
+        document.getElementById(
+            "dtoolsLoginEmail"
+        );
+
+    const loginPassword =
+        document.getElementById(
+            "dtoolsLoginPassword"
+        );
+
+    const loginStatus =
+        document.getElementById(
+            "dtoolsLoginStatus"
+        );
+
+    const loginSubmit =
+        document.getElementById(
+            "dtoolsLoginSubmit"
+        );
+
+
+    /*
+       FORGOT PASSWORD
+    */
+
+    const forgotForm =
+        document.getElementById(
+            "dtoolsForgotForm"
+        );
+
+    const forgotEmail =
+        document.getElementById(
+            "dtoolsForgotEmail"
+        );
+
+    const forgotStatus =
+        document.getElementById(
+            "dtoolsForgotStatus"
+        );
+
+    const forgotSubmit =
+        document.getElementById(
+            "dtoolsForgotSubmit"
+        );
+
+
+    /*
+       RESET PASSWORD
+    */
+
+    const resetForm =
+        document.getElementById(
+            "dtoolsResetForm"
+        );
+
+    const resetPassword =
+        document.getElementById(
+            "dtoolsResetPassword"
+        );
+
+    const resetPasswordConfirm =
+        document.getElementById(
+            "dtoolsResetPasswordConfirm"
+        );
+
+    const resetStatus =
+        document.getElementById(
+            "dtoolsResetStatus"
+        );
+
+    const resetSubmit =
+        document.getElementById(
+            "dtoolsResetSubmit"
+        );
+
+
+    /*
+       GOOGLE BUTTONS
+    */
+
+    const googleSignupButton =
+        document.getElementById(
+            "dtoolsGoogleSignupButton"
+        );
+
+    const googleLoginButton =
+        document.getElementById(
+            "dtoolsGoogleLoginButton"
+        );
+
+
+    /*
+       VIEW SWITCH BUTTONS
+    */
+
+    const showLoginButton =
+        document.getElementById(
+            "dtoolsShowLogin"
+        );
+
+    const showSignupButton =
+        document.getElementById(
+            "dtoolsShowSignup"
+        );
+
+    const forgotPasswordLink =
+        document.getElementById(
+            "dtoolsForgotPasswordLink"
+        );
+
+    const backToLoginButton =
+        document.getElementById(
+            "dtoolsBackToLogin"
+        );
+
+
+    /*
+       STATUS HELPER
+    */
+
+    function setStatus(
+        element,
+        message,
+        type
+    ) {
+
+        if (!element) {
+            return;
+        }
+
+        element.textContent =
             message || "";
 
-        status.className =
+        element.className =
             "dtools-auth-status" +
-            (type ? " " + type : "");
+            (
+                type
+                    ? " " + type
+                    : ""
+            );
 
     }
+
+
+    /*
+       VIEW SWITCHING
+    */
+
+    function showView(
+        viewName
+    ) {
+
+        if (signupView) {
+
+            signupView.style.display =
+                viewName === "signup"
+                    ? "block"
+                    : "none";
+
+        }
+
+        if (loginView) {
+
+            loginView.style.display =
+                viewName === "login"
+                    ? "block"
+                    : "none";
+
+        }
+
+        if (forgotView) {
+
+            forgotView.style.display =
+                viewName === "forgot"
+                    ? "block"
+                    : "none";
+
+        }
+
+        if (resetView) {
+
+            resetView.style.display =
+                viewName === "reset"
+                    ? "block"
+                    : "none";
+
+        }
+
+        if (accountView) {
+
+            accountView.style.display =
+                viewName === "account"
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        const title =
+            document.getElementById(
+                "startFreeTitle"
+            );
+
+
+        if (title) {
+
+            if (viewName === "signup") {
+
+                title.textContent =
+                    "Create your free DTools account";
+
+            }
+
+            if (viewName === "login") {
+
+                title.textContent =
+                    "Welcome back to DTools";
+
+            }
+
+            if (viewName === "forgot") {
+
+                title.textContent =
+                    "Reset your DTools password";
+
+            }
+
+            if (viewName === "reset") {
+
+                title.textContent =
+                    "Choose a new password";
+
+            }
+
+            if (viewName === "account") {
+
+                title.textContent =
+                    "Your DTools account";
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       CLEAR STATUS
+    */
+
+    function clearStatus() {
+
+        setStatus(
+            status,
+            "",
+            ""
+        );
+
+        setStatus(
+            loginStatus,
+            "",
+            ""
+        );
+
+        setStatus(
+            forgotStatus,
+            "",
+            ""
+        );
+
+        setStatus(
+            resetStatus,
+            "",
+            ""
+        );
+
+    }
+
+
+    /*
+       OPEN MODAL
+    */
 
     function openModal() {
 
-        modal.classList.add("active");
+        modal.classList.add(
+            "active"
+        );
 
         modal.setAttribute(
             "aria-hidden",
@@ -1278,21 +1737,51 @@ function initStartFree() {
         document.body.style.overflow =
             "hidden";
 
-        setStatus("");
 
-        setTimeout(function () {
+        clearStatus();
 
-            document
-                .getElementById("startFreeName")
-                ?.focus();
 
-        }, 50);
+        if (dtoolsRecoveryMode) {
+
+            showView(
+                "reset"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            openButton.dataset.authenticated ===
+            "true"
+        ) {
+
+            showView(
+                "account"
+            );
+
+            return;
+
+        }
+
+
+        showView(
+            "signup"
+        );
 
     }
 
+
+    /*
+       CLOSE MODAL
+    */
+
     function closeModal() {
 
-        modal.classList.remove("active");
+        modal.classList.remove(
+            "active"
+        );
 
         modal.setAttribute(
             "aria-hidden",
@@ -1305,161 +1794,290 @@ function initStartFree() {
     }
 
 
+    /*
+       SIGN UP → LOGIN
+    */
 
-       if (logoutButton) {
-   
-       logoutButton.addEventListener(
-           "click",
-           async function () {
-   
-               logoutButton.disabled =
-                   true;
-   
-               try {
-   
-                   const result =
-                       await dtoolsSupabase.auth.signOut();
-   
-                   if (result.error) {
-                       throw result.error;
-                   }
-   
-                   closeModal();
-   
-               } catch (error) {
-   
-                   console.error(
-                       "Logout error:",
-                       error
-                   );
-   
-               } finally {
-   
-                   logoutButton.disabled =
-                       false;
-   
-               }
-   
-           }
-       );
-   
-   }
+    if (showLoginButton) {
+
+        showLoginButton.addEventListener(
+            "click",
+            function() {
+
+                clearStatus();
+
+                showView(
+                    "login"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       LOGIN → SIGN UP
+    */
+
+    if (showSignupButton) {
+
+        showSignupButton.addEventListener(
+            "click",
+            function() {
+
+                clearStatus();
+
+                showView(
+                    "signup"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       LOGIN → FORGOT PASSWORD
+    */
+
+    if (forgotPasswordLink) {
+
+        forgotPasswordLink.addEventListener(
+            "click",
+            function() {
+
+                clearStatus();
+
+
+                if (
+                    loginEmail &&
+                    forgotEmail &&
+                    loginEmail.value.trim()
+                ) {
+
+                    forgotEmail.value =
+                        loginEmail.value.trim();
+
+                }
+
+
+                showView(
+                    "forgot"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       FORGOT → LOGIN
+    */
+
+    if (backToLoginButton) {
+
+        backToLoginButton.addEventListener(
+            "click",
+            function() {
+
+                clearStatus();
+
+                showView(
+                    "login"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       GOOGLE LOGIN
+    */
+
+    async function handleGoogleLogin(
+        button,
+        errorElement
+    ) {
+
+        if (!button) {
+            return;
+        }
+
+        button.disabled =
+            true;
+
+
+        try {
+
+            await signInWithGoogleOAuth();
+
+        } catch (error) {
+
+            setStatus(
+                errorElement,
+                error.message ||
+                    "Unable to continue with Google.",
+                "error"
+            );
+
+            button.disabled =
+                false;
+
+        }
+
+    }
+
+
+    if (googleSignupButton) {
+
+        googleSignupButton.addEventListener(
+            "click",
+            function() {
+
+                handleGoogleLogin(
+                    googleSignupButton,
+                    status
+                );
+
+            }
+        );
+
+    }
+
+
+    if (googleLoginButton) {
+
+        googleLoginButton.addEventListener(
+            "click",
+            function() {
+
+                handleGoogleLogin(
+                    googleLoginButton,
+                    loginStatus
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       OPEN BUTTON
+    */
 
     openButton.addEventListener(
-       "click",
-       async function () {
-   
-           if (!dtoolsSupabase) {
-               await initSupabase();
-           }
-   
-   
-           const result =
-               await dtoolsSupabase.auth.getSession();
-   
-           const session =
-               result.data.session;
-   
-   
-           if (session) {
-   
-               const form =
-                   document.getElementById(
-                       "startFreeForm"
-                   );
-   
-               const accountView =
-                   document.getElementById(
-                       "dtoolsAccountView"
-                   );
-   
-               if (form) {
-                   form.style.display = "none";
-               }
-   
-               if (accountView) {
-                   accountView.style.display = "block";
-               }
-   
-           } else {
-   
-               const form =
-                   document.getElementById(
-                       "startFreeForm"
-                   );
-   
-               const accountView =
-                   document.getElementById(
-                       "dtoolsAccountView"
-                   );
-   
-               if (form) {
-                   form.style.display = "block";
-               }
-   
-               if (accountView) {
-                   accountView.style.display = "none";
-               }
-   
-           }
-   
-   
-           openModal();
-   
-       }
-   );
+        "click",
+        async function() {
+
+            if (!dtoolsSupabase) {
+                await initSupabase();
+            }
+
+
+            const result =
+                await dtoolsSupabase.auth
+                    .getSession();
+
+
+            updateDToolsAuthUI(
+                result.data.session
+            );
+
+
+            openModal();
+
+        }
+    );
+
+
+    /*
+       CLOSE BUTTON
+    */
 
     closeButton.addEventListener(
         "click",
         closeModal
     );
 
+
+    /*
+       CLICK OUTSIDE
+    */
+
     modal.addEventListener(
         "click",
-        function (event) {
+        function(event) {
 
             if (
-                event.target === modal
+                event.target ===
+                modal
             ) {
+
                 closeModal();
+
             }
 
         }
     );
+
+
+    /*
+       ESC
+    */
 
     document.addEventListener(
         "keydown",
-        function (event) {
+        function(event) {
 
             if (
                 event.key === "Escape" &&
-                modal.classList.contains("active")
+                modal.classList.contains(
+                    "active"
+                )
             ) {
+
                 closeModal();
+
             }
 
         }
     );
 
+
+    /*
+       SIGN UP
+    */
+
     form.addEventListener(
         "submit",
-        async function (event) {
+        async function(event) {
 
             event.preventDefault();
 
+
             setStatus(
+                status,
                 "Creating your account...",
                 "loading"
             );
 
+
             submitButton.disabled =
                 true;
+
 
             try {
 
                 if (!dtoolsSupabase) {
                     await initSupabase();
                 }
+
 
                 const fullName =
                     document
@@ -1468,6 +2086,7 @@ function initStartFree() {
                         )
                         .value
                         .trim();
+
 
                 const email =
                     document
@@ -1478,12 +2097,14 @@ function initStartFree() {
                         .trim()
                         .toLowerCase();
 
+
                 const password =
                     document
                         .getElementById(
                             "startFreePassword"
                         )
                         .value;
+
 
                 const termsAccepted =
                     document
@@ -1492,12 +2113,14 @@ function initStartFree() {
                         )
                         .checked;
 
+
                 const marketingConsent =
                     document
                         .getElementById(
                             "startFreeMarketing"
                         )
                         .checked;
+
 
                 const partnerConsent =
                     document
@@ -1506,83 +2129,109 @@ function initStartFree() {
                         )
                         .checked;
 
+
                 const interests =
                     Array.from(
                         form.querySelectorAll(
                             'input[name="interest"]:checked'
                         )
-                    ).map(function (input) {
+                    )
+                    .map(function(input) {
+
                         return input.value;
+
                     });
 
+
                 if (!fullName) {
+
                     throw new Error(
                         "Please enter your name."
                     );
+
                 }
 
+
                 if (!email) {
+
                     throw new Error(
                         "Please enter your email."
                     );
+
                 }
 
-                if (password.length < 6) {
+
+                if (
+                    password.length < 6
+                ) {
+
                     throw new Error(
                         "Password must be at least 6 characters."
                     );
+
                 }
 
+
                 if (!termsAccepted) {
+
                     throw new Error(
                         "Please accept the Privacy Policy and Terms & Conditions."
                     );
+
                 }
 
+
                 const result =
-                    await dtoolsSupabase.auth.signUp({
+                    await dtoolsSupabase.auth
+                        .signUp({
 
-                        email: email,
+                            email:
+                                email,
 
-                        password: password,
+                            password:
+                                password,
 
-                        options: {
+                            options: {
 
-                            emailRedirectTo:
-                                window.location.origin +
-                                SITE_BASE,
+                                emailRedirectTo:
+                                    window.location.origin +
+                                    SITE_BASE,
 
-                            data: {
+                                data: {
 
-                                full_name:
-                                    fullName,
+                                    full_name:
+                                        fullName,
 
-                                interests:
-                                    interests,
+                                    interests:
+                                        interests,
 
-                                marketing_consent:
-                                    marketingConsent,
+                                    marketing_consent:
+                                        marketingConsent,
 
-                                partner_consent:
-                                    partnerConsent,
+                                    partner_consent:
+                                        partnerConsent,
 
-                                consent_version:
-                                    "2026-10-06",
+                                    consent_version:
+                                        "2026-10-06",
 
-                                consent_at:
-                                    new Date().toISOString()
+                                    consent_at:
+                                        new Date()
+                                            .toISOString()
+
+                                }
 
                             }
 
-                        }
+                        });
 
-                    });
 
                 if (result.error) {
                     throw result.error;
                 }
 
+
                 form.reset();
+
 
                 if (
                     result.data.user &&
@@ -1590,24 +2239,34 @@ function initStartFree() {
                 ) {
 
                     setStatus(
+                        status,
                         "Account created successfully. You are signed in.",
                         "success"
                     );
 
+
+                    updateDToolsAuthUI(
+                        result.data.session
+                    );
+
+
                 } else {
 
                     setStatus(
+                        status,
                         "Account created. Please check your email to confirm your account.",
                         "success"
                     );
 
                 }
 
+
             } catch (error) {
 
                 setStatus(
+                    status,
                     error.message ||
-                    "Unable to create your account.",
+                        "Unable to create your account.",
                     "error"
                 );
 
@@ -1620,6 +2279,430 @@ function initStartFree() {
 
         }
     );
+
+
+    /*
+       LOGIN
+    */
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                setStatus(
+                    loginStatus,
+                    "Signing you in...",
+                    "loading"
+                );
+
+
+                loginSubmit.disabled =
+                    true;
+
+
+                try {
+
+                    if (!dtoolsSupabase) {
+                        await initSupabase();
+                    }
+
+
+                    const email =
+                        loginEmail.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const password =
+                        loginPassword.value;
+
+
+                    if (!email) {
+
+                        throw new Error(
+                            "Please enter your email."
+                        );
+
+                    }
+
+
+                    if (!password) {
+
+                        throw new Error(
+                            "Please enter your password."
+                        );
+
+                    }
+
+
+                    const result =
+                        await dtoolsSupabase.auth
+                            .signInWithPassword({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            });
+
+
+                    if (result.error) {
+
+                        throw result.error;
+
+                    }
+
+
+                    loginForm.reset();
+
+
+                    updateDToolsAuthUI(
+                        result.data.session
+                    );
+
+
+                    showView(
+                        "account"
+                    );
+
+
+                } catch (error) {
+
+                    let message =
+                        error.message ||
+                        "Unable to sign in.";
+
+
+                    if (
+                        message
+                            .toLowerCase()
+                            .includes(
+                                "email not confirmed"
+                            )
+                    ) {
+
+                        message =
+                            "Please confirm your email before signing in.";
+
+                    }
+
+
+                    setStatus(
+                        loginStatus,
+                        message,
+                        "error"
+                    );
+
+                } finally {
+
+                    loginSubmit.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       FORGOT PASSWORD
+    */
+
+    if (forgotForm) {
+
+        forgotForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                setStatus(
+                    forgotStatus,
+                    "Sending reset link...",
+                    "loading"
+                );
+
+
+                forgotSubmit.disabled =
+                    true;
+
+
+                try {
+
+                    if (!dtoolsSupabase) {
+                        await initSupabase();
+                    }
+
+
+                    const email =
+                        forgotEmail.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    if (!email) {
+
+                        throw new Error(
+                            "Please enter your email."
+                        );
+
+                    }
+
+
+                    const result =
+                        await dtoolsSupabase.auth
+                            .resetPasswordForEmail(
+                                email,
+                                {
+
+                                    redirectTo:
+                                        window.location.origin +
+                                        SITE_BASE
+
+                                }
+                            );
+
+
+                    if (result.error) {
+                        throw result.error;
+                    }
+
+
+                    setStatus(
+                        forgotStatus,
+                        "Reset link sent. Please check your email.",
+                        "success"
+                    );
+
+
+                } catch (error) {
+
+                    setStatus(
+                        forgotStatus,
+                        error.message ||
+                            "Unable to send the reset email.",
+                        "error"
+                    );
+
+                } finally {
+
+                    forgotSubmit.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       RESET PASSWORD
+    */
+
+    if (resetForm) {
+
+        resetForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                setStatus(
+                    resetStatus,
+                    "Updating your password...",
+                    "loading"
+                );
+
+
+                resetSubmit.disabled =
+                    true;
+
+
+                try {
+
+                    if (!dtoolsSupabase) {
+                        await initSupabase();
+                    }
+
+
+                    const newPassword =
+                        resetPassword.value;
+
+
+                    const confirmPassword =
+                        resetPasswordConfirm.value;
+
+
+                    if (
+                        newPassword.length < 6
+                    ) {
+
+                        throw new Error(
+                            "Password must be at least 6 characters."
+                        );
+
+                    }
+
+
+                    if (
+                        newPassword !==
+                        confirmPassword
+                    ) {
+
+                        throw new Error(
+                            "Passwords do not match."
+                        );
+
+                    }
+
+
+                    const result =
+                        await dtoolsSupabase.auth
+                            .updateUser({
+
+                                password:
+                                    newPassword
+
+                            });
+
+
+                    if (result.error) {
+                        throw result.error;
+                    }
+
+
+                    resetForm.reset();
+
+
+                    dtoolsRecoveryMode =
+                        false;
+
+
+                    setStatus(
+                        resetStatus,
+                        "Password updated successfully.",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        async function() {
+
+                            const sessionResult =
+                                await dtoolsSupabase
+                                    .auth
+                                    .getSession();
+
+
+                            updateDToolsAuthUI(
+                                sessionResult
+                                    .data
+                                    .session
+                            );
+
+
+                            showView(
+                                "account"
+                            );
+
+                        },
+                        700
+                    );
+
+
+                } catch (error) {
+
+                    setStatus(
+                        resetStatus,
+                        error.message ||
+                            "Unable to update your password.",
+                        "error"
+                    );
+
+                } finally {
+
+                    resetSubmit.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       SIGN OUT
+    */
+
+    if (logoutButton) {
+
+        logoutButton.addEventListener(
+            "click",
+            async function() {
+
+                logoutButton.disabled =
+                    true;
+
+
+                try {
+
+                    const result =
+                        await dtoolsSupabase.auth
+                            .signOut();
+
+
+                    if (result.error) {
+                        throw result.error;
+                    }
+
+
+                    closeModal();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                } finally {
+
+                    logoutButton.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       PASSWORD RECOVERY PAGE
+    */
+
+    if (dtoolsRecoveryMode) {
+
+        openModal();
+
+    }
 
 }
 
