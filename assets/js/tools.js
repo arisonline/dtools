@@ -2290,33 +2290,42 @@ function renderToolContent(content) {
     } else {
 
       categories.innerHTML = `
-        <span>Categories →</span>
-
-        ${
-
-          categoryList
-            .map((category, index) => {
-
-              return `
-                <a
-                  href="${category.url || "#"}"
-                >
-                  ${category.name}
-                </a>
-
-                ${
-                  index <
-                  categoryList.length - 1
-                    ? ", "
-                    : ""
-                }
-              `;
-
-            })
-            .join("")
-
-        }
+          <span>Categories →</span>
+      
+          ${
+              categoryList
+                  .map((category, index) => {
+      
+                      const filter =
+                          category.filter ||
+                          String(
+                              content.category || ""
+                          ).toLowerCase();
+      
+                      return `
+                          <a
+                              href="${SITE_BASE}#tools-section"
+                              data-home-filter="${filter}"
+                          >
+                              ${category.name}
+                          </a>
+      
+                          ${
+                              index <
+                              categoryList.length - 1
+                                  ? ", "
+                                  : ""
+                          }
+                      `;
+      
+                  })
+                  .join("")
+          }
       `;
+
+       initHomeFilterLinks(
+          "#tool-page-categories a[data-home-filter]"
+      );
 
     }
 
