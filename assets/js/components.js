@@ -488,79 +488,13 @@ function initFooter() {
     }
 
 
-   /* =====================================
-      HOMEPAGE FILTER LINKS
-   ====================================== */
-   
-      initHomeFilterLinks(
-          "#site-footer a[data-home-filter]"
-      );
-      
-      
-      filterLinks.forEach(function (link) {
-      
-          const filter =
-              link.getAttribute(
-                  "data-home-filter"
-              );
-      
-      
-          if (!filter) {
-              return;
-          }
-      
-      
-          link.href =
-             SITE_BASE +
-             "#tools-section";
-      
-      
-          link.addEventListener(
-             "click",
-             function (event) {
-         
-                 /* =====================================
-                    ALREADY ON HOMEPAGE
-                 ====================================== */
-         
-                 if (
-                     typeof window.setHomeToolFilter ===
-                     "function"
-                 ) {
-         
-                     event.preventDefault();
-         
-                     window.setHomeToolFilter(
-                         filter
-                     );
-         
-                     history.replaceState(
-                         null,
-                         "",
-                         SITE_BASE + "#tools-section"
-                     );
-         
-                     return;
-                 }
-         
-         
-                 /* =====================================
-                    FROM TOOL / OTHER PAGE
-                 ====================================== */
-         
-                 try {
-         
-                     sessionStorage.setItem(
-                         "dozni-home-filter",
-                         filter
-                     );
-         
-                 } catch (error) {}
-         
-             }
-         );
-      
-      });
+    /* =====================================
+       HOMEPAGE FILTER LINKS
+    ====================================== */
+
+    initHomeFilterLinks(
+        "#site-footer a[data-home-filter]"
+    );
 
 
     /* =====================================
@@ -576,7 +510,9 @@ function initFooter() {
     footerLinks.forEach(function (link) {
 
         const path =
-            link.getAttribute("data-path");
+            link.getAttribute(
+                "data-path"
+            );
 
 
         if (!path) {
@@ -591,7 +527,6 @@ function initFooter() {
     });
 
 }
-
 
 
 
