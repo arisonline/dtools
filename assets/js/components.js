@@ -362,6 +362,91 @@ function getDToolsIconSvg(icon) {
 
 
 
+
+
+/* =====================================
+   HOME CATEGORY FILTER LINKS
+===================================== */
+
+function initHomeFilterLinks(selector) {
+
+    const filterLinks =
+        document.querySelectorAll(selector);
+
+
+    filterLinks.forEach(function (link) {
+
+        const filter =
+            link.getAttribute(
+                "data-home-filter"
+            );
+
+
+        if (!filter) {
+            return;
+        }
+
+
+        link.href =
+            SITE_BASE +
+            "#tools-section";
+
+
+        link.addEventListener(
+            "click",
+            function (event) {
+
+                /* =========================
+                   ALREADY ON HOMEPAGE
+                ========================== */
+
+                if (
+                    typeof window.setHomeToolFilter ===
+                    "function"
+                ) {
+
+                    event.preventDefault();
+
+
+                    window.setHomeToolFilter(
+                        filter
+                    );
+
+
+                    history.replaceState(
+                        null,
+                        "",
+                        SITE_BASE +
+                        "#tools-section"
+                    );
+
+
+                    return;
+                }
+
+
+                /* =========================
+                   FROM TOOL / OTHER PAGE
+                ========================== */
+
+                try {
+
+                    sessionStorage.setItem(
+                        "dozni-home-filter",
+                        filter
+                    );
+
+                } catch (error) {}
+
+            }
+        );
+
+    });
+
+}
+
+
+
 /* =========================================
    FOOTER
 ========================================= */
@@ -407,10 +492,9 @@ function initFooter() {
       HOMEPAGE FILTER LINKS
    ====================================== */
    
-      const filterLinks =
-          document.querySelectorAll(
-              "#site-footer a[data-home-filter]"
-          );
+      initHomeFilterLinks(
+          "#site-footer a[data-home-filter]"
+      );
       
       
       filterLinks.forEach(function (link) {
