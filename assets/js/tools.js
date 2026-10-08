@@ -112,7 +112,7 @@ const toolsData = [
        categories: [
            {
                name: "Dev Tools",
-               url: "https://digital-tool.dozni.com/?category=Dev"
+               filter: "dev"
            }
        ],
    
@@ -377,7 +377,7 @@ const toolsData = [
    
            {
                name: "Dev Tools",
-               url: "https://digital-tool.dozni.com/?category=Dev"
+               filter: "dev"
            }
    
        ],
@@ -929,7 +929,7 @@ const toolsData = [
           categories: [
               {
                   name: "Color Tools",
-                  url: "https://digital-tool.dozni.com/?category=Color"
+                  filter: "color"
               }
           ],
    
@@ -1171,7 +1171,7 @@ const toolsData = [
        categories: [
            {
                name: "Color Tools",
-               url: "https://digital-tool.dozni.com/?category=Color"
+               filter: "color"
            }
        ],
    
@@ -1327,8 +1327,7 @@ const toolsData = [
 
         {
             name: "Math Tools",
-
-            url: "https://digital-tool.dozni.com/?category=Math"
+            filter: "math"
         }
 
     ],
@@ -1594,9 +1593,7 @@ const toolsData = [
    
            {
                name: "Dev Tools",
-   
-               url:
-                   "https://digital-tool.dozni.com/?category=Dev"
+               filter: "dev"
            }
    
        ],
